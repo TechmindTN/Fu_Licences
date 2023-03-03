@@ -413,7 +413,7 @@ class LicenceProvider extends ChangeNotifier {
         print('image uploaded');
         print(formData);
         print(res.data);
-        setAthleteImagePath(toFillImage, res.data['url']);
+        setCoachImagePath(toFillImage, res.data['url']);
         //toFillImage=res.data['url'];
 
         notify();
