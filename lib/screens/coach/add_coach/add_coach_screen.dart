@@ -11,12 +11,12 @@ import 'package:sizer/sizer.dart';
 import '../../../widgets/global/inputs.dart';
 import '../../licence/addlicence/add_licence_screen.dart';
 
-class AddAthleteScreen extends StatefulWidget {
+class AddCoachScreen extends StatefulWidget {
   @override
-  State<AddAthleteScreen> createState() => _AddAthleteScreenState();
+  State<AddCoachScreen> createState() => _AddCoachScreenState();
 }
 
-class _AddAthleteScreenState extends State<AddAthleteScreen> {
+class _AddCoachScreenState extends State<AddCoachScreen> {
   // String? categoryId;
   // dynamic? gradeId;
   // dynamic? idDegree;
@@ -46,7 +46,7 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
         builder: (context, licenceController, child) {
       return Scaffold(
         appBar: AppBar(
-          title: Text("Ajouter les informations du athlete"),
+          title: Text("Ajouter les informations du entraineur"),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -120,7 +120,7 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
                           ..hideCurrentSnackBar()
                           ..showSnackBar(snackBar);
                       } else {
-                        licenceController.createAthlete(context);
+                        licenceController.createCoach(context);
                         // GoRouter.of(context).dispose();
                         GoRouter.of(context).go(Routes.LicenceListScreen);
                       }

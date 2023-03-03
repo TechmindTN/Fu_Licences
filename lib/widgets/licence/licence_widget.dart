@@ -4,7 +4,7 @@ import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/models/full_licence.dart';
 import 'package:fu_licences/models/role.dart';
 import 'package:fu_licences/screens/licence/addlicence/add_licence_screen.dart';
-import 'package:fu_licences/screens/licence/addlicence/upload_images_screen.dart';
+import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
 import 'package:fu_licences/screens/licence/filtered_licences_list.dart';
 import 'package:fu_licences/screens/licence/licence_screen.dart';
 import 'package:fu_licences/widgets/global/modals.dart';
@@ -277,10 +277,10 @@ Widget RolePhotos(FullLicence fullLicence) {
 Widget ArbitratorPhotosWidget(FullLicence fullLicence) {
   return Container(
     child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      (fullLicence!.arbitrator!.identityPhoto != null &&
-              fullLicence!.arbitrator!.identityPhoto != "")
+      (fullLicence.arbitrator!.identityPhoto != null &&
+              fullLicence.arbitrator!.identityPhoto != "")
           ? Image.network(
-              fullLicence!.arbitrator!.identityPhoto!,
+              fullLicence.arbitrator!.identityPhoto!,
               width: 40.w,
             )
           : Image.asset(
@@ -288,10 +288,10 @@ Widget ArbitratorPhotosWidget(FullLicence fullLicence) {
               width: 40.w,
               fit: BoxFit.cover,
             ),
-      (fullLicence!.arbitrator!.photo != null &&
-              fullLicence!.arbitrator!.photo != "")
+      (fullLicence.arbitrator!.photo != null &&
+              fullLicence.arbitrator!.photo != "")
           ? Image.network(
-              fullLicence!.arbitrator!.photo!,
+              fullLicence.arbitrator!.photo!,
               width: 40.w,
             )
           : Image.asset(
@@ -306,10 +306,10 @@ Widget ArbitratorPhotosWidget(FullLicence fullLicence) {
 Widget CoachPhotosWidget(FullLicence fullLicence) {
   return Container(
     child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      (fullLicence!.coach!.identityPhoto != null &&
-              fullLicence!.coach!.identityPhoto != "")
+      (fullLicence.coach!.identityPhoto != null &&
+              fullLicence.coach!.identityPhoto != "")
           ? Image.network(
-              fullLicence!.coach!.identityPhoto!,
+              fullLicence.coach!.identityPhoto!,
               width: 20.w,
             )
           : Image.asset(
@@ -317,9 +317,9 @@ Widget CoachPhotosWidget(FullLicence fullLicence) {
               width: 20.w,
               fit: BoxFit.cover,
             ),
-      (fullLicence!.coach!.photo != null && fullLicence!.coach!.photo != "")
+      (fullLicence.coach!.photo != null && fullLicence.coach!.photo != "")
           ? Image.network(
-              fullLicence!.coach!.photo!,
+              fullLicence.coach!.photo!,
               width: 20.w,
             )
           : Image.asset(
@@ -327,10 +327,10 @@ Widget CoachPhotosWidget(FullLicence fullLicence) {
               width: 20.w,
               fit: BoxFit.cover,
             ),
-      (fullLicence!.coach!.degreePhoto != null &&
-              fullLicence!.coach!.degreePhoto != "")
+      (fullLicence.coach!.degreePhoto != null &&
+              fullLicence.coach!.degreePhoto != "")
           ? Image.network(
-              fullLicence!.coach!.degreePhoto!,
+              fullLicence.coach!.degreePhoto!,
               width: 20.w,
             )
           : Image.asset(
@@ -338,10 +338,10 @@ Widget CoachPhotosWidget(FullLicence fullLicence) {
               width: 20.w,
               fit: BoxFit.cover,
             ),
-      (fullLicence!.coach!.gradePhoto != null &&
-              fullLicence!.coach!.gradePhoto != "")
+      (fullLicence.coach!.gradePhoto != null &&
+              fullLicence.coach!.gradePhoto != "")
           ? Image.network(
-              fullLicence!.coach!.gradePhoto!,
+              fullLicence.coach!.gradePhoto!,
               width: 20.w,
             )
           : Image.asset(
@@ -367,10 +367,10 @@ Widget AthletePhotosWidget(FullLicence fullLicence) {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                (fullLicence!.athlete!.identityPhoto != null &&
-                        fullLicence!.athlete!.identityPhoto != "")
+                (fullLicence.athlete!.identityPhoto != null &&
+                        fullLicence.athlete!.identityPhoto != "")
                     ? Image.network(
-                        fullLicence!.athlete!.identityPhoto!,
+                        fullLicence.athlete!.identityPhoto!,
                         fit: BoxFit.cover,
                         width: 30.w,
                       )
@@ -388,10 +388,10 @@ Widget AthletePhotosWidget(FullLicence fullLicence) {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                (fullLicence!.athlete!.photo != null &&
-                        fullLicence!.athlete!.photo != "")
+                (fullLicence.athlete!.photo != null &&
+                        fullLicence.athlete!.photo != "")
                     ? Image.network(
-                        fullLicence!.athlete!.photo!,
+                        fullLicence.athlete!.photo!,
                         fit: BoxFit.cover,
                         width: 30.w,
                       )
@@ -409,10 +409,10 @@ Widget AthletePhotosWidget(FullLicence fullLicence) {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                (fullLicence!.athlete!.medicalPhoto != null &&
-                        fullLicence!.athlete!.medicalPhoto != "")
+                (fullLicence.athlete!.medicalPhoto != null &&
+                        fullLicence.athlete!.medicalPhoto != "")
                     ? Image.network(
-                        fullLicence!.athlete!.medicalPhoto!,
+                        fullLicence.athlete!.medicalPhoto!,
                         fit: BoxFit.cover,
                         width: 30.w,
                       )
@@ -429,13 +429,19 @@ Widget AthletePhotosWidget(FullLicence fullLicence) {
   );
 }
 
-Widget RoleCard(Role role, context) {
+Widget RoleCard(Role role, context,LicenceProvider licenceController) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: InkWell(
       onTap: (() {
+        licenceController.selectedRole=role;
         if (role.roles == "Athlete") {
-          GoRouter.of(context).push(Routes.UploadImagesScreen);
+          GoRouter.of(context).push(Routes.UploadAthleteImagesScreen);
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+        }
+        else if (role.roles == "Entraineur") {
+          GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
           // Navigator.push(context,
           //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
         }
@@ -480,7 +486,46 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
           showModalBottomSheet(
               context: context,
               builder: (context) {
-                return MediaModal(licenceController, context, toFillImage);
+                return AthleteMediaModal(licenceController, context, toFillImage);
+              });
+        },
+        label: Text("Select"),
+      )
+    ],
+  );
+}
+
+
+Widget CoachImageUploadWidget(txt, licenceController, context,
+    String? toFillImage, String? placeHolderImage) {
+  return Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
+          onTap: (() {}),
+          child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Colors.red),
+              width: 60.w,
+              height: 40.h,
+              child: (placeHolderImage != null)
+                  ? Image.network(placeHolderImage)
+                  : Center()),
+        ),
+      ),
+      // Text(placeHolderImage.toString()),
+      Text(txt),
+      SizedBox(
+        height: 1.h,
+      ),
+      FloatingActionButton.extended(
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return CoachMediaModal(licenceController, context, toFillImage);
               });
         },
         label: Text("Select"),

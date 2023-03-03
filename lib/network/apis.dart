@@ -10,7 +10,7 @@ class Apis {
   
   // /pro/
   final String baseUrl="https://9c9e-197-14-10-36.eu.ngrok.io/api/";
-  final String tempToken="TOKEN c5fcfd11775a5b053e838d119c215d8694f6cb98a48e9e206263e5845e2a6530";
+  final String tempToken="TOKEN 07240bd778b9e9eaf8a00122bfbe34dd2d84a02872d8c2d0027b960e09459407";
   final String licenceListInfo="licencelist_info/";
   final String getParameters="parameters/";
   final String uploadImage="upload_photo/";

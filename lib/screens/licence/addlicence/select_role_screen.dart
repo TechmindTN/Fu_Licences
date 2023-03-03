@@ -31,7 +31,7 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 for(Role role in licenceController.parameters!.roles! )
-                RoleCard(role,context)
+                RoleCard(role,context,licenceController)
               ],)
             ),
           ),

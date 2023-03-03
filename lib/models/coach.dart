@@ -5,13 +5,14 @@ class Coach {
   String? degreePhoto;
   String? gradePhoto;
   String? photo;
-  int? profile;
+  dynamic? profile;
   dynamic? grade;
   dynamic? degree;
   dynamic? club;
-  int? categoryId;
-  int? weights;
-  String? category;
+  dynamic? categoryId;
+  dynamic? weights;
+  dynamic? category;
+  dynamic? discipline;
 
   Coach(
       {this.id,
@@ -26,7 +27,8 @@ class Coach {
       this.club,
       this.categoryId,
       this.weights,
-      this.category});
+      this.category,
+      this.discipline});
 
   Coach.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -42,6 +44,7 @@ class Coach {
     categoryId = json['category_id'];
     weights = json['weights'];
     category = json['category'];
+    discipline = json['discipline'];
   }
 
   Map<String, dynamic> toJson() {
@@ -59,6 +62,7 @@ class Coach {
     data['category_id'] = this.categoryId;
     data['weights'] = this.weights;
     data['category'] = this.category;
+    data['discipline'] = this.discipline;
     return data;
   }
 }
