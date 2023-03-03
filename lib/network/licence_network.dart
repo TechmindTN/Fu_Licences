@@ -26,12 +26,14 @@ class LicenceNetwork {
   }
 
   uploadImage(data) async {
+    print('entered upload image network');
     Response res = await apis.dio.post(apis.baseUrl + apis.uploadImage,
         options: Options(
             contentType:
                 "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
             headers: {"Authorization": apis.tempToken}),
         data: data);
+        print('upload image network done');
     return res;
   }
   editProfile(data,id) async {

@@ -10,12 +10,12 @@ import 'package:sizer/sizer.dart';
 
 import '../../../router/routes.dart';
 
-class UploadLicenceImages extends StatefulWidget{
+class UploadCoachLicenceImages extends StatefulWidget{
   @override
-  State<UploadLicenceImages> createState() => _UploadLicenceImagesState();
+  State<UploadCoachLicenceImages> createState() => _UploadCoachLicenceImagesState();
 }
 
-class _UploadLicenceImagesState extends State<UploadLicenceImages> {
+class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
   late LicenceProvider licenceController;
   @override
   void initState() {
@@ -28,15 +28,17 @@ class _UploadLicenceImagesState extends State<UploadLicenceImages> {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(title: Text('Coach Images'),),
           body: SingleChildScrollView(
             child: Center(
               child: Column(
                 children: [
-                  AthleteImageUploadWidget('photo',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
-                  AthleteImageUploadWidget('photo',licenceController,context,'idphoto',licenceController.createdFullLicence!.athlete!.identityPhoto),
-                  AthleteImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.athlete!.photo),
-                  AthleteImageUploadWidget('photo',licenceController,context,'medphoto',licenceController.createdFullLicence!.athlete!.medicalPhoto),
+                  CoachImageUploadWidget('photo',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
+                  CoachImageUploadWidget('photo',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto),
+                  CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo),
+                  CoachImageUploadWidget('photo',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.gradePhoto),
+                  CoachImageUploadWidget('photo',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.degreePhoto),
+
                   SizedBox(height: 5.h,)
                 ],
               ),
@@ -51,7 +53,7 @@ class _UploadLicenceImagesState extends State<UploadLicenceImages> {
                   width: 30.w,
                   child: FloatingActionButton.extended(onPressed: (){
                     // licenceController.createProfile();
-                    if((licenceController.createdFullLicence!.profile!.profilePhoto==null)||(licenceController.createdFullLicence!.athlete!.identityPhoto==null)||(licenceController.createdFullLicence!.athlete!.photo==null)||(licenceController.createdFullLicence!.athlete!.medicalPhoto==null)){
+                    if((licenceController.createdFullLicence!.profile!.profilePhoto==null)||(licenceController.createdFullLicence!.coach!.identityPhoto==null)||(licenceController.createdFullLicence!.coach!.photo==null)||(licenceController.createdFullLicence!.coach!.degreePhoto==null)||(licenceController.createdFullLicence!.coach!.gradePhoto==null)){
                       final snackBar=MySnackBar(title: "Photos Manquantes",msg: "Merci de remplir tous les photos svp",state: ContentType.warning);
                       ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
                     }

@@ -3,7 +3,7 @@ import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/athlete/add_athlete/add_athlete_screen.dart';
 import 'package:fu_licences/screens/home/bottom_bar.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
-import 'package:fu_licences/screens/licence/addlicence/upload_images_screen.dart';
+import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
 import 'package:fu_licences/screens/licence/edit%20licence/edit_images_screen.dart';
 import 'package:fu_licences/screens/licence/edit%20licence/edit_licence_screen.dart';
 import 'package:fu_licences/screens/licence/filtered_licences_list.dart';
@@ -13,6 +13,8 @@ import 'package:fu_licences/screens/licence/renew%20licence/renew_licence_screen
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import '../screens/coach/add_coach/add_coach_screen.dart';
+import '../screens/licence/addlicence/upload_coach_images_screen.dart';
 import '../screens/licence/licence_screen.dart';
 
 class Pages{
@@ -50,14 +52,20 @@ class Pages{
       GoRoute(path: Routes.SelectRoleScreen,
       builder: (context, state) => SelectRoleScreen(),
       ),
-      GoRoute(path: Routes.UploadImagesScreen,
-      builder: (context, state) => UploadLicenceImages(),
+      GoRoute(path: Routes.UploadAthleteImagesScreen,
+      builder: (context, state) => UploadAthleteLicenceImages(),
+      ),
+      GoRoute(path: Routes.UploadCoachImagesScreen,
+      builder: (context, state) => UploadCoachLicenceImages(),
       ),
       GoRoute(path: Routes.LicenceScreen,
       builder: (context, state) => LicenceScreen(),
       ),
       GoRoute(path: Routes.FilteredLicencesScreen,
       builder: (context, state) => FilteredLicencesScreen(),
+      ),
+      GoRoute(path: Routes.AddCoachLicenceScreen,
+      builder: (context, state) => AddCoachScreen(),
       ),
       // GoRoute(path: Routes.LicenceScreen,
       // builder: (context, state) => LicenceScreen(),

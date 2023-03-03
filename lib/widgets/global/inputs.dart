@@ -304,7 +304,7 @@ WeightSelectInput(txt,selected,LicenceProvider licenceController){
         showSelectedItems: true,
         // disabledItemFn: (String s) => s.startsWith('I'),
     ),
-    itemAsString: (item) => item.masseEnKillograme.toString()!,
+    itemAsString: (item) => item.masseEnKillograme.toString(),
     items: licenceController.parameters!.weights!,
     dropdownDecoratorProps: DropDownDecoratorProps(
        dropdownSearchDecoration: InputDecoration(
@@ -513,7 +513,7 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
           onTap: () async {
              DateTime? date=await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1800), lastDate: DateTime.now()); 
              selected=date;
-             control.text=date!.year.toString()+"-"+date!.month.toString()+"-"+date!.day.toString();
+             control.text=date!.year.toString()+"-"+date.month.toString()+"-"+date.day.toString();
              licenceController.notify();
             print(date);
           },
