@@ -3,9 +3,9 @@ class Arbitrator {
   String? created;
   String? identityPhoto;
   String? photo;
-  int? profile;
-  int? grade;
-  int? club;
+  dynamic? profile;
+  dynamic? grade;
+  dynamic? club;
 
   Arbitrator(
       {this.id,

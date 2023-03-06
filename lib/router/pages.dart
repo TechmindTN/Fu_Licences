@@ -13,7 +13,9 @@ import 'package:fu_licences/screens/licence/renew%20licence/renew_licence_screen
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import '../screens/arbitre/add_arbitre_screen.dart';
 import '../screens/coach/add_coach/add_coach_screen.dart';
+import '../screens/licence/addlicence/upload_arbitre_images_screen.dart';
 import '../screens/licence/addlicence/upload_coach_images_screen.dart';
 import '../screens/licence/licence_screen.dart';
 
@@ -58,6 +60,9 @@ class Pages{
       GoRoute(path: Routes.UploadCoachImagesScreen,
       builder: (context, state) => UploadCoachLicenceImages(),
       ),
+      GoRoute(path: Routes.UploadArbitreImagesScreen,
+      builder: (context, state) => UploadArbitreLicenceImages(),
+      ),
       GoRoute(path: Routes.LicenceScreen,
       builder: (context, state) => LicenceScreen(),
       ),
@@ -66,6 +71,9 @@ class Pages{
       ),
       GoRoute(path: Routes.AddCoachLicenceScreen,
       builder: (context, state) => AddCoachScreen(),
+      ),
+      GoRoute(path: Routes.AddArbitreLicenceScreen,
+      builder: (context, state) => AddArbitreScreen(),
       ),
       // GoRoute(path: Routes.LicenceScreen,
       // builder: (context, state) => LicenceScreen(),

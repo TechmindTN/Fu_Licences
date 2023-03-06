@@ -150,7 +150,18 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                             phone: phoneController.text,
                             state: stateController.text);
                         GoRouter.of(context)
-                            .push(Routes.AddAthleteLicenceScreen);
+                            .push(Routes.AddCoachLicenceScreen);
+                      }
+                      else if(licenceController.selectedRole.id==1){
+                        licenceController.createArbitreProfile(
+                            address: addresseController.text,
+                            cin: cinController.text,
+                            firstName: prenomController.text,
+                            lastName: nomController.text,
+                            phone: phoneController.text,
+                            state: stateController.text);
+                        GoRouter.of(context)
+                            .push(Routes.AddArbitreLicenceScreen);
                       }
                       }
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddAthleteScreen()));
