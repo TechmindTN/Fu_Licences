@@ -130,6 +130,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                           ..hideCurrentSnackBar()
                           ..showSnackBar(snackBar);
                       } else {
+                        if(licenceController.selectedRole.id==2){
                         licenceController.createAthleteProfile(
                             address: addresseController.text,
                             cin: cinController.text,
@@ -139,6 +140,18 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                             state: stateController.text);
                         GoRouter.of(context)
                             .push(Routes.AddAthleteLicenceScreen);
+                      }
+                      else if(licenceController.selectedRole.id==4){
+                        licenceController.createCoachProfile(
+                            address: addresseController.text,
+                            cin: cinController.text,
+                            firstName: prenomController.text,
+                            lastName: nomController.text,
+                            phone: phoneController.text,
+                            state: stateController.text);
+                        GoRouter.of(context)
+                            .push(Routes.AddAthleteLicenceScreen);
+                      }
                       }
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddAthleteScreen()));
                     },
