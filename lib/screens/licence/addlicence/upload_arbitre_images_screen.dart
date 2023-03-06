@@ -33,11 +33,11 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
             child: Center(
               child: Column(
                 children: [
-                  CoachImageUploadWidget('photo',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
-                  CoachImageUploadWidget('photo',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto),
-                  CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo),
-                  CoachImageUploadWidget('photo',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto),
-                  CoachImageUploadWidget('photo',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto),
+                  ArbitreImageUploadWidget('photo',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
+                  ArbitreImageUploadWidget('photo',licenceController,context,'idphoto',licenceController.createdFullLicence!.arbitrator!.identityPhoto),
+                  ArbitreImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.arbitrator!.photo),
+                  // CoachImageUploadWidget('photo',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto),
+                  // CoachImageUploadWidget('photo',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto),
 
                   SizedBox(height: 5.h,)
                 ],
@@ -53,7 +53,7 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
                   width: 30.w,
                   child: FloatingActionButton.extended(onPressed: (){
                     // licenceController.createProfile();
-                    if((licenceController.createdFullLicence!.profile!.profilePhoto==null)||(licenceController.createdFullLicence!.coach!.identityPhoto==null)||(licenceController.createdFullLicence!.coach!.photo==null)||(licenceController.createdFullLicence!.coach!.degreePhoto==null)||(licenceController.createdFullLicence!.coach!.gradePhoto==null)){
+                    if((licenceController.createdFullLicence!.profile!.profilePhoto==null)||(licenceController.createdFullLicence!.arbitrator!.identityPhoto==null)||(licenceController.createdFullLicence!.arbitrator!.photo==null)){
                       final snackBar=MySnackBar(title: "Photos Manquantes",msg: "Merci de remplir tous les photos svp",state: ContentType.warning);
                       ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
                     }

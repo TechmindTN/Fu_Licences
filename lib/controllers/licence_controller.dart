@@ -247,6 +247,34 @@ class LicenceProvider extends ChangeNotifier {
     }
   }
 
+
+
+  setArbitreImagePath(String? toFillImage, String url) {
+    if (toFillImage == "profilePhoto") {
+      createdFullLicence!.profile!.profilePhoto =
+          apis.baseUrl.substring(0, apis.baseUrl.length - 5) + url;
+      print(createdFullLicence!.profile!.profilePhoto);
+    } else if (toFillImage == 'idphoto') {
+      createdFullLicence!.arbitrator!.identityPhoto =
+          apis.baseUrl.substring(0, apis.baseUrl.length - 5) + url;
+      print(createdFullLicence!.arbitrator!.identityPhoto);
+    } else if (toFillImage == "photo") {
+      createdFullLicence!.arbitrator!.photo =
+          apis.baseUrl.substring(0, apis.baseUrl.length - 5) + url;
+      print(createdFullLicence!.arbitrator!.photo);
+    } 
+  }
+
+   getArbitreImagePath(String? toFillImage) {
+    if (toFillImage == 'profilePhoto') {
+      return "image/profile/";
+    } else if (toFillImage == 'idphoto') {
+      return "image/arbitrator/identity";
+    } else if (toFillImage == "photo") {
+      return "image/arbitrator/photo";
+    } 
+  }
+
   getAthleteImagePath(String? toFillImage) {
     if (toFillImage == 'profilePhoto') {
       return "image/profile/";
@@ -311,7 +339,20 @@ class LicenceProvider extends ChangeNotifier {
     // Response res=await licenceNetwork.uploadImage();
   }
 
+pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
+    final XFile? image;
+    if (fromGallery) {
+      image = await _picker.pickImage(source: ImageSource.gallery);
+    } else {
+      image = await _picker.pickImage(source: ImageSource.camera);
+    }
+    print('done');
+    String path = getArbitreImagePath(toFillImage);
 
+    uploadArbitreImage(image!, path, 6, toFillImage);
+    Navigator.pop(context);
+    // Response res=await licenceNetwork.uploadImage();
+  }
 
 
   pickCoachImage(bool fromGallery, context, String? toFillImage) async {
@@ -364,6 +405,47 @@ class LicenceProvider extends ChangeNotifier {
         print(formData);
         print(res.data);
         setAthleteImagePath(toFillImage, res.data['url']);
+        //toFillImage=res.data['url'];
+
+        notify();
+      }
+    }
+  }
+
+  uploadArbitreImage(XFile image, path, season, String? toFillImage) async {
+    String fileName = image.path.split('/').last;
+    // Map<String, dynamic> tempData = {
+    //   "url": image.path,
+    //   "path": path,
+    //   "season": season,
+    //   "user": 1
+    // };
+    print('map data ready');
+    print(fileName.toString() +
+        ' ' +
+        image.path.toString() +
+        ' ' +
+        path.toString() +
+        ' ' +
+        season.toString());
+    FormData formData = FormData.fromMap({
+      "url": await MultipartFile.fromFile(
+        image.path,
+        filename: fileName,
+        // contentType:  MediaType("image", "jpeg"), //important
+      ),
+      "path": path,
+      "season": season,
+      "user": 1
+    });
+    print('form data ready');
+    Response res = await licenceNetwork.uploadImage(formData);
+    if (res.statusCode == 200) {
+      if (res.data != null) {
+        print('image uploaded');
+        print(formData);
+        print(res.data);
+        setArbitreImagePath(toFillImage, res.data['url']);
         //toFillImage=res.data['url'];
 
         notify();
@@ -506,6 +588,132 @@ class LicenceProvider extends ChangeNotifier {
     createdFullLicence!.user = user;
     // createdFullLicence!.profile!.=address;
     // createdFullLicence!.profile!.user=user;
+  }
+  createArbitreProfile(
+      {String? address,
+      String? cin,
+      String? firstName,
+      String? lastName,
+      String? phone,
+      String? state}) {
+    createdFullLicence!.profile!.address = address;
+    createdFullLicence!.profile!.birthday = selectedBirth.toString();
+    createdFullLicence!.profile!.cin = cin;
+    // createdFullLicence!.profile!.country=address;
+    createdFullLicence!.profile!.firstName = firstName;
+    createdFullLicence!.profile!.lastName = lastName;
+    createdFullLicence!.profile!.phone = int.parse(phone!);
+    createdFullLicence!.profile!.role = 1;
+    createdFullLicence!.profile!.sexe = selectedSex;
+    createdFullLicence!.profile!.state = selectedState;
+    User user = User(
+        isSuperuser: false,
+        username: createdFullLicence!.profile!.phone.toString(),
+        password: "12345");
+    createdFullLicence!.user = user;
+    // createdFullLicence!.profile!.=address;
+    // createdFullLicence!.profile!.user=user;
+  }
+createArbitre(context) {
+    // String? categoryId;
+    // dynamic? gradeId;
+    // dynamic? idDegree;
+    // int? discipline;
+    // int? profile;
+    // dynamic? weights;
+    // String? club;
+    // User user=User(isSuperuser: false,username:createdFullLicence!.profile!.phone.toString(), password: "12345");
+    // createdFullLicence!.arbitrator!.categoryId = selectedCategory!.id;
+    createdFullLicence!.arbitrator!.grade = selectedGrade!.id;
+    createdFullLicence!.arbitrator!.club = selectedClub!.id;
+    // createdFullLicence!.profile!.country=address;
+    // createdFullLicence!.arbitrator!.discipline = selectedDiscipline!.id;
+    // createdFullLicence!.arbitrator!.weights = selectedWeight!.id;
+    // createdFullLicence!.arbitrator!.idDegree = selectedDegree!.id;
+    createArbitreLicence(context);
+    // createdFullLicence!.athlete!.profile=createdFullLicence!.profile;
+    // createdFullLicence!.profile!.sexe=selectedSex;
+    // createdFullLicence!.profile!.state=state;
+    // createdFullLicence!.user=user;
+    // createdFullLicence!.profile!.=address;
+    // createdFullLicence!.profile!.user=user;
+  }
+
+createArbitreLicence(context) async {
+    added = true;
+    // createdFullLicence!.licence!.categorie = selectedCategory!.id;
+    createdFullLicence!.licence!.grade = selectedGrade!.id;
+    createdFullLicence!.licence!.club = selectedClub!.id;
+    // createdFullLicence!.profile!.country=address;
+    // createdFullLicence!.licence!.discipline = selectedDiscipline!.id;
+    // createdFullLicence!.licence!.weight = selectedWeight!.id;
+    // createdFullLicence!.licence!.degree = selectedDegree!.id;
+
+    createdFullLicence!.licence!.activated = false;
+    createdFullLicence!.licence!.state = selectedState;
+    createdFullLicence!.licence!.verified = false;
+    createdFullLicence!.licence!.role = 1;
+    Map<String, dynamic> mapdata = {};
+    mapdata['licence'] = createdFullLicence!.licence!.toJson();
+    mapdata['user'] = createdFullLicence!.user!.toJson();
+    mapdata['arbitre'] = createdFullLicence!.arbitrator!.toJson();
+    mapdata['profile'] = createdFullLicence!.profile!.toJson();
+    // print(mapdata);
+    log(
+      mapdata.toString(),
+      name: mapdata.toString(),
+      error: mapdata,
+    );
+    try {
+      Response res = await licenceNetwork.addFullLicence(mapdata);
+      if (res.statusCode == 200) {
+        print('ok');
+        // Navigator.pop(context);
+        // Navigator.pop(context);
+        // Navigator.pop(context);
+        // final snackBar = MySnackBar(
+        //   title: 'Succees',
+        //   msg: 'La licence de ce athlete a ete ajoute avec succees',
+
+        //   /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+        //   state: ContentType.success,
+        // );
+        // ScaffoldMessenger.of(context)
+        //   ..hideCurrentSnackBar()
+        //   ..showSnackBar(snackBar);
+      } else {
+        print('not ok');
+        print(res.statusMessage);
+        final snackBar = MySnackBar(
+          title: 'Echec',
+          msg:
+              'Il y a une probleme avec cet licence merci d verifier vos donnees',
+
+          /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+          state: ContentType.warning,
+        );
+
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+      }
+    } catch (e) {
+      final snackBar = MySnackBar(
+        title: 'Probleme',
+        msg:
+            'Il y a une probleme dans cet instant merci d\'essayer ulterieurement',
+
+        /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+        state: ContentType.failure,
+      );
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+      print(e);
+    }
+
+    // createdFullLicence!.licence!.=selectedDegree!.id;
   }
 
   createAthlete(context) {

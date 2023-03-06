@@ -85,7 +85,47 @@ CoachMediaModal(LicenceProvider licenceController,context,String? toFillImage){
   );
 }
 
+ArbitreMediaModal(LicenceProvider licenceController,context,String? toFillImage){
+  return Column(
+    children: [
+      InkWell(
+        onTap: (() async {
+          print('from gallery');
+          await licenceController.pickArbitreImage(true,context,toFillImage);
+        }),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Icon(Icons.photo),
+              SizedBox(width: 5.w,),
+              Text("Ouvrir le gallerie des photos")
+            ],
+          ),
+          
+        ),
+      ),
+      InkWell(
+        onTap: (() {
+          print('from camera');
+          licenceController.pickArbitreImage(false,context,toFillImage);
+        }),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Icon(Icons.camera_alt),
+              SizedBox(width: 5.w,),
+              Text("Ouvrir la camera"),
+            ],
+          ),
+          
+        ),
+      ),
 
+    ],
+  );
+}
 
 EditMediaModal(LicenceProvider licenceController,context,String? imageName,img){
   return Column(

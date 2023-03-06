@@ -444,6 +444,10 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
           GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
           // Navigator.push(context,
           //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+        }else if (role.roles == "Arbitre") {
+          GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
         }
       }),
       child: Container(
@@ -526,6 +530,44 @@ Widget CoachImageUploadWidget(txt, licenceController, context,
               context: context,
               builder: (context) {
                 return CoachMediaModal(licenceController, context, toFillImage);
+              });
+        },
+        label: Text("Select"),
+      )
+    ],
+  );
+}
+
+Widget ArbitreImageUploadWidget(txt, licenceController, context,
+    String? toFillImage, String? placeHolderImage) {
+  return Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
+          onTap: (() {}),
+          child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Colors.red),
+              width: 60.w,
+              height: 40.h,
+              child: (placeHolderImage != null)
+                  ? Image.network(placeHolderImage)
+                  : Center()),
+        ),
+      ),
+      // Text(placeHolderImage.toString()),
+      Text(txt),
+      SizedBox(
+        height: 1.h,
+      ),
+      FloatingActionButton.extended(
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return ArbitreMediaModal(licenceController, context, toFillImage);
               });
         },
         label: Text("Select"),
