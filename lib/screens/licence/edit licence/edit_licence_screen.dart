@@ -142,6 +142,8 @@ Text('Information de licence'),
                   DisciplineSelectInput('Discipline',licenceController.selectedDiscipline,licenceController)	,
                 
                   WeightSelectInput('Poids',licenceController.selectedWeight,licenceController),
+                 
+                  if(licenceController.currentUser.club!.id==null)
                   ClubSelectInput('Club',licenceController.selectedClub,licenceController),
                                 SizedBox(height: 3.h,),
 

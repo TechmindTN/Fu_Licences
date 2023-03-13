@@ -532,3 +532,21 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
   );
   // DatePickerDialog(initialDate: DateTime.now(), firstDate: DateTime(1800), lastDate: DateTime.now());
 }
+
+SearchInput(LicenceProvider licenceController,numControl,context){
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.only(left:12.0),
+      child: TextFormField(
+        onFieldSubmitted: (newValue) {
+          licenceController.findLicence(numControl.text, context);
+        },
+        controller: numControl,
+          decoration: InputDecoration.collapsed(
+        hintText: 'Rechercher',
+      ),
+      // trol,
+      ),
+    ),
+  );
+}

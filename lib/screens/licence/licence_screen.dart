@@ -49,6 +49,7 @@ class _LicenceScreenState extends State<LicenceScreen> {
                         ];
                    },
                    onSelected:(value){
+                    if(licenceController.selectedFullLicence!.licence!.role=="Athlete")
                       if(value == 0){
                         GoRouter.of(context).push(Routes.EditAthleteLicenceScreen);
                         // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceScreen())));

@@ -4,6 +4,7 @@ import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/models/full_licence.dart';
 import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
+import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:go_router/go_router.dart';
@@ -59,29 +60,34 @@ class _LicenceListScreenState extends State<LicenceListScreen> {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text('Licences'),
-            actions: [
-               IconButton(onPressed: (){
-                licenceController.showFilterDialog(context,numControl);
-                // licenceController.showSearchDialog(context,numControl);
-              }, icon: Icon(Icons.filter_alt_sharp)),
-              IconButton(onPressed: (){
-                licenceController.showSearchDialog(context,numControl);
-              }, icon: Icon(Icons.search)),
+          
+          // appBar: AppBar(
+          //   title: Text('Licences'),
+          //   actions: [
+          //      IconButton(onPressed: (){
+          //       licenceController.showFilterDialog(context,numControl);
+          //       // licenceController.showSearchDialog(context,numControl);
+          //     }, icon: Icon(Icons.filter_alt_sharp)),
+          //     IconButton(onPressed: (){
+          //       licenceController.showSearchDialog(context,numControl);
+          //     }, icon: Icon(Icons.search)),
 
-            ],
-          ),
+          //   ],
+          // ),
           backgroundColor: Color(0xfffafafa),
-          body: SingleChildScrollView(
-            child: Column(
+          body: CustomScrollView(
+            slivers: [
+              MyAppBar("Licences", context, true),
+              SliverToBoxAdapter(child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 2.h),
+                LicenceListHeader(licenceController,numControl,context),
                 for(FullLicence fullLicence in licenceController.fullLicences)
                 Center(child: LicenceItem(fullLicence,licenceController,context)),
               ],
-            ),
+            ),)
+              ]
             
           ),
            floatingActionButton: FloatingActionButton(onPressed: () {

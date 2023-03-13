@@ -27,7 +27,7 @@ Widget LicenceItem(
 
         // //width: double.infinity,
         //height: double.infinity,
-        width: 80.w,
+        width: 90.w,
         decoration: BoxDecoration(
           color: Color(0xffffffff),
           borderRadius: BorderRadius.circular(5),
@@ -171,7 +171,7 @@ Widget LicenceItem(
                               ),
                             ),
                             Text(
-                              fullLicence.licence!.seasons!,
+                              fullLicence.licence!.seasons.toString()!,
                               style: SafeGoogleFont(
                                 'Inter',
                                 fontSize: 18,
@@ -642,7 +642,7 @@ SearchDialog(LicenceProvider licenceController, numControl, context) {
   );
 }
 
-FilterDialog(LicenceProvider licenceController, numControl, context) {
+FilterDialog(LicenceProvider licenceController, context) {
   return AlertDialog(
     
     contentPadding: EdgeInsets.only(left: 4,right: 4,top: 24,bottom: 20),
@@ -664,6 +664,7 @@ FilterDialog(LicenceProvider licenceController, numControl, context) {
                   DisciplineSelectInput('Discipline',licenceController.filteredDiscipline,licenceController)	,
                 
                   WeightSelectInput('Poids',licenceController.filteredWeight,licenceController),
+                  if(licenceController.currentUser.club?.id==null)
                   ClubSelectInput('Club',licenceController.filteredClub,licenceController),
                    SelectInput('Sexe',licenceController.filteredSex,licenceController,['Male','Femelle']),
                    SelectInput('Etat',licenceController.filteredStatus,licenceController,['Activee','En Attante','Expiree']),
@@ -692,4 +693,138 @@ FilterDialog(LicenceProvider licenceController, numControl, context) {
       )
     ],
   );
+}
+
+
+Widget LicenceListHeader(LicenceProvider licenceController,numControl,context){
+  return Center(
+    child: Container(
+      width: 90.w,
+      child: Column(
+       children: [
+        // SizedBox(height: 5.h,),
+         FirstRow(licenceController),
+         SizedBox(height: 3.h,),
+        SearchFilter(licenceController,numControl,context),
+        SizedBox(height: 3.h,)
+       ],
+      ),
+    ),
+  );
+}
+
+Widget FirstRow(LicenceProvider licenceController){
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+    Text("Total: "+licenceController.fullLicences.length.toString(),
+     style: TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 20
+    ),),
+    Text("Details de filtre >>",
+    style: TextStyle(
+      color: Color(0xff2DA9E0),
+      fontSize: 20,
+      // fontWeight: FontWeight.w600
+    ),
+    )
+  ],);
+}
+
+Widget SearchFilter(LicenceProvider licenceController,numControl,context){
+  return Row(
+    children: [
+      SearchField(licenceController,numControl,context),
+      SizedBox(width: 5.w,),
+      FilterField(licenceController,context)
+    ],
+  );
+}
+
+Widget SearchField(LicenceProvider licenceController,numControl,context){
+  return Container(
+    width: 68.w,
+    height: 8.h,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(6),
+      boxShadow: [
+        BoxShadow(
+          
+          color: Colors.black26,
+          blurRadius: 10,
+          offset: Offset(0,2)
+        )
+      ],
+      color: Colors.white
+    ),
+    child: SearchInput(licenceController,numControl,context)
+  );
+}
+Widget FilterField(LicenceProvider licenceController,context){
+  return InkWell(
+    onTap: (){
+      licenceController.showFilterDialog(context);
+    },
+    child: Container(
+      width: 17.w,
+        height: 8.h,
+        color: Colors.white,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(6),
+          boxShadow: [
+            
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10,
+              offset: Offset(0,2)
+            )
+          ],
+        ),
+    
+        // constraints: BoxConstraints(
+        //   maxWidth: 8.w
+        // ),
+        width: 8.w,
+        height: 8.h,
+        child: Image.asset("assets/icons/filter.png",
+        scale: 9,
+        width: 12,
+        ),
+      ),
+    ),
+  );
+  // return Container(
+  //   decoration: BoxDecoration(
+  //     borderRadius: BorderRadius.circular(6),
+  //     color: Colors.white,
+  //      boxShadow: [
+        
+  //       BoxShadow(
+  //         color: Colors.black26,
+  //         blurRadius: 10,
+  //         offset: Offset(0,2)
+  //       )
+  //     ],
+  //   ),
+  //   // width: 17.w,
+    
+  //   height: 8.h,
+  //   child: Container(
+  //     constraints: BoxConstraints(maxWidth: 8.w,
+  //     maxHeight: 2.h
+  //     ),
+  //     width: 8.w,
+  //     height: 2.h,
+      
+  //     child: Image.asset("assets/icons/filter.png",
+  //     fit: BoxFit.cover,
+  //     // width: 5.w,
+  //     // height: 10,
+  //     width: 10,
+  //     ),
+  //   ),
+  // );
 }

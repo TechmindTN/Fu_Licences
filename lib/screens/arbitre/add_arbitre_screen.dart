@@ -124,7 +124,7 @@ class _AddArbitreScreenState extends State<AddArbitreScreen> {
                       } else {
                         licenceController.createArbitre(context);
                         // GoRouter.of(context).dispose();
-                        GoRouter.of(context).go(Routes.LicenceListScreen);
+                        GoRouter.of(context).go(Routes.Home);
                       }
 
 // Navigator.of(context, rootNavigator:

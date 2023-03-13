@@ -1,3 +1,5 @@
+import 'club.dart';
+
 class User {
   int? id;
   bool? isSuperuser;
@@ -6,6 +8,7 @@ class User {
   bool? isActive;
   DateTime? dateJoined;
   String? password;
+  Club? club;
 
   User(
       {this.id,
@@ -14,7 +17,8 @@ class User {
       this.isStaff,
       this.isActive,
       this.dateJoined,
-      this.password
+      this.password,
+      this.club
       });
 
   User.fromJson(Map<String, dynamic> json) {
@@ -24,6 +28,7 @@ class User {
     isStaff = json['is_staff'];
     isActive = json['is_active'];
     dateJoined = json['date_joined'];
+    club = Club.fromJson(json['club']);
   }
 
   Map<String, dynamic> toJson() {
@@ -35,6 +40,7 @@ class User {
     data['is_active'] = this.isActive;
     data['date_joined'] = this.dateJoined;
     data['password'] = this.password;
+    // data['club'] = this.club!.id;
 
     return data;
   }

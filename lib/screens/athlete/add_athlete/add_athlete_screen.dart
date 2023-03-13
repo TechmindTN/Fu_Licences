@@ -76,6 +76,8 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
 
                 WeightSelectInput('Poids', licenceController.selectedWeight,
                     licenceController),
+                
+                if(licenceController.currentUser.club!.id==null)
                 ClubSelectInput(
                     'Club', licenceController.selectedClub, licenceController),
                 // TextInput('Addresse',prenomController),
@@ -102,8 +104,8 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
                       print(licenceController.selectedWeight!.id);
                       if ((licenceController.selectedCategory == null) ||
                           (licenceController.selectedCategory!.id == -1) ||
-                          (licenceController.selectedClub == null) ||
-                          (licenceController.selectedClub!.id == -1) ||
+                          (licenceController.currentUser.club!.id == null)&&((licenceController.selectedClub == null) ||
+                          (licenceController.selectedClub!.id == -1)) ||
                           (licenceController.selectedDegree == null) ||
                           (licenceController.selectedDegree!.id == -1) ||
                           (licenceController.selectedDiscipline == null) ||
@@ -122,7 +124,7 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
                       } else {
                         licenceController.createAthlete(context);
                         // GoRouter.of(context).dispose();
-                        GoRouter.of(context).go(Routes.LicenceListScreen);
+                        GoRouter.of(context).go(Routes.Home);
                       }
 
 // Navigator.of(context, rootNavigator:

@@ -3,10 +3,29 @@ import 'package:fu_licences/network/apis.dart';
 
 class LicenceNetwork {
   Apis apis = Apis();
-  getLicenceListInfo() async {
+
+  login() async {
+    Response res = await apis.dio.post(apis.baseUrl + apis.login,
+        // options: Options(
+        //   headers: {"Authorization": apis.tempToken}),
+        // data: {"username": "hama",
+        // "password":"hama1234"
+        // });
+         data: {"username": "club",
+        "password":"12345"
+        });
+
+        
+    return res;
+
+  }
+  getLicenceListInfo(clubid) async {
     Response res = await apis.dio.post(apis.baseUrl + apis.licenceListInfo,
         options: Options(headers: {"Authorization": apis.tempToken}),
-        data: {'userid': 1});
+        data: {'userid': 1,
+        'club':clubid
+        });
+        print(res.data);
     return res;
   }
 
@@ -27,6 +46,7 @@ class LicenceNetwork {
 
   uploadImage(data) async {
     print('entered upload image network');
+    print(apis.tempToken);
     Response res = await apis.dio.post(apis.baseUrl + apis.uploadImage,
         options: Options(
             contentType:
