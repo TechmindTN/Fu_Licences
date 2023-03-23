@@ -8,6 +8,7 @@ import 'package:fu_licences/models/discipline.dart';
 import 'package:fu_licences/models/grade.dart';
 import 'package:fu_licences/models/season.dart';
 import 'package:fu_licences/models/weight.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 Widget TextInput(String txt,TextEditingController control){
@@ -549,4 +550,88 @@ SearchInput(LicenceProvider licenceController,numControl,context){
       ),
     ),
   );
+}
+
+
+
+Widget AuthInput(txt,control,hide){
+  return Container(
+      
+      
+      height: 9.h,
+      width: 70.w,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            offset: Offset(0, 2)
+          )
+        ],
+         
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(30))
+        
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left:12.0),
+        
+        child: TextFormField(
+         
+         expands: false,
+         // validator: (value) {
+         //   return authValidator(widget.required,widget.hint,value,psdController: widget.psdControl);
+         // },
+
+
+
+         
+         // toolbarOptions: ,
+         // validator: authValidator(required,hint),
+         // validator: (value) {
+         //   if(this.required){
+         //     if (value == null || value.isEmpty) {
+         //       return 'Please enter some text';
+         //     }
+    
+         //   }
+           
+         //   if(hint=="Phone Number"){
+         //     if(int.tryParse(value!)==null){
+         //       return 'Only numbers are allowed';
+         //     }
+         //     else{
+         //       if(value.length!=8){
+         //         return 'Phone number must be 8 digits';
+         //       }
+         //     }
+         //   }
+         // },
+         enabled: true,
+         controller: control,
+         obscureText: hide,
+         decoration: InputDecoration(
+           
+           hintText: txt,
+           border: InputBorder.none,
+    //        suffixIcon: trailing??(((widget.hint=="Password")||(widget.hint=="Confirm Password"))?widget.hide?IconButton(icon:Icon(Icons.remove_red_eye,), onPressed: () { 
+    //         hide=false;
+    // print("changed "+widget.hide.toString()+" "+(!widget.hide).toString());
+    // authController.notifyListeners();
+    //         },):IconButton(icon:Icon(Icons.lock,), onPressed: () { 
+    //           hide=true;
+    // print("changed "+widget.hide.toString()+" "+(!widget.hide).toString());
+    // authController.notifyListeners();
+    //          // controller.hideNShow(hide);
+    //         },):null)
+         ),
+         
+         // decoration: InputDecoration.collapsed(
+           
+           
+         //   hintText: hint
+         // ),
+            ),
+      ),
+    );
 }

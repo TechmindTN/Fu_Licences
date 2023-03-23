@@ -15,12 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
+      
       providers: [
         ChangeNotifierProvider(create: (_)=>LicenceProvider()),
         ],
       child: Sizer(
         builder: (context, orientation, deviceType) {
           return MaterialApp.router(
+             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(
              

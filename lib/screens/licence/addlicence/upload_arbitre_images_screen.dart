@@ -33,8 +33,8 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
             child: Center(
               child: Column(
                 children: [
-                  ArbitreImageUploadWidget('photo',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
-                  ArbitreImageUploadWidget('photo',licenceController,context,'idphoto',licenceController.createdFullLicence!.arbitrator!.identityPhoto),
+                  ArbitreImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
+                  ArbitreImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.arbitrator!.identityPhoto),
                   ArbitreImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.arbitrator!.photo),
                   // CoachImageUploadWidget('photo',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto),
                   // CoachImageUploadWidget('photo',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto),

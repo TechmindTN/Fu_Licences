@@ -33,11 +33,11 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
             child: Center(
               child: Column(
                 children: [
-                  CoachImageUploadWidget('photo',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
-                  CoachImageUploadWidget('photo',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto),
+                  CoachImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
+                  CoachImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto),
                   CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo),
-                  CoachImageUploadWidget('photo',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto),
-                  CoachImageUploadWidget('photo',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto),
+                  CoachImageUploadWidget('photo de degree',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto),
+                  CoachImageUploadWidget('photo de grade',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto),
 
                   SizedBox(height: 5.h,)
                 ],

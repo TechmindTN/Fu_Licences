@@ -47,7 +47,7 @@ late  TextEditingController addresseController;
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
-          appBar: AppBar(title: Text("Licence "+licenceController.selectedFullLicence!.licence!.numLicences.toString()),
+          appBar: AppBar(title: Text("Modifier Licence "+licenceController.selectedFullLicence!.licence!.numLicences.toString()),
          
           ),
           body: SingleChildScrollView(child: Column(
@@ -55,7 +55,7 @@ late  TextEditingController addresseController;
             children: [
               SizedBox(height: 5.h,),
               Center(child: Text("Informations personelles"
-              +licenceController.selectedFullLicence!.athlete!.id.toString()
+              
               )
               
               ),

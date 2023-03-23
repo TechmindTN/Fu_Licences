@@ -46,7 +46,7 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
         builder: (context, licenceController, child) {
       return Scaffold(
         appBar: AppBar(
-          title: Text("Ajouter les informations du athlete"),
+          title: Text("Ajouter licence d'athlete"),
         ),
         body: SingleChildScrollView(
           child: Container(

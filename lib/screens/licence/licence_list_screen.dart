@@ -77,14 +77,20 @@ class _LicenceListScreenState extends State<LicenceListScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Licences", context, true),
+              MyAppBar("Licences", context, true,licenceController,false),
               SliverToBoxAdapter(child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 2.h),
                 LicenceListHeader(licenceController,numControl,context),
-                for(FullLicence fullLicence in licenceController.fullLicences)
-                Center(child: LicenceItem(fullLicence,licenceController,context)),
+                
+                
+                (licenceController.isLoading)?Center(child: CircularProgressIndicator(),):Column(
+                  children: [
+                    for(FullLicence fullLicence in licenceController.fullLicences)
+                    Center(child: LicenceItem(fullLicence,licenceController,context)),
+                  ],
+                ),
               ],
             ),)
               ]

@@ -30,7 +30,7 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
       return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(title: Text("Renouvellement Licence"+licenceController.selectedFullLicence!.licence!.numLicences!),),
         body: SingleChildScrollView(
           child: Center(
             child: Column(

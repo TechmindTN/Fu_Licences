@@ -33,10 +33,10 @@ class _UploadAthleteLicenceImagesState extends State<UploadAthleteLicenceImages>
             child: Center(
               child: Column(
                 children: [
-                  AthleteImageUploadWidget('photo',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
-                  AthleteImageUploadWidget('photo',licenceController,context,'idphoto',licenceController.createdFullLicence!.athlete!.identityPhoto),
-                  AthleteImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.athlete!.photo),
-                  AthleteImageUploadWidget('photo',licenceController,context,'medphoto',licenceController.createdFullLicence!.athlete!.medicalPhoto),
+                  AthleteImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
+                  AthleteImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.athlete!.identityPhoto),
+                  AthleteImageUploadWidget('photo d\'assurance',licenceController,context,'photo',licenceController.createdFullLicence!.athlete!.photo),
+                  AthleteImageUploadWidget('photo medical',licenceController,context,'medphoto',licenceController.createdFullLicence!.athlete!.medicalPhoto),
                   SizedBox(height: 5.h,)
                 ],
               ),

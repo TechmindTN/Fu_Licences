@@ -4,16 +4,18 @@ import 'package:fu_licences/network/apis.dart';
 class LicenceNetwork {
   Apis apis = Apis();
 
-  login() async {
+  login(data) async {
     Response res = await apis.dio.post(apis.baseUrl + apis.login,
         // options: Options(
         //   headers: {"Authorization": apis.tempToken}),
         // data: {"username": "hama",
         // "password":"hama1234"
         // });
-         data: {"username": "club",
-        "password":"12345"
-        });
+        data: data
+    );
+        //  data: {"username": "club",
+        // "password":"12345"
+        // });
 
         
     return res;
@@ -96,5 +98,14 @@ class LicenceNetwork {
    
   }
   }
-  
+  validateLicence(licenceId) async {
+    Response res = await apis.dio.put(apis.baseUrl + apis.validateLicence+licenceId+"/",
+        options: Options(headers: {"Authorization": apis.tempToken}),
+        // data: {'userid': 1,
+        // 'club':clubid
+        // }
+        );
+        print(res.data);
+    return res;
+  }
 }

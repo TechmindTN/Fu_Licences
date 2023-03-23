@@ -33,7 +33,7 @@ class _RenewLicenceScreenState extends State<RenewLicenceScreen> {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
-          appBar: AppBar(title: Text("Licence "+licenceController.createdFullLicence!.licence!.numLicences.toString()),
+          appBar: AppBar(title: Text("Renouvellement Licence "+licenceController.createdFullLicence!.licence!.numLicences.toString()),
          
           ),
           body: SingleChildScrollView(child: Column(

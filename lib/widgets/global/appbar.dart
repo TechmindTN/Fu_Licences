@@ -1,8 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:fu_licences/controllers/licence_controller.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
-Widget MyAppBar(title,context,isDrawer){
+import '../../router/routes.dart';
+
+Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions){
   return SliverAppBar(
+    actions: (isActions)?[
+            PopupMenuButton(
+              
+              // surfaceTintColor: Colors.white,
+              color: Colors.white,
+              icon: Icon(Icons.more_vert,color: Colors.black,),
+              itemBuilder: (context){
+                    //  if(licenceController.currentUser.club!.id!=null)
+                     return [
+                            PopupMenuItem<int>(
+                              
+                                value: 0,
+                                child: Text("Modifier"),
+                            ),
+
+                            PopupMenuItem<int>(
+                                value: 1,
+                                child: Text("Modifier les images"),
+                            ),
+
+                            PopupMenuItem<int>(
+                                value: 2,
+                                child: Text("Renouvellement"),
+                            ),
+                            
+                        ];
+                       
+                   },
+                   onSelected:(value){
+                    if(licenceController.selectedFullLicence!.licence!.role=="Athlete")
+                      if(value == 0){
+                        GoRouter.of(context).push(Routes.EditAthleteLicenceScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceScreen())));
+                        //  print("My account menu is selected.");
+                      }else if(value == 1){
+                        GoRouter.of(context).push(Routes.EditAthleteImagesScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                        //  print("Settings menu is selected.");
+                      }else if(value == 2){
+                        GoRouter.of(context).push(Routes.RenewAthleteImages);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => RenewLicenceImages())));
+                         print("Logout menu is selected.");
+                      }
+                   }
+                   )
+          ]:[],
     surfaceTintColor: Colors.white,
      floating: true,
             snap: true,

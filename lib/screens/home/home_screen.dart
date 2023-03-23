@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
-    licenceController.login();
+    // licenceController.login(context,login,);
     // TODO: implement initState
     super.initState();
   }
@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: MyDrawer(),
       body: CustomScrollView(
         slivers: [
-          MyAppBar("Fu Licences",context,true),
+          MyAppBar((licenceController.currentUser.club!.id==null)?"ADMIN":licenceController.currentUser.club!.name,context,true,licenceController,false),
           // HomeCorps
           SliverToBoxAdapter(
             child: Column(

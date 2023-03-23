@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/athlete/add_athlete/add_athlete_screen.dart';
+import 'package:fu_licences/screens/auth/login_Screen.dart';
 import 'package:fu_licences/screens/home/bottom_bar.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
@@ -22,7 +23,7 @@ import '../screens/licence/licence_screen.dart';
 class Pages{
   final Routes routes=Routes();
   RouterConfig<Object> router=GoRouter(
-    initialLocation: Routes.Home,
+    initialLocation: Routes.Login,
     routes: [
       GoRoute(path: Routes.Home,
       builder: (context, state) => BottomBarScreen(),
@@ -74,6 +75,9 @@ class Pages{
       ),
       GoRoute(path: Routes.AddArbitreLicenceScreen,
       builder: (context, state) => AddArbitreScreen(),
+      ),
+      GoRoute(path: Routes.Login,
+      builder: (context, state) => LoginScreen(),
       ),
       // GoRoute(path: Routes.LicenceScreen,
       // builder: (context, state) => LicenceScreen(),

@@ -29,7 +29,7 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
       builder: (context,licenceController,child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Licences'),
+            title: Text('Licences Filtree'),
             actions: [
               //  IconButton(onPressed: (){
               //   licenceController.showFilterDialog(context,numControl);

@@ -1,13 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.techmind.fu_licences">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="fu_licences"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <activity
-    android:name="com.yalantis.ucrop.UCropActivity"
-    android:screenOrientation="portrait"
-    android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+       
         <activity
             android:name=".MainActivity"
             android:exported="true"

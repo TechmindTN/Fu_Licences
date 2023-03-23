@@ -6,6 +6,7 @@ import '../../../models/role.dart';
 import '../../../widgets/licence/licence_widget.dart';
 
 class SelectRoleScreen extends StatefulWidget{
+
   @override
   State<SelectRoleScreen> createState() => _SelectRoleScreenState();
 }
@@ -16,6 +17,9 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
     licenceController.getParameters();
+    licenceController.initSelected();
+    licenceController.initCreate();
+    // licenceController.initSelected();
     // TODO: implement initState
     super.initState();
   }
@@ -24,13 +28,14 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(title: Text("Selectioner le role"),),
           body: Center(
             child: Container(
              child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 for(Role role in licenceController.parameters!.roles! )
+                
                 RoleCard(role,context,licenceController)
               ],)
             ),

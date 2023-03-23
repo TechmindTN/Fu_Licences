@@ -45,7 +45,7 @@ class _AddArbitreScreenState extends State<AddArbitreScreen> {
         builder: (context, licenceController, child) {
       return Scaffold(
         appBar: AppBar(
-          title: Text("Ajouter les informations du entraineur"),
+          title: Text("Ajouter licence d'entraineur"),
         ),
         body: SingleChildScrollView(
           child: Container(

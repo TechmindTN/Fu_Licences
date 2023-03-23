@@ -33,6 +33,7 @@ import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
+  bool isLoading=true;
   late User currentUser;
   late Role selectedRole;
   bool added = false;
@@ -72,19 +73,96 @@ class LicenceProvider extends ChangeNotifier {
   FullLicence? selectedFullLicence;
 
 
-  login() async {
-    Response res=await licenceNetwork.login();
+  login(context,login,password) async {
+    
+    try{
+      Map<String,dynamic> data={
+      "username":login,
+      "password":password
+    };
+      Response res=await licenceNetwork.login(data);
     if(res.statusCode==200){
       if(res.data!=null){
         licenceNetwork.apis.tempToken='TOKEN '+res.data['token'];
         currentUser=User.fromJson(res.data);
-        print(licenceNetwork.apis.tempToken);
-        print(currentUser.club!.id.toString());
+        // print(licenceNetwork.apis.tempToken);
+        // print(currentUser.club!.id.toString());
+        GoRouter.of(context).go(Routes.Home);
       }
     }
+    else{
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'Le numero ou mot de passe est incorrecte',
+
+          /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    }
+    catch(e){
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'Le numero ou mot de passe est incorrecte',
+
+          /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    
   } 
 
+
+  showImage(context,img){
+    showDialog(context: context, builder: (context){
+      return Dialog(
+        child: Image.network(img),
+      );
+    });
+  }
+
+  validateLicence(context) async {
+     Response res = await licenceNetwork.validateLicence(selectedFullLicence!.licence!.numLicences);
+     if (res.statusCode == 200) {
+      if (res.data != null) {
+        selectedFullLicence!.licence!.activated=true;
+        selectedFullLicence!.licence!.state="Activee";
+        notify();
+        final snackBar = MySnackBar(
+          title: 'Succees',
+          msg: 'La licence de ce athlete a ete ajoute avec succees',
+          
+          /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+      }
+      else{
+        final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'L\'activation de cette licence a echoue',
+
+          /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+      }
+     }
+  }
+
   getLicences() async {
+    // isLoading=true;
+    // notify();
     if (fullLicences.length > 0) {
       fullLicences.clear();
     }
@@ -92,7 +170,9 @@ class LicenceProvider extends ChangeNotifier {
     if (res.statusCode == 200) {
       if (res.data != null) {
         for (var r in res.data) {
+          if(r['profile']!=null){
           FullLicence fullLicence = FullLicence();
+          
           Profile profile = Profile.fromJson(r['profile']);
           fullLicence.profile = profile;
           Licence licence = Licence.fromJson(r['licence']);
@@ -108,11 +188,13 @@ class LicenceProvider extends ChangeNotifier {
             fullLicence.coach = coach;
           }
           fullLicences.add(fullLicence);
-        }
+        }}
         print(fullLicences.length);
         notify();
       }
     }
+    isLoading=false;
+    notify();
   }
 
   initCreate() {

@@ -3,6 +3,7 @@ import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/screens/licence/licence_list_screen.dart';
+import 'package:fu_licences/screens/parameters/parameters_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -15,15 +16,16 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   late PersistentTabController _controller;
   
 List<Widget> _buildScreens() => [
-        LicenceListScreen(
-          // menuScreenContext: widget.menuScreenContext,
-          // hideStatus: _hideNavBar,
-          // onScreenHideButtonPressed: () {
-          //   setState(() {
-          //     _hideNavBar = !_hideNavBar;
-          //   });
-          // },
-        ),
+        ParametersScreen(),
+        // LicenceListScreen(
+        //   // menuScreenContext: widget.menuScreenContext,
+        //   // hideStatus: _hideNavBar,
+        //   // onScreenHideButtonPressed: () {
+        //   //   setState(() {
+        //   //     _hideNavBar = !_hideNavBar;
+        //   //   });
+        //   // },
+        // ),
         HomeScreen(
           // menuScreenContext: widget.menuScreenContext,
           // hideStatus: _hideNavBar,

@@ -15,6 +15,7 @@ class _EditLicenceImagesState extends State<EditLicenceImages> {
   @override
   void initState() {
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
+    // licenceController.initFields();
     licenceController.createdFullLicence =
         licenceController.selectedFullLicence;
     // TODO: implement initState
@@ -26,7 +27,7 @@ class _EditLicenceImagesState extends State<EditLicenceImages> {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
       return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(title: Text("Modifier licence "+licenceController.selectedFullLicence!.licence!.numLicences!),),
         body: SingleChildScrollView(
           child: Center(
             child: Column(

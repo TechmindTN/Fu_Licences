@@ -262,27 +262,32 @@ Widget LicenceRow(String key, dynamic value) {
   );
 }
 
-Widget RolePhotos(FullLicence fullLicence) {
+Widget RolePhotos(FullLicence fullLicence,context,LicenceProvider licenceController) {
   if (fullLicence.licence!.role == "Athlete") {
-    return AthletePhotosWidget(fullLicence);
+    return AthletePhotosWidget(fullLicence,licenceController,context);
   } else if (fullLicence.licence!.role == "Arbitre") {
-    return ArbitratorPhotosWidget(fullLicence);
+    return ArbitratorPhotosWidget(fullLicence,licenceController,context);
   } else if (fullLicence.licence!.role == "Entraineur") {
-    return CoachPhotosWidget(fullLicence);
+    return CoachPhotosWidget(fullLicence,licenceController,context);
   } else {
     return SizedBox();
   }
 }
 
-Widget ArbitratorPhotosWidget(FullLicence fullLicence) {
+Widget ArbitratorPhotosWidget(FullLicence fullLicence,LicenceProvider licenceController,context) {
   return Container(
     child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       (fullLicence.arbitrator!.identityPhoto != null &&
               fullLicence.arbitrator!.identityPhoto != "")
-          ? Image.network(
-              fullLicence.arbitrator!.identityPhoto!,
-              width: 40.w,
-            )
+          ? InkWell(
+            onTap: () {
+                        licenceController.showImage(context,fullLicence.arbitrator!.identityPhoto);
+                      },
+            child: Image.network(
+                fullLicence.arbitrator!.identityPhoto!,
+                width: 40.w,
+              ),
+          )
           : Image.asset(
               'assets/icons/man.png',
               width: 40.w,
@@ -290,10 +295,15 @@ Widget ArbitratorPhotosWidget(FullLicence fullLicence) {
             ),
       (fullLicence.arbitrator!.photo != null &&
               fullLicence.arbitrator!.photo != "")
-          ? Image.network(
-              fullLicence.arbitrator!.photo!,
-              width: 40.w,
-            )
+          ? InkWell(
+            onTap: () {
+                        licenceController.showImage(context,fullLicence.arbitrator!.photo);
+                      },
+            child: Image.network(
+                fullLicence.arbitrator!.photo!,
+                width: 40.w,
+              ),
+          )
           : Image.asset(
               'assets/icons/man.png',
               width: 40.w,
@@ -303,25 +313,35 @@ Widget ArbitratorPhotosWidget(FullLicence fullLicence) {
   );
 }
 
-Widget CoachPhotosWidget(FullLicence fullLicence) {
+Widget CoachPhotosWidget(FullLicence fullLicence,LicenceProvider licenceController,context) {
   return Container(
     child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       (fullLicence.coach!.identityPhoto != null &&
               fullLicence.coach!.identityPhoto != "")
-          ? Image.network(
-              fullLicence.coach!.identityPhoto!,
-              width: 20.w,
-            )
+          ? InkWell(
+            onTap: () {
+                        licenceController.showImage(context,fullLicence.coach!.identityPhoto);
+                      },
+            child: Image.network(
+                fullLicence.coach!.identityPhoto!,
+                width: 20.w,
+              ),
+          )
           : Image.asset(
               'assets/icons/man.png',
               width: 20.w,
               fit: BoxFit.cover,
             ),
       (fullLicence.coach!.photo != null && fullLicence.coach!.photo != "")
-          ? Image.network(
-              fullLicence.coach!.photo!,
-              width: 20.w,
-            )
+          ? InkWell(
+            onTap: () {
+                        licenceController.showImage(context,fullLicence.coach!.photo);
+                      },
+            child: Image.network(
+                fullLicence.coach!.photo!,
+                width: 20.w,
+              ),
+          )
           : Image.asset(
               'assets/icons/man.png',
               width: 20.w,
@@ -329,10 +349,15 @@ Widget CoachPhotosWidget(FullLicence fullLicence) {
             ),
       (fullLicence.coach!.degreePhoto != null &&
               fullLicence.coach!.degreePhoto != "")
-          ? Image.network(
-              fullLicence.coach!.degreePhoto!,
-              width: 20.w,
-            )
+          ? InkWell(
+            onTap: () {
+                        licenceController.showImage(context,fullLicence.coach!.degreePhoto);
+                      },
+            child: Image.network(
+                fullLicence.coach!.degreePhoto!,
+                width: 20.w,
+              ),
+          )
           : Image.asset(
               'assets/icons/man.png',
               width: 20.w,
@@ -340,10 +365,15 @@ Widget CoachPhotosWidget(FullLicence fullLicence) {
             ),
       (fullLicence.coach!.gradePhoto != null &&
               fullLicence.coach!.gradePhoto != "")
-          ? Image.network(
-              fullLicence.coach!.gradePhoto!,
-              width: 20.w,
-            )
+          ? InkWell(
+            onTap: () {
+                        licenceController.showImage(context,fullLicence.coach!.gradePhoto);
+                      },
+            child: Image.network(
+                fullLicence.coach!.gradePhoto!,
+                width: 20.w,
+              ),
+          )
           : Image.asset(
               'assets/icons/man.png',
               width: 20.w,
@@ -353,7 +383,7 @@ Widget CoachPhotosWidget(FullLicence fullLicence) {
   );
 }
 
-Widget AthletePhotosWidget(FullLicence fullLicence) {
+Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceController,context) {
   print('object');
   return Container(
     constraints: BoxConstraints(maxWidth: 100.w),
@@ -369,11 +399,16 @@ Widget AthletePhotosWidget(FullLicence fullLicence) {
               children: [
                 (fullLicence.athlete!.identityPhoto != null &&
                         fullLicence.athlete!.identityPhoto != "")
-                    ? Image.network(
-                        fullLicence.athlete!.identityPhoto!,
-                        fit: BoxFit.cover,
-                        width: 30.w,
-                      )
+                    ? InkWell(
+                      onTap: () {
+                        licenceController.showImage(context,fullLicence.athlete!.identityPhoto);
+                      },
+                      child: Image.network(
+                          fullLicence.athlete!.identityPhoto!,
+                          fit: BoxFit.cover,
+                          width: 30.w,
+                        ),
+                    )
                     : Image.asset(
                         'assets/icons/man.png',
                         fit: BoxFit.cover,
@@ -390,11 +425,16 @@ Widget AthletePhotosWidget(FullLicence fullLicence) {
               children: [
                 (fullLicence.athlete!.photo != null &&
                         fullLicence.athlete!.photo != "")
-                    ? Image.network(
-                        fullLicence.athlete!.photo!,
-                        fit: BoxFit.cover,
-                        width: 30.w,
-                      )
+                    ? InkWell(
+                      onTap: () {
+                        licenceController.showImage(context,fullLicence.athlete!.photo);
+                      },
+                      child: Image.network(
+                          fullLicence.athlete!.photo!,
+                          fit: BoxFit.cover,
+                          width: 30.w,
+                        ),
+                    )
                     : Image.asset(
                         'assets/icons/man.png',
                         fit: BoxFit.cover,
@@ -411,11 +451,16 @@ Widget AthletePhotosWidget(FullLicence fullLicence) {
               children: [
                 (fullLicence.athlete!.medicalPhoto != null &&
                         fullLicence.athlete!.medicalPhoto != "")
-                    ? Image.network(
-                        fullLicence.athlete!.medicalPhoto!,
-                        fit: BoxFit.cover,
-                        width: 30.w,
-                      )
+                    ? InkWell(
+                      onTap: () {
+                        licenceController.showImage(context,fullLicence.athlete!.medicalPhoto);
+                      },
+                      child: Image.network(
+                          fullLicence.athlete!.medicalPhoto!,
+                          fit: BoxFit.cover,
+                          width: 30.w,
+                        ),
+                    )
                     : Image.asset(
                         'assets/icons/man.png',
                         fit: BoxFit.cover,
@@ -430,6 +475,9 @@ Widget AthletePhotosWidget(FullLicence fullLicence) {
 }
 
 Widget RoleCard(Role role, context,LicenceProvider licenceController) {
+  if(licenceController.currentUser.club!.id==null){
+
+  
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: InkWell(
@@ -458,7 +506,44 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
           height: 10.h,
           child: Center(child: Text(role.roles!))),
     ),
+  );}
+   else{
+    if(role.roles=="club"||role.roles=="manager"){
+      return SizedBox();
+    }
+    else{
+       return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: InkWell(
+      onTap: (() {
+        licenceController.selectedRole=role;
+        if (role.roles == "Athlete") {
+          GoRouter.of(context).push(Routes.UploadAthleteImagesScreen);
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+        }
+        else if (role.roles == "Entraineur") {
+          GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+        }else if (role.roles == "Arbitre") {
+          GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+        }
+      }),
+      child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: Colors.red),
+          width: 60.w,
+          height: 10.h,
+          child: Center(child: Text(role.roles!))),
+    ),
   );
+    }
+
+  }
 }
 
 Widget AthleteImageUploadWidget(txt, licenceController, context,
@@ -667,7 +752,7 @@ FilterDialog(LicenceProvider licenceController, context) {
                   if(licenceController.currentUser.club?.id==null)
                   ClubSelectInput('Club',licenceController.filteredClub,licenceController),
                    SelectInput('Sexe',licenceController.filteredSex,licenceController,['Male','Femelle']),
-                   SelectInput('Etat',licenceController.filteredStatus,licenceController,['Activee','En Attante','Expiree']),
+                   SelectInput('Etat',licenceController.filteredStatus,licenceController,['Activee','En Attente','Expiree']),
             ],
           ),
 
@@ -675,21 +760,32 @@ FilterDialog(LicenceProvider licenceController, context) {
           //   controller: numControl,
           // ),
         )),
+        actionsPadding: EdgeInsets.all(0),
     actions: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: () {
-              licenceController.filterLicences(context);
-              
-              // licenceController.findLicence(numControl.text, context);
-            },
-            child: Container(
-              child: Center(child: Text('Confirmer')),
-            ),
-          )
-        ],
+      Container(
+        color: Color(0xff4C9AFF),
+        width: 100.w,
+        height: 8.h,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: () {
+                licenceController.filterLicences(context);
+                
+                // licenceController.findLicence(numControl.text, context);
+              },
+              child: Container(
+                
+                child: Center(child: Text('Confirmer',
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                )),
+              ),
+            )
+          ],
+        ),
       )
     ],
   );
