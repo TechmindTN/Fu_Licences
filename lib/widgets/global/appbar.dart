@@ -82,27 +82,27 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
 
 
 
-Widget MyDrawer(){
+Widget MyDrawer(LicenceProvider licenceController,context){
   return Drawer(
     
     width: 60.w,
     child: SingleChildScrollView(
       child: Column(
         children: [
-          IdentifierField(),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
-          DrawerField(Icons.list,"Licences"),
+          IdentifierField(licenceController,context),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
+          // DrawerField(Icons.list,"Licences"),
         ],
       ),
     ),
@@ -111,7 +111,7 @@ Widget MyDrawer(){
   );
 }
 
-Widget IdentifierField(){
+Widget IdentifierField(LicenceProvider licenceController,context){
   return Container(
     // color: Colors.red,
     decoration: BoxDecoration(
@@ -121,43 +121,79 @@ Widget IdentifierField(){
 
       ))
     ),
-    height: 15.h,
-   child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      Row(
-        children: [
-          CircleAvatar(
-            radius: 8.w,
-            child: Container(
-              width: 14.w,
-              
-              decoration: BoxDecoration(
-                boxShadow: [BoxShadow(
-
-                  color: Colors.black12,
-                  blurRadius: 10,
-
-                )],
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(50)
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: Image.asset("assets/icons/activism.png"),
-              )),
-          ),
-          SizedBox(width: 5.w,),
-          Text("Power Club",
-          style: TextStyle(
-            fontSize: 20
-          ),
-          )
-        ],
-      ),
-      // SizedBox(),
-      
-   ]),
+    height: 20.h,
+   child: Center(
+     child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+       children: [
+         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 8.w,
+                  child: Container(
+                    width: 14.w,
+                    
+                    decoration: BoxDecoration(
+                      boxShadow: [BoxShadow(
+   
+                        color: Colors.black12,
+                        blurRadius: 10,
+   
+                      )],
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Image.asset("assets/images/logo-ftwkf.png"),
+                    )),
+                ),
+                SizedBox(width: 5.w,),
+                Text((licenceController.currentUser.club!.id!=null)?licenceController.currentUser.club!.name.toString():"Admin",
+                style: TextStyle(
+                  fontSize: 20
+                ),
+                )
+              ],
+            ),
+            // SizedBox(),
+            
+         ]),
+         SizedBox(height: 2.h,),
+         InkWell(
+          onTap: () {
+            showDialog(context: context, builder: (context){
+              return LogoutDialog(licenceController,context);
+            });
+            // licenceController.logout(context);
+          },
+           child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(color: Color(0xff2DA9E0),width: 2 )
+              // color: Color(0xff92DDFF),
+              // color: Colors.red,
+            
+            ),
+            width: 45.w,
+            
+            height: 6.h,
+            child: Center(child: Text("Logout",
+            style: TextStyle(
+              color: Colors.black,
+            fontWeight: FontWeight.w700,
+            fontSize: 18
+         
+            ),
+            ),),
+                 ),
+         )
+       ],
+     ),
+   ),
 
 
   );
@@ -194,6 +230,24 @@ Widget DrawerField(icon,txt){
    ]),
 
 
+  );
+}
+
+
+Widget LogoutDialog(LicenceProvider licenceController,context){
+  return AlertDialog(
+    title: Text("Logout"),
+    content: Text("Voulez vous vraiment quitter?"),
+    actions: [
+      TextButton(onPressed: (){
+        licenceController.logout(context);
+      }, child: Text("Logut",
+      style: TextStyle(
+        color: Colors.red
+      ),
+      )),
+      TextButton(onPressed: (){}, child: Text("Cancel"))
+    ],
   );
 }
 

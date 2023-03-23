@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfffafafa),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(licenceController,context),
       body: CustomScrollView(
         slivers: [
           MyAppBar((licenceController.currentUser.club!.id==null)?"ADMIN":licenceController.currentUser.club!.name,context,true,licenceController,false),

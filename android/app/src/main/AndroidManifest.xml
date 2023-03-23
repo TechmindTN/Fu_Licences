@@ -2,7 +2,7 @@
     package="com.techmind.fu_licences">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="fu_licences"
+        android:label="FTWKF"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
        

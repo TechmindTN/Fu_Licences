@@ -1,5 +1,7 @@
  class Routes{
   static const String Home="/";
+    static const String Splash="/splash";
+
   static const String Login="/login";
   static const String LicenceListScreen="/licence_list";
   static const String LicenceScreen="/licence";

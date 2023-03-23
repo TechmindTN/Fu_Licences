@@ -12,6 +12,7 @@ import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/renew_images_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/renew_licence_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
+import 'package:fu_licences/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../screens/arbitre/add_arbitre_screen.dart';
@@ -21,12 +22,16 @@ import '../screens/licence/addlicence/upload_coach_images_screen.dart';
 import '../screens/licence/licence_screen.dart';
 
 class Pages{
+  static late String root;
   final Routes routes=Routes();
   RouterConfig<Object> router=GoRouter(
-    initialLocation: Routes.Login,
+    initialLocation: Routes.Splash,
     routes: [
       GoRoute(path: Routes.Home,
       builder: (context, state) => BottomBarScreen(),
+      ),
+      GoRoute(path: Routes.Splash,
+      builder: (context, state) => MySplashScreen(),
       ),
       GoRoute(path: Routes.LicenceListScreen,
       builder: (context, state) => LicenceListScreen(),

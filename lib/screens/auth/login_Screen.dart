@@ -30,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
 @override
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen:false);
+    // licenceController.checkLogin(context);
         // settingsController=Provider.of<SettingsController>(context,listen:false);
 
     // TODO: implement initState

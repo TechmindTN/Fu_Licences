@@ -171,7 +171,7 @@ Widget LicenceItem(
                               ),
                             ),
                             Text(
-                              fullLicence.licence!.seasons.toString()!,
+                              fullLicence.licence!.seasons.toString(),
                               style: SafeGoogleFont(
                                 'Inter',
                                 fontSize: 18,

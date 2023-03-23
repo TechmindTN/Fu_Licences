@@ -10,8 +10,12 @@ import 'package:fu_licences/models/parameters.dart';
 import 'package:fu_licences/models/user.dart';
 import 'package:fu_licences/network/apis.dart';
 import 'package:fu_licences/network/licence_network.dart';
+import 'package:fu_licences/router/pages.dart';
+import 'package:fu_licences/screens/auth/login_Screen.dart';
+import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:fu_licences/screens/licence/licence_screen.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/arbitrator.dart';
 import '../models/athlete.dart';
@@ -33,6 +37,7 @@ import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
+   Widget next=Container();
   bool isLoading=true;
   late User currentUser;
   late Role selectedRole;
@@ -57,6 +62,8 @@ class LicenceProvider extends ChangeNotifier {
   String selectedSex = "Sexe";
   String selectedState = "Governorat";
   Apis apis = Apis();
+  late  SharedPreferences prefs;
+
   FullLicence? createdFullLicence = FullLicence(
       profile: Profile(),
       licence: Licence(),
@@ -73,7 +80,9 @@ class LicenceProvider extends ChangeNotifier {
   FullLicence? selectedFullLicence;
 
 
+
   login(context,login,password) async {
+    
     
     try{
       Map<String,dynamic> data={
@@ -85,6 +94,11 @@ class LicenceProvider extends ChangeNotifier {
       if(res.data!=null){
         licenceNetwork.apis.tempToken='TOKEN '+res.data['token'];
         currentUser=User.fromJson(res.data);
+         prefs= await SharedPreferences.getInstance();
+         prefs.setString('user', login);
+         prefs.setString('psd', password);
+         
+
         // print(licenceNetwork.apis.tempToken);
         // print(currentUser.club!.id.toString());
         GoRouter.of(context).go(Routes.Home);
@@ -117,6 +131,33 @@ class LicenceProvider extends ChangeNotifier {
     }
     
   } 
+
+
+  checkLogin(context) async {
+    prefs=await SharedPreferences.getInstance();
+    if (prefs.containsKey('user') && prefs.getString('user')!=null && prefs.getString('user')!=""){
+      next=HomeScreen();
+      // Pages.root=Routes.Home;
+
+      login(context, prefs.getString('user'), prefs.getString('psd'));
+      // GoRouter.of(context).go(Routes.Home);
+    }
+    else{
+      next=LoginScreen();
+      // Pages.root=Routes.Login;
+      GoRouter.of(context).go(Routes.Login);
+    }
+    return true;
+    // else{
+      
+    // }
+  }
+  logout(context) async {
+    prefs=await SharedPreferences.getInstance();
+    prefs.remove('user');
+    prefs.remove('psd');
+    GoRouter.of(context).go(Routes.Login);
+  }
 
 
   showImage(context,img){
