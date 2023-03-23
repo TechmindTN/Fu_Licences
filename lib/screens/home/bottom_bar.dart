@@ -8,96 +8,29 @@ import 'package:go_router/go_router.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class BottomBarScreen extends StatefulWidget{
+  final int currentIndex;
+
+  const BottomBarScreen({super.key, required this.currentIndex});
   @override
-  State<BottomBarScreen> createState() => _BottomBarScreenState();
+  State<BottomBarScreen> createState() => _BottomBarScreenState(currentIndex);
 }
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
+  final int currentIndex;
   late PersistentTabController _controller;
+
+  _BottomBarScreenState(this.currentIndex);
   
 List<Widget> _buildScreens() => [
         ParametersScreen(),
-        // LicenceListScreen(
-        //   // menuScreenContext: widget.menuScreenContext,
-        //   // hideStatus: _hideNavBar,
-        //   // onScreenHideButtonPressed: () {
-        //   //   setState(() {
-        //   //     _hideNavBar = !_hideNavBar;
-        //   //   });
-        //   // },
-        // ),
+        
         HomeScreen(
-          // menuScreenContext: widget.menuScreenContext,
-          // hideStatus: _hideNavBar,
-          // onScreenHideButtonPressed: () {
-          //   setState(() {
-          //     _hideNavBar = !_hideNavBar;
-          //   });
-          // },
+         
         ),
         LicenceListScreen(
-          // menuScreenContext: widget.menuScreenContext,
-          // hideStatus: _hideNavBar,
-          // onScreenHideButtonPressed: () {
-          //   setState(() {
-          //     _hideNavBar = !_hideNavBar;
-          //   });
-          // },
+        
         ),
-        // LicenceListScreen(
-        //   // menuScreenContext: widget.menuScreenContext,
-        //   // hideStatus: _hideNavBar,
-        //   // onScreenHideButtonPressed: () {
-        //   //   setState(() {
-        //   //     _hideNavBar = !_hideNavBar;
-        //   //   });
-        //   // },
-        // ),
-        // LicenceListScreen(
-        //   // menuScreenContext: widget.menuScreenContext,
-        //   // hideStatus: _hideNavBar,
-        //   // onScreenHideButtonPressed: () {
-        //   //   setState(() {
-        //   //     _hideNavBar = !_hideNavBar;
-        //   //   });
-        //   // },
-        // ),
-        // MainScreen(
-        //   menuScreenContext: widget.menuScreenContext,
-        //   hideStatus: _hideNavBar,
-        //   onScreenHideButtonPressed: () {
-        //     setState(() {
-        //       _hideNavBar = !_hideNavBar;
-        //     });
-        //   },
-        // ),
-        // MainScreen(
-        //   menuScreenContext: widget.menuScreenContext,
-        //   hideStatus: _hideNavBar,
-        //   onScreenHideButtonPressed: () {
-        //     setState(() {
-        //       _hideNavBar = !_hideNavBar;
-        //     });
-        //   },
-        // ),
-        // MainScreen(
-        //   menuScreenContext: widget.menuScreenContext,
-        //   hideStatus: _hideNavBar,
-        //   onScreenHideButtonPressed: () {
-        //     setState(() {
-        //       _hideNavBar = !_hideNavBar;
-        //     });
-        //   },
-        // ),
-        // MainScreen(
-        //   menuScreenContext: widget.menuScreenContext,
-        //   hideStatus: _hideNavBar,
-        //   onScreenHideButtonPressed: () {
-        //     setState(() {
-        //       _hideNavBar = !_hideNavBar;
-        //     });
-        //   },
-        // ),
+       
       ];
 
   List<PersistentBottomNavBarItem> _navBarsItems() => [
@@ -108,6 +41,7 @@ List<Widget> _buildScreens() => [
           activeColorPrimary: Colors.teal,
           inactiveColorPrimary: Colors.grey,
           routeAndNavigatorSettings: RouteAndNavigatorSettings(
+
             // initialRoute: "/",
             // routes: {
             //   "/first": (final context) =>  LicenceListScreen(),
@@ -127,45 +61,16 @@ List<Widget> _buildScreens() => [
           activeColorPrimary: Colors.blueAccent,
           inactiveColorPrimary: Colors.grey,
           routeAndNavigatorSettings: RouteAndNavigatorSettings(
-            // initialRoute: "/",
-            // routes: {
-            //  "/first": (final context) =>  LicenceListScreen(),
-            //   "/second": (final context) =>  SelectRoleScreen(),
-            // },
+         
           ),
         ),
-        // PersistentBottomNavBarItem(
-        //   icon: const Icon(Icons.message),
-        //   title: "Messages",
-        //   activeColorPrimary: Colors.deepOrange,
-        //   inactiveColorPrimary: Colors.grey,
-        //   routeAndNavigatorSettings: RouteAndNavigatorSettings(
-        //     initialRoute: "/",
-        //     routes: {
-        //     "/first": (final context) =>  LicenceListScreen(),
-        //       "/second": (final context) =>  SelectRoleScreen(),
-        //     },
-        //   ),
-        // ),
-        // PersistentBottomNavBarItem(
-        //   icon: const Icon(Icons.settings),
-        //   title: "Settings",
-        //   activeColorPrimary: Colors.indigo,
-        //   inactiveColorPrimary: Colors.grey,
-        //   routeAndNavigatorSettings: RouteAndNavigatorSettings(
-        //     initialRoute: "/",
-        //     routes: {
-        //      "/first": (final context) =>  LicenceListScreen(),
-        //       "/second": (final context) =>  SelectRoleScreen(),
-        //     },
-        //   ),
-        // ),
+      
       ];
 
 
 @override
   void initState() {
-    _controller = PersistentTabController(initialIndex: 1);
+    _controller = PersistentTabController(initialIndex: currentIndex??1);
     // TODO: implement initState
     super.initState();
   }

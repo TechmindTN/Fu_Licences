@@ -7,6 +7,7 @@ import '../../router/routes.dart';
 
 Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions){
   return SliverAppBar(
+    
     actions: (isActions)?[
             PopupMenuButton(
               
@@ -90,7 +91,8 @@ Widget MyDrawer(LicenceProvider licenceController,context){
       child: Column(
         children: [
           IdentifierField(licenceController,context),
-          // DrawerField(Icons.list,"Licences"),
+          DrawerField(Icons.home,"Home",Routes.Home,context),
+          DrawerField(Icons.list,"Licences",Routes.Home,context),
           // DrawerField(Icons.list,"Licences"),
           // DrawerField(Icons.list,"Licences"),
           // DrawerField(Icons.list,"Licences"),
@@ -200,37 +202,43 @@ Widget IdentifierField(LicenceProvider licenceController,context){
 }
 
 
-Widget DrawerField(icon,txt){
-   return Container(
-    // color: Colors.red,
-    decoration: BoxDecoration(
-      border: Border(bottom: BorderSide(
-        width: 1,
-        color: Colors.black,
-
-      ))
-    ),
-    height: 10.h,
-   child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      Row(
-        children: [
-          Icon(icon),
-          SizedBox(width: 5.w,),
-          Text(txt,
-          style: TextStyle(
-            fontSize: 20
-          ),
-          )
-        ],
+Widget DrawerField(icon,txt,togo,context,){
+   return InkWell(
+    onTap: (){
+      GoRouter.of(context).go(togo);
+    },
+     child: Container(
+      // color: Colors.red,
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(
+          width: 1,
+          color: Colors.black,
+   
+        ))
       ),
-      // SizedBox(),
-      
-   ]),
-
-
-  );
+      height: 10.h,
+     child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(width: 12.w,),
+        Row(
+          children: [
+            Icon(icon),
+            SizedBox(width: 5.w,),
+            Text(txt,
+            style: TextStyle(
+              fontSize: 20
+            ),
+            )
+          ],
+        ),
+        // SizedBox(),
+        
+     ]),
+   
+   
+     ),
+   );
 }
 
 

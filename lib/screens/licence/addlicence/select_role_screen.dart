@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
+import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../models/role.dart';
 import '../../../widgets/licence/licence_widget.dart';
@@ -28,17 +30,23 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
-          appBar: AppBar(title: Text("Selectioner le role"),),
-          body: Center(
-            child: Container(
-             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                for(Role role in licenceController.parameters!.roles! )
-                
-                RoleCard(role,context,licenceController)
-              ],)
-            ),
+          // appBar: AppBar(title: Text("Selectioner le role"),),
+          body: CustomScrollView(
+            slivers: [
+              MyAppBar("Select Role", context, false, licenceController, false),
+              SliverToBoxAdapter(
+                child: SizedBox(height: 2.h),
+              ),
+              SliverGrid.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+          
+            ), itemCount: licenceController.parameters!.roles!.length,
+             itemBuilder: (context, index) {
+              return RoleCard(licenceController.parameters!.roles![index], context, licenceController);
+            },)
+              
+            ],
+             
           ),
         );
       }

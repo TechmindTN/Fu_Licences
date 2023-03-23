@@ -60,20 +60,9 @@ class _LicenceListScreenState extends State<LicenceListScreen> {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
+          drawer: MyDrawer(licenceController, context),
           
-          // appBar: AppBar(
-          //   title: Text('Licences'),
-          //   actions: [
-          //      IconButton(onPressed: (){
-          //       licenceController.showFilterDialog(context,numControl);
-          //       // licenceController.showSearchDialog(context,numControl);
-          //     }, icon: Icon(Icons.filter_alt_sharp)),
-          //     IconButton(onPressed: (){
-          //       licenceController.showSearchDialog(context,numControl);
-          //     }, icon: Icon(Icons.search)),
-
-          //   ],
-          // ),
+          
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [

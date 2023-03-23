@@ -171,7 +171,7 @@ Widget LicenceItem(
                               ),
                             ),
                             Text(
-                              fullLicence.licence!.seasons.toString(),
+                              fullLicence.licence!.seasons.toString()!,
                               style: SafeGoogleFont(
                                 'Inter',
                                 fontSize: 18,
@@ -478,35 +478,46 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
   if(licenceController.currentUser.club!.id==null){
 
   
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: InkWell(
-      onTap: (() {
-        licenceController.selectedRole=role;
-        if (role.roles == "Athlete") {
-          GoRouter.of(context).push(Routes.UploadAthleteImagesScreen);
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
-        }
-        else if (role.roles == "Entraineur") {
-          GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
-        }else if (role.roles == "Arbitre") {
-          GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
-        }
-      }),
-      child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: Colors.red),
-          width: 60.w,
-          height: 10.h,
-          child: Center(child: Text(role.roles!))),
-    ),
+  return Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
+          onTap: (() {
+            licenceController.selectedRole=role;
+            if (role.roles == "Athlete") {
+              GoRouter.of(context).push(Routes.UploadAthleteImagesScreen);
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+            }
+            else if (role.roles == "Entraineur") {
+              GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+            }else if (role.roles == "Arbitre") {
+              GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+            }
+          }),
+          child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Colors.grey  ),
+              width: 35.w,
+              height: 20.h,
+              child: Center(child: 
+              Image.asset("assets/images/logo-ftwkf.png")
+              )),
+        ),
+      ),
+      Text(role.roles!,
+         style: TextStyle(
+                fontSize: 18
+              ),)
+    ],
   );}
+
    else{
     if(role.roles=="club"||role.roles=="manager"){
       return SizedBox();
