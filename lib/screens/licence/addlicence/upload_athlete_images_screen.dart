@@ -22,49 +22,64 @@ class _UploadAthleteLicenceImagesState
     extends State<UploadAthleteLicenceImages> {
   late LicenceProvider licenceController;
   CarouselController carouselController = CarouselController();
-  bool isFirst=true;
-  bool isLast=false;
-  List<Widget> myItems=[];
+  bool isFirst = true;
+  bool isLast = false;
+  late List<Map<String, dynamic>> list;
+  List<Widget> myItems = [];
   @override
   void initState() {
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
-   
+    list = [
+      {
+        'txt': 'photo de profile',
+        'tofill': 'profilePhoto',
+        'holder': licenceController.createdFullLicence!.profile!.profilePhoto
+      },
+      {
+         'txt':'photo d\'identite',
+          'tofill':'idphoto',
+          'holder':licenceController.createdFullLicence!.athlete!.identityPhoto
+      },
+      {
+        'txt':'photo d\'assurance', 
+        'tofill':'photo', 
+        'holder':licenceController.createdFullLicence!.athlete!.photo
+      },
+      {
+         'txt':'photo medical',
+          'tofill':'medphoto',
+          'holder':licenceController.createdFullLicence!.athlete!.medicalPhoto
+      }
+
+    ];
     // TODO: implement initState
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    licenceController.myItems= [
-                                    AthleteImageUploadWidget(
-                                        'photo de profile',
-                                        licenceController,
-                                        context,
-                                        'profilePhoto',
-                                        licenceController.createdFullLicence!
-                                            .profile!.profilePhoto),
-                                    AthleteImageUploadWidget(
-                                        'photo d\'identite',
-                                        licenceController,
-                                        context,
-                                        'idphoto',
-                                        licenceController.createdFullLicence!
-                                            .athlete!.identityPhoto),
-                                    AthleteImageUploadWidget(
-                                        'photo d\'assurance',
-                                        licenceController,
-                                        context,
-                                        'photo',
-                                        licenceController.createdFullLicence!
-                                            .athlete!.photo),
-                                    AthleteImageUploadWidget(
-                                        'photo medical',
-                                        licenceController,
-                                        context,
-                                        'medphoto',
-                                        licenceController.createdFullLicence!
-                                            .athlete!.medicalPhoto),
-                                  ];
+    licenceController.myItems = [
+      AthleteImageUploadWidget(
+          'photo de profile',
+          licenceController,
+          context,
+          'profilePhoto',
+          licenceController.createdFullLicence!.profile!.profilePhoto),
+      AthleteImageUploadWidget(
+          'photo d\'identite',
+          licenceController,
+          context,
+          'idphoto',
+          licenceController.createdFullLicence!.athlete!.identityPhoto),
+      AthleteImageUploadWidget('photo d\'assurance', licenceController, context,
+          'photo', licenceController.createdFullLicence!.athlete!.photo),
+      AthleteImageUploadWidget(
+          'photo medical',
+          licenceController,
+          context,
+          'medphoto',
+          licenceController.createdFullLicence!.athlete!.medicalPhoto),
+    ];
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
@@ -77,118 +92,137 @@ class _UploadAthleteLicenceImagesState
         // appBar: AppBar(),
         body: CustomScrollView(
           slivers: [
-            MyAppBar(
-                "Photos Athletes", context, false, licenceController, false),
+            MyAppBar("Photos Athletes", context, false, licenceController,
+                false, true),
+            SliverGrid(
+                delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                  return AthleteImageUploadWidget(
+                      list[index]['txt'],
+                      licenceController,
+                      context,
+                      list[index]['tofill'],
+                      list[index]['holder']);
+                  // return Container(
+                  //   alignment: Alignment.center,
+                  //   color: Colors.teal[100 * (index % 9)],
+                  //   child: Text('grid item $index'),
+                  // );
+                }, childCount: 4),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 0,
+                    crossAxisCount: 2)),
             SliverToBoxAdapter(
               child: Center(
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       Row(
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         // crossAxisAlignment: CrossAxisAlignment.center,
+                  //   child: Column(
+                  //     mainAxisAlignment: MainAxisAlignment.center,
+                  //     children: [
+                  //       Row(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         // crossAxisAlignment: CrossAxisAlignment.center,
 
-              //         children: [
-              //           Visibility(
-              //             maintainState: true,
-              //             maintainAnimation: true,
-              //             maintainSize: true,
-              //             visible: !isFirst,
-              //             child: IconButton(
-              //               icon: Icon(
-              //                 Icons.arrow_back_ios,
-              //                 size: 50,
-              //               ),
-              //               onPressed: () {
-                              
-              //                 carouselController.previousPage();
-              //               },
-              //             ),
-              //           ),
-              //           Column(
-              //             children: [
-              //               SizedBox(
-              //                 height: 12.h,
-              //               ),
-              //               Container(
-              //                   width: 70.w,
-              //                   child: CarouselSlider(
+                  //         children: [
+                  //           Visibility(
+                  //             maintainState: true,
+                  //             maintainAnimation: true,
+                  //             maintainSize: true,
+                  //             visible: !isFirst,
+                  //             child: IconButton(
+                  //               icon: Icon(
+                  //                 Icons.arrow_back_ios,
+                  //                 size: 50,
+                  //               ),
+                  //               onPressed: () {
 
-              //                     carouselController: carouselController,
-              //                     options: CarouselOptions(
-                                    
-              //                       enableInfiniteScroll: false,
-              //                         height: 60.h,
-              //                         viewportFraction: 1,
-                                      
-              //                         onPageChanged: (index, reason) {
-              //                           if(index>0){
-              //                             isFirst=false;
-              //                             if(index==licenceController.myItems.length-1){
-              //                               isLast=true;
-              //                             }
-              //                             else{
-              //                               isLast=false;
-              //                             }
-                                          
-              //                           }
-                                        
-              //                           else{
-              //                             isFirst=true;
-              //                           }
-              //                           licenceController.notify();
-              //                         },
-              //                         enlargeCenterPage: true),
-                                      
-              //                     items: licenceController.myItems
-              //                     // .map((i) {
-              //                     //   return Builder(
-              //                     //     builder: (BuildContext context) {
-              //                     //       return i;
-              //                     //       // return Container(
-              //                     //       //     width: MediaQuery.of(context).size.width,
-              //                     //       //     margin: EdgeInsets.symmetric(horizontal: 5.0),
-              //                     //       //     decoration: BoxDecoration(color: Colors.amber),
-              //                     //       //     child: Text(
-              //                     //       //       'text $i',
-              //                     //       //       style: TextStyle(fontSize: 16.0),
-              //                     //       //     ));
-              //                     //     },
-              //                     //   );
-              //                     // }).toList(),
-              //                   )
-                                child: Column(
-                                  children: [
-                                    AthleteImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
-                                    AthleteImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.athlete!.identityPhoto),
-                                    AthleteImageUploadWidget('photo d\'assurance',licenceController,context,'photo',licenceController.createdFullLicence!.athlete!.photo),
-                                    AthleteImageUploadWidget('photo medical',licenceController,context,'medphoto',licenceController.createdFullLicence!.athlete!.medicalPhoto),
-                                    SizedBox(height: 5.h,)
-                                  ],
-                                ),
-              //                   ),
-              //             ],
-              //           ),
-              //           Visibility(
-              //             maintainState: true,
-              //             maintainAnimation: true,
-              //             maintainSize: true,
-              //             visible: !isLast,
-              //             child: IconButton(
-              //               icon: Icon(
-              //                 Icons.arrow_forward_ios,
-              //                 size: 50,
-              //               ),
-              //               onPressed: () {
-              //                 carouselController.nextPage();
-              //               },
-              //             ),
-              //           ),
-              //         ],
-              //       ),
-              //     ],
-              //   ),
-              ),
+                  //                 carouselController.previousPage();
+                  //               },
+                  //             ),
+                  //           ),
+                  //           Column(
+                  //             children: [
+                  //               SizedBox(
+                  //                 height: 12.h,
+                  //               ),
+                  //               Container(
+                  //                   width: 70.w,
+                  //                   child: CarouselSlider(
+
+                  //                     carouselController: carouselController,
+                  //                     options: CarouselOptions(
+
+                  //                       enableInfiniteScroll: false,
+                  //                         height: 60.h,
+                  //                         viewportFraction: 1,
+
+                  //                         onPageChanged: (index, reason) {
+                  //                           if(index>0){
+                  //                             isFirst=false;
+                  //                             if(index==licenceController.myItems.length-1){
+                  //                               isLast=true;
+                  //                             }
+                  //                             else{
+                  //                               isLast=false;
+                  //                             }
+
+                  //                           }
+
+                  //                           else{
+                  //                             isFirst=true;
+                  //                           }
+                  //                           licenceController.notify();
+                  //                         },
+                  //                         enlargeCenterPage: true),
+
+                  //                     items: licenceController.myItems
+                  //                     // .map((i) {
+                  //                     //   return Builder(
+                  //                     //     builder: (BuildContext context) {
+                  //                     //       return i;
+                  //                     //       // return Container(
+                  //                     //       //     width: MediaQuery.of(context).size.width,
+                  //                     //       //     margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  //                     //       //     decoration: BoxDecoration(color: Colors.amber),
+                  //                     //       //     child: Text(
+                  //                     //       //       'text $i',
+                  //                     //       //       style: TextStyle(fontSize: 16.0),
+                  //                     //       //     ));
+                  //                     //     },
+                  //                     //   );
+                  //                     // }).toList(),
+                  //                   )
+                  // child: Column(
+                  //   children: [
+                  //     AthleteImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
+                  //     AthleteImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.athlete!.identityPhoto),
+                  //     AthleteImageUploadWidget('photo d\'assurance',licenceController,context,'photo',licenceController.createdFullLicence!.athlete!.photo),
+                  //     AthleteImageUploadWidget('photo medical',licenceController,context,'medphoto',licenceController.createdFullLicence!.athlete!.medicalPhoto),
+                  //     SizedBox(height: 5.h,)
+                  //   ],
+                  // ),
+                  //                   ),
+                  //             ],
+                  //           ),
+                  //           Visibility(
+                  //             maintainState: true,
+                  //             maintainAnimation: true,
+                  //             maintainSize: true,
+                  //             visible: !isLast,
+                  //             child: IconButton(
+                  //               icon: Icon(
+                  //                 Icons.arrow_forward_ios,
+                  //                 size: 50,
+                  //               ),
+                  //               onPressed: () {
+                  //                 carouselController.nextPage();
+                  //               },
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ],
+                  //   ),
+                  ),
             )
           ],
         ),

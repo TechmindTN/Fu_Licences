@@ -47,16 +47,16 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
             borderRadius: BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
-          width: 50.w,
-          height: 10.h,
+          width: 25.w,
+          height: 4.h,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownSearch<String>(
             
     popupProps: PopupProps.modalBottomSheet(
       showSearchBox: true,
-      constraints: BoxConstraints(maxHeight: 60.h,
-      minHeight: 20.h
+      constraints: BoxConstraints(maxHeight: 30.h,
+      minHeight: 10.h
       ),
         showSelectedItems: true,
         // disabledItemFn: (String s) => s.startsWith('I'),
@@ -124,16 +124,16 @@ SeasonSelectInput(txt,selected,LicenceProvider licenceController){
             borderRadius: BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
-          width: 50.w,
-          height: 10.h,
+          width: 25.w,
+          height: 4.h,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownSearch<Season>(   
               compareFn: (item1, item2) => item1.id==item2.id,       
     popupProps: PopupProps.modalBottomSheet(
       showSearchBox: true,
-      constraints: BoxConstraints(maxHeight: 60.h,
-      minHeight: 20.h
+      constraints: BoxConstraints(maxHeight: 30.h,
+      minHeight: 10.h
       ),
         showSelectedItems: true,
         // disabledItemFn: (String s) => s.startsWith('I'),
@@ -180,8 +180,8 @@ GategorySelectInput(txt,selected,LicenceProvider licenceController){
             borderRadius: BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
-          width: 50.w,
-          height: 10.h,
+          width: 25.w,
+          height: 4.h,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownSearch<Category>(   
@@ -235,16 +235,16 @@ DegreeSelectInput(txt,selected,LicenceProvider licenceController){
             borderRadius: BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
-          width: 50.w,
-          height: 10.h,
+          width: 25.w,
+          height: 4.h,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownSearch<Degree>(     
               compareFn: (item1, item2) => item1.id==item2.id,      
     popupProps: PopupProps.modalBottomSheet(
       showSearchBox: true,
-      constraints: BoxConstraints(maxHeight: 60.h,
-      minHeight: 20.h
+      constraints: BoxConstraints(maxHeight: 30.h,
+      minHeight: 10.h
       ),
         showSelectedItems: true,
         // disabledItemFn: (String s) => s.startsWith('I'),
@@ -291,16 +291,16 @@ WeightSelectInput(txt,selected,LicenceProvider licenceController){
             borderRadius: BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
-          width: 50.w,
-          height: 10.h,
+          width: 25.w,
+          height: 4.h,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownSearch<Weight>(   
               compareFn: (item1, item2) => item1.id==item2.id,        
     popupProps: PopupProps.modalBottomSheet(
       showSearchBox: true,
-      constraints: BoxConstraints(maxHeight: 60.h,
-      minHeight: 20.h
+      constraints: BoxConstraints(maxHeight: 30.h,
+      minHeight: 10.h
       ),
         showSelectedItems: true,
         // disabledItemFn: (String s) => s.startsWith('I'),
@@ -347,16 +347,16 @@ ClubSelectInput(txt,selected,LicenceProvider licenceController){
             borderRadius: BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
-          width: 50.w,
-          height: 10.h,
+          width: 25.w,
+          height: 4.h,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownSearch<Club>(    
               compareFn: (item1, item2) => item1.id==item2.id,       
     popupProps: PopupProps.modalBottomSheet(
       showSearchBox: true,
-      constraints: BoxConstraints(maxHeight: 60.h,
-      minHeight: 20.h
+      constraints: BoxConstraints(maxHeight: 30.h,
+      minHeight: 10.h
       ),
         showSelectedItems: true,
         // disabledItemFn: (String s) => s.startsWith('I'),
@@ -403,16 +403,16 @@ DisciplineSelectInput(txt,selected,LicenceProvider licenceController){
             borderRadius: BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
-          width: 50.w,
-          height: 10.h,
+          width: 25.w,
+          height: 4.h,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownSearch<Discipline>(    
               compareFn: (item1, item2) => item1.id==item2.id,       
     popupProps: PopupProps.modalBottomSheet(
       showSearchBox: true,
-      constraints: BoxConstraints(maxHeight: 60.h,
-      minHeight: 20.h
+      constraints: BoxConstraints(maxHeight: 30.h,
+      minHeight: 10.h
       ),
         showSelectedItems: true,
         // disabledItemFn: (String s) => s.startsWith('I'),
@@ -460,16 +460,16 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
             borderRadius: BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
-          width: 50.w,
-          height: 10.h,
+          width: 25.w,
+          height: 4.h,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownSearch<Grade>(         
               compareFn: (item1, item2) => item1.id==item2.id,  
     popupProps: PopupProps.modalBottomSheet(
       showSearchBox: true,
-      constraints: BoxConstraints(maxHeight: 60.h,
-      minHeight: 20.h
+      constraints: BoxConstraints(maxHeight: 30.h,
+      minHeight: 10.h
       ),
         showSelectedItems: true,
         // disabledItemFn: (String s) => s.startsWith('I'),
@@ -558,8 +558,8 @@ Widget AuthInput(txt,control,hide){
   return Container(
       
       
-      height: 9.h,
-      width: 70.w,
+      height: 4.h,
+      width: 50.w,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -570,7 +570,7 @@ Widget AuthInput(txt,control,hide){
         ],
          
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(30))
+        borderRadius: BorderRadius.all(Radius.circular(5))
         
       ),
       child: Padding(

@@ -4,8 +4,8 @@ import 'package:sizer/sizer.dart';
 
 Widget imageWidget(){
   return Container(
-    width: 90.w,
-    height: 15.h,
+    width: 120.w,
+    height: 17.h,
     // decoration: BoxDecoration(
     //   color: Colors.red,
     //   // borderRadius: BorderRadius.all(Radius.circular(200))

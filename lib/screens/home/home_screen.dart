@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: MyDrawer(licenceController,context),
       body: CustomScrollView(
         slivers: [
-          MyAppBar((licenceController.currentUser.club!.id==null)?"ADMIN":licenceController.currentUser.club!.name,context,true,licenceController,false),
+          MyAppBar((licenceController.currentUser.club!.id==null)?"ADMIN":licenceController.currentUser.club!.name,context,true,licenceController,false,false),
           // HomeCorps
           SliverToBoxAdapter(
             child: Column(

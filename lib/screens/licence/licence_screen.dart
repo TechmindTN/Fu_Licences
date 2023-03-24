@@ -101,7 +101,7 @@ class _LicenceScreenState extends State<LicenceScreen> {
 
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Licence "+licenceController.selectedFullLicence!.licence!.numLicences!, context, false,licenceController,true),
+              MyAppBar("Licence "+licenceController.selectedFullLicence!.licence!.numLicences!, context, false,licenceController,true,true),
               SliverToBoxAdapter(
                 child: Column(
                         

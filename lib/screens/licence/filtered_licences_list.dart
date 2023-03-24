@@ -45,7 +45,7 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Licences Filtree", context, false, licenceController, false),
+              MyAppBar("Licences Filtree", context, false, licenceController, false,true),
               SliverToBoxAdapter(
                 child:  (licenceController.filteredFullLicences.length>0)?Column(
               crossAxisAlignment: CrossAxisAlignment.center,

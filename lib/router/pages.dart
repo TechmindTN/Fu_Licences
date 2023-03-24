@@ -3,6 +3,7 @@ import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/athlete/add_athlete/add_athlete_screen.dart';
 import 'package:fu_licences/screens/auth/login_Screen.dart';
 import 'package:fu_licences/screens/home/bottom_bar.dart';
+import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
 import 'package:fu_licences/screens/licence/edit%20licence/edit_images_screen.dart';
@@ -28,13 +29,13 @@ class Pages{
     initialLocation: Routes.Splash,
     routes: [
       GoRoute(path: Routes.Home,
-      builder: (context, state) => BottomBarScreen(currentIndex: 1,),
+      builder: (context, state) => HomeScreen(),
       ),
       GoRoute(path: Routes.Splash,
       builder: (context, state) => MySplashScreen(),
       ),
       GoRoute(path: Routes.LicenceListScreen,
-      builder: (context, state) => BottomBarScreen(currentIndex: 2,),
+      builder: (context, state) => LicenceListScreen(),
       ),
       GoRoute(path: Routes.LicenceListScreen,
       builder: (context, state) => LicenceListScreen(),

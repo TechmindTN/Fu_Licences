@@ -33,6 +33,8 @@ dependencies:
     sdk: flutter
 
   provider: ^6.0.3
+  desktop_window: ^0.4.0
+
   # flutter_barcode_scanner: ^2.0.0
   # flutter_login: ^4.0.0
   sizer: ^2.0.15

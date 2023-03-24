@@ -21,202 +21,291 @@ import '../global/inputs.dart';
 Widget LicenceItem(
     FullLicence fullLicence, LicenceProvider licenceController, context) {
   return Center(
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
-        // autogroupqd1zLpG (F37U4uNLqRBdFGbp4sQD1z)
-
-        // //width: double.infinity,
-        //height: double.infinity,
-        width: 90.w,
-        decoration: BoxDecoration(
-          color: Color(0xffffffff),
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(
-              color: Color(0x3f000000),
-              offset: Offset(0, 2),
-              blurRadius: 10,
-            ),
-          ],
-        ),
-        child: InkWell(
-          onTap: () {
-            licenceController.selectedFullLicence = fullLicence;
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: ((context) => LicenceScreen())));
-            GoRouter.of(context).push(Routes.LicenceScreen);
-            // Navigator.pushNamed(context, Routes.LicenceScreen);
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  // autogroupitbe2SC (F37UKZcanBTmfvyEYdiTBE)
-                  margin: EdgeInsets.fromLTRB(2, 0, 0, 6),
-                  //width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        // licencenum16358749xKr (1:62)
-                        margin: EdgeInsets.fromLTRB(0, 0, 27, 0),
-                        child: Text(
-                          'num : ' + fullLicence.licence!.numLicences!,
-                          style: SafeGoogleFont(
-                            'Inter',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            height: 1.2125,
-                            color: Color(0xff000000),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        // valideTXW (1:64)
-                        fullLicence.licence!.state!,
+    child: Container(
+     
+      width: 40.w,
+      height: 20.h,
+      
+      decoration: BoxDecoration(
+        color: Color(0xffffffff),
+        borderRadius: BorderRadius.circular(5),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0x3f000000),
+            offset: Offset(0, 2),
+            blurRadius: 10,
+          ),
+        ],
+      ),
+      child: InkWell(
+        onTap: () {
+          licenceController.selectedFullLicence = fullLicence;
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: ((context) => LicenceScreen())));
+          GoRouter.of(context).push(Routes.LicenceScreen);
+          // Navigator.pushNamed(context, Routes.LicenceScreen);
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                      // man2L5W (2:231)
+                      margin: EdgeInsets.fromLTRB(0, 2, 2, 0),
+                      // width: 25.w,
+                      height: 8.h,
+                      child: (fullLicence.profile!.profilePhoto != null &&
+                              fullLicence.profile!.profilePhoto != "")
+                          ? Image.network(fullLicence.profile!.profilePhoto!)
+                          : Image.asset(
+                              'assets/icons/man.png',
+                              fit: BoxFit.cover,
+                            ),
+                    ),
+                    SizedBox(height: 1.h,),
+              Container(
+                // height: .h,
+                // autogroupitbe2SC (F37UKZcanBTmfvyEYdiTBE)
+                margin: EdgeInsets.fromLTRB(2, 0, 0, 6),
+                //width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      // licencenum16358749xKr (1:62)
+                      margin: EdgeInsets.fromLTRB(0, 0, 27, 0),
+                      child: Text(
+                        'num : ' + fullLicence.licence!.numLicences!,
                         style: SafeGoogleFont(
                           'Inter',
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
-                          height: 1.2125,
-                          color: (fullLicence.licence!.state.toString() ==
-                                  "Activee")
-                              ? Color(0xff02ce16)
-                              : (fullLicence.licence!.state.toString() ==
-                                      "En Attente")
-                                  ? Color(0xfff5700a)
-                                  : Color(0xfffc0303),
+                          // height: 1.2125,
+                          color: Color(0xff000000),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                Container(
-                  // autogroupubylbtc (F37UQoxqf6Dn3wXHhuubYL)
-                  margin: EdgeInsets.fromLTRB(0, 0, 110, 3),
-                  //width: double.infinity,
-                  height: 18.h,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        // man2L5W (2:231)
-                        margin: EdgeInsets.fromLTRB(0, 2, 2, 0),
-                        width: 65,
-                        height: 65,
-                        child: (fullLicence.profile!.profilePhoto != null &&
-                                fullLicence.profile!.profilePhoto != "")
-                            ? Image.network(fullLicence.profile!.profilePhoto!)
-                            : Image.asset(
-                                'assets/icons/man.png',
-                                fit: BoxFit.cover,
-                              ),
+                    ),
+                    Text(
+                      // valideTXW (1:64)
+                      fullLicence.licence!.state!,
+                      style: SafeGoogleFont(
+                        'Inter',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        // height: 1.2125,
+                        color: (fullLicence.licence!.state.toString() ==
+                                "Activee")
+                            ? Color(0xff02ce16)
+                            : (fullLicence.licence!.state.toString() ==
+                                    "En Attente")
+                                ? Color(0xfff5700a)
+                                : Color(0xfffc0303),
                       ),
-                      Container(
-                        // autogroupf8ygfNg (F37UWyTEf3kHxVUS2BF8YG)
-                        //height: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              // athletecYp (1:65)
-                              margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                              child: Text(
-                                fullLicence.licence!.role!,
-                                style: SafeGoogleFont(
-                                  'Inter',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.2125,
-                                  color: Color(0xff717171),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              // mohsenclub8XA (1:63)
-                              margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                              child: Text(
-                                fullLicence.licence!.club.toString(),
-                                style: SafeGoogleFont(
-                                  'Inter',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.2125,
-                                  color: Color(0xff717171),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              // akaberTZS (2:232)
-                              fullLicence.licence!.categorie.toString(),
-                              style: SafeGoogleFont(
-                                'Inter',
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                height: 1.2125,
-                                color: Color(0xff717171),
-                              ),
-                            ),
-                            Text(
-                              fullLicence.profile!.state.toString(),
-                              style: SafeGoogleFont(
-                                'Inter',
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                height: 1.2125,
-                                color: Color(0xff717171),
-                              ),
-                            ),
-                            Text(
-                              fullLicence.licence!.seasons.toString()!,
-                              style: SafeGoogleFont(
-                                'Inter',
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                height: 1.2125,
-                                color: Color(0xff717171),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                // Container(
-                //   // benarouscBS (2:233)
-                //   margin: EdgeInsets.fromLTRB(0, 0, 68, 5),
-                //   child: Text(
-                //     'Ben Arous',
-                //     style: SafeGoogleFont (
-                //       'Inter',
-                //       fontSize: 18,
-                //       fontWeight: FontWeight.w400,
-                //       height: 1.2125,
-                //       color: Color(0xff717171),
-                //     ),
-                //   ),
-                // ),
-                // Container(
-                //   // 8Qg (2:234)
-                //   margin: EdgeInsets.fromLTRB(0, 0, 58, 0),
-                //   child: Text(
-                //     '2022-2023',
-                //     style: SafeGoogleFont (
-                //       'Inter',
-                //       fontSize: 18,
-                //       fontWeight: FontWeight.w400,
-                //       height: 1.2125,
-                //       color: Color(0xff717171),
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
+              ),
+              Container(
+                // autogroupubylbtc (F37UQoxqf6Dn3wXHhuubYL)
+                margin: EdgeInsets.fromLTRB(0, 0, 110, 3),
+                //width: double.infinity,
+                height: 1.h,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    
+                    Container(
+                      // autogroupf8ygfNg (F37UWyTEf3kHxVUS2BF8YG)
+                      //height: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 38.w,
+                            // athletecYp (1:65)
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Role",
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: Color(0xff000000),
+                                  ),
+                                ),
+                                Text(
+                                  fullLicence.licence!.role!,
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: Color(0xff717171),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 38.w,
+                            // mohsenclub8XA (1:63)
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Club",
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: Color(0xff000000),
+                                  ),
+                                ),
+                                Text(
+                                  fullLicence.licence!.club.toString(),
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: Color(0xff717171),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                            width: 38.w,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Age",
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: Color(0xff000000),
+                                  ),
+                                ),
+                                Text(
+                                  // akaberTZS (2:232)
+                                  fullLicence.licence!.categorie.toString(),
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: Color(0xff717171),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                            width: 38.w,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Ligue",
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: Color(0xff000000),
+                                  ),
+                                ),
+                                Text(
+                                  fullLicence.profile!.state.toString(),
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: Color(0xff717171),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                            width: 38.w,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              
+                              children: [
+                               Text(
+                                  "Saison",
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: Color(0xff000000),
+                                  ),
+                                ),
+                                
+                                Text(
+                                  fullLicence.licence!.seasons.toString()!,
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: Color(0xff717171),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Container(
+              //   // benarouscBS (2:233)
+              //   margin: EdgeInsets.fromLTRB(0, 0, 68, 5),
+              //   child: Text(
+              //     'Ben Arous',
+              //     style: SafeGoogleFont (
+              //       'Inter',
+              //       fontSize: 18,
+              //       fontWeight: FontWeight.w400,
+              //       height: 1.2125,
+              //       color: Color(0xff717171),
+              //     ),
+              //   ),
+              // ),
+              // Container(
+              //   // 8Qg (2:234)
+              //   margin: EdgeInsets.fromLTRB(0, 0, 58, 0),
+              //   child: Text(
+              //     '2022-2023',
+              //     style: SafeGoogleFont (
+              //       'Inter',
+              //       fontSize: 18,
+              //       fontWeight: FontWeight.w400,
+              //       height: 1.2125,
+              //       color: Color(0xff717171),
+              //     ),
+              //   ),
+              // ),
+            ],
           ),
         ),
       ),
@@ -505,10 +594,12 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   color: Colors.grey  ),
-              width: 35.w,
-              height: 20.h,
+              width: 20.w,
+              height: 12.h,
               child: Center(child: 
-              Image.asset("assets/images/logo-ftwkf.png")
+              Image.asset("assets/images/logo-ftwkf.png",
+              width: 12.w,
+              )
               )),
         ),
       ),
@@ -564,6 +655,7 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
 
     builder: (context,licenceController,child) {
       return Column(
+
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -589,8 +681,8 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
                       borderRadius: BorderRadius.all(Radius.circular(40)),
                       // color: Color(0xffD9D9D9)
                       ),
-                  width: 60.w,
-                  height: 45.h,
+                  width: 30.w,
+                  height: 22.h,
                   // child: (placeHolderImage != null)
                   //     ? Image.network(placeHolderImage,
                   //     fit: BoxFit.fill,
@@ -772,7 +864,7 @@ FilterDialog(LicenceProvider licenceController, context) {
     scrollable: true,
     title: Center(child: Text('Filtrer')),
     content: Container(
-        width: 100.w,
+        width: 50.w,
         // height: 90.h,
         child: Center(
           child: Column(
@@ -801,8 +893,8 @@ FilterDialog(LicenceProvider licenceController, context) {
     actions: [
       Container(
         color: Color(0xff4C9AFF),
-        width: 100.w,
-        height: 8.h,
+        width: 54.w,
+        height: 4.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -832,14 +924,17 @@ FilterDialog(LicenceProvider licenceController, context) {
 Widget LicenceListHeader(LicenceProvider licenceController,numControl,context){
   return Center(
     child: Container(
-      width: 90.w,
-      child: Column(
+      width: 183.w,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
        children: [
         // SizedBox(height: 5.h,),
+        
+        SearchFilter(licenceController,numControl,context),
+        SizedBox(height: 3.h,),
+        
          FirstRow(licenceController),
          SizedBox(height: 3.h,),
-        SearchFilter(licenceController,numControl,context),
-        SizedBox(height: 3.h,)
        ],
       ),
     ),
@@ -850,11 +945,11 @@ Widget FirstRow(LicenceProvider licenceController){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-    Text("Total: "+licenceController.fullLicences.length.toString(),
-     style: TextStyle(
-      fontWeight: FontWeight.w600,
-      fontSize: 20
-    ),),
+    // Text("Total: "+licenceController.fullLicences.length.toString(),
+    //  style: TextStyle(
+    //   fontWeight: FontWeight.w600,
+    //   fontSize: 20
+    // ),),
     Text("Details de filtre >>",
     style: TextStyle(
       color: Color(0xff2DA9E0),
@@ -869,16 +964,22 @@ Widget SearchFilter(LicenceProvider licenceController,numControl,context){
   return Row(
     children: [
       SearchField(licenceController,numControl,context),
-      SizedBox(width: 5.w,),
-      FilterField(licenceController,context)
+      SizedBox(width: 2.w,),
+      FilterField(licenceController,context),
+      SizedBox(width: 2.w,),
+      Text("Total: "+licenceController.fullLicences.length.toString(),
+     style: TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 20
+    ),),
     ],
   );
 }
 
 Widget SearchField(LicenceProvider licenceController,numControl,context){
   return Container(
-    width: 68.w,
-    height: 8.h,
+    width: 100.w,
+    height: 3.h,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(6),
       boxShadow: [
@@ -900,8 +1001,8 @@ Widget FilterField(LicenceProvider licenceController,context){
       licenceController.showFilterDialog(context);
     },
     child: Container(
-      width: 17.w,
-        height: 8.h,
+      width: 7.w,
+        height: 3.h,
         color: Colors.white,
       child: Container(
         decoration: BoxDecoration(

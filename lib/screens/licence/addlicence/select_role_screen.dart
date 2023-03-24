@@ -33,12 +33,12 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
           // appBar: AppBar(title: Text("Selectioner le role"),),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Select Role", context, false, licenceController, false),
+              MyAppBar("Select Role", context, false, licenceController, false,true),
               SliverToBoxAdapter(
                 child: SizedBox(height: 2.h),
               ),
               SliverGrid.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
+              crossAxisCount: 4,
           
             ), itemCount: licenceController.parameters!.roles!.length,
              itemBuilder: (context, index) {

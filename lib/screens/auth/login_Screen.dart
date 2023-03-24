@@ -53,8 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       
       body: Container(
-        width: 100.w,
-        height: 100.h,
+        // width: 100.w,
+        // height: 100.h,
         // height: global.height,
         // width: global.width,
         decoration: const BoxDecoration
@@ -76,9 +76,14 @@ class _LoginScreenState extends State<LoginScreen> {
          child: Center(
           child: SingleChildScrollView(
             child: Container(
-              width: 90.w,
-              height: 80.h,
+              width: 80.w,
+              height: 40.h,
               decoration: BoxDecoration(
+                boxShadow: [BoxShadow(color: Colors.black26,
+                offset: Offset(0, 2),
+                blurRadius: 10,
+                spreadRadius: 1
+                )],
                 color: Color(0xffd9d9d9),
                 // color: SettingsController.isDarkTheme?Color.fromARGB(255, 34, 34, 34):Color(0xffd9d9d9),
                 borderRadius:  BorderRadius.all(Radius.circular(2)),
@@ -91,11 +96,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        
+                        Image.asset("assets/images/logo-ftwkf.png"),
                         Text("Authentifier",
                         
                         style: Theme.of(context).textTheme.headline2,
                         ),
-                        Image.asset("assets/images/logo-ftwkf.png"),
                         AuthInput("Numero", usernameControl,false),
                         AuthInput("Mot de passe", psdControl,true),
                         // TextInput(hint: "Numéro Téléphone",hide: false,control: usernameControl,required: true,),

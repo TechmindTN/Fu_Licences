@@ -5,7 +5,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../router/routes.dart';
 
-Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions){
+Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions,isback){
   return SliverAppBar(
     
     actions: (isActions)?[
@@ -60,7 +60,9 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
             pinned: false,
             foregroundColor: Colors.white,
     // collapsedHeight: 10.h,
-    leading: Visibility(
+    leading: (isback)?IconButton(icon:Icon(Icons.arrow_back,color: Colors.black,),onPressed: (){
+      GoRouter.of(context).pop();
+    },):Visibility(
       visible: isDrawer,
       child: Builder(
         builder: (context) {
@@ -86,13 +88,13 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
 Widget MyDrawer(LicenceProvider licenceController,context){
   return Drawer(
     
-    width: 60.w,
+    width: 30.w,
     child: SingleChildScrollView(
       child: Column(
         children: [
           IdentifierField(licenceController,context),
           DrawerField(Icons.home,"Home",Routes.Home,context),
-          DrawerField(Icons.list,"Licences",Routes.Home,context),
+          DrawerField(Icons.list,"Licences",Routes.LicenceListScreen,context),
           // DrawerField(Icons.list,"Licences"),
           // DrawerField(Icons.list,"Licences"),
           // DrawerField(Icons.list,"Licences"),
@@ -123,7 +125,7 @@ Widget IdentifierField(LicenceProvider licenceController,context){
 
       ))
     ),
-    height: 20.h,
+    height: 10.h,
    child: Center(
      child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -134,9 +136,9 @@ Widget IdentifierField(LicenceProvider licenceController,context){
             Row(
               children: [
                 CircleAvatar(
-                  radius: 8.w,
+                  radius: 4.w,
                   child: Container(
-                    width: 14.w,
+                    width: 7.w,
                     
                     decoration: BoxDecoration(
                       boxShadow: [BoxShadow(
@@ -153,7 +155,7 @@ Widget IdentifierField(LicenceProvider licenceController,context){
                       child: Image.asset("assets/images/logo-ftwkf.png"),
                     )),
                 ),
-                SizedBox(width: 5.w,),
+                SizedBox(width: 2.w,),
                 Text((licenceController.currentUser.club!.id!=null)?licenceController.currentUser.club!.name.toString():"Admin",
                 style: TextStyle(
                   fontSize: 20
@@ -164,7 +166,7 @@ Widget IdentifierField(LicenceProvider licenceController,context){
             // SizedBox(),
             
          ]),
-         SizedBox(height: 2.h,),
+         SizedBox(height: 1.h,),
          InkWell(
           onTap: () {
             showDialog(context: context, builder: (context){
@@ -180,9 +182,9 @@ Widget IdentifierField(LicenceProvider licenceController,context){
               // color: Colors.red,
             
             ),
-            width: 45.w,
+            width: 20.w,
             
-            height: 6.h,
+            height: 3.h,
             child: Center(child: Text("Logout",
             style: TextStyle(
               color: Colors.black,
@@ -216,15 +218,15 @@ Widget DrawerField(icon,txt,togo,context,){
    
         ))
       ),
-      height: 10.h,
+      height: 4.h,
      child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(width: 12.w,),
+        SizedBox(width: 6.w,),
         Row(
           children: [
             Icon(icon),
-            SizedBox(width: 5.w,),
+            SizedBox(width: 3.w,),
             Text(txt,
             style: TextStyle(
               fontSize: 20
