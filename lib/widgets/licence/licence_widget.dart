@@ -11,6 +11,7 @@ import 'package:fu_licences/widgets/global/modals.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../global/utils.dart';
@@ -559,39 +560,64 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
 
 Widget AthleteImageUploadWidget(txt, licenceController, context,
     String? toFillImage, String? placeHolderImage) {
-  return Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: InkWell(
-          onTap: (() {}),
-          child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.red),
-              width: 60.w,
-              height: 40.h,
-              child: (placeHolderImage != null)
-                  ? Image.network(placeHolderImage)
-                  : Center()),
-        ),
-      ),
-      // Text(placeHolderImage.toString()),
-      Text(txt),
-      SizedBox(
-        height: 1.h,
-      ),
-      FloatingActionButton.extended(
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return AthleteMediaModal(licenceController, context, toFillImage);
-              });
-        },
-        label: Text("Select"),
-      )
-    ],
+  return Consumer<LicenceProvider>(
+
+    builder: (context,licenceController,child) {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: (() {}),
+              child: Container(
+                  decoration: BoxDecoration(
+                    image: (placeHolderImage != null)
+                      ? DecorationImage(image: NetworkImage(placeHolderImage,
+                      
+                      ),
+                      fit: BoxFit.cover
+                      ):null,
+                    boxShadow: [
+                      BoxShadow(color: Colors.black26),
+                      BoxShadow(
+                        color: Color(0xffD9D9D9),
+                        spreadRadius: -12,
+                        blurRadius: 20,
+
+                      )
+                    ],
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      // color: Color(0xffD9D9D9)
+                      ),
+                  width: 60.w,
+                  height: 45.h,
+                  // child: (placeHolderImage != null)
+                  //     ? Image.network(placeHolderImage,
+                  //     fit: BoxFit.fill,
+
+                  //     )
+                  //     : Center()
+                      ),
+            ),
+          ),
+          // Text(placeHolderImage.toString()),
+          Text(txt),
+          SizedBox(
+            height: 1.h,
+          ),
+          FloatingActionButton.extended(
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return AthleteMediaModal(licenceController, context, toFillImage);
+                  });
+            },
+            label: Text("Select"),
+          )
+        ],
+      );
+    }
   );
 }
 

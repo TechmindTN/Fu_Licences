@@ -37,6 +37,7 @@ import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
+  List<Widget> myItems=[];
    Widget next=Container();
   bool isLoading=true;
   late User currentUser;
@@ -463,6 +464,7 @@ class LicenceProvider extends ChangeNotifier {
 
 
   pickAthleteImage(bool fromGallery, context, String? toFillImage) async {
+    
     final XFile? image;
     if (fromGallery) {
       image = await _picker.pickImage(source: ImageSource.gallery);
@@ -487,7 +489,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
     print('done');
     String path = getArbitreImagePath(toFillImage);
 
-    uploadArbitreImage(image!, path, 6, toFillImage);
+    uploadArbitreImage(image!, path, 6, toFillImage,context);
     Navigator.pop(context);
     // Response res=await licenceNetwork.uploadImage();
   }
@@ -550,7 +552,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
     }
   }
 
-  uploadArbitreImage(XFile image, path, season, String? toFillImage) async {
+  uploadArbitreImage(XFile image, path, season, String? toFillImage,context) async {
     String fileName = image.path.split('/').last;
     // Map<String, dynamic> tempData = {
     //   "url": image.path,
@@ -580,10 +582,42 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
     Response res = await licenceNetwork.uploadImage(formData);
     if (res.statusCode == 200) {
       if (res.data != null) {
+
         print('image uploaded');
         print(formData);
         print(res.data);
         setArbitreImagePath(toFillImage, res.data['url']);
+        myItems.clear();
+        myItems=[
+                                    AthleteImageUploadWidget(
+                                        'photo de profile',
+                                        this,
+                                        context,
+                                        'profilePhoto',
+                                        this.createdFullLicence!
+                                            .profile!.profilePhoto),
+                                    AthleteImageUploadWidget(
+                                        'photo d\'identite',
+                                        this,
+                                        context,
+                                        'idphoto',
+                                        this.createdFullLicence!
+                                            .athlete!.identityPhoto),
+                                    AthleteImageUploadWidget(
+                                        'photo d\'assurance',
+                                        this,
+                                        context,
+                                        'photo',
+                                        this.createdFullLicence!
+                                            .athlete!.photo),
+                                    AthleteImageUploadWidget(
+                                        'photo medical',
+                                        this,
+                                        context,
+                                        'medphoto',
+                                        this.createdFullLicence!
+                                            .athlete!.medicalPhoto),
+                                  ];
         //toFillImage=res.data['url'];
 
         notify();
