@@ -100,7 +100,7 @@ Widget MyChart(){
     padding: const EdgeInsets.only(top:12.0),
     child: Container(
       width: 90.w,
-      height: 40.h,
+      height: 23.h,
       child: Column(
         children: [
           Text("Etat des licences",
@@ -114,7 +114,7 @@ Widget MyChart(){
           (
             
             width: 90.w,
-            height: 30.h,
+            height: 18.h,
             decoration: BoxDecoration(color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(8)),
             boxShadow: [
@@ -132,7 +132,7 @@ Widget MyChart(){
                   MyLegend(),
                   Container(
                     width: 60.w,
-            height: 30.h,
+            height: 1.h,
                     child: PieChart(
                     swapAnimationDuration: Duration(milliseconds: 150), // Optional
                     swapAnimationCurve: Curves.linear, // Optional
@@ -144,7 +144,7 @@ Widget MyChart(){
                       sectionsSpace: 0,
                       sections: [
                         PieChartSectionData(
-                          radius: 70,
+                          radius: 120,
                           badgeWidget: Badge(label: Text("20",
                           style: TextStyle(fontSize: 14),
                           
@@ -165,14 +165,14 @@ Widget MyChart(){
                           )),
                            badgePositionPercentageOffset: 1.3,
                           showTitle: false,
-                                         radius: 70,
+                                         radius: 120,
                             
                         color: Colors.orange,
                         value: 80,
                         title: "80"
                       ), PieChartSectionData(
                         color: Colors.green,
-                        value: 400,                radius: 70,
+                        value: 400,                radius: 120,
                             
                          badgeWidget: Badge(
                           backgroundColor: Colors.green,
@@ -226,14 +226,18 @@ LegendItem(txt,color){
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          width: 10,
-          height: 10,
+          width: 15,
+          height: 15,
           decoration: BoxDecoration(color: color,
           borderRadius: BorderRadius.all(Radius.circular(500))
           ),
         ),
     SizedBox(width: 10,),
-        Text(txt)
+        Text(txt,
+        style: TextStyle(
+          fontSize: 16
+        ),
+        )
       ],
     ),
   );

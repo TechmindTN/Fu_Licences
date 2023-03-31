@@ -7,6 +7,7 @@ import 'package:fu_licences/screens/licence/addlicence/add_licence_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
 import 'package:fu_licences/screens/licence/filtered_licences_list.dart';
 import 'package:fu_licences/screens/licence/licence_screen.dart';
+import 'package:fu_licences/widgets/global/buttons.dart';
 import 'package:fu_licences/widgets/global/modals.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:ui';
@@ -575,6 +576,8 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
               img="assets/icons/coach-white.png";
             }else if (role.roles == "Arbitre") {
               img="assets/icons/referee-white.png";
+            }else if (role.roles == "club") {
+              img="assets/icons/club-white.png";
             }
   return Column(
     children: [
@@ -605,7 +608,9 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
           child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.grey  ),
+                  color: Color(0xff92DDFF,
+        
+        )  ),
               width: 20.w,
               height: 12.h,
               child: Center(child: 
@@ -903,38 +908,83 @@ Widget ArbitreImageUploadWidget(txt,LicenceProvider licenceController, context,
 }
 
 Widget AthleteImageEditWidget(
-    txt, LicenceProvider licenceController, context, imageName, img) {
+    txt, LicenceProvider licenceController, context, imageName, img,index) {
   return Column(
     children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: (() {}),
+           onTap: () async {
+         await licenceController.pickArbitreImage(true, context, imageName);
+        },
+        onHover: (value) {
+                
+                if(value){
+                  licenceController.isHovered[index]=true;
+                  licenceController.notify();
+                  
+                }
+                else{
+                  licenceController.isHovered[index]=false;
+                  licenceController.notify();
+                }
+              },
           child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.red),
-              width: 60.w,
-              height: 40.h,
-              child: (img != null) ? Image.network(img) : Center()),
+               decoration: BoxDecoration(
+                    image: (img != null)
+                      ? DecorationImage(image: NetworkImage(img,
+                      
+                      
+                      ),
+                      opacity: (licenceController.isHovered[index])?0.3:1,
+                      fit: BoxFit.cover
+                      ):null,
+                    boxShadow: [
+                      BoxShadow(color: Colors.black26),
+                      BoxShadow(
+                        color: Color(0xffD9D9D9),
+                        spreadRadius: -12,
+                        blurRadius: 20,
+
+                      )
+                    ],
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      // color: Color(0xffD9D9D9)
+                      ),
+                  width: 30.w,
+                  height: 22.h,
+              child: (licenceController.isHovered[index])?
+                   Center(
+                    child: Icon(Icons.camera_alt,
+                    size: 5.w,
+                    ),
+                   )
+                   :SizedBox(),),
         ),
       ),
       // Text(placeHolderImage.toString()),
-      Text(txt),
       SizedBox(
-        height: 1.h,
-      ),
-      FloatingActionButton.extended(
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return EditMediaModal(
-                    licenceController, context, imageName, img);
-              });
-        },
-        label: Text("Select"),
-      )
+            height: 0.5.h,
+          ),
+          Text(txt,
+          style: TextStyle(
+            fontSize: 20
+          ),
+          ),
+          SizedBox(
+            height: 1.h,
+          ),
+      // FloatingActionButton.extended(
+      //   onPressed: () {
+      //     showModalBottomSheet(
+      //         context: context,
+      //         builder: (context) {
+      //           return EditMediaModal(
+      //               licenceController, context, imageName, img);
+      //         });
+      //   },
+      //   label: Text("Select"),
+      // )
     ],
   );
 }
@@ -1057,18 +1107,18 @@ Widget FirstRow(LicenceProvider licenceController){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-    // Text("Total: "+licenceController.fullLicences.length.toString(),
-    //  style: TextStyle(
-    //   fontWeight: FontWeight.w600,
-    //   fontSize: 20
-    // ),),
-    Text("Details de filtre >>",
-    style: TextStyle(
-      color: Color(0xff2DA9E0),
-      fontSize: 20,
-      // fontWeight: FontWeight.w600
-    ),
-    )
+    Text("Total: "+licenceController.fullLicences.length.toString(),
+     style: TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 20
+    ),),
+    // Text("Details de filtre >>",
+    // style: TextStyle(
+    //   color: Color(0xff2DA9E0),
+    //   fontSize: 20,
+    //   // fontWeight: FontWeight.w600
+    // ),
+    // )
   ],);
 }
 
@@ -1077,13 +1127,17 @@ Widget SearchFilter(LicenceProvider licenceController,numControl,context){
     children: [
       SearchField(licenceController,numControl,context),
       SizedBox(width: 2.w,),
+      
       FilterField(licenceController,context),
       SizedBox(width: 2.w,),
-      Text("Total: "+licenceController.fullLicences.length.toString(),
-     style: TextStyle(
-      fontWeight: FontWeight.w600,
-      fontSize: 20
-    ),),
+      SearchButton(licenceController,numControl,context),
+      SizedBox(width: 2.w,),
+     
+    //   Text("Total: "+licenceController.fullLicences.length.toString(),
+    //  style: TextStyle(
+    //   fontWeight: FontWeight.w600,
+    //   fontSize: 20
+    // ),),
     ],
   );
 }
@@ -1095,12 +1149,12 @@ Widget SearchField(LicenceProvider licenceController,numControl,context){
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(6),
       boxShadow: [
-        BoxShadow(
+        (licenceController.isShadow)?BoxShadow(
           
           color: Colors.black26,
           blurRadius: 10,
           offset: Offset(0,2)
-        )
+        ):BoxShadow()
       ],
       color: Colors.white
     ),

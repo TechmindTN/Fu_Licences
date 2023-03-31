@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/renew_licence_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
+import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -30,38 +31,78 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
       return Scaffold(
-        appBar: AppBar(title: Text("Renouvellement Licence"+licenceController.selectedFullLicence!.licence!.numLicences!),),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                
-                AthleteImageEditWidget(
-                  'Identite',
-                  licenceController,
-                  context,
-                  'idphoto',
-                  licenceController.createdFullLicence!.athlete!.identityPhoto,
-                ),
-                AthleteImageEditWidget(
-                    'Assurance',
+        // appBar: AppBar(title: Text("Renouvellement Licence"+licenceController.selectedFullLicence!.licence!.numLicences!),),
+        body: CustomScrollView(
+          slivers:[
+            MyAppBar("Renouvellement Licence"+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+             
+             
+            SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
+            SliverGrid(
+
+                delegate: SliverChildListDelegate([
+                  AthleteImageEditWidget(
+                    'Identite',
                     licenceController,
                     context,
-                    'photo',
-                    licenceController.createdFullLicence!.athlete!.photo),
-                AthleteImageEditWidget(
-                    'Medicale',
-                    licenceController,
-                    context,
-                    'medphoto',
-                    licenceController
-                        .createdFullLicence!.athlete!.medicalPhoto),
-                SizedBox(
-                  height: 5.h,
-                )
-              ],
-            ),
-          ),
+                    'idphoto',
+                    licenceController.createdFullLicence!.athlete!.identityPhoto,1
+                  ),
+                  AthleteImageEditWidget(
+                      'Assurance',
+                      licenceController,
+                      context,
+                      'photo',
+                      licenceController.createdFullLicence!.athlete!.photo,2),
+                  AthleteImageEditWidget(
+                      'Medicale',
+                      licenceController,
+                      context,
+                      'medphoto',
+                      licenceController
+                          .createdFullLicence!.athlete!.medicalPhoto,3),
+                ]),
+                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 0,
+                    childAspectRatio: 0.5 ,
+                    // mainAxisExtent: ,
+                    crossAxisSpacing: 0,
+                    crossAxisCount: 3)),
+
+
+            //  SliverToBoxAdapter(
+            //    child: Center(
+            //              child: Column(
+            //     children: [
+                  
+            //       AthleteImageEditWidget(
+            //         'Identite',
+            //         licenceController,
+            //         context,
+            //         'idphoto',
+            //         licenceController.createdFullLicence!.athlete!.identityPhoto,1
+            //       ),
+            //       AthleteImageEditWidget(
+            //           'Assurance',
+            //           licenceController,
+            //           context,
+            //           'photo',
+            //           licenceController.createdFullLicence!.athlete!.photo,2),
+            //       AthleteImageEditWidget(
+            //           'Medicale',
+            //           licenceController,
+            //           context,
+            //           'medphoto',
+            //           licenceController
+            //               .createdFullLicence!.athlete!.medicalPhoto,3),
+            //       SizedBox(
+            //         height: 5.h,
+            //       )
+            //     ],
+            //              ),
+            //            ),
+            //  ),
+             ]
         ),
         bottomNavigationBar: BottomAppBar(
             child: Padding(

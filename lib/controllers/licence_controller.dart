@@ -40,6 +40,7 @@ import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
+  bool isShadow=false;
   List<bool> isHovered=[false,false,false,false,false];
   List<Widget> myItems=[];
    Widget next=Container();

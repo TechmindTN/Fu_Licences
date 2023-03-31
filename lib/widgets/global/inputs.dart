@@ -539,6 +539,17 @@ SearchInput(LicenceProvider licenceController,numControl,context){
     child: Padding(
       padding: const EdgeInsets.only(left:12.0),
       child: TextFormField(
+        // onTapOutside: (){
+        //   licenceController.isShadow=false
+        // },
+        onTapOutside: (event) {
+          licenceController.isShadow=false;
+          licenceController.notify();
+        },
+        onTap: (){
+          licenceController.isShadow=true;
+          licenceController.notify();
+        },
         onFieldSubmitted: (newValue) {
           licenceController.findLicence(numControl.text, context);
         },

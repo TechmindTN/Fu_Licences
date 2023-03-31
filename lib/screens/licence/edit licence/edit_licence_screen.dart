@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
+import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -47,10 +48,14 @@ late  TextEditingController addresseController;
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
-          appBar: AppBar(title: Text("Modifier Licence "+licenceController.selectedFullLicence!.licence!.numLicences.toString()),
+          // appBar: AppBar(title: Text("Modifier Licence "+licenceController.selectedFullLicence!.licence!.numLicences.toString()),
          
-          ),
-          body: SingleChildScrollView(child: Column(
+          // ),
+          body: CustomScrollView(
+            slivers:[ 
+              MyAppBar("Modifier Licence "+licenceController.selectedFullLicence!.licence!.numLicences.toString(), context, false, licenceController, false, true),
+              SliverToBoxAdapter(
+                child: Column(
 
             children: [
               SizedBox(height: 5.h,),
@@ -65,7 +70,15 @@ late  TextEditingController addresseController;
               width: 121,
               height: 121,
               child: (licenceController.selectedFullLicence!.profile!.profilePhoto!=null && licenceController.selectedFullLicence!.profile!.profilePhoto!="")?
-              Image.network(licenceController.selectedFullLicence!.profile!.profilePhoto!)
+              InkWell(
+                onTap: (){
+                  showDialog(context: context,builder: (context) {
+                  return Dialog(
+                    child: Image.network(licenceController.selectedFullLicence!.profile!.profilePhoto!)
+                  );
+                },);
+                },
+                child: Image.network(licenceController.selectedFullLicence!.profile!.profilePhoto!))
               :Image.asset(
                 'assets/icons/man.png',
                 fit: BoxFit.cover,
@@ -153,7 +166,10 @@ Text('Information de licence'),
               SizedBox(height: 3.h,),
 
             ],
-          )
+          ),
+              )
+              
+          ]
           ),
           
          
