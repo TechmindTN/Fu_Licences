@@ -46,22 +46,34 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
           body: CustomScrollView(
             slivers: [
               MyAppBar("Licences Filtree", context, false, licenceController, false,true),
-              SliverToBoxAdapter(
-                child:  (licenceController.filteredFullLicences.length>0)?Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 2.h),
-                for(FullLicence fullLicence in licenceController.filteredFullLicences)
-                Center(child: LicenceItem(fullLicence,licenceController,context)),
-              ],
-            ):Container(
-              height: 80.h,
+             (licenceController.filteredFullLicences.length>0)?
+                SliverGrid.builder(
+              
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,
+            crossAxisSpacing: 0.w
+            ),
+
+            itemCount: licenceController.filteredFullLicences.length,
+             itemBuilder: (context,index){
+              return LicenceItem(licenceController.filteredFullLicences[index], licenceController, context);
+            }): SliverToBoxAdapter(
+                child:  Container(
+              height: 40.h,
               child: Column(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Center(child: Text('La liste est vide merci de changer vos filtres'),),
                 ],
               ),
             ),
+            //     Column(
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   children: [
+            //     SizedBox(height: 2.h),
+            //     for(FullLicence fullLicence in licenceController.filteredFullLicences)
+            //     Center(child: LicenceItem(fullLicence,licenceController,context)),
+            //   ],
+            // )
+            
               )
               
             ],

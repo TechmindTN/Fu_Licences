@@ -49,7 +49,7 @@ CoachMediaModal(LicenceProvider licenceController,context,String? toFillImage){
       InkWell(
         onTap: (() async {
           print('from gallery');
-          await licenceController.pickCoachImage(true,context,toFillImage);
+          // await licenceController.pickCoachImage(true,context,toFillImage);
         }),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -66,7 +66,7 @@ CoachMediaModal(LicenceProvider licenceController,context,String? toFillImage){
       InkWell(
         onTap: (() {
           print('from camera');
-          licenceController.pickCoachImage(false,context,toFillImage);
+          // licenceController.pickCoachImage(false,context,toFillImage);
         }),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -91,7 +91,7 @@ ArbitreMediaModal(LicenceProvider licenceController,context,String? toFillImage)
       InkWell(
         onTap: (() async {
           print('from gallery');
-          await licenceController.pickArbitreImage(true,context,toFillImage);
+          // await licenceController.pickArbitreImage(true,context,toFillImage);
         }),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -108,7 +108,7 @@ ArbitreMediaModal(LicenceProvider licenceController,context,String? toFillImage)
       InkWell(
         onTap: (() {
           print('from camera');
-          licenceController.pickArbitreImage(false,context,toFillImage);
+          // licenceController.pickArbitreImage(false,context,toFillImage);
         }),
         child: Padding(
           padding: const EdgeInsets.all(8.0),

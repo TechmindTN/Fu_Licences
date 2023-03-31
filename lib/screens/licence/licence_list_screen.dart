@@ -75,7 +75,9 @@ class _LicenceListScreenState extends State<LicenceListScreen> {
                 LicenceListHeader(licenceController,numControl,context),
                 
                 
-                (licenceController.isLoading)?Center(child: CircularProgressIndicator(),):Column(
+                (licenceController.isLoading)?Container(
+                  height: 20.h,
+                  child: Center(child: CircularProgressIndicator(),)):Column(
                   children: [
                     
                     // for(FullLicence fullLicence in licenceController.fullLicences)

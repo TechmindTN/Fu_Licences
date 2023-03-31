@@ -1,6 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
+import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -38,55 +39,66 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text("Ajouter les informations du profile"),
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                TextInput('Prenom', prenomController),
-                TextInput('Nom', nomController),
-                TextInput('Telephone', phoneController),
-
-                TextInput('CIN', cinController),
-                SelectInput('Sexe', licenceController.selectedSex,
-                    licenceController, ['Male', 'Femelle']),
-                SelectInput('Governorat', licenceController.selectedState,
-                    licenceController, [
-                  'Ariana',
-                  'Béja',
-                  'Ben Arous',
-                  'Bizerte',
-                  'Gabès',
-                  'Gafsa',
-                  'Jendouba',
-                  'Kairouan',
-                  'Kasserine',
-                  'Kébili',
-                  'Kef',
-                  'Mahdia',
-                  'Manouba',
-                  'Médenine',
-                  'Monastir',
-                  'Nabeul',
-                  'Sfax',
-                  'Sidi Bouzid',
-                  'Siliana',
-                  'Sousse',
-                  'Tataouine',
-                  'Tozeur',
-                  'Tunis',
-                  'Zaghouan'
-                ]),
-                TextInput('Addresse', addresseController),
-                Dateinput('Date de naissance', birthController, context,
-                    licenceController.selectedBirth, licenceController)
-
-                // String? birthday;
-              ],
+        // appBar: AppBar(
+        //   title: Text("Ajouter les informations du profile"),
+        // ),
+        body: CustomScrollView(
+          slivers:[
+            MyAppBar("Ajouter les informations du profile", context, false, licenceController, false, true),
+            SliverToBoxAdapter(
+              child: SizedBox(height: 3.h),
+            ),
+            SliverToBoxAdapter(
+              child: Center(
+            child: Container(
+              width: 80.w,
+              child: Column(
+                children: [
+                  TextInput('Prenom', prenomController),
+                  TextInput('Nom', nomController),
+                  TextInput('Telephone', phoneController),
+          
+                  TextInput('CIN', cinController),
+                  SelectInput('Sexe', licenceController.selectedSex,
+                      licenceController, ['Male', 'Femelle']),
+                  SelectInput('Governorat', licenceController.selectedState,
+                      licenceController, [
+                    'Ariana',
+                    'Béja',
+                    'Ben Arous',
+                    'Bizerte',
+                    'Gabès',
+                    'Gafsa',
+                    'Jendouba',
+                    'Kairouan',
+                    'Kasserine',
+                    'Kébili',
+                    'Kef',
+                    'Mahdia',
+                    'Manouba',
+                    'Médenine',
+                    'Monastir',
+                    'Nabeul',
+                    'Sfax',
+                    'Sidi Bouzid',
+                    'Siliana',
+                    'Sousse',
+                    'Tataouine',
+                    'Tozeur',
+                    'Tunis',
+                    'Zaghouan'
+                  ]),
+                  TextInput('Addresse', addresseController),
+                  Dateinput('Date de naissance', birthController, context,
+                      licenceController.selectedBirth, licenceController)
+          
+                  // String? birthday;
+                ],
+              ),
             ),
           ),
+            )
+          ] 
         ),
         bottomNavigationBar: BottomAppBar(
             child: Padding(

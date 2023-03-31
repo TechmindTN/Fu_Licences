@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/licence/licence_list_screen.dart';
+import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -45,46 +46,56 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text("Ajouter licence d'athlete"),
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                // String? categoryId;
-                // dynamic? gradeId;
-                // dynamic? idDegree;
+        // appBar: AppBar(
+        //   title: Text("Ajouter licence d'athlete"),
+        // ),
+        body: CustomScrollView(
 
-                // int? discipline;
-
-                // dynamic? weights;
-                // String? club;
-                // TextInput('Prenom',categoryController),
-                // TextInput('Nom',gradeController),
-                // TextInput('Telephone',degreeController),
-
-                // TextInput('CIN',disciplineController),
-                GategorySelectInput('Categorie',
-                    licenceController.selectedCategory, licenceController),
-                GradeSelectInput('Grade', licenceController.selectedGrade,
-                    licenceController),
-                DegreeSelectInput('Degree', licenceController.selectedDegree,
-                    licenceController),
-                DisciplineSelectInput('Discipline',
-                    licenceController.selectedDiscipline, licenceController),
-
-                WeightSelectInput('Poids', licenceController.selectedWeight,
-                    licenceController),
-                
-                if(licenceController.currentUser.club!.id==null)
-                ClubSelectInput(
-                    'Club', licenceController.selectedClub, licenceController),
-                // TextInput('Addresse',prenomController),
-                // Dateinput('Date de naissance',birthController,context,licenceController.selectedBirth,licenceController)
-              ],
+          slivers:[
+            MyAppBar("Ajouter licence d'athlete", context, false, licenceController, false, true),
+            SliverToBoxAdapter(child: SizedBox(height: 3.h),),
+            SliverToBoxAdapter(
+              child: Center(
+            child: Container(
+              width: 40.w,
+              child: Column(
+                children: [
+                  // String? categoryId;
+                  // dynamic? gradeId;
+                  // dynamic? idDegree;
+          
+                  // int? discipline;
+          
+                  // dynamic? weights;
+                  // String? club;
+                  // TextInput('Prenom',categoryController),
+                  // TextInput('Nom',gradeController),
+                  // TextInput('Telephone',degreeController),
+          
+                  // TextInput('CIN',disciplineController),
+                  GategorySelectInput('Categorie',
+                      licenceController.selectedCategory, licenceController),
+                  GradeSelectInput('Grade', licenceController.selectedGrade,
+                      licenceController),
+                  DegreeSelectInput('Degree', licenceController.selectedDegree,
+                      licenceController),
+                  DisciplineSelectInput('Discipline',
+                      licenceController.selectedDiscipline, licenceController),
+          
+                  WeightSelectInput('Poids', licenceController.selectedWeight,
+                      licenceController),
+                  
+                  if(licenceController.currentUser.club!.id==null)
+                  ClubSelectInput(
+                      'Club', licenceController.selectedClub, licenceController),
+                  // TextInput('Addresse',prenomController),
+                  // Dateinput('Date de naissance',birthController,context,licenceController.selectedBirth,licenceController)
+                ],
+              ),
             ),
           ),
+            )
+          ] 
         ),
         bottomNavigationBar: BottomAppBar(
             child: Padding(
@@ -124,7 +135,7 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
                       } else {
                         licenceController.createAthlete(context);
                         // GoRouter.of(context).dispose();
-                        GoRouter.of(context).go(Routes.Home);
+                        GoRouter.of(context).go(Routes.LicenceListScreen);
                       }
 
 // Navigator.of(context, rootNavigator:

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:typed_data';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dio/dio.dart';
@@ -15,6 +16,8 @@ import 'package:fu_licences/screens/auth/login_Screen.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:fu_licences/screens/licence/licence_screen.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_windows/image_picker_windows.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/arbitrator.dart';
@@ -29,7 +32,7 @@ import '../models/profile.dart';
 import '../models/role.dart';
 import '../models/season.dart';
 import '../models/weight.dart';
-import 'package:image_picker/image_picker.dart';
+// import 'package:image_picker/image_picker.dart';
 
 import '../router/routes.dart';
 import '../screens/licence/filtered_licences_list.dart';
@@ -37,6 +40,7 @@ import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
+  List<bool> isHovered=[false,false,false,false,];
   List<Widget> myItems=[];
    Widget next=Container();
   bool isLoading=true;
@@ -72,7 +76,9 @@ class LicenceProvider extends ChangeNotifier {
       arbitrator: Arbitrator(),
       athlete: Athlete(),
       coach: Coach());
-  final ImagePicker _picker = ImagePicker();
+          final picker = ImagePickerWindows();
+
+  // final ImagePicker _picker = ImagePicker();
   Parameters? parameters;
   List<FullLicence> fullLicences = [];
   List<FullLicence> filteredFullLicences = [];
@@ -133,7 +139,10 @@ class LicenceProvider extends ChangeNotifier {
     
   } 
 
-
+  clearPrefs() async {
+    prefs=await SharedPreferences.getInstance();
+    prefs.clear();
+  }
   checkLogin(context) async {
     prefs=await SharedPreferences.getInstance();
     if (prefs.containsKey('user') && prefs.getString('user')!=null && prefs.getString('user')!=""){
@@ -447,16 +456,20 @@ class LicenceProvider extends ChangeNotifier {
   }
 
   pickEditImage(bool fromGallery, context, String? toFillImage) async {
-    final XFile? image;
-    if (fromGallery) {
-      image = await _picker.pickImage(source: ImageSource.gallery);
-    } else {
-      image = await _picker.pickImage(source: ImageSource.camera);
-    }
+    // final XFile? image;
+      Uint8List? _imageBytes;
+
+    // if (fromGallery) {
+    //   image = await _picker.pickImage(source: ImageSource.gallery);
+    // } else {
+    //   image = await _picker.pickImage(source: ImageSource.camera);
+    // }
+    final picker = ImagePickerWindows();
+    PickedFile? file = await picker.pickImage(source: ImageSource.gallery);
     print('done');
     String path = getAthleteImagePath(toFillImage);
 
-    uploadEditImage(image!, path, 6, toFillImage);
+    uploadEditImage(file, path, 6, toFillImage);
     Navigator.pop(context);
     // Response res=await licenceNetwork.uploadImage();
   }
@@ -466,30 +479,35 @@ class LicenceProvider extends ChangeNotifier {
   pickAthleteImage(bool fromGallery, context, String? toFillImage) async {
     
     final XFile? image;
-    if (fromGallery) {
-      image = await _picker.pickImage(source: ImageSource.gallery);
-    } else {
-      image = await _picker.pickImage(source: ImageSource.camera);
-    }
+    // if (fromGallery) {
+    //   image = await _picker.pickImage(source: ImageSource.gallery);
+    // } else {
+    //   image = await _picker.pickImage(source: ImageSource.camera);
+    // }
     print('done');
+    Uint8List? _imageBytes;
+    final picker = ImagePickerWindows();
+    PickedFile? file = await picker.pickImage(source: ImageSource.gallery);
     String path = getAthleteImagePath(toFillImage);
-
-    uploadAthleteImage(image!, path, 6, toFillImage);
-    Navigator.pop(context);
+    uploadAthleteImage(file!, path, 6, toFillImage);
+    // Navigator.pop(context);
     // Response res=await licenceNetwork.uploadImage();
   }
 
 pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
-    final XFile? image;
-    if (fromGallery) {
-      image = await _picker.pickImage(source: ImageSource.gallery);
-    } else {
-      image = await _picker.pickImage(source: ImageSource.camera);
-    }
+    final PickedFile? image;
+    // if (fromGallery) {
+    //   image = await _picker.pickImage(source: ImageSource.gallery);
+    // } else {
+    //   image = await _picker.pickImage(source: ImageSource.camera);
+    // }
     print('done');
+    Uint8List? _imageBytes;
+    final picker = ImagePickerWindows();
+    PickedFile? file = await picker.pickImage(source: ImageSource.gallery);
     String path = getArbitreImagePath(toFillImage);
 
-    uploadArbitreImage(image!, path, 6, toFillImage,context);
+    uploadArbitreImage(file!, path, 6, toFillImage,context);
     Navigator.pop(context);
     // Response res=await licenceNetwork.uploadImage();
   }
@@ -497,21 +515,23 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
 
   pickCoachImage(bool fromGallery, context, String? toFillImage) async {
     final XFile? image;
-    if (fromGallery) {
-      image = await _picker.pickImage(source: ImageSource.gallery);
-    } else {
-      image = await _picker.pickImage(source: ImageSource.camera);
-    }
+    // if (fromGallery) {
+    //   image = await _picker.pickImage(source: ImageSource.gallery);
+    // } else {
+    //   image = await _picker.pickImage(source: ImageSource.camera);
+    // }
 
-    print('image picked');
+    Uint8List? _imageBytes;
+    final picker = ImagePickerWindows();
+    PickedFile? file = await picker.pickImage(source: ImageSource.gallery);
     String path = getCoachImagePath(toFillImage);
     print('path is'+path);
-    await uploadCoachImage(image!, path, 6, toFillImage);
+    await uploadCoachImage(file!, path, 6, toFillImage);
     Navigator.pop(context);
     // Response res=await licenceNetwork.uploadImage();
   }
 
-  uploadAthleteImage(XFile image, path, season, String? toFillImage) async {
+  uploadAthleteImage(PickedFile image, path, season, String? toFillImage) async {
     String fileName = image.path.split('/').last;
     // Map<String, dynamic> tempData = {
     //   "url": image.path,
@@ -552,7 +572,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
     }
   }
 
-  uploadArbitreImage(XFile image, path, season, String? toFillImage,context) async {
+  uploadArbitreImage(PickedFile image, path, season, String? toFillImage,context) async {
     String fileName = image.path.split('/').last;
     // Map<String, dynamic> tempData = {
     //   "url": image.path,
@@ -587,37 +607,37 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
         print(formData);
         print(res.data);
         setArbitreImagePath(toFillImage, res.data['url']);
-        myItems.clear();
-        myItems=[
-                                    AthleteImageUploadWidget(
-                                        'photo de profile',
-                                        this,
-                                        context,
-                                        'profilePhoto',
-                                        this.createdFullLicence!
-                                            .profile!.profilePhoto),
-                                    AthleteImageUploadWidget(
-                                        'photo d\'identite',
-                                        this,
-                                        context,
-                                        'idphoto',
-                                        this.createdFullLicence!
-                                            .athlete!.identityPhoto),
-                                    AthleteImageUploadWidget(
-                                        'photo d\'assurance',
-                                        this,
-                                        context,
-                                        'photo',
-                                        this.createdFullLicence!
-                                            .athlete!.photo),
-                                    AthleteImageUploadWidget(
-                                        'photo medical',
-                                        this,
-                                        context,
-                                        'medphoto',
-                                        this.createdFullLicence!
-                                            .athlete!.medicalPhoto),
-                                  ];
+        // myItems.clear();
+        // myItems=[
+        //                             AthleteImageUploadWidget(
+        //                                 'photo de profile',
+        //                                 this,
+        //                                 context,
+        //                                 'profilePhoto',
+        //                                 this.createdFullLicence!
+        //                                     .profile!.profilePhoto),
+        //                             AthleteImageUploadWidget(
+        //                                 'photo d\'identite',
+        //                                 this,
+        //                                 context,
+        //                                 'idphoto',
+        //                                 this.createdFullLicence!
+        //                                     .athlete!.identityPhoto),
+        //                             AthleteImageUploadWidget(
+        //                                 'photo d\'assurance',
+        //                                 this,
+        //                                 context,
+        //                                 'photo',
+        //                                 this.createdFullLicence!
+        //                                     .athlete!.photo),
+        //                             AthleteImageUploadWidget(
+        //                                 'photo medical',
+        //                                 this,
+        //                                 context,
+        //                                 'medphoto',
+        //                                 this.createdFullLicence!
+        //                                     .athlete!.medicalPhoto),
+                                  // ];
         //toFillImage=res.data['url'];
 
         notify();
@@ -625,7 +645,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
     }
   }
 
-  uploadCoachImage(XFile image, path, season, String? toFillImage) async {
+  uploadCoachImage(PickedFile image, path, season, String? toFillImage) async {
     print('entered upload coach');
     String fileName = image.path.split('/').last;
     Map<String, dynamic> tempData = {
@@ -678,8 +698,8 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
     print('not uploaded');
   }
 
-  uploadEditImage(XFile image, path, season, String? toFillImage) async {
-    String fileName = image.path.split('/').last;
+  uploadEditImage(PickedFile? image, path, season, String? toFillImage) async {
+    String fileName = image!.path.split('/').last;
     Map<String, dynamic> tempData = {
       "url": image.path,
       "path": path,

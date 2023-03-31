@@ -36,21 +36,20 @@ class _UploadAthleteLicenceImagesState
         'holder': licenceController.createdFullLicence!.profile!.profilePhoto
       },
       {
-         'txt':'photo d\'identite',
-          'tofill':'idphoto',
-          'holder':licenceController.createdFullLicence!.athlete!.identityPhoto
+        'txt': 'photo d\'identite',
+        'tofill': 'idphoto',
+        'holder': licenceController.createdFullLicence!.athlete!.identityPhoto
       },
       {
-        'txt':'photo d\'assurance', 
-        'tofill':'photo', 
-        'holder':licenceController.createdFullLicence!.athlete!.photo
+        'txt': 'photo d\'assurance',
+        'tofill': 'photo',
+        'holder': licenceController.createdFullLicence!.athlete!.photo
       },
       {
-         'txt':'photo medical',
-          'tofill':'medphoto',
-          'holder':licenceController.createdFullLicence!.athlete!.medicalPhoto
+        'txt': 'photo medical',
+        'tofill': 'medphoto',
+        'holder': licenceController.createdFullLicence!.athlete!.medicalPhoto
       }
-
     ];
     // TODO: implement initState
     super.initState();
@@ -58,28 +57,28 @@ class _UploadAthleteLicenceImagesState
 
   @override
   void didChangeDependencies() {
-    licenceController.myItems = [
-      AthleteImageUploadWidget(
-          'photo de profile',
-          licenceController,
-          context,
-          'profilePhoto',
-          licenceController.createdFullLicence!.profile!.profilePhoto),
-      AthleteImageUploadWidget(
-          'photo d\'identite',
-          licenceController,
-          context,
-          'idphoto',
-          licenceController.createdFullLicence!.athlete!.identityPhoto),
-      AthleteImageUploadWidget('photo d\'assurance', licenceController, context,
-          'photo', licenceController.createdFullLicence!.athlete!.photo),
-      AthleteImageUploadWidget(
-          'photo medical',
-          licenceController,
-          context,
-          'medphoto',
-          licenceController.createdFullLicence!.athlete!.medicalPhoto),
-    ];
+    // licenceController.myItems = [
+    //   AthleteImageUploadWidget(
+    //       'photo de profile',
+    //       licenceController,
+    //       context,
+    //       'profilePhoto',
+    //       licenceController.createdFullLicence!.profile!.profilePhoto),
+    //   AthleteImageUploadWidget(
+    //       'photo d\'identite',
+    //       licenceController,
+    //       context,
+    //       'idphoto',
+    //       licenceController.createdFullLicence!.athlete!.identityPhoto),
+    //   AthleteImageUploadWidget('photo d\'assurance', licenceController, context,
+    //       'photo', licenceController.createdFullLicence!.athlete!.photo),
+    //   AthleteImageUploadWidget(
+    //       'photo medical',
+    //       licenceController,
+    //       context,
+    //       'medphoto',
+    //       licenceController.createdFullLicence!.athlete!.medicalPhoto),
+    // ];
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
@@ -94,25 +93,61 @@ class _UploadAthleteLicenceImagesState
           slivers: [
             MyAppBar("Photos Athletes", context, false, licenceController,
                 false, true),
+                SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
             SliverGrid(
-                delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                  return AthleteImageUploadWidget(
-                      list[index]['txt'],
+
+                delegate: SliverChildListDelegate([
+                  AthleteImageUploadWidget(
+                      'photo de profile',
                       licenceController,
                       context,
-                      list[index]['tofill'],
-                      list[index]['holder']);
-                  // return Container(
-                  //   alignment: Alignment.center,
-                  //   color: Colors.teal[100 * (index % 9)],
-                  //   child: Text('grid item $index'),
-                  // );
-                }, childCount: 4),
+                      'profilePhoto',
+                      licenceController
+                          .createdFullLicence!.profile!.profilePhoto,
+                          0
+                          ),
+                  AthleteImageUploadWidget(
+                      'photo d\'identite',
+                      licenceController,
+                      context,
+                      'idphoto',
+                      licenceController
+                          .createdFullLicence!.athlete!.identityPhoto,1),
+                  AthleteImageUploadWidget(
+                      'photo d\'assurance',
+                      licenceController,
+                      context,
+                      'photo',
+                      licenceController.createdFullLicence!.athlete!.photo,2),
+                  AthleteImageUploadWidget(
+                      'photo medical',
+                      licenceController,
+                      context,
+                      'medphoto',
+                      licenceController
+                          .createdFullLicence!.athlete!.medicalPhoto,3),
+                ]),
+                // delegate: SliverChildBuilderDelegate(
+                //     (BuildContext context, int index) {
+                //   return AthleteImageUploadWidget(
+                //       list[index]['txt'],
+                //       licenceController,
+                //       context,
+                //       list[index]['tofill'],
+                //       list[index]['holder']);
+                //   // return Container(
+                //   //   alignment: Alignment.center,
+                //   //   color: Colors.teal[100 * (index % 9)],
+                //   //   child: Text('grid item $index'),
+                //   // );
+                // },
+                // childCount: 4),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: 0,
-                  crossAxisSpacing: 0,
-                    crossAxisCount: 2)),
+                    mainAxisSpacing: 0,
+                    childAspectRatio: 0.5 ,
+                    // mainAxisExtent: ,
+                    crossAxisSpacing: 0,
+                    crossAxisCount: 4)),
             SliverToBoxAdapter(
               child: Center(
                   //   child: Column(

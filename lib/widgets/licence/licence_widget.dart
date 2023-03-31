@@ -650,7 +650,8 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
 }
 
 Widget AthleteImageUploadWidget(txt, licenceController, context,
-    String? toFillImage, String? placeHolderImage) {
+    String? toFillImage, String? placeHolderImage,int index) {
+    //  bool ishovered=true;
   return Consumer<LicenceProvider>(
 
     builder: (context,licenceController,child) {
@@ -660,13 +661,32 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: (() {}),
+              onHover: (value) {
+                
+                if(value){
+                  licenceController.isHovered[index]=true;
+                  licenceController.notify();
+                  
+                }
+                else{
+                  licenceController.isHovered[index]=false;
+                  licenceController.notify();
+                }
+                // print(ishovered);
+              },
+              
+              onTap: (() {
+                
+              }),
               child: Container(
+               
                   decoration: BoxDecoration(
                     image: (placeHolderImage != null)
                       ? DecorationImage(image: NetworkImage(placeHolderImage,
                       
+                      
                       ),
+                      opacity: (licenceController.isHovered[index])?0.3:1,
                       fit: BoxFit.cover
                       ):null,
                     boxShadow: [
@@ -689,6 +709,13 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
 
                   //     )
                   //     : Center()
+                   child: (licenceController.isHovered[index])?
+                   Center(
+                    child: Icon(Icons.camera_alt,
+                    size: 5.w,
+                    ),
+                   )
+                   :SizedBox(),
                       ),
             ),
           ),
@@ -699,11 +726,12 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
           ),
           FloatingActionButton.extended(
             onPressed: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return AthleteMediaModal(licenceController, context, toFillImage);
-                  });
+              licenceController.pickAthleteImage(true,context,toFillImage);
+              // showModalBottomSheet(
+              //     context: context,
+              //     builder: (context) {
+              //       return AthleteMediaModal(licenceController, context, toFillImage);
+              //     });
             },
             label: Text("Select"),
           )
