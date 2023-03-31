@@ -1,7 +1,9 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
+import 'package:fu_licences/main.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
+import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:go_router/go_router.dart';
@@ -28,21 +30,41 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
-          appBar: AppBar(title: Text('Coach Images'),),
-          body: SingleChildScrollView(
-            child: Center(
-              child: Column(
-                children: [
-                  CoachImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
-                  CoachImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto),
-                  CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo),
-                  CoachImageUploadWidget('photo de degree',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto),
-                  CoachImageUploadWidget('photo de grade',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto),
+          // appBar: AppBar(title: Text('Coach Images'),),
+          body: CustomScrollView(
+            slivers:[ 
+              MyAppBar("Images d'entraineur", context, false, licenceController, false, true),
+                SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
+            SliverGrid(
 
-                  SizedBox(height: 5.h,)
-                ],
-              ),
-            ),
+                delegate: SliverChildListDelegate([
+                   CoachImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
+                  CoachImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto,1),
+                  CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo,2),
+                  CoachImageUploadWidget('photo de degree',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto,3),
+                  CoachImageUploadWidget('photo de grade',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto,4),
+
+                ]),
+                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 0,
+                    childAspectRatio: 0.5 ,
+                    // mainAxisExtent: ,
+                    crossAxisSpacing: 0,
+                    crossAxisCount: 5)),
+            //   Center(
+            //   child: Column(
+            //     children: [
+            //       CoachImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
+            //       CoachImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto,1),
+            //       CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo,2),
+            //       CoachImageUploadWidget('photo de degree',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto,3),
+            //       CoachImageUploadWidget('photo de grade',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto,4),
+
+            //       SizedBox(height: 5.h,)
+            //     ],
+            //   ),
+            // ),
+            ]
           ),
           bottomNavigationBar: BottomAppBar(child: Padding(
             padding: const EdgeInsets.all(12.0),

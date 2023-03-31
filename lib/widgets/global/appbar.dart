@@ -152,7 +152,10 @@ Widget IdentifierField(LicenceProvider licenceController,context){
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(6.0),
-                      child: Image.asset("assets/images/logo-ftwkf.png"),
+                      
+                      child: Image.asset("assets/images/logo-ftwkf.png",
+                      // scale: 0.,
+                      ),
                     )),
                 ),
                 SizedBox(width: 2.w,),

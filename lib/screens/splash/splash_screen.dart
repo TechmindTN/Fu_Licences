@@ -16,7 +16,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
   @override
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
-    licenceController.clearPrefs();
+    // licenceController.clearPrefs();
     licenceController.checkLogin(context);
     // licenceController.checkLogin(context);
     // TODO: implement initState

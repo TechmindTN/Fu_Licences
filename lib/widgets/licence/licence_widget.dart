@@ -566,8 +566,16 @@ Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceContro
 
 Widget RoleCard(Role role, context,LicenceProvider licenceController) {
   if(licenceController.currentUser.club!.id==null){
-
-  
+    String img="assets/images/logo-ftwkf.png";
+   if (role.roles == "Athlete") {
+              print('athlete');
+              img="assets/icons/running-white.png";
+            }
+            else if (role.roles == "Entraineur") {
+              img="assets/icons/coach-white.png";
+            }else if (role.roles == "Arbitre") {
+              img="assets/icons/referee-white.png";
+            }
   return Column(
     children: [
       Padding(
@@ -576,15 +584,19 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
           onTap: (() {
             licenceController.selectedRole=role;
             if (role.roles == "Athlete") {
+              print('athlete');
+              img="assets/icons/running.png";
               GoRouter.of(context).push(Routes.UploadAthleteImagesScreen);
               // Navigator.push(context,
               //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
             }
             else if (role.roles == "Entraineur") {
+              img="assets/icons/coach.png";
               GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
               // Navigator.push(context,
               //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
             }else if (role.roles == "Arbitre") {
+              img="assets/icons/referee.png";
               GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
               // Navigator.push(context,
               //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
@@ -597,7 +609,7 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
               width: 20.w,
               height: 12.h,
               child: Center(child: 
-              Image.asset("assets/images/logo-ftwkf.png",
+              Image.asset(img,
               width: 12.w,
               )
               )),
@@ -731,41 +743,83 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
 
 
 Widget CoachImageUploadWidget(txt, licenceController, context,
-    String? toFillImage, String? placeHolderImage) {
+    String? toFillImage, String? placeHolderImage,int index) {
   return Column(
     children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: () {
-            // return ArbitreMediaModal(licenceController, context, toFillImage);
-          },
+           onHover: (value) {
+                
+                if(value){
+                  licenceController.isHovered[index]=true;
+                  licenceController.notify();
+                  
+                }
+                else{
+                  licenceController.isHovered[index]=false;
+                  licenceController.notify();
+                }
+              },
+              
+              onTap: (() {
+                licenceController.pickAthleteImage(true,context,toFillImage);
+              }),
           child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.red),
-              width: 60.w,
-              height: 40.h,
-              child: (placeHolderImage != null)
-                  ? Image.network(placeHolderImage)
-                  : Center()),
+               decoration: BoxDecoration(
+                    image: (placeHolderImage != null)
+                      ? DecorationImage(image: NetworkImage(placeHolderImage,
+                      
+                      
+                      ),
+                      opacity: (licenceController.isHovered[index])?0.3:1,
+                      fit: BoxFit.cover
+                      ):null,
+                    boxShadow: [
+                      BoxShadow(color: Colors.black26),
+                      BoxShadow(
+                        color: Color(0xffD9D9D9),
+                        spreadRadius: -12,
+                        blurRadius: 20,
+
+                      )
+                    ],
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      ),
+                  width: 30.w,
+                  height: 22.h,
+               
+                   child: (licenceController.isHovered[index])?
+                   Center(
+                    child: Icon(Icons.camera_alt,
+                    size: 5.w,
+                    ),
+                   )
+                   :SizedBox(),),
         ),
       ),
       // Text(placeHolderImage.toString()),
-      Text(txt),
+        SizedBox(
+            height: 0.5.h,
+          ),
+          Text(txt,
+          style: TextStyle(
+            fontSize: 20
+          ),
+          ),
       SizedBox(
         height: 1.h,
       ),
-      FloatingActionButton.extended(
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return CoachMediaModal(licenceController, context, toFillImage);
-              });
-        },
-        label: Text("Select"),
-      )
+      // FloatingActionButton.extended(
+      //   onPressed: () {
+      //     showModalBottomSheet(
+      //         context: context,
+      //         builder: (context) {
+      //           return CoachMediaModal(licenceController, context, toFillImage);
+      //         });
+      //   },
+      //   label: Text("Select"),
+      // )
     ],
   );
 }
