@@ -508,7 +508,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
     String path = getArbitreImagePath(toFillImage);
 
     uploadArbitreImage(file!, path, 6, toFillImage,context);
-    Navigator.pop(context);
+    // Navigator.pop(context);
     // Response res=await licenceNetwork.uploadImage();
   }
 
@@ -527,7 +527,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
     String path = getCoachImagePath(toFillImage);
     print('path is'+path);
     await uploadCoachImage(file!, path, 6, toFillImage);
-    Navigator.pop(context);
+    // Navigator.pop(context);
     // Response res=await licenceNetwork.uploadImage();
   }
 

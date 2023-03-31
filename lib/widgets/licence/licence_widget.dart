@@ -672,11 +672,10 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
                   licenceController.isHovered[index]=false;
                   licenceController.notify();
                 }
-                // print(ishovered);
               },
               
               onTap: (() {
-                
+                licenceController.pickAthleteImage(true,context,toFillImage);
               }),
               child: Container(
                
@@ -699,16 +698,10 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
                       )
                     ],
                       borderRadius: BorderRadius.all(Radius.circular(40)),
-                      // color: Color(0xffD9D9D9)
                       ),
                   width: 30.w,
                   height: 22.h,
-                  // child: (placeHolderImage != null)
-                  //     ? Image.network(placeHolderImage,
-                  //     fit: BoxFit.fill,
-
-                  //     )
-                  //     : Center()
+               
                    child: (licenceController.isHovered[index])?
                    Center(
                     child: Icon(Icons.camera_alt,
@@ -719,22 +712,17 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
                       ),
             ),
           ),
-          // Text(placeHolderImage.toString()),
-          Text(txt),
+          SizedBox(
+            height: 0.5.h,
+          ),
+          Text(txt,
+          style: TextStyle(
+            fontSize: 20
+          ),
+          ),
           SizedBox(
             height: 1.h,
           ),
-          FloatingActionButton.extended(
-            onPressed: () {
-              licenceController.pickAthleteImage(true,context,toFillImage);
-              // showModalBottomSheet(
-              //     context: context,
-              //     builder: (context) {
-              //       return AthleteMediaModal(licenceController, context, toFillImage);
-              //     });
-            },
-            label: Text("Select"),
-          )
         ],
       );
     }
@@ -749,7 +737,9 @@ Widget CoachImageUploadWidget(txt, licenceController, context,
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: (() {}),
+          onTap: () {
+            // return ArbitreMediaModal(licenceController, context, toFillImage);
+          },
           child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -780,40 +770,80 @@ Widget CoachImageUploadWidget(txt, licenceController, context,
   );
 }
 
-Widget ArbitreImageUploadWidget(txt, licenceController, context,
-    String? toFillImage, String? placeHolderImage) {
+Widget ArbitreImageUploadWidget(txt,LicenceProvider licenceController, context,
+    String? toFillImage, String? placeHolderImage,int index) {
   return Column(
     children: [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: InkWell(
-          onTap: (() {}),
-          child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.red),
-              width: 60.w,
-              height: 40.h,
-              child: (placeHolderImage != null)
-                  ? Image.network(placeHolderImage)
-                  : Center()),
-        ),
+      InkWell(
+        onTap: () async {
+         await licenceController.pickArbitreImage(true, context, toFillImage);
+        },
+        onHover: (value) {
+                
+                if(value){
+                  licenceController.isHovered[index]=true;
+                  licenceController.notify();
+                  
+                }
+                else{
+                  licenceController.isHovered[index]=false;
+                  licenceController.notify();
+                }
+              },
+        child: Container(
+            decoration: BoxDecoration(
+                    image: (placeHolderImage != null)
+                      ? DecorationImage(image: NetworkImage(placeHolderImage,
+                      
+                      
+                      ),
+                      opacity: (licenceController.isHovered[index])?0.3:1,
+                      fit: BoxFit.cover
+                      ):null,
+                    boxShadow: [
+                      BoxShadow(color: Colors.black26),
+                      BoxShadow(
+                        color: Color(0xffD9D9D9),
+                        spreadRadius: -12,
+                        blurRadius: 20,
+
+                      )
+                    ],
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      // color: Color(0xffD9D9D9)
+                      ),
+                  width: 30.w,
+                  height: 22.h,
+             child: (licenceController.isHovered[index])?
+                   Center(
+                    child: Icon(Icons.camera_alt,
+                    size: 5.w,
+                    ),
+                   )
+                   :SizedBox(),),
       ),
       // Text(placeHolderImage.toString()),
-      Text(txt),
-      SizedBox(
-        height: 1.h,
-      ),
-      FloatingActionButton.extended(
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return ArbitreMediaModal(licenceController, context, toFillImage);
-              });
-        },
-        label: Text("Select"),
-      )
+     SizedBox(
+            height: 0.5.h,
+          ),
+          Text(txt,
+          style: TextStyle(
+            fontSize: 20
+          ),
+          ),
+          SizedBox(
+            height: 1.h,
+          ),
+      // FloatingActionButton.extended(
+      //   onPressed: () {
+      //     showModalBottomSheet(
+      //         context: context,
+      //         builder: (context) {
+                // return ArbitreMediaModal(licenceController, context, toFillImage);
+      //         });
+      //   },
+      //   label: Text("Select"),
+      // )
     ],
   );
 }

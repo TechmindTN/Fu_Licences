@@ -2,6 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
+import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:go_router/go_router.dart';
@@ -28,21 +29,40 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
-          appBar: AppBar(title: Text('Coach Images'),),
-          body: SingleChildScrollView(
-            child: Center(
-              child: Column(
-                children: [
-                  ArbitreImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
-                  ArbitreImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.arbitrator!.identityPhoto),
-                  ArbitreImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.arbitrator!.photo),
-                  // CoachImageUploadWidget('photo',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto),
-                  // CoachImageUploadWidget('photo',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto),
+          // appBar: AppBar(title: Text('Coach Images'),),
+          body: CustomScrollView(
+            slivers:[ 
+              MyAppBar("Images d'arbitre", context, false, licenceController, false, true),
+                SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
+            SliverGrid(
 
-                  SizedBox(height: 5.h,)
-                ],
-              ),
-            ),
+                delegate: SliverChildListDelegate([
+                  ArbitreImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
+                  ArbitreImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.arbitrator!.identityPhoto,1),
+                  ArbitreImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.arbitrator!.photo,2),
+                ]),
+                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 0,
+                    childAspectRatio: 0.5 ,
+                    // mainAxisExtent: ,
+                    crossAxisSpacing: 0,
+                    crossAxisCount: 3)),
+              
+            //   Center(
+            //   child: Column(
+            //     children: [
+            //       ArbitreImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto),
+            //       ArbitreImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.arbitrator!.identityPhoto),
+            //       ArbitreImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.arbitrator!.photo),
+            //       // CoachImageUploadWidget('photo',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto),
+            //       // CoachImageUploadWidget('photo',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto),
+
+            //       SizedBox(height: 5.h,)
+            //     ],
+            //   ),
+            // ),
+            
+            ]
           ),
           bottomNavigationBar: BottomAppBar(child: Padding(
             padding: const EdgeInsets.all(12.0),
