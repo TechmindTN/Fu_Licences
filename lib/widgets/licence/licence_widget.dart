@@ -598,7 +598,14 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
               GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
               // Navigator.push(context,
               //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
-            }else if (role.roles == "Arbitre") {
+            }
+             else if (role.roles == "club") {
+              img="assets/icons/club.png";
+              GoRouter.of(context).push(Routes.AddProfileScreen);
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+            }
+            else if (role.roles == "Arbitre") {
               img="assets/icons/referee.png";
               GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
               // Navigator.push(context,
@@ -648,6 +655,11 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
           //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
         }else if (role.roles == "Arbitre") {
           GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+        }
+        else if (role.roles == "club") {
+          GoRouter.of(context).push(Routes.AddProfileScreen);
           // Navigator.push(context,
           //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
         }
@@ -1196,6 +1208,7 @@ Widget FilterField(LicenceProvider licenceController,context){
       ),
     ),
   );
+
   // return Container(
   //   decoration: BoxDecoration(
   //     borderRadius: BorderRadius.circular(6),

@@ -17,6 +17,7 @@ import 'package:fu_licences/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../screens/arbitre/add_arbitre_screen.dart';
+import '../screens/club/add_club_screen.dart';
 import '../screens/coach/add_coach/add_coach_screen.dart';
 import '../screens/licence/addlicence/upload_arbitre_images_screen.dart';
 import '../screens/licence/addlicence/upload_coach_images_screen.dart';
@@ -33,6 +34,9 @@ class Pages{
       ),
       GoRoute(path: Routes.Splash,
       builder: (context, state) => MySplashScreen(),
+      ),
+      GoRoute(path: Routes.AddClubScreen,
+      builder: (context, state) => AddClubScreen(),
       ),
       GoRoute(path: Routes.LicenceListScreen,
       builder: (context, state) => LicenceListScreen(),

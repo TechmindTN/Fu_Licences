@@ -15,12 +15,14 @@ class _MySplashScreenState extends State<MySplashScreen> {
 
   @override
   void initState() {
+    print('bbb');
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
     // licenceController.clearPrefs();
     licenceController.checkLogin(context);
     // licenceController.checkLogin(context);
     // TODO: implement initState
     super.initState();
+    print('ccc');
   }
 
   @override

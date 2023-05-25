@@ -5,6 +5,8 @@ import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import 'controllers/club_controller.dart';
+
 void main() {
   
   runApp( MyApp());
@@ -15,10 +17,12 @@ class MyApp extends StatelessWidget {
   final Pages pages=Pages();
   @override
   Widget build(BuildContext context) {
+    print('aaa');
     return MultiProvider(
       
       providers: [
         ChangeNotifierProvider(create: (_)=>LicenceProvider()),
+        ChangeNotifierProvider(create: (_)=>ClubProvider()),
         ],
       child: Sizer(
         builder: (context, orientation, deviceType) {

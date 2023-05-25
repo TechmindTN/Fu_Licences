@@ -58,12 +58,7 @@ late  TextEditingController addresseController;
                 child: Column(
 
             children: [
-              SizedBox(height: 5.h,),
-              Center(child: Text("Informations personelles"
               
-              )
-              
-              ),
               Container(
               // man2Fct (1:93)
               margin: EdgeInsets.fromLTRB(0, 20, 1, 19),
@@ -147,6 +142,7 @@ thickness: 2,
               SizedBox(height: 5.h,),
 
 Text('Information de licence'),
+Text(licenceController.selectedFullLicence!.licence!.numLicences.toString()),
               SizedBox(height: 3.h,),
                   Dateinput('Date de naissance',birthController,context,licenceController.selectedBirth,licenceController),
                   GategorySelectInput('Categorie',licenceController.selectedCategory,licenceController),

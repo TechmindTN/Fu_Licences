@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fu_licences/network/apis.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/home/home_widgets.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
+    print(Apis.tempToken);
     // licenceController.login(context,login,);
     // TODO: implement initState
     super.initState();

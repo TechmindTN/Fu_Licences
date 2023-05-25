@@ -51,6 +51,7 @@ class LicenceProvider extends ChangeNotifier {
   Season? selectedSeason = Season(seasons: "Saison", id: -1);
   Category? selectedCategory = Category(categorieAge: "Catgorie", id: -1);
   Grade? selectedGrade = Grade(grade: "Grade", id: -1);
+  Ligue? selectedLigue = Ligue(name: "Ligue", id: -1);
   Degree? selectedDegree = Degree(degree: "Degree", id: -1);
   Weight? selectedWeight = Weight(masseEnKillograme: 0, id: -1);
   Discipline? selectedDiscipline = Discipline(name: "Discipline", id: -1);
@@ -91,21 +92,24 @@ class LicenceProvider extends ChangeNotifier {
 
   login(context,login,password) async {
     
-    
+    print('ddd');
     try{
       Map<String,dynamic> data={
       "username":login,
       "password":password
     };
       Response res=await licenceNetwork.login(data);
+      print('eee');
     if(res.statusCode==200){
       if(res.data!=null){
-        licenceNetwork.apis.tempToken='TOKEN '+res.data['token'];
+        Apis.tempToken='TOKEN '+res.data['token'];
         currentUser=User.fromJson(res.data);
          prefs= await SharedPreferences.getInstance();
          prefs.setString('user', login);
          prefs.setString('psd', password);
-         
+         print(Apis.tempToken);
+        // print()
+         print('ffff');
 
         // print(licenceNetwork.apis.tempToken);
         // print(currentUser.club!.id.toString());
@@ -157,11 +161,11 @@ class LicenceProvider extends ChangeNotifier {
       next=LoginScreen();
       // Pages.root=Routes.Login;
       GoRouter.of(context).go(Routes.Login);
-    }
+   // }
     return true;
     // else{
       
-    // }
+     }
   }
   logout(context) async {
     prefs=await SharedPreferences.getInstance();

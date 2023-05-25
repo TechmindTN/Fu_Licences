@@ -9,8 +9,8 @@ class Apis {
   );
   
   // /pro/
-  final String baseUrl="https://3244-197-14-10-36.eu.ngrok.io/api/";
-  late String tempToken;
+  final String baseUrl="http://192.168.1.131:8000/api/";
+  static late String tempToken;
   //  String tempToken="TOKEN 306bf71e724147547708bd7c7c2b0b22c68c94e1e9dc35b14890279113762c4a";
   final String login="login/";
   final String validateLicence="validateLicence/";
@@ -18,13 +18,13 @@ class Apis {
   final String getParameters="parameters/";
   final String uploadImage="upload_photo/";
   final String addFullLicence="add_full_licence/";
-   final String editProfile="profile/";
-   final String editAthlete="athlete/";
-   final String editLicence="licences/";
-   final String editAthleteLicence="edit_athlete_licence/";
-   final String editAthleteProfile="edit_athlete_profile/";
-      final String renewLicence="renew_licence/";
-
+  final String editProfile="profile/";
+  final String editAthlete="athlete/";
+  final String editLicence="licences/";
+  final String editAthleteLicence="edit_athlete_licence/";
+  final String editAthleteProfile="edit_athlete_profile/";
+  final String renewLicence="renew_licence/";
+  final String addClub="add_club/";
 
 
   // final String register ="api/register/";

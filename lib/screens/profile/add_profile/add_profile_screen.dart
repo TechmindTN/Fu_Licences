@@ -1,5 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:fu_licences/controllers/club_controller.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
@@ -142,6 +143,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                           ..hideCurrentSnackBar()
                           ..showSnackBar(snackBar);
                       } else {
+                        print(licenceController.selectedRole.id.toString());
                         if(licenceController.selectedRole.id==2){
                         licenceController.createAthleteProfile(
                             address: addresseController.text,
@@ -154,6 +156,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                             .push(Routes.AddAthleteLicenceScreen);
                       }
                       else if(licenceController.selectedRole.id==4){
+                        print('blabla');
                         licenceController.createCoachProfile(
                             address: addresseController.text,
                             cin: cinController.text,
@@ -163,6 +166,20 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                             state: stateController.text);
                         GoRouter.of(context)
                             .push(Routes.AddCoachLicenceScreen);
+                      }
+                      else if(licenceController.selectedRole.id==7){
+                                                print('albalb');
+
+                        Provider.of<ClubProvider>(context,listen: false).createClubProfile(
+                          licenceController,
+                            address: addresseController.text,
+                            cin: cinController.text,
+                            firstName: prenomController.text,
+                            lastName: nomController.text,
+                            phone: phoneController.text,
+                            state: stateController.text);
+                        GoRouter.of(context)
+                            .push(Routes.AddClubScreen);
                       }
                       else if(licenceController.selectedRole.id==1){
                         licenceController.createArbitreProfile(
