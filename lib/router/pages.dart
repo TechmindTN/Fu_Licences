@@ -12,6 +12,7 @@ import 'package:fu_licences/screens/licence/filtered_licences_list.dart';
 import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/renew_images_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/renew_licence_screen.dart';
+import 'package:fu_licences/screens/parameters/parameters_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +24,7 @@ import '../screens/coach/add_coach/add_coach_screen.dart';
 import '../screens/licence/addlicence/upload_arbitre_images_screen.dart';
 import '../screens/licence/addlicence/upload_coach_images_screen.dart';
 import '../screens/licence/licence_screen.dart';
+import '../screens/parameters/Ligue/ligue_list_screen.dart';
 
 class Pages{
   static late String root;
@@ -92,6 +94,12 @@ class Pages{
       ),
       GoRoute(path: Routes.Login,
       builder: (context, state) => LoginScreen(),
+      ),
+      GoRoute(path: Routes.SelectParameterScreen,
+      builder: (context, state) => ParametersScreen(),
+      ),
+      GoRoute(path: Routes.LigueListScreen,
+      builder: (context, state) =>LigueListScreen(),
       ),
       // GoRoute(path: Routes.LicenceScreen,
       // builder: (context, state) => LicenceScreen(),

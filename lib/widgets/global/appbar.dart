@@ -96,7 +96,7 @@ Widget MyDrawer(LicenceProvider licenceController,context){
           DrawerField(Icons.home,"Home",Routes.Home,context),
           DrawerField(Icons.list,"Licences",Routes.LicenceListScreen,context),
           DrawerField(Icons.list,"Clubs",Routes.ClubListScreen,context),
-          // DrawerField(Icons.list,"Licences"),
+          DrawerField(Icons.list,"Parameters",Routes.SelectParameterScreen,context),
           // DrawerField(Icons.list,"Licences"),
           // DrawerField(Icons.list,"Licences"),
           // DrawerField(Icons.list,"Licences"),

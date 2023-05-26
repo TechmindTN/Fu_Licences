@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'controllers/club_controller.dart';
+import 'controllers/parameters_controller.dart';
 
 void main() {
   
@@ -23,6 +24,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_)=>LicenceProvider()),
         ChangeNotifierProvider(create: (_)=>ClubProvider()),
+        ChangeNotifierProvider(create: (_)=>ParameterProvider()),
+
         ],
       child: Sizer(
         builder: (context, orientation, deviceType) {

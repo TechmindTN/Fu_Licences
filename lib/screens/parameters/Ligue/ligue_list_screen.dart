@@ -12,16 +12,17 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/club_controller.dart';
-import '../../controllers/parameters_controller.dart';
-import '../../widgets/clubs/club_widgets.dart';
+import '../../../controllers/parameters_controller.dart';
+import '../../../models/ligue.dart';
 
-class ParametersScreen extends StatefulWidget{
+
+
+class LigueListScreen extends StatefulWidget{
   @override
-  State<ParametersScreen> createState() => _ParametersScreenState();
+  State<LigueListScreen> createState() => _LigueListScreenState();
 }
 
-class _ParametersScreenState extends State<ParametersScreen> {
+class _LigueListScreenState extends State<LigueListScreen> {
   late LicenceProvider licenceController;
     late ParameterProvider paramController;
 
@@ -38,34 +39,15 @@ class _ParametersScreenState extends State<ParametersScreen> {
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
     paramController=Provider.of<ParameterProvider>(context,listen: false);
-    // licenceController.getLicences();
-    
-    // licenceController.initSelected();
-    // licenceController.initCreate();
-    // WidgetsBinding.instance.addPostFrameCallback((_) 
-    //   //  Future.delayed(Duration(seconds: 3), () => 
-    //    {
-    //     if(licenceController.added){
-    //   final snackBar=MySnackBar(title: "Ajout de licence succees",msg: "La licence a ete ajoutee avec succees",state: ContentType.success);
-    //   ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
-    //   licenceController.added=false;
-    // }
-       
-      //  );
-    // });
-    
-    // TODO: implement initState
+   
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    //  if(licenceController.added){
-    //   final snackBar=MySnackBar(title: "Ajout de licence succees",msg: "La licence a ete ajoutee avec succees",state: ContentType.success);
-    //   ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
-    //   licenceController.added=false;
-    // }
-    return Consumer<ClubProvider>(
+   Ligue ligue=Ligue();
+   //ligue.
+    return Consumer<ParameterProvider>(
       builder: (context,clubController,child) {
         return Scaffold(
           drawer: MyDrawer(licenceController, context),
@@ -83,35 +65,55 @@ class _ParametersScreenState extends State<ParametersScreen> {
               // ]
                 
               // )),
-           
+           SliverToBoxAdapter(
+            child: Container(
+              height: 4.h,
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 256,
+              
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Id"),
+                      Text("Nom"),
+                      Text("Cree le"),
+                      Text("Actions")
+                  ],
+                ),
+              ),
+            ),
+           ),
            FutureBuilder(
             future: licenceController.getParameters(),
              builder: (context,snaphot) {
               if(snaphot.connectionState==ConnectionState.done){
-               return SliverGrid(
-                  
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,
-                crossAxisSpacing: 0.w
-                ),
+              return  SliverList(
 
-                // itemCount: licenceController.parameters!.clubs!.length-1,
-                //  itemBuilder: (context,index){
+                
+                delegate: SliverChildBuilderDelegate(
                   
-                //   return ClubItem(licenceController.parameters!.clubs![index], licenceController,clubController, context);
-                // }, 
-                delegate: SliverChildListDelegate(
-                  [
-                    ParamCard("Ligue", context, licenceController),
-                    ParamCard("Categorie", context, licenceController),
-                    ParamCard("Grade", context, licenceController),
-                    ParamCard("Degree", context, licenceController),
-                    ParamCard("Discipline", context, licenceController),
-                    ParamCard("Poids", context, licenceController),
-                    ParamCard("Saison", context, licenceController),
-                    // ParamCard("Ligue", context, licenceController),
-                    // ParamCard("Ligue", context, licenceController),
-                  ]
-               ),);
+                 childCount:  licenceController.parameters!.ligues!.length,
+                  (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:256,
+                  vertical: 10
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    
+                    children: [
+                      Text(licenceController.parameters!.ligues![index].id.toString()),
+                    Text(licenceController.parameters!.ligues![index].name.toString()),
+                    Text(licenceController.parameters!.ligues![index].created.toString()),
+                    FloatingActionButton(
+                      mini: true,
+                      onPressed: (){}, child: Icon(Icons.delete))
+                    ],
+                  ),
+                );
+               }),);
              }
              else{
            return SliverToBoxAdapter(child: Container(

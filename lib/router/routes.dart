@@ -18,6 +18,10 @@
   static const String RenewAthleteImages="/renew_athlete_images";
   static const String RenewAthleteLicenceScreen="/renew_athlete_licence";
   static const String SelectRoleScreen="/select_role";
+  static const String SelectParameterScreen="/select_parameter";
+    static const String LigueListScreen="/ligue_list_screen";
+
+
   static const String EditAthleteImagesScreen="/edit_athlete_images";
   static const String UploadAthleteImagesScreen="/upload_athlete_images";
   static const String UploadCoachImagesScreen="/upload_coach_images";
