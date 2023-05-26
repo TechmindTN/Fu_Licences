@@ -3,6 +3,7 @@
     static const String Splash="/splash";
 
   static const String Login="/login";
+
   static const String LicenceListScreen="/licence_list";
   static const String LicenceScreen="/licence";
   static const String AddProfileScreen="/add_licence_profile";
@@ -10,6 +11,8 @@
   static const String AddCoachLicenceScreen="/add_licence_coach";
   static const String AddArbitreLicenceScreen="/add_licence_arbitre";
   static const String EditAthleteLicenceScreen="/edit_athlete_licence";
+
+  static const String ClubListScreen="/club_list";
 
   static const String AddClubScreen="/add_club_screen";
   static const String RenewAthleteImages="/renew_athlete_images";

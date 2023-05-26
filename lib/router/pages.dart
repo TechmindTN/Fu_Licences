@@ -18,6 +18,7 @@ import 'package:go_router/go_router.dart';
 
 import '../screens/arbitre/add_arbitre_screen.dart';
 import '../screens/club/add_club_screen.dart';
+import '../screens/club/club_list_screen.dart';
 import '../screens/coach/add_coach/add_coach_screen.dart';
 import '../screens/licence/addlicence/upload_arbitre_images_screen.dart';
 import '../screens/licence/addlicence/upload_coach_images_screen.dart';
@@ -37,6 +38,9 @@ class Pages{
       ),
       GoRoute(path: Routes.AddClubScreen,
       builder: (context, state) => AddClubScreen(),
+      ),
+      GoRoute(path: Routes.ClubListScreen,
+      builder: (context, state) => ClubListScreen(),
       ),
       GoRoute(path: Routes.LicenceListScreen,
       builder: (context, state) => LicenceListScreen(),

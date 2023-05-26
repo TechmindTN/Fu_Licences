@@ -289,6 +289,16 @@ class LicenceProvider extends ChangeNotifier {
     if (res.statusCode == 200) {
       if (res.data != null) {
         parameters = Parameters();
+
+        List<Club> clubs = [];
+          for (var l in res.data['Clubs']) {
+            Club club = Club.fromJson(l);
+            clubs.add(club);
+            notify();
+          }
+          parameters!.clubs = clubs;
+notify();
+
         List<Ligue> ligues = [];
         for (var l in res.data['Ligues']) {
           Ligue ligue = Ligue.fromJson(l);
@@ -317,13 +327,7 @@ class LicenceProvider extends ChangeNotifier {
         }
         parameters!.roles = roles;
 
-        List<Club> clubs = [];
-        for (var l in res.data['Clubs']) {
-          Club club = Club.fromJson(l);
-          clubs.add(club);
-        }
-        parameters!.clubs = clubs;
-
+        
         List<Weight> weights = [];
         for (var l in res.data['Weights']) {
           Weight weight = Weight.fromJson(l);

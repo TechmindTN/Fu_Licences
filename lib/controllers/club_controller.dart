@@ -4,12 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:fu_licences/network/club_network.dart';
 
 import '../models/club.dart';
+import '../models/parameters.dart';
 import '../models/user.dart';
 import '../widgets/global/snackbars.dart';
 import 'licence_controller.dart';
 
 class ClubProvider extends ChangeNotifier{
+  bool isLoading=false;
   ClubNetwork clubNetwork=ClubNetwork();
+  late Club selectedClub;
+  List<Club>? clubs=[];
+  chargeClub(LicenceProvider licenceController) async {
+    isLoading=true;
+    Parameters? params=await licenceController.getParameters();
+    
+    clubs=params!.clubs;
+    isLoading=false;
+
+    notify();
+    print('clubs length: '+clubs!.length.toString());
+  }
 
   createClubProfile(
     LicenceProvider licenceController,
