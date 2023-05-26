@@ -14,15 +14,16 @@ import 'package:sizer/sizer.dart';
 
 import '../../../controllers/parameters_controller.dart';
 import '../../../models/ligue.dart';
+import '../../../models/season.dart';
 
 
 
-class LigueListScreen extends StatefulWidget{
+class SeasonListScreen extends StatefulWidget{
   @override
-  State<LigueListScreen> createState() => _LigueListScreenState();
+  State<SeasonListScreen> createState() => _SeasonListScreenState();
 }
 
-class _LigueListScreenState extends State<LigueListScreen> {
+class _SeasonListScreenState extends State<SeasonListScreen> {
   late LicenceProvider licenceController;
     late ParameterProvider paramController;
 
@@ -44,7 +45,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
 
   @override
   Widget build(BuildContext context) {
-   Ligue ligue=Ligue();
+   Season season=Season();
    //ligue.
     return Consumer<ParameterProvider>(
       builder: (context,clubController,child) {
@@ -55,7 +56,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Ligue", context, false,licenceController,false,true),
+              MyAppBar("Saison", context, false,licenceController,false,true),
               // SliverToBoxAdapter(child: Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
               // children: [
@@ -78,6 +79,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
                     Text("Id"),
                       Text("Nom"),
                       Text("Cree le"),
+                      Text("Active"),
                       Text("Actions")
                   ],
                 ),
@@ -93,7 +95,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
                 
                 delegate: SliverChildBuilderDelegate(
                   
-                 childCount:  licenceController.parameters!.ligues!.length,
+                 childCount:  licenceController.parameters!.seasons!.length,
                   (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal:256,
@@ -103,12 +105,22 @@ class _LigueListScreenState extends State<LigueListScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     
                     children: [
-                      Text(licenceController.parameters!.ligues![index].id.toString()),
-                    Text(licenceController.parameters!.ligues![index].name.toString()),
-                    Text(licenceController.parameters!.ligues![index].created.toString()),
-                    FloatingActionButton(
-                      mini: true,
-                      onPressed: (){}, child: Icon(Icons.delete))
+                      Text(licenceController.parameters!.seasons![index].id.toString()),
+                    Text(licenceController.parameters!.seasons![index].seasons.toString()),
+                    Text(licenceController.parameters!.seasons![index].created.toString()),
+                    Text(licenceController.parameters!.seasons![index].activated.toString()),
+
+                    Row(
+                      children: [
+                        ElevatedButton(
+                          onPressed: (){}, child: Text("Activer")),
+                          SizedBox(width: 10,),
+                        FloatingActionButton(
+                          mini: true,
+                          onPressed: (){}, child: Icon(Icons.delete)),
+                          
+                      ],
+                    )
                     ],
                   ),
                 );

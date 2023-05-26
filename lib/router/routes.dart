@@ -20,6 +20,14 @@
   static const String SelectRoleScreen="/select_role";
   static const String SelectParameterScreen="/select_parameter";
     static const String LigueListScreen="/ligue_list_screen";
+    static const String CategoryListScreen="/category_list_screen";
+    static const String GradeListScreen="/grade_list_screen";
+    static const String DegreeListScreen="/degree_list_screen";
+    static const String DisciplineListScreen="/discipline_list_screen";
+    static const String WeightListScreen="/weight_list_screen";
+    static const String SeasonListScreen="/season_list_screen";
+
+
 
 
   static const String EditAthleteImagesScreen="/edit_athlete_images";

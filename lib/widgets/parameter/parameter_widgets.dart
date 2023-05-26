@@ -27,30 +27,35 @@ Widget ParamCard( param, context,LicenceProvider licenceController) {
           onTap: (() {
             // licenceController.selectedRole=role;
             if (param == "Ligue") {
-              //print('athlete');
-              //img="assets/icons/running.png";
+              
               GoRouter.of(context).push(Routes.LigueListScreen);
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
+             
             }
-            // else if (role.roles == "Entraineur") {
-            //   img="assets/icons/coach.png";
-            //   GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
-            //   // Navigator.push(context,
-            //   //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
-            // }
-            //  else if (role.roles == "club") {
-            //   img="assets/icons/club.png";
-            //   GoRouter.of(context).push(Routes.AddProfileScreen);
-            //   // Navigator.push(context,
-            //   //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
-            // }
-            // else if (role.roles == "Arbitre") {
-            //   img="assets/icons/referee.png";
-            //   GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
-            //   // Navigator.push(context,
-            //   //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
-            // }
+            else if (param== "Categorie") {
+              // img="assets/icons/coach.png";
+              GoRouter.of(context).push(Routes.CategoryListScreen);
+             
+            }
+             else if (param == "Grade") {
+              GoRouter.of(context).push(Routes.GradeListScreen);
+             
+            }
+            else if (param == "Degree") {
+              GoRouter.of(context).push(Routes.DegreeListScreen);
+              
+            }
+            else if (param == "Discipline") {
+              GoRouter.of(context).push(Routes.DisciplineListScreen);
+              
+            }
+            else if (param == "Poids") {
+              GoRouter.of(context).push(Routes.WeightListScreen);
+              
+            }
+            else if (param == "Saison") {
+              GoRouter.of(context).push(Routes.SeasonListScreen);
+              
+            }
           }),
           child: Container(
               decoration: BoxDecoration(

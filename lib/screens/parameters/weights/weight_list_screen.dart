@@ -14,15 +14,16 @@ import 'package:sizer/sizer.dart';
 
 import '../../../controllers/parameters_controller.dart';
 import '../../../models/ligue.dart';
+import '../../../models/weight.dart';
 
 
 
-class LigueListScreen extends StatefulWidget{
+class WeightListScreen extends StatefulWidget{
   @override
-  State<LigueListScreen> createState() => _LigueListScreenState();
+  State<WeightListScreen> createState() => _WeightListScreenState();
 }
 
-class _LigueListScreenState extends State<LigueListScreen> {
+class _WeightListScreenState extends State<WeightListScreen> {
   late LicenceProvider licenceController;
     late ParameterProvider paramController;
 
@@ -44,7 +45,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
 
   @override
   Widget build(BuildContext context) {
-   Ligue ligue=Ligue();
+   Weight weight=Weight();
    //ligue.
     return Consumer<ParameterProvider>(
       builder: (context,clubController,child) {
@@ -55,7 +56,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Ligue", context, false,licenceController,false,true),
+              MyAppBar("Poids", context, false,licenceController,false,true),
               // SliverToBoxAdapter(child: Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
               // children: [
@@ -76,7 +77,9 @@ class _LigueListScreenState extends State<LigueListScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Id"),
-                      Text("Nom"),
+                      Text("Masse"),
+                      Text("Min"),
+                      Text("Max"),
                       Text("Cree le"),
                       Text("Actions")
                   ],
@@ -93,7 +96,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
                 
                 delegate: SliverChildBuilderDelegate(
                   
-                 childCount:  licenceController.parameters!.ligues!.length,
+                 childCount:  licenceController.parameters!.weights!.length,
                   (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal:256,
@@ -103,9 +106,11 @@ class _LigueListScreenState extends State<LigueListScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     
                     children: [
-                      Text(licenceController.parameters!.ligues![index].id.toString()),
-                    Text(licenceController.parameters!.ligues![index].name.toString()),
-                    Text(licenceController.parameters!.ligues![index].created.toString()),
+                      Text(licenceController.parameters!.weights![index].id.toString()),
+                    Text(licenceController.parameters!.weights![index].masseEnKillograme.toString()),
+                    Text(licenceController.parameters!.weights![index].min.toString()),
+                    Text(licenceController.parameters!.weights![index].max.toString()),
+                    Text(licenceController.parameters!.weights![index].created.toString()),
                     FloatingActionButton(
                       mini: true,
                       onPressed: (){}, child: Icon(Icons.delete))
