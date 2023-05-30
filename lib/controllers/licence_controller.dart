@@ -1432,6 +1432,113 @@ createArbitreLicence(context) async {
     }
   }
 
+
+  editLicenceArbitrator(
+    context,
+  ) async {
+    late Season s;
+    for (Season season in parameters!.seasons!) {
+      if (season.seasons == selectedFullLicence!.licence!.seasons) {
+        s = season;
+        selectedFullLicence!.licence!.seasons = season.id;
+      }
+    }
+    // selectedFullLicence!.licence!.categorie = selectedCategory!.id;
+    selectedFullLicence!.licence!.role = 1;
+    selectedFullLicence!.licence!.grade = selectedGrade!.id;
+    // selectedFullLicence!.licence!.weight = selectedWeight!.id;
+    // selectedFullLicence!.licence!.degree = selectedDegree!.id;
+    // selectedFullLicence!.licence!.discipline = selectedDiscipline!.id;
+    if(currentUser.club!.id==null){
+      if(selectedClub!.id!=-1){
+    selectedFullLicence!.licence!.club = selectedClub!.id;
+    selectedFullLicence!.arbitrator!.club = selectedClub!.id;
+      }
+      else{
+        selectedFullLicence!.licence!.club = null;
+    selectedFullLicence!.arbitrator!.club = null;
+      }
+    }
+    else{
+       selectedFullLicence!.licence!.club = currentUser.club!.id;
+       selectedFullLicence!.arbitrator!.club = currentUser.club!.id;
+    }
+
+    // selectedFullLicence!.athlete!.categoryId = selectedCategory!.id;
+    selectedFullLicence!.arbitrator!.grade = selectedGrade!.id;
+    // selectedFullLicence!.athlete!.weights = selectedWeight!.id;
+    // selectedFullLicence!.athlete!.idDegree = selectedDegree!.id;
+    // selectedFullLicence!.athlete!.discipline = selectedDiscipline!.id;
+    
+    Map<String, dynamic> licenceData = selectedFullLicence!.licence!.toJson();
+    // selectedFullLicence!.licence!.categorie = selectedCategory!.categorieAge;
+    selectedFullLicence!.licence!.grade = selectedGrade!.grade;
+    // selectedFullLicence!.licence!.weight = selectedWeight!.masseEnKillograme;
+    // selectedFullLicence!.licence!.degree = selectedDegree!.degree;
+    // selectedFullLicence!.licence!.discipline = selectedDiscipline!.name;
+    selectedFullLicence!.licence!.club = selectedClub!.name;
+    selectedFullLicence!.licence!.role = "Arbitre";
+    selectedFullLicence!.licence!.seasons = s.seasons;
+    print('arb id is:'+selectedFullLicence!.arbitrator!.id.toString());
+    Map<String, dynamic> arbitratorData = selectedFullLicence!.arbitrator!.toJson();
+    Map<String, dynamic> mapData = {
+      'licence': licenceData,
+      'arbitrator': arbitratorData
+    };
+    Response res = await licenceNetwork.editArbitratorLicence(mapData);
+    if (res.statusCode == 200) {
+      print('ok');
+      final snackBar = MySnackBar(
+          title: "Modification Succees",
+          msg: "La licence de ce arbitre a ete modifie avec succees",
+          state: ContentType.success);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+      notifyListeners();
+    } else {
+      final snackBar = MySnackBar(
+          title: "Modification Echec",
+          msg: "Echec de modification de licence merci de verifier vos donnee",
+          state: ContentType.failure);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    }
+  }
+
+
+  editArbitratorImages(context) async {
+    Map<String, dynamic> mapData = {
+      'profile': {"profile_photo": createdFullLicence!.profile!.profilePhoto},
+      'arbitrator': {
+        "photo": createdFullLicence!.arbitrator!.photo,
+        "identity_photo": createdFullLicence!.arbitrator!.identityPhoto,
+      }
+    };
+    Response res = await licenceNetwork.editArbitratorProfile(
+        mapData, selectedFullLicence!.arbitrator!.id);
+    if (res.statusCode == 200) {
+      print('ok');
+      final snackBar = MySnackBar(
+          title: "Modification Succees",
+          msg: "La licence de ce arbitre a ete modifie avec succees",
+          state: ContentType.success);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+      notifyListeners();
+    } else {
+      final snackBar = MySnackBar(
+          title: "Modification Echec",
+          msg: "Echec de modification de licence merci de verifier vos donnee",
+          state: ContentType.failure);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    }
+  }
+
   editAthleteImages(context) async {
     Map<String, dynamic> mapData = {
       "photo": createdFullLicence!.athlete!.photo,
@@ -1460,6 +1567,38 @@ createArbitreLicence(context) async {
         ..showSnackBar(snackBar);
     }
   }
+
+
+
+
+  // editArbitreImages(context) async {
+  //   Map<String, dynamic> mapData = {
+  //     "photo": createdFullLicence!.arbitrator!.photo,
+  //     "identity_photo": createdFullLicence!.arbitrator!.identityPhoto,
+  //     // "medical_photo": createdFullLicence!.arbitrator!.medicalPhoto,
+  //   };
+  //   Response res = await licenceNetwork.editArbitreProfile(
+  //       mapData, selectedFullLicence!.arbitrator!.id);
+  //   if (res.statusCode == 200) {
+  //     print('ok');
+  //     final snackBar = MySnackBar(
+  //         title: "Modification Succees",
+  //         msg: "La licence de ce arbitre a ete modifie avec succees",
+  //         state: ContentType.success);
+  //     ScaffoldMessenger.of(context)
+  //       ..hideCurrentSnackBar()
+  //       ..showSnackBar(snackBar);
+  //     notifyListeners();
+  //   } else {
+  //     final snackBar = MySnackBar(
+  //         title: "Modification Echec",
+  //         msg: "Echec de modification de licence merci de verifier vos donnee",
+  //         state: ContentType.failure);
+  //     ScaffoldMessenger.of(context)
+  //       ..hideCurrentSnackBar()
+  //       ..showSnackBar(snackBar);
+  //   }
+  // }
 
   renewLicecne(context) async {
     // createdFullLicence!.licence!.categorie=selectedCategory!.id;

@@ -6,8 +6,8 @@ import 'package:fu_licences/screens/home/bottom_bar.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
-import 'package:fu_licences/screens/licence/edit%20licence/edit_images_screen.dart';
-import 'package:fu_licences/screens/licence/edit%20licence/edit_licence_screen.dart';
+import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_athlete_images_screen.dart';
+import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_licence_screen.dart';
 import 'package:fu_licences/screens/licence/filtered_licences_list.dart';
 import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/renew_images_screen.dart';
@@ -23,6 +23,8 @@ import '../screens/club/club_list_screen.dart';
 import '../screens/coach/add_coach/add_coach_screen.dart';
 import '../screens/licence/addlicence/upload_arbitre_images_screen.dart';
 import '../screens/licence/addlicence/upload_coach_images_screen.dart';
+import '../screens/licence/edit_licence/arbitre/edit_arbitrator_licence_screen.dart';
+import '../screens/licence/edit_licence/arbitre/edit_arbitre_images_screen.dart';
 import '../screens/licence/licence_screen.dart';
 import '../screens/parameters/Ligue/ligue_list_screen.dart';
 import '../screens/parameters/category/category_list_screen.dart';
@@ -63,10 +65,16 @@ class Pages{
       builder: (context, state) => AddProfileScreen(),
       ),
       GoRoute(path: Routes.EditAthleteImagesScreen,
-      builder: (context, state) => EditLicenceImages(),
+      builder: (context, state) => EditAthleteLicenceImages(),
       ),
       GoRoute(path: Routes.EditAthleteLicenceScreen,
-      builder: (context, state) => EditLicenceScreen(),
+      builder: (context, state) => EditAthleteLicenceScreen(),
+      ),
+       GoRoute(path: Routes.EditArbitratorImagesScreen,
+      builder: (context, state) => EditArbitratorLicenceImages(),
+      ),
+      GoRoute(path: Routes.EditArbitratorLicenceScreen,
+      builder: (context, state) => EditArbitratorLicenceScreen(),
       ),
       GoRoute(path: Routes.RenewAthleteImages,
       builder: (context, state) => RenewLicenceImages(),

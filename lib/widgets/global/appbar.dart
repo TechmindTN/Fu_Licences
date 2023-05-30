@@ -37,7 +37,7 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
                        
                    },
                    onSelected:(value){
-                    if(licenceController.selectedFullLicence!.licence!.role=="Athlete")
+                    if(licenceController.selectedFullLicence!.licence!.role=="Athlete"){
                       if(value == 0){
                         GoRouter.of(context).push(Routes.EditAthleteLicenceScreen);
                         // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceScreen())));
@@ -52,6 +52,18 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
                          print("Logout menu is selected.");
                       }
                    }
+                    else if(licenceController.selectedFullLicence!.licence!.role=="Arbitre"){
+                      if(value==0){
+                        GoRouter.of(context).push(Routes.EditArbitratorLicenceScreen);
+                      }
+                      else if(value == 1){
+                        GoRouter.of(context).push(Routes.EditArbitratorImagesScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                        //  print("Settings menu is selected.");
+                      }
+                    }
+                   }
+                  
                    )
           ]:[],
     surfaceTintColor: Colors.white,

@@ -6,12 +6,14 @@ import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class EditLicenceImages extends StatefulWidget {
+import '../../../../widgets/licence/arbitre/arbitr_licence_widgets.dart';
+
+class EditArbitratorLicenceImages extends StatefulWidget {
   @override
-  State<EditLicenceImages> createState() => _EditLicenceImagesState();
+  State<EditArbitratorLicenceImages> createState() => _EditArbitratorLicenceImagesState();
 }
 
-class _EditLicenceImagesState extends State<EditLicenceImages> {
+class _EditArbitratorLicenceImagesState extends State<EditArbitratorLicenceImages> {
   late LicenceProvider licenceController;
   @override
   void initState() {
@@ -38,40 +40,34 @@ class _EditLicenceImagesState extends State<EditLicenceImages> {
             SliverGrid(
 
                 delegate: SliverChildListDelegate([
-                  AthleteImageEditWidget(
-                    'photo',
+                  ArbitreImageEditWidget(
+                    'Profile',
                     licenceController,
                     context,
                     'profilePhoto',
                     licenceController
                         .createdFullLicence!.profile!.profilePhoto,0),
-                AthleteImageEditWidget(
+                ArbitreImageEditWidget(
                   'Identite',
                   licenceController,
                   context,
                   'idphoto',
-                  licenceController.createdFullLicence!.athlete!.identityPhoto,1
+                  licenceController.createdFullLicence!.arbitrator!.identityPhoto,1
                 ),
-                AthleteImageEditWidget(
-                    'Assurance',
+                ArbitreImageEditWidget(
+                    'Photo',
                     licenceController,
                     context,
                     'photo',
-                    licenceController.createdFullLicence!.athlete!.photo,2),
-                AthleteImageEditWidget(
-                    'Medicale',
-                    licenceController,
-                    context,
-                    'medphoto',
-                    licenceController
-                        .createdFullLicence!.athlete!.medicalPhoto,3),
+                    licenceController.createdFullLicence!.arbitrator!.photo,2),
+                
                 ]),
                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisSpacing: 0,
                     childAspectRatio: 0.5 ,
                     // mainAxisExtent: ,
                     crossAxisSpacing: 0,
-                    crossAxisCount: 4)),
+                    crossAxisCount: 3)),
 
 
 
@@ -81,33 +77,33 @@ class _EditLicenceImagesState extends State<EditLicenceImages> {
           //     child: Center(
           //   child: Column(
           //     children: [
-          //       AthleteImageEditWidget(
+          //       ArbitreImageEditWidget(
           //           'photo',
           //           licenceController,
           //           context,
           //           'profilePhoto',
           //           licenceController
           //               .createdFullLicence!.profile!.profilePhoto),
-          //       AthleteImageEditWidget(
+          //       ArbitreImageEditWidget(
           //         'Identite',
           //         licenceController,
           //         context,
           //         'idphoto',
-          //         licenceController.createdFullLicence!.athlete!.identityPhoto,
+          //         licenceController.createdFullLicence!.arbitrator!.identityPhoto,
           //       ),
-          //       AthleteImageEditWidget(
+          //       ArbitreImageEditWidget(
           //           'Assurance',
           //           licenceController,
           //           context,
           //           'photo',
-          //           licenceController.createdFullLicence!.athlete!.photo),
-          //       AthleteImageEditWidget(
+          //           licenceController.createdFullLicence!.arbitrator!.photo),
+          //       ArbitreImageEditWidget(
           //           'Medicale',
           //           licenceController,
           //           context,
           //           'medphoto',
           //           licenceController
-          //               .createdFullLicence!.athlete!.medicalPhoto),
+          //               .createdFullLicence!.arbitrator!.medicalPhoto),
           //       SizedBox(
           //         height: 5.h,
           //       )
@@ -128,7 +124,7 @@ class _EditLicenceImagesState extends State<EditLicenceImages> {
                   child: FloatingActionButton.extended(
                     onPressed: () {
                       // licenceController.createProfile();
-                      licenceController.editAthleteProfile(context);
+                      licenceController.editArbitratorImages(context);
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
                     },
                     label: Text("Confirmer"),

@@ -79,6 +79,18 @@ class LicenceNetwork {
     return res;
   }
 
+  editArbitratorProfile(data,id) async {
+    Response res = await apis.dio.put(apis.baseUrl + apis.editArbitratorProfile+id.toString()+"/",
+        options: Options(headers: {"Authorization": Apis.tempToken}),
+        data: data);
+    return res;
+  }
+ editArbitratorLicence(data) async {
+    Response res = await apis.dio.put(apis.baseUrl + apis.editArbitratorLicence,
+        options: Options(headers: {"Authorization": Apis.tempToken}),
+        data: data);
+    return res;
+  }
 
   editAthleteImages(data,id) async {
     Response res = await apis.dio.put(apis.baseUrl + apis.editAthlete+id.toString()+"/",

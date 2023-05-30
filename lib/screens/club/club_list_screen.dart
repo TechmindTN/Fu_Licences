@@ -79,7 +79,7 @@ class _ClubListScreenState extends State<ClubListScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 2.h),
-                ClubListHeader(licenceController,numControl,context),
+                ClubListHeader(licenceController,clubController,numControl,context),
               ]
                 
               )),
@@ -100,7 +100,7 @@ class _ClubListScreenState extends State<ClubListScreen> {
               if(snaphot.connectionState==ConnectionState.done){
                return SliverGrid.builder(
                   
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5,
                 crossAxisSpacing: 0.w
                 ),
 
@@ -124,7 +124,8 @@ class _ClubListScreenState extends State<ClubListScreen> {
             
           ),
            floatingActionButton: FloatingActionButton(onPressed: () {
-            GoRouter.of(context).push(Routes.SelectRoleScreen);
+            licenceController.selectedRole=licenceController.parameters!.roles!.firstWhere((element) => element.id==7);
+            GoRouter.of(context).push(Routes.AddProfileScreen);
             // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
           },
           child: Icon(Icons.add),

@@ -31,6 +31,9 @@
 
 
   static const String EditAthleteImagesScreen="/edit_athlete_images";
+    static const String EditArbitratorImagesScreen="/edit_arbitrator_images";
+    static const String EditArbitratorLicenceScreen="/edit_arbitrator_licence";
+
   static const String UploadAthleteImagesScreen="/upload_athlete_images";
   static const String UploadCoachImagesScreen="/upload_coach_images";
   static const String UploadArbitreImagesScreen="/upload_arbitre_images";

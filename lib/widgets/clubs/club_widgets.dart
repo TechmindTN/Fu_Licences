@@ -16,8 +16,8 @@ Widget ClubItem(
   return Center(
     child: Container(
      
-      width: 40.w,
-      height: 20.h,
+      width: 30.w,
+      height: 15.h,
       
       decoration: BoxDecoration(
         color: Color(0xffffffff),
@@ -100,7 +100,7 @@ Widget ClubItem(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width: 38.w,
+                            width: 28.w,
                             // athletecYp (1:65)
                             margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
                             child: Row(
@@ -130,35 +130,7 @@ Widget ClubItem(
                               ],
                             ),
                           ),
-                          Container(
-                            width: 38.w,
-                            // mohsenclub8XA (1:63)
-                            margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Club",
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff000000),
-                                  ),
-                                ),
-                                // Text(
-                                //   fullLicence.licence!.club.toString(),
-                                //   style: SafeGoogleFont(
-                                //     'Inter',
-                                //     fontSize: 18,
-                                //     fontWeight: FontWeight.w400,
-                                //     // height: 1.2125,
-                                //     color: Color(0xff717171),
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                          ),
+                        
                           // Container(
                           //   margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
                           //   width: 38.w,
@@ -292,7 +264,7 @@ Widget ClubItem(
 }
 
 
-Widget ClubListHeader(LicenceProvider licenceController,numControl,context){
+Widget ClubListHeader(LicenceProvider licenceController,ClubProvider clubController,numControl,context){
   return Center(
     child: Container(
       width: 183.w,
@@ -316,7 +288,7 @@ Widget FirstRow(LicenceProvider licenceController){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-    Text("Total: "+licenceController.fullLicences.length.toString(),
+    Text("Total: "+licenceController.parameters!.clubs!.length.toString(),
      style: TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 20
@@ -373,7 +345,7 @@ Widget SearchField(LicenceProvider licenceController,numControl,context){
 Widget FilterField(LicenceProvider licenceController,context){
   return InkWell(
     onTap: (){
-      licenceController.showFilterDialog(context);
+      // licenceController.showFilterDialog(context);
     },
     child: Container(
       width: 7.w,

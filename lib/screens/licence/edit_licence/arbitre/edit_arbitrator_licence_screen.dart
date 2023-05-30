@@ -5,17 +5,17 @@ import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../global/utils.dart';
-import '../../../widgets/global/inputs.dart';
+import '../../../../global/utils.dart';
+import '../../../../widgets/global/inputs.dart';
 
 // import '../../global/utils.dart';
 
-class EditLicenceScreen extends StatefulWidget{
+class EditArbitratorLicenceScreen extends StatefulWidget{
   @override
-  State<EditLicenceScreen> createState() => _EditLicenceScreenState();
+  State<EditArbitratorLicenceScreen> createState() => _EditArbitratorLicenceScreenState();
 }
 
-class _EditLicenceScreenState extends State<EditLicenceScreen> {
+class _EditArbitratorLicenceScreenState extends State<EditArbitratorLicenceScreen> {
   late LicenceProvider licenceController;
     late TextEditingController prenomController;
    late TextEditingController phoneController;
@@ -145,19 +145,19 @@ Text('Information de licence'),
 Text(licenceController.selectedFullLicence!.licence!.numLicences.toString()),
               SizedBox(height: 3.h,),
                   Dateinput('Date de naissance',birthController,context,licenceController.selectedBirth,licenceController),
-                  GategorySelectInput('Categorie',licenceController.selectedCategory,licenceController),
+                  // GategorySelectInput('Categorie',licenceController.selectedCategory,licenceController),
                   GradeSelectInput('Grade',licenceController.selectedGrade,licenceController)	,
-                  DegreeSelectInput('Degree',licenceController.selectedDegree,licenceController),
-                  DisciplineSelectInput('Discipline',licenceController.selectedDiscipline,licenceController)	,
+                  // DegreeSelectInput('Degree',licenceController.selectedDegree,licenceController),
+                  // DisciplineSelectInput('Discipline',licenceController.selectedDiscipline,licenceController)	,
                 
-                  WeightSelectInput('Poids',licenceController.selectedWeight,licenceController),
+                  // WeightSelectInput('Poids',licenceController.selectedWeight,licenceController),
                  
                   if(licenceController.currentUser.club!.id==null)
                   ClubSelectInput('Club',licenceController.selectedClub,licenceController),
                                 SizedBox(height: 3.h,),
 
                   FloatingActionButton.extended(onPressed: (){
-                    licenceController.editLicenceAthlete(context);
+                    licenceController.editLicenceArbitrator(context);
                   }, label: Text('Confirmer')),
               SizedBox(height: 3.h,),
 
