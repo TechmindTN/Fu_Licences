@@ -27,8 +27,9 @@
     static const String WeightListScreen="/weight_list_screen";
     static const String SeasonListScreen="/season_list_screen";
 
+    static const String RenewArbitratorImagesScreen="/renew_arbitrator_images";
 
-
+    static const String RenewArbitratorLicenceScreen="/renew_arbitrator_liccence";
 
   static const String EditAthleteImagesScreen="/edit_athlete_images";
     static const String EditArbitratorImagesScreen="/edit_arbitrator_images";

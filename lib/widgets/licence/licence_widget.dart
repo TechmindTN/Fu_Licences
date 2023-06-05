@@ -927,7 +927,7 @@ Widget AthleteImageEditWidget(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
            onTap: () async {
-         await licenceController.pickArbitreImage(true, context, imageName);
+         await licenceController.pickAthleteImage(true, context, imageName);
         },
         onHover: (value) {
                 

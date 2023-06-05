@@ -25,6 +25,7 @@ class Apis {
   final String editAthleteProfile="edit_athlete_profile/";
   final String editArbitratorProfile="edit_arbitrator_profile/";
   final String editArbitratorLicence="edit_arbitrator_licence/";
+  final String renewArbitratorLicence="renew_arbitrator_licence/";
 
   final String renewLicence="renew_licence/";
   final String addClub="add_club/";

@@ -111,6 +111,19 @@ class LicenceNetwork {
    
   }
   }
+
+  renewArbitratorLicence(data,id) async {
+    try{
+      Response res = await apis.dio.put(apis.baseUrl + apis.renewArbitratorLicence+id+"/",
+        options: Options(headers: {"Authorization": Apis.tempToken}),
+        data: data);
+    return res;
+  }
+  catch(e){
+    print(e);
+   
+  }
+  }
   validateLicence(licenceId) async {
     Response res = await apis.dio.put(apis.baseUrl + apis.validateLicence+licenceId+"/",
         options: Options(headers: {"Authorization": Apis.tempToken}),

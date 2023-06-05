@@ -6,8 +6,8 @@ import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../global/utils.dart';
-import '../../../widgets/global/inputs.dart';
+import '../../../../global/utils.dart';
+import '../../../../widgets/global/inputs.dart';
 
 // import '../../global/utils.dart';
 
@@ -126,7 +126,9 @@ class _RenewLicenceScreenState extends State<RenewLicenceScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FloatingActionButton.extended(onPressed: (){}, label: Text("Confirm"),
+                FloatingActionButton.extended(onPressed: (){
+                  licenceController.renewLicecne(context);
+                }, label: Text("Confirm"),
                 
                 )
               ],

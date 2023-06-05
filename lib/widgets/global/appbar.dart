@@ -61,6 +61,11 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
                         // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
                         //  print("Settings menu is selected.");
                       }
+                      else if(value == 2){
+                        GoRouter.of(context).push(Routes.RenewArbitratorImagesScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                        //  print("Settings menu is selected.");
+                      }
                     }
                    }
                   

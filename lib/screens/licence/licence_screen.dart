@@ -3,7 +3,7 @@ import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_athlete_images_screen.dart';
 import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_licence_screen.dart';
-import 'package:fu_licences/screens/licence/renew%20licence/renew_images_screen.dart';
+import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_images_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:go_router/go_router.dart';

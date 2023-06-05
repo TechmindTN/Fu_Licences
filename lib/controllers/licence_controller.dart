@@ -1433,6 +1433,40 @@ createArbitreLicence(context) async {
   }
 
 
+  editArbitratorProfile(context) async {
+    Map<String, dynamic> mapData = {
+      'profile': {"profile_photo": createdFullLicence!.profile!.profilePhoto},
+      'arbitrator': {
+        "photo": createdFullLicence!.arbitrator!.photo,
+        "identity_photo": createdFullLicence!.arbitrator!.identityPhoto,
+        // "medical_photo": createdFullLicence!.athlete!.medicalPhoto,
+      }
+    };
+    Response res = await licenceNetwork.editArbitratorProfile(
+        mapData, selectedFullLicence!.arbitrator!.id);
+    if (res.statusCode == 200) {
+      print('ok');
+      final snackBar = MySnackBar(
+          title: "Modification Succees",
+          msg: "La licence de ce arbitre a ete modifie avec succees",
+          state: ContentType.success);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+      notifyListeners();
+    } else {
+      final snackBar = MySnackBar(
+          title: "Modification Echec",
+          msg: "Echec de modification de licence merci de verifier vos donnee",
+          state: ContentType.failure);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    }
+  }
+
+
+
   editLicenceArbitrator(
     context,
   ) async {
@@ -1628,6 +1662,62 @@ createArbitreLicence(context) async {
         final snackBar = MySnackBar(
             title: "Renouvellement Succees",
             msg: "La licence de ce athlete a ete renouvelee avec succees",
+            state: ContentType.success);
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+
+        notifyListeners();
+      } else {
+        final snackBar = MySnackBar(
+            title: "Renouvellement Echec",
+            msg: "Echec de renouvelee de licence merci de verifier vos donnee",
+            state: ContentType.failure);
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+      }
+    } catch (e) {
+      final snackBar = MySnackBar(
+          title: "Probleme",
+          msg: "Il ya une probleme merci de ressayer ulterieurment",
+          state: ContentType.failure);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    }
+  }
+
+
+
+  renewArbitratorLicecne(context) async {
+    // createdFullLicence!.licence!.categorie=selectedCategory!.id;
+    //     createdFullLicence!.licence!.grade=selectedGrade!.id;
+
+    // createdFullLicence!.licence!.degree=selectedDegree!.id;
+
+    // createdFullLicence!.licence!.discipline=selectedDiscipline!.id;
+
+    // createdFullLicence!.licence!.club=selectedClub!.id;
+    // createdFullLicence!.licence!.weight=selectedWeight!.id;
+
+    Map<String, dynamic> mapData = {
+      // 'degree': selectedDegree!.id,
+      'grade': selectedGrade!.id,
+      // 'discipline': selectedDiscipline!.id,
+      // 'weight': selectedWeight!.id,
+      'club': selectedClub!.id,
+      // 'categorie': selectedCategory!.id,
+    };
+    print(mapData);
+    try {
+      Response res = await licenceNetwork.renewArbitratorLicence(
+          mapData, selectedFullLicence!.licence!.numLicences);
+      if (res.statusCode == 200) {
+        print('ok');
+        final snackBar = MySnackBar(
+            title: "Renouvellement Succees",
+            msg: "La licence de ce arbitre a ete renouvelee avec succees",
             state: ContentType.success);
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()

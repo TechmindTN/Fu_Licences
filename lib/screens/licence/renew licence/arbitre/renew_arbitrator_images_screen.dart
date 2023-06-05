@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/screens/licence/renew%20licence/renew_licence_screen.dart';
+// import 'package:fu_licences/screens/licence/renew%20licence/arbitrator/renew_licence_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
@@ -8,14 +8,15 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../router/routes.dart';
+import '../../../../router/routes.dart';
+import '../../../../widgets/licence/arbitre/arbitre_licence_widgets.dart';
 
-class RenewLicenceImages extends StatefulWidget {
+class RenewArbitratorLicenceImages extends StatefulWidget {
   @override
-  State<RenewLicenceImages> createState() => _RenewLicenceImagesState();
+  State<RenewArbitratorLicenceImages> createState() => _RenewArbitratorLicenceImagesState();
 }
 
-class _RenewLicenceImagesState extends State<RenewLicenceImages> {
+class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceImages> {
   late LicenceProvider licenceController;
   @override
   void initState() {
@@ -41,33 +42,33 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
             SliverGrid(
 
                 delegate: SliverChildListDelegate([
-                  AthleteImageEditWidget(
+                  ArbitreImageEditWidget(
                     'Identite',
                     licenceController,
                     context,
                     'idphoto',
-                    licenceController.createdFullLicence!.athlete!.identityPhoto,1
+                    licenceController.createdFullLicence!.arbitrator!.identityPhoto,1
                   ),
-                  AthleteImageEditWidget(
+                  ArbitreImageEditWidget(
                       'Assurance',
                       licenceController,
                       context,
                       'photo',
-                      licenceController.createdFullLicence!.athlete!.photo,2),
-                  AthleteImageEditWidget(
-                      'Medicale',
-                      licenceController,
-                      context,
-                      'medphoto',
-                      licenceController
-                          .createdFullLicence!.athlete!.medicalPhoto,3),
+                      licenceController.createdFullLicence!.arbitrator!.photo,2),
+                  // ArbitratorImageEditWidget(
+                  //     'Medicale',
+                  //     licenceController,
+                  //     context,
+                  //     'medphoto',
+                  //     licenceController
+                  //         .createdFullLicence!.arbitrator!.medicalPhoto,3),
                 ]),
                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisSpacing: 0,
                     childAspectRatio: 0.5 ,
                     // mainAxisExtent: ,
                     crossAxisSpacing: 0,
-                    crossAxisCount: 3)),
+                    crossAxisCount: 2)),
 
 
             //  SliverToBoxAdapter(
@@ -75,26 +76,26 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
             //              child: Column(
             //     children: [
                   
-            //       AthleteImageEditWidget(
+            //       ArbitratorImageEditWidget(
             //         'Identite',
             //         licenceController,
             //         context,
             //         'idphoto',
-            //         licenceController.createdFullLicence!.athlete!.identityPhoto,1
+            //         licenceController.createdFullLicence!.arbitrator!.identityPhoto,1
             //       ),
-            //       AthleteImageEditWidget(
+            //       ArbitratorImageEditWidget(
             //           'Assurance',
             //           licenceController,
             //           context,
             //           'photo',
-            //           licenceController.createdFullLicence!.athlete!.photo,2),
-            //       AthleteImageEditWidget(
+            //           licenceController.createdFullLicence!.arbitrator!.photo,2),
+            //       ArbitratorImageEditWidget(
             //           'Medicale',
             //           licenceController,
             //           context,
             //           'medphoto',
             //           licenceController
-            //               .createdFullLicence!.athlete!.medicalPhoto,3),
+            //               .createdFullLicence!.arbitrator!.medicalPhoto,3),
             //       SizedBox(
             //         height: 5.h,
             //       )
@@ -115,8 +116,8 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
                   child: FloatingActionButton.extended(
                     onPressed: () {
                       // licenceController.createProfile();
-                      licenceController.editAthleteProfile(context);
-                      GoRouter.of(context).push(Routes.RenewAthleteLicenceScreen);
+                      licenceController.editArbitratorProfile(context);
+                      GoRouter.of(context).push(Routes.RenewArbitratorLicenceScreen);
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>RenewLicenceScreen()));
                     },
                     label: Text("Confirmer"),
@@ -126,7 +127,7 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
         )),
       );
     });
-    // TODO: implement build
+    // TODO: implement build ghghg 
     throw UnimplementedError();
   }
 }

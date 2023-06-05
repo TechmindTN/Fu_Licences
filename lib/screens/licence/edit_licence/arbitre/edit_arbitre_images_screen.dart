@@ -6,7 +6,7 @@ import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../widgets/licence/arbitre/arbitr_licence_widgets.dart';
+import '../../../../widgets/licence/arbitre/arbitre_licence_widgets.dart';
 
 class EditArbitratorLicenceImages extends StatefulWidget {
   @override

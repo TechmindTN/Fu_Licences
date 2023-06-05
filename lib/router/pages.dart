@@ -10,8 +10,9 @@ import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_athlete_im
 import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_licence_screen.dart';
 import 'package:fu_licences/screens/licence/filtered_licences_list.dart';
 import 'package:fu_licences/screens/licence/licence_list_screen.dart';
-import 'package:fu_licences/screens/licence/renew%20licence/renew_images_screen.dart';
-import 'package:fu_licences/screens/licence/renew%20licence/renew_licence_screen.dart';
+import 'package:fu_licences/screens/licence/renew%20licence/arbitre/renew_arbitrator_licence_screen.dart';
+import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_images_screen.dart';
+import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_licence_screen.dart';
 import 'package:fu_licences/screens/parameters/parameters_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/screens/splash/splash_screen.dart';
@@ -26,6 +27,7 @@ import '../screens/licence/addlicence/upload_coach_images_screen.dart';
 import '../screens/licence/edit_licence/arbitre/edit_arbitrator_licence_screen.dart';
 import '../screens/licence/edit_licence/arbitre/edit_arbitre_images_screen.dart';
 import '../screens/licence/licence_screen.dart';
+import '../screens/licence/renew licence/arbitre/renew_arbitrator_images_screen.dart';
 import '../screens/parameters/Ligue/ligue_list_screen.dart';
 import '../screens/parameters/category/category_list_screen.dart';
 import '../screens/parameters/degree/degree_list_screen.dart';
@@ -132,6 +134,12 @@ class Pages{
       ),
       GoRoute(path: Routes.SeasonListScreen,
       builder: (context, state) =>SeasonListScreen(),
+      ),
+      GoRoute(path: Routes.RenewArbitratorLicenceScreen,
+      builder: (context, state) =>RenewArbitratorLicenceScreen(),
+      ),
+      GoRoute(path: Routes.RenewArbitratorImagesScreen,
+      builder: (context, state) =>RenewArbitratorLicenceImages(),
       ),
 
       // GoRoute(path: Routes.LicenceScreen,
