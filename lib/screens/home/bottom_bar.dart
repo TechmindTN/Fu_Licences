@@ -99,7 +99,6 @@ List<Widget> _buildScreens() => [
         ),
         screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
           animateTabTransition: true,
-          
           curve: Curves.ease,
           duration: Duration(milliseconds: 200),
         ),
