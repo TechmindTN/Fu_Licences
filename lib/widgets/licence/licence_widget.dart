@@ -260,7 +260,7 @@ Widget LicenceItem(
                                 ),
                                 
                                 Text(
-                                  fullLicence.licence!.seasons.toString()!,
+                                  fullLicence.licence!.seasons.toString(),
                                   style: SafeGoogleFont(
                                     'Inter',
                                     fontSize: 18,
@@ -780,7 +780,7 @@ Widget CoachImageUploadWidget(txt, licenceController, context,
               },
               
               onTap: (() {
-                licenceController.pickAthleteImage(true,context,toFillImage);
+                licenceController.pickCoachImage(true,context,toFillImage);
               }),
           child: Container(
                decoration: BoxDecoration(

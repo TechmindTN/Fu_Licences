@@ -70,7 +70,7 @@ List<Widget> _buildScreens() => [
 
 @override
   void initState() {
-    _controller = PersistentTabController(initialIndex: currentIndex??1);
+    _controller = PersistentTabController(initialIndex: currentIndex);
     // TODO: implement initState
     super.initState();
   }
