@@ -67,6 +67,21 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
                         //  print("Settings menu is selected.");
                       }
                     }
+                    else if(licenceController.selectedFullLicence!.licence!.role=="Entraineur"){
+                      if(value==0){
+                        GoRouter.of(context).push(Routes.EditCoachLicenceScreen);
+                      }
+                      else if(value == 1){
+                        GoRouter.of(context).push(Routes.EditCoachImagesScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                        //  print("Settings menu is selected.");
+                      }
+                      // else if(value == 2){
+                      //   GoRouter.of(context).push(Routes.RenewArbitratorImagesScreen);
+                      //   // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                      //   //  print("Settings menu is selected.");
+                      // }
+                    }
                    }
                   
                    )

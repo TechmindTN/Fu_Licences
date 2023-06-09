@@ -92,6 +92,19 @@ class LicenceNetwork {
     return res;
   }
 
+  editCoachLicence(data) async {
+    Response res = await apis.dio.put(apis.baseUrl + apis.editCoachLicence,
+        options: Options(headers: {"Authorization": Apis.tempToken}),
+        data: data);
+    return res;
+  }
+
+  editCoachProfile(data,id) async {
+    Response res = await apis.dio.put(apis.baseUrl + apis.editCoachProfile+id.toString()+"/",
+        options: Options(headers: {"Authorization": Apis.tempToken}),
+        data: data);
+    return res;
+  }
   editAthleteImages(data,id) async {
     Response res = await apis.dio.put(apis.baseUrl + apis.editAthlete+id.toString()+"/",
         options: Options(headers: {"Authorization": Apis.tempToken}),

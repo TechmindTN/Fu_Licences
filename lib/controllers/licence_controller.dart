@@ -1542,6 +1542,81 @@ createArbitreLicence(context) async {
   }
 
 
+editLicenceCoach(
+    context,
+  ) async {
+    late Season s;
+    for (Season season in parameters!.seasons!) {
+      if (season.seasons == selectedFullLicence!.licence!.seasons) {
+        s = season;
+        selectedFullLicence!.licence!.seasons = season.id;
+      }
+    }
+    selectedFullLicence!.licence!.categorie = selectedCategory!.id;
+    selectedFullLicence!.licence!.role = 4;
+    selectedFullLicence!.licence!.grade = selectedGrade!.id;
+    selectedFullLicence!.licence!.weight = selectedWeight!.id;
+    selectedFullLicence!.licence!.degree = selectedDegree!.id;
+    selectedFullLicence!.licence!.discipline = selectedDiscipline!.id;
+    if(currentUser.club!.id==null){
+      if(selectedClub!.id!=-1){
+    selectedFullLicence!.licence!.club = selectedClub!.id;
+    selectedFullLicence!.coach!.club = selectedClub!.id;
+      }
+      else{
+        selectedFullLicence!.licence!.club = null;
+    selectedFullLicence!.coach!.club = null;
+      }
+    }
+    else{
+       selectedFullLicence!.licence!.club = currentUser.club!.id;
+       selectedFullLicence!.coach!.club = currentUser.club!.id;
+    }
+
+    selectedFullLicence!.coach!.categoryId = selectedCategory!.id;
+    selectedFullLicence!.coach!.grade = selectedGrade!.id;
+    selectedFullLicence!.coach!.weights = selectedWeight!.id;
+    selectedFullLicence!.coach!.degree = selectedDegree!.id;
+    selectedFullLicence!.coach!.discipline = selectedDiscipline!.id;
+    
+    Map<String, dynamic> licenceData = selectedFullLicence!.licence!.toJson();
+    selectedFullLicence!.licence!.categorie = selectedCategory!.categorieAge;
+    selectedFullLicence!.licence!.grade = selectedGrade!.grade;
+    selectedFullLicence!.licence!.weight = null;
+    selectedFullLicence!.licence!.degree = selectedDegree!.degree;
+    selectedFullLicence!.licence!.discipline = selectedDiscipline!.name;
+    selectedFullLicence!.licence!.club = selectedClub!.name;
+    selectedFullLicence!.licence!.role = "Entraineur";
+    selectedFullLicence!.licence!.seasons = s.seasons;
+    print('arb id is:'+selectedFullLicence!.coach!.id.toString());
+    Map<String, dynamic> coachData = selectedFullLicence!.coach!.toJson();
+    Map<String, dynamic> mapData = {
+      'licence': licenceData,
+      'coach': coachData
+    };
+    Response res = await licenceNetwork.editCoachLicence(mapData);
+    if (res.statusCode == 200) {
+      print('ok');
+      final snackBar = MySnackBar(
+          title: "Modification Succees",
+          msg: "La licence de ce entraineur a ete modifie avec succees",
+          state: ContentType.success);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+      notifyListeners();
+    } else {
+      final snackBar = MySnackBar(
+          title: "Modification Echec",
+          msg: "Echec de modification de licence merci de verifier vos donnee",
+          state: ContentType.failure);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    }
+  }
+
+
   editArbitratorImages(context) async {
     Map<String, dynamic> mapData = {
       'profile': {"profile_photo": createdFullLicence!.profile!.profilePhoto},
@@ -1557,6 +1632,39 @@ createArbitreLicence(context) async {
       final snackBar = MySnackBar(
           title: "Modification Succees",
           msg: "La licence de ce arbitre a ete modifie avec succees",
+          state: ContentType.success);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+      notifyListeners();
+    } else {
+      final snackBar = MySnackBar(
+          title: "Modification Echec",
+          msg: "Echec de modification de licence merci de verifier vos donnee",
+          state: ContentType.failure);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    }
+  }
+
+  editCoachImages(context) async {
+    Map<String, dynamic> mapData = {
+      'profile': {"profile_photo": createdFullLicence!.profile!.profilePhoto},
+      'coach': {
+        "photo": createdFullLicence!.coach!.photo,
+        "identity_photo": createdFullLicence!.coach!.identityPhoto,
+        "degree_photo": createdFullLicence!.coach!.degreePhoto,
+        "grade_photo": createdFullLicence!.coach!.gradePhoto,
+      }
+    };
+    Response res = await licenceNetwork.editCoachProfile(
+        mapData, selectedFullLicence!.coach!.id);
+    if (res.statusCode == 200) {
+      print('ok');
+      final snackBar = MySnackBar(
+          title: "Modification Succees",
+          msg: "La licence de ce entraineur a ete modifie avec succees",
           state: ContentType.success);
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()

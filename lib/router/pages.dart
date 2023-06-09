@@ -26,6 +26,10 @@ import '../screens/licence/addlicence/upload_arbitre_images_screen.dart';
 import '../screens/licence/addlicence/upload_coach_images_screen.dart';
 import '../screens/licence/edit_licence/arbitre/edit_arbitrator_licence_screen.dart';
 import '../screens/licence/edit_licence/arbitre/edit_arbitre_images_screen.dart';
+// import '../screens/licence/edit_licence/coach/edit_coach_licence_screen.dart';
+// import '../screens/licence/edit_licence/coach/edit_coach_images_screen.dart';
+import '../screens/licence/edit_licence/coach/edit_coach_images_screen.dart';
+import '../screens/licence/edit_licence/coach/edit_coach_licence_screen.dart';
 import '../screens/licence/licence_screen.dart';
 import '../screens/licence/renew licence/arbitre/renew_arbitrator_images_screen.dart';
 import '../screens/parameters/Ligue/ligue_list_screen.dart';
@@ -77,6 +81,13 @@ class Pages{
       ),
       GoRoute(path: Routes.EditArbitratorLicenceScreen,
       builder: (context, state) => EditArbitratorLicenceScreen(),
+      ),
+      
+      GoRoute(path: Routes.EditCoachImagesScreen,
+      builder: (context, state) => EditCoachLicenceImages(),
+      ),
+      GoRoute(path: Routes.EditCoachLicenceScreen,
+      builder: (context, state) => EditCoachLicenceScreen(),
       ),
       GoRoute(path: Routes.RenewAthleteImages,
       builder: (context, state) => RenewLicenceImages(),
