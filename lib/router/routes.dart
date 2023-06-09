@@ -28,9 +28,10 @@
     static const String SeasonListScreen="/season_list_screen";
 
     static const String RenewArbitratorImagesScreen="/renew_arbitrator_images";
+    static const String RenewCoachLicenceScreen="/renew_coach_liccence";
 
     static const String RenewArbitratorLicenceScreen="/renew_arbitrator_liccence";
-
+  static const String RenewCoachImagesScreen="/renew_coach_images";
   static const String EditAthleteImagesScreen="/edit_athlete_images";
     static const String EditArbitratorImagesScreen="/edit_arbitrator_images";
     static const String EditArbitratorLicenceScreen="/edit_arbitrator_licence";

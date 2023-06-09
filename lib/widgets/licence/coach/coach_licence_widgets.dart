@@ -28,9 +28,7 @@ Widget CoachImageEditWidget(
           child: Container(
                decoration: BoxDecoration(
                     image: (img != null)
-                      ? DecorationImage(image: NetworkImage(img,
-                      
-                      
+                      ? DecorationImage(image: NetworkImage(img,                                            
                       ),
                       opacity: (licenceController.isHovered[index])?0.3:1,
                       fit: BoxFit.cover
