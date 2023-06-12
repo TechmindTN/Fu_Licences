@@ -13,6 +13,7 @@ import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/arbitre/renew_arbitrator_licence_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_images_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_licence_screen.dart';
+import 'package:fu_licences/screens/parameters/ligue/add_ligue_screen.dart';
 import 'package:fu_licences/screens/parameters/parameters_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/screens/splash/splash_screen.dart';
@@ -34,7 +35,7 @@ import '../screens/licence/licence_screen.dart';
 import '../screens/licence/renew licence/arbitre/renew_arbitrator_images_screen.dart';
 import '../screens/licence/renew licence/coach/renew_coach_images_screen.dart';
 import '../screens/licence/renew licence/coach/renew_coach_licence_screen.dart';
-import '../screens/parameters/Ligue/ligue_list_screen.dart';
+import '../screens/parameters/ligue/ligue_list_screen.dart';
 import '../screens/parameters/category/category_list_screen.dart';
 import '../screens/parameters/degree/degree_list_screen.dart';
 import '../screens/parameters/discipline/discipline_list_screen.dart';
@@ -159,6 +160,9 @@ class Pages{
       ),
       GoRoute(path: Routes.RenewCoachLicenceScreen,
       builder: (context, state) =>RenewCoachLicenceScreen(),
+      ),
+      GoRoute(path: Routes.AddLigueScreen,
+      builder: (context, state) =>AddLigueScreen(),
       ),
       // GoRoute(path: Routes.LicenceScreen,
       // builder: (context, state) => LicenceScreen(),

@@ -42,5 +42,6 @@
   static const String UploadArbitreImagesScreen="/upload_arbitre_images";
 
   static const String FilteredLicencesScreen="/filtered_licences";
+  static const String AddLigueScreen="/add_ligue";
 
 }

@@ -129,7 +129,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
             
           ),
            floatingActionButton: FloatingActionButton(onPressed: () {
-            GoRouter.of(context).push(Routes.SelectRoleScreen);
+            GoRouter.of(context).push(Routes.AddLigueScreen);
             // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
           },
           child: Icon(Icons.add),
