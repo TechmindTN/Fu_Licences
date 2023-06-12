@@ -1045,7 +1045,8 @@ FilterDialog(LicenceProvider licenceController, context) {
             
             children: [
               SeasonSelectInput('Season',licenceController.selectedSeason,licenceController),
-              
+                   RoleSelectInput('Role',licenceController.filteredRole,licenceController),
+
               GategorySelectInput('Categorie',licenceController.filteredCategory,licenceController),
                   GradeSelectInput('Grade',licenceController.filteredGrade,licenceController)	,
                   DegreeSelectInput('Degree',licenceController.filteredDegree,licenceController),
@@ -1056,6 +1057,7 @@ FilterDialog(LicenceProvider licenceController, context) {
                   ClubSelectInput('Club',licenceController.filteredClub,licenceController),
                    SelectInput('Sexe',licenceController.filteredSex,licenceController,['Male','Femelle']),
                    SelectInput('Etat',licenceController.filteredStatus,licenceController,['Activee','En Attente','Expiree']),
+
             ],
           ),
 

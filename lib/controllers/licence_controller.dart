@@ -56,7 +56,9 @@ class LicenceProvider extends ChangeNotifier {
   Weight? selectedWeight = Weight(masseEnKillograme: 0, id: -1);
   Discipline? selectedDiscipline = Discipline(name: "Discipline", id: -1);
   Club? selectedClub = Club(name: "Club", id: -1);
-  Category? filteredCategory = Category(categorieAge: "Catgorie", id: -1);
+    Category? filteredCategory = Category(categorieAge: "Catgorie", id: -1);
+
+  Role? filteredRole = Role(roles: "Role", id: -1);
   Grade? filteredGrade = Grade(grade: "Grade", id: -1);
   Degree? filteredDegree = Degree(degree: "Degree", id: -1);
   Weight? filteredWeight = Weight(masseEnKillograme: 0, id: -1);
@@ -1948,6 +1950,7 @@ editLicenceCoach(
         (selectedWeight!.id != -1) ||
         (selectedSeason!.id != -1) ||
         (selectedSex != "Sexe") ||
+        (filteredRole!.id != -1) ||
         (selectedStatus != "Etat")) {
       Navigator.pop(context);
       GoRouter.of(context).push(Routes.FilteredLicencesScreen);
@@ -1969,6 +1972,20 @@ editLicenceCoach(
         while (i < filteredFullLicences.length) {
           if (filteredFullLicences[i].licence!.categorie !=
               selectedCategory!.categorieAge) {
+            filteredFullLicences.remove(filteredFullLicences[i]);
+          } else {
+            i++;
+          }
+          notifyListeners();
+        }
+      }
+      if (filteredRole!.id != -1) {
+        print('filtering roles');
+        int i = 0;
+        while (i < filteredFullLicences.length) {
+          print('filtered role is '+filteredFullLicences[i].licence!.role);
+          if (filteredFullLicences[i].licence!.role !=
+              filteredRole!.roles) {
             filteredFullLicences.remove(filteredFullLicences[i]);
           } else {
             i++;

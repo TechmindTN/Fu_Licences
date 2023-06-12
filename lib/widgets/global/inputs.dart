@@ -7,6 +7,7 @@ import 'package:fu_licences/models/degree.dart';
 import 'package:fu_licences/models/discipline.dart';
 import 'package:fu_licences/models/grade.dart';
 import 'package:fu_licences/models/ligue.dart';
+import 'package:fu_licences/models/role.dart';
 import 'package:fu_licences/models/season.dart';
 import 'package:fu_licences/models/weight.dart';
 import 'package:provider/provider.dart';
@@ -156,6 +157,62 @@ SeasonSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedSeason=value;
+      print(selected.id);
+      
+    },
+    selectedItem: selected,
+),
+          )
+        )
+      ],
+    ),
+  );
+}
+
+
+RoleSelectInput(txt,selected,LicenceProvider licenceController){
+ return Padding(
+    padding: const EdgeInsets.symmetric(horizontal:24.0,vertical: 8),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(txt),
+       Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            border: Border.all(color: Colors.black38)
+          ),
+          width: 25.w,
+          height: 4.h,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DropdownSearch<Role>(   
+              compareFn: (item1, item2) => item1.id==item2.id,       
+    popupProps: PopupProps.modalBottomSheet(
+      showSearchBox: true,
+      constraints: BoxConstraints(maxHeight: 30.h,
+      minHeight: 10.h
+      ),
+        showSelectedItems: true,
+        // disabledItemFn: (String s) => s.startsWith('I'),
+    ),
+    itemAsString: (item) => item.roles!,
+    items: licenceController.parameters!.roles!,
+    dropdownDecoratorProps: DropDownDecoratorProps(
+       dropdownSearchDecoration: InputDecoration(
+          filled: false,
+              // labelText: selected,
+              hintText: "Choisir votre "+txt,
+              
+        ),
+    ),
+    // onChanged: (value){
+    //   selected=value;
+    //   licenceController.notify();
+    // },
+    onChanged: (value){
+      selected=value;
+      licenceController.filteredRole=value!;
       print(selected.id);
       
     },
