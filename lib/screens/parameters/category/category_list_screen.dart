@@ -136,7 +136,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
             
           ),
            floatingActionButton: FloatingActionButton(onPressed: () {
-            GoRouter.of(context).push(Routes.SelectRoleScreen);
+            GoRouter.of(context).push(Routes.AddCategoryScreen);
             // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
           },
           child: Icon(Icons.add),

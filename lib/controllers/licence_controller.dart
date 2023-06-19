@@ -40,6 +40,10 @@ import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
+  bool isAscending =true;
+  int currentSortColumn = 0;
+  List<bool> licenceChecks=[];
+  int rowsPerPages=10;
   bool isShadow=false;
   List<bool> isHovered=[false,false,false,false,false];
   List<Widget> myItems=[];
@@ -90,7 +94,10 @@ class LicenceProvider extends ChangeNotifier {
   LicenceNetwork licenceNetwork = LicenceNetwork();
   FullLicence? selectedFullLicence;
 
-
+  changeRowPerPage(){
+    rowsPerPages=20;
+    notify();
+  }
 
   login(context,login,password) async {
     
@@ -184,6 +191,28 @@ class LicenceProvider extends ChangeNotifier {
       );
     });
   }
+
+
+  // sortColumn(index){
+    
+  //   currentSortColumn = index;
+  //   if (isAscending == true) {
+  //     isAscending = false;
+  //     // sort the product list in Ascending, order by Price
+  //     fullLicences.sort((licenceA, licenceB) =>
+  //         licenceB.licence!.numLicences!.compareTo(licenceA.licence!.numLicences!));
+  //         notify();
+  //   } else {
+  //     isAscending = true;
+  //     // sort the product list in Descending, order by Price
+  //     fullLicences.sort((licenceA, licenceB) =>
+  //         licenceA.licence!.numLicences!.compareTo(licenceB.licence!.numLicences!));
+  //         notify();
+  //   }
+  //   // notify();
+                      
+  // }
+
 
   validateLicence(context) async {
      Response res = await licenceNetwork.validateLicence(selectedFullLicence!.licence!.numLicences);

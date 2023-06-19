@@ -130,7 +130,7 @@ class _DegreeListScreenState extends State<DegreeListScreen> {
             
           ),
            floatingActionButton: FloatingActionButton(onPressed: () {
-            GoRouter.of(context).push(Routes.SelectRoleScreen);
+            GoRouter.of(context).push(Routes.AddDegreeScreen);
             // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
           },
           child: Icon(Icons.add),

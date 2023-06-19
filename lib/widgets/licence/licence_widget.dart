@@ -1109,8 +1109,8 @@ Widget LicenceListHeader(LicenceProvider licenceController,numControl,context){
         SearchFilter(licenceController,numControl,context),
         SizedBox(height: 3.h,),
         
-         FirstRow(licenceController),
-         SizedBox(height: 3.h,),
+        //  FirstRow(licenceController),
+        //  SizedBox(height: 3.h,),
        ],
       ),
     ),
@@ -1170,7 +1170,7 @@ Widget SearchField(LicenceProvider licenceController,numControl,context){
           offset: Offset(0,2)
         ):BoxShadow()
       ],
-      color: Colors.white
+      color: Color(0xffedeef0)
     ),
     child: SearchInput(licenceController,numControl,context)
   );

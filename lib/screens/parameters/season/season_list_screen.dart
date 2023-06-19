@@ -141,7 +141,7 @@ class _SeasonListScreenState extends State<SeasonListScreen> {
             
           ),
            floatingActionButton: FloatingActionButton(onPressed: () {
-            GoRouter.of(context).push(Routes.SelectRoleScreen);
+            GoRouter.of(context).push(Routes.AddSeasonScreen);
             // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
           },
           child: Icon(Icons.add),

@@ -35,12 +35,18 @@ import '../screens/licence/licence_screen.dart';
 import '../screens/licence/renew licence/arbitre/renew_arbitrator_images_screen.dart';
 import '../screens/licence/renew licence/coach/renew_coach_images_screen.dart';
 import '../screens/licence/renew licence/coach/renew_coach_licence_screen.dart';
+import '../screens/parameters/category/add_category_screen.dart';
+import '../screens/parameters/degree/add_degree_screen.dart';
+import '../screens/parameters/discipline/add_discipline_screen.dart';
+import '../screens/parameters/grade/add_grade_screen.dart';
 import '../screens/parameters/ligue/ligue_list_screen.dart';
 import '../screens/parameters/category/category_list_screen.dart';
 import '../screens/parameters/degree/degree_list_screen.dart';
 import '../screens/parameters/discipline/discipline_list_screen.dart';
 import '../screens/parameters/grade/grade_list_screen.dart';
+import '../screens/parameters/season/add_season_screen.dart';
 import '../screens/parameters/season/season_list_screen.dart';
+import '../screens/parameters/weights/add_weight_screen.dart';
 import '../screens/parameters/weights/weight_list_screen.dart';
 
 class Pages{
@@ -163,6 +169,24 @@ class Pages{
       ),
       GoRoute(path: Routes.AddLigueScreen,
       builder: (context, state) =>AddLigueScreen(),
+      ),
+      GoRoute(path: Routes.AddDegreeScreen,
+      builder: (context, state) =>AddDegreeScreen(),
+      ),
+      GoRoute(path: Routes.AddSeasonScreen,
+      builder: (context, state) =>AddSeasonScreen(),
+      ),
+      GoRoute(path: Routes.AddGradeScreen,
+      builder: (context, state) =>AddGradeScreen(),
+      ),
+      GoRoute(path: Routes.AddCategoryScreen,
+      builder: (context, state) =>AddCategoryScreen(),
+      ),
+      GoRoute(path: Routes.AddDisciplineScreen,
+      builder: (context, state) =>AddDisciplineScreen(),
+      ),
+      GoRoute(path: Routes.AddWeightScreen,
+      builder: (context, state) =>AddWeightScreen(),
       ),
       // GoRoute(path: Routes.LicenceScreen,
       // builder: (context, state) => LicenceScreen(),

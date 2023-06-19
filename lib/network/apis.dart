@@ -34,12 +34,12 @@ class Apis {
   final String renewLicence="renew_licence/";
   final String addClub="add_club/";
   final String addLigue="ligue/";
-final String addCategory="add_category/";
-final String addDegree="add_degree/";
-final String addGrade="add_grade/";
-final String addWeight="add_weight/";
-final String addDisipline="add_discipline/";
-final String addSeason="add_season/";
+final String addCategory="categorie/";
+final String addDegree="degree/";
+final String addGrade="grade/";
+final String addWeight="weights/";
+final String addDiscipline="discipline/";
+final String addSeason="seasons/";
 
 
   // final String register ="api/register/";

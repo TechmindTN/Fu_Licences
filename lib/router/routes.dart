@@ -43,5 +43,12 @@
 
   static const String FilteredLicencesScreen="/filtered_licences";
   static const String AddLigueScreen="/add_ligue";
+    static const String AddDegreeScreen="/add_degree";
+  static const String AddGradeScreen="/add_grade";
+  static const String AddWeightScreen="/add_weight";
+  static const String AddCategoryScreen="/add_category";
+  static const String AddDisciplineScreen="/add_discipline";
+  static const String AddSeasonScreen="/add_season";
+
 
 }
