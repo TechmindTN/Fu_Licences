@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/club_controller.dart';
+import '../../datasources/club_datasource.dart';
 import '../../widgets/clubs/club_widgets.dart';
 
 class ClubListScreen extends StatefulWidget{
@@ -22,6 +23,7 @@ class ClubListScreen extends StatefulWidget{
 class _ClubListScreenState extends State<ClubListScreen> {
   late LicenceProvider licenceController;
     late ClubProvider clubController;
+late DataTableSource dataSource;
 
   TextEditingController numControl=TextEditingController();
 
@@ -60,6 +62,8 @@ class _ClubListScreenState extends State<ClubListScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    dataSource=ClubDataSource(licenceController,context,clubController);
     //  if(licenceController.added){
     //   final snackBar=MySnackBar(title: "Ajout de licence succees",msg: "La licence a ete ajoutee avec succees",state: ContentType.success);
     //   ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
@@ -98,16 +102,58 @@ class _ClubListScreenState extends State<ClubListScreen> {
             future: licenceController.getParameters(),
              builder: (context,snaphot) {
               if(snaphot.connectionState==ConnectionState.done){
-               return SliverGrid.builder(
-                  
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5,
-                crossAxisSpacing: 0.w
-                ),
+                    licenceController.clubChecks=List.generate(licenceController.parameters!.clubs!.length,(index)=>false);
 
-                itemCount: licenceController.parameters!.clubs!.length,
-                 itemBuilder: (context,index){
-                  return ClubItem(licenceController.parameters!.clubs![index], licenceController,clubController, context);
-                });
+                print('club length is '+licenceController.parameters!.clubs!.length.toString());
+                 return SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal:30.0,vertical: 8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    // border: Border.all(color: Colors.black)
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: [BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+
+                    )]
+                  ),
+                  child: PaginatedDataTable(
+                    sortColumnIndex: licenceController.currentSortColumn,
+                    sortAscending: licenceController.isAscending,
+                    columnSpacing: 0,
+                    rowsPerPage: 10,
+                    // header:  LicenceListHeader(licenceController,numControl,context),
+                    columns: [ 
+                      DataColumn(label: Text(''),),
+                      // DataColumn(label: Text('logo'),),                     
+                      DataColumn(label: Text('nom')),                     
+                      DataColumn(label: Text('ligue')),                     
+                      DataColumn(label: Text('Actions')),
+                      ],
+                    // actions: [
+                    //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))
+                    // ],
+                    
+                    arrowHeadColor: Colors.blue,
+                    availableRowsPerPage: [10,20,50,100],
+              
+                    showCheckboxColumn: true,
+                    showFirstLastButtons: true,
+                     source: dataSource)
+                  ),
+              ),
+            );
+              //  return SliverGrid.builder(
+                  
+              //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5,
+              //   crossAxisSpacing: 0.w
+              //   ),
+
+              //   itemCount: licenceController.parameters!.clubs!.length,
+              //    itemBuilder: (context,index){
+                  // return ClubItem(licenceController.parameters!.clubs![index], licenceController,clubController, context);
+              //   });
              }
              else{
            return SliverToBoxAdapter(child: Container(
@@ -118,8 +164,12 @@ class _ClubListScreenState extends State<ClubListScreen> {
                   Center(child: CircularProgressIndicator()),
                 ],
               ),
-            ));}
-             })
+            ));
+            
+            }
+             }
+             
+             )
               ]
             
           ),

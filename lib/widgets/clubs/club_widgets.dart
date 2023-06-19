@@ -288,11 +288,11 @@ Widget FirstRow(LicenceProvider licenceController){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-    Text("Total: "+licenceController.parameters!.clubs!.length.toString(),
-     style: TextStyle(
-      fontWeight: FontWeight.w600,
-      fontSize: 20
-    ),),
+    // Text("Total: "+licenceController.parameters!.clubs!.length.toString(),
+    //  style: TextStyle(
+    //   fontWeight: FontWeight.w600,
+    //   fontSize: 20
+    // ),),
     // Text("Details de filtre >>",
     // style: TextStyle(
     //   color: Color(0xff2DA9E0),

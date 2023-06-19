@@ -43,6 +43,7 @@ class LicenceProvider extends ChangeNotifier {
   bool isAscending =true;
   int currentSortColumn = 0;
   List<bool> licenceChecks=[];
+  List<bool> clubChecks=[];
   int rowsPerPages=10;
   bool isShadow=false;
   List<bool> isHovered=[false,false,false,false,false];

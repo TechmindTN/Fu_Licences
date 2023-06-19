@@ -4,7 +4,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/models/full_licence.dart';
-import 'package:fu_licences/models/licence_datasource.dart';
+import 'package:fu_licences/datasources/licence_datasource.dart';
 import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';

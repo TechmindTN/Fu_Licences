@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/athlete/add_athlete/add_athlete_screen.dart';
 import 'package:fu_licences/screens/auth/login_Screen.dart';
+import 'package:fu_licences/screens/club/club_screen.dart';
 import 'package:fu_licences/screens/home/bottom_bar.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
@@ -188,6 +189,10 @@ class Pages{
       GoRoute(path: Routes.AddWeightScreen,
       builder: (context, state) =>AddWeightScreen(),
       ),
+      GoRoute(path: Routes.ClubScreen,
+      builder: (context, state) =>ClubScreen(),
+      ),
+      
       // GoRoute(path: Routes.LicenceScreen,
       // builder: (context, state) => LicenceScreen(),
       // ),

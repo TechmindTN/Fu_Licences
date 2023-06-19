@@ -6,6 +6,8 @@
 
   static const String LicenceListScreen="/licence_list";
   static const String LicenceScreen="/licence";
+  static const String ClubScreen="/club";
+
   static const String AddProfileScreen="/add_licence_profile";
   static const String AddAthleteLicenceScreen="/add_licence_athlete";
   static const String AddCoachLicenceScreen="/add_licence_coach";

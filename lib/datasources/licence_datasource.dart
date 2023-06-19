@@ -7,7 +7,7 @@ import 'package:sizer/sizer.dart';
 
 import '../controllers/licence_controller.dart';
 import '../router/routes.dart';
-import 'licence.dart';
+import '../models/licence.dart';
 
 class LicenceDataSource extends DataTableSource{
   final LicenceProvider licenceController;
