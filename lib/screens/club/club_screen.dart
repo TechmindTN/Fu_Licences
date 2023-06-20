@@ -141,7 +141,7 @@ class _ClubScreenState extends State<ClubScreen> {
                     ),
                   ),
                 ),
-                  LicenceRow('Nom',clubController.selectedClub!.name!),
+                  LicenceRow('Nom',clubController.selectedClub.name!),
                   // LicenceRow('Prenom',licenceController.selectedFullLicence!.profile!.firstName),
                   // LicenceRow('Sexe',licenceController.selectedFullLicence!.profile!.sexe),
                         

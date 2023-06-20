@@ -20,6 +20,8 @@ import 'licence_controller.dart';
 class ParameterProvider extends ChangeNotifier{
   bool isLoading=false;
   ParameterNetwork paramNetwork = ParameterNetwork();
+  List<bool> ligueChecks=[];
+  List<bool> categoryChecks=[];
 
   addLigue(String name){
     Ligue ligue=Ligue(name: name);

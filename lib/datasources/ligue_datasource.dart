@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:fu_licences/controllers/parameters_controller.dart';
 import 'package:fu_licences/models/full_licence.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
@@ -10,12 +11,12 @@ import '../controllers/licence_controller.dart';
 import '../router/routes.dart';
 import '../models/licence.dart';
 
-class ClubDataSource extends DataTableSource{
+class LigueDataSource extends DataTableSource{
   final LicenceProvider licenceController;
-  final ClubProvider clubController;
+  final ParameterProvider paramController;
 
   final BuildContext context;
-  ClubDataSource(this.licenceController, this.context, this.clubController);
+  LigueDataSource(this.licenceController, this.context, this.paramController);
   
   
   @override
@@ -24,19 +25,19 @@ class ClubDataSource extends DataTableSource{
       DataCell(Checkbox(onChanged: (bool? value) { 
         print(value);
         print(index);
-       }, value: licenceController.clubChecks[index],)),
+       }, value: paramController.ligueChecks[index],)),
      
       
-      DataCell(SelectableText(licenceController.parameters!.clubs![index].name.toString())),
-      DataCell(SelectableText(licenceController.parameters!.clubs![index].ligue.toString())),
+      DataCell(SelectableText(licenceController.parameters!.ligues![index].name.toString())),
+      // DataCell(SelectableText(licenceController.parameters!.clubs![index].ligue.toString())),
       
       DataCell(Row(
         children: [
-          FloatingActionButton.small(onPressed: (){
-          clubController.selectedClub = licenceController.parameters!.clubs![index];     
-          GoRouter.of(context).push(Routes.ClubScreen);
-          },child: Icon(Icons.remove_red_eye),),
-          SizedBox(width:1.w),
+          // FloatingActionButton.small(onPressed: (){
+          // // clubController.selectedClub = licenceController.parameters!.clubs![index];     
+          // // GoRouter.of(context).push(Routes.ClubScreen);
+          // },child: Icon(Icons.remove_red_eye),),
+          // SizedBox(width:1.w),
           
           FloatingActionButton.small(onPressed: (){},child: Icon(Icons.delete),
           backgroundColor: Colors.red,
@@ -58,7 +59,7 @@ class ClubDataSource extends DataTableSource{
 
   @override
   // TODO: implement rowCount
-  int get rowCount => licenceController.parameters!.clubs!.length;
+  int get rowCount => licenceController.parameters!.ligues!.length;
 
   @override
   // TODO: implement selectedRowCount
