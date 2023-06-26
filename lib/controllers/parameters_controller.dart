@@ -25,6 +25,7 @@ class ParameterProvider extends ChangeNotifier{
   List<bool> gradeChecks=[];
   List<bool> degreeChecks=[];
   List<bool> disciplineChecks=[];
+  List<bool> weightChecks=[];
 
   addLigue(String name){
     Ligue ligue=Ligue(name: name);
