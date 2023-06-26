@@ -22,7 +22,7 @@ class ParameterProvider extends ChangeNotifier{
   ParameterNetwork paramNetwork = ParameterNetwork();
   List<bool> ligueChecks=[];
   List<bool> categoryChecks=[];
-
+  List<bool> gradeChecks=[];
   addLigue(String name){
     Ligue ligue=Ligue(name: name);
     paramNetwork.addLigue(ligue.toJson());
