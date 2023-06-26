@@ -23,6 +23,8 @@ class ParameterProvider extends ChangeNotifier{
   List<bool> ligueChecks=[];
   List<bool> categoryChecks=[];
   List<bool> gradeChecks=[];
+  List<bool> degreeChecks=[];
+
   addLigue(String name){
     Ligue ligue=Ligue(name: name);
     paramNetwork.addLigue(ligue.toJson());

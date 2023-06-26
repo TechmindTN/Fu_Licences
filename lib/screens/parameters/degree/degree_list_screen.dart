@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/parameters_controller.dart';
+import '../../../datasources/degree_datasource.dart';
 import '../../../models/degree.dart';
 import '../../../models/ligue.dart';
 
@@ -26,7 +27,7 @@ class DegreeListScreen extends StatefulWidget{
 class _DegreeListScreenState extends State<DegreeListScreen> {
   late LicenceProvider licenceController;
     late ParameterProvider paramController;
-
+  late DegreeDataSource dataSource;
 
   @override
   Future<void> didChangeDependencies() async {
@@ -45,6 +46,8 @@ class _DegreeListScreenState extends State<DegreeListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    paramController.degreeChecks=List.generate(licenceController.parameters!.ligues!.length,(index)=>false);
+    dataSource=DegreeDataSource(licenceController,context,paramController);
    Degree degree=Degree();
    //ligue.
     return Consumer<ParameterProvider>(
@@ -65,55 +68,99 @@ class _DegreeListScreenState extends State<DegreeListScreen> {
               // ]
                 
               // )),
-           SliverToBoxAdapter(
-            child: Container(
-              height: 4.h,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 256,
+          //  SliverToBoxAdapter(
+          //   child: Container(
+          //     height: 4.h,
+          //     color: Colors.white,
+          //     child: Padding(
+          //       padding: const EdgeInsets.symmetric(horizontal: 256,
               
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Id"),
-                      Text("Nom"),
-                      Text("Cree le"),
-                      Text("Actions")
-                  ],
-                ),
-              ),
-            ),
-           ),
+          //       ),
+          //       child: Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text("Id"),
+          //             Text("Nom"),
+          //             Text("Cree le"),
+          //             Text("Actions")
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          //  ),
            FutureBuilder(
             future: licenceController.getParameters(),
              builder: (context,snaphot) {
               if(snaphot.connectionState==ConnectionState.done){
-              return  SliverList(
+                //Desktop View
+return SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal:30.0,vertical: 8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    // border: Border.all(color: Colors.black)
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: [BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+
+                    )]
+                  ),
+                  child: PaginatedDataTable(
+                    sortColumnIndex: licenceController.currentSortColumn,
+                    sortAscending: licenceController.isAscending,
+                    columnSpacing: 0,
+                    rowsPerPage: 10,
+                    // header:  LicenceListHeader(licenceController,numControl,context),
+                    columns: [ 
+                      DataColumn(label: Text(''),),
+                      // DataColumn(label: Text('logo'),),                     
+                      DataColumn(label: Text('nom')),   
+                      // DataColumn(label: Text('Age Minimale')),                   
+                      // DataColumn(label: Text('Age Maximale')),                     
+                      DataColumn(label: Text('Actions')),
+                      ],
+                    // actions: [
+                    //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))
+                    // ],
+                    
+                    arrowHeadColor: Colors.blue,
+                    availableRowsPerPage: [10,20,50,100],
+              
+                    showCheckboxColumn: true,
+                    showFirstLastButtons: true,
+                     source: dataSource)
+                  ),
+              ),
+            );
+
+
+//Mobile View
+              // return  SliverList(
 
                 
-                delegate: SliverChildBuilderDelegate(
+              //   delegate: SliverChildBuilderDelegate(
                   
-                 childCount:  licenceController.parameters!.degrees!.length,
-                  (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:256,
-                  vertical: 10
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //    childCount:  licenceController.parameters!.degrees!.length,
+              //     (context, index) {
+              //   return Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal:256,
+              //     vertical: 10
+              //     ),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     
-                    children: [
-                      Text(licenceController.parameters!.degrees![index].id.toString()),
-                    Text(licenceController.parameters!.degrees![index].degree.toString()),
-                    Text(licenceController.parameters!.degrees![index].created.toString()),
-                    FloatingActionButton(
-                      mini: true,
-                      onPressed: (){}, child: Icon(Icons.delete))
-                    ],
-                  ),
-                );
-               }),);
+              //       children: [
+              //         Text(licenceController.parameters!.degrees![index].id.toString()),
+              //       Text(licenceController.parameters!.degrees![index].degree.toString()),
+              //       Text(licenceController.parameters!.degrees![index].created.toString()),
+              //       FloatingActionButton(
+              //         mini: true,
+              //         onPressed: (){}, child: Icon(Icons.delete))
+              //       ],
+              //     ),
+              //   );
+              //  }),);
              }
              else{
            return SliverToBoxAdapter(child: Container(
