@@ -276,6 +276,7 @@ class LicenceProvider extends ChangeNotifier {
             fullLicence.coach = coach;
           }
           fullLicences.add(fullLicence);
+          notify();
         }}
         print(fullLicences.length);
         notify();

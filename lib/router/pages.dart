@@ -10,6 +10,7 @@ import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_scr
 import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_athlete_images_screen.dart';
 import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_licence_screen.dart';
 import 'package:fu_licences/screens/licence/filtered_licences_list.dart';
+import 'package:fu_licences/screens/licence/licence_list_screen%20copy.dart';
 import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/arbitre/renew_arbitrator_licence_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_images_screen.dart';
@@ -69,11 +70,13 @@ class Pages{
       builder: (context, state) => ClubListScreen(),
       ),
       GoRoute(path: Routes.LicenceListScreen,
-      builder: (context, state) => LicenceListScreen(),
+      builder: (context, state) => LicenceListScreenCopy(),
       ),
-      GoRoute(path: Routes.LicenceListScreen,
-      builder: (context, state) => LicenceListScreen(),
-      ),
+      // GoRoute(path: Routes.LicenceListScreen,
+      // builder: (context, state) => LicenceListScreen(),
+      // ),
+      // 
+      // 
       GoRoute(path: Routes.AddAthleteLicenceScreen,
       builder: (context, state) => AddAthleteScreen(),
       ),

@@ -41,6 +41,7 @@ class SeasonDataSource extends DataTableSource{
           // SizedBox(width:1.w),
            if(licenceController.parameters!.seasons![index].activated==false)ElevatedButton(
                           onPressed: (){}, child: Text("Activer")),
+                          if(licenceController.parameters!.seasons![index].activated==true) SizedBox(width: 9.2.w,),
                           SizedBox(width: 10,),
           FloatingActionButton.small(onPressed: (){},child: Icon(Icons.delete),
           backgroundColor: Colors.red,
