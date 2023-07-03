@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/models/full_licence.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../controllers/licence_controller.dart';
@@ -12,6 +13,7 @@ import '../models/licence.dart';
 class LicenceDataSource extends DataTableSource{
   final LicenceProvider licenceController;
   final BuildContext context;
+   Color color=Colors.red;
   LicenceDataSource(this.licenceController, this.context);
   // final List<bool> licenceChecks;
 
@@ -25,10 +27,33 @@ class LicenceDataSource extends DataTableSource{
   @override
   DataRow? getRow(int index) {
      return DataRow(cells: [
-      DataCell(Checkbox(onChanged: (bool? value) { 
-        print(value);
-        print(index);
-       }, value: licenceController.licenceChecks[index],)),
+      DataCell(Consumer<LicenceProvider>(
+        builder: (context,licenceController,child) {
+          return Checkbox(onChanged: (bool? value) { 
+            licenceController.licenceChecks[index]=!licenceController.licenceChecks[index];
+            licenceController.notify();
+            print(value);
+            print(index);
+           }, value: licenceController.licenceChecks[index],);
+        }
+      )),
+      // DataCell(Consumer<LicenceProvider>(
+      //   builder: (context,licenceController,child) {
+      //     return InkWell(
+      //       onTap: () {
+      //         print(index);
+      //         licenceController.licenceChecks[index]=!licenceController.licenceChecks[index];
+      //         licenceController.notify();
+      //       },
+      //       child: Container(
+      //         width: 2.w,
+      //         height: 1.h,
+      //         color: (licenceController.licenceChecks[index]==true)?Colors.red:Colors.green,
+              
+      //       ),
+      //     );
+      //   }
+      // )),
       DataCell(Image.network(licenceController.fullLicences[index].profile!.profilePhoto!, width: 100),
       
       ),
@@ -44,6 +69,7 @@ class LicenceDataSource extends DataTableSource{
       DataCell(SelectableText(licenceController.fullLicences[index].profile!.state.toString())),
       DataCell(SelectableText(licenceController.fullLicences[index].licence!.seasons.toString())),
       DataCell(SelectableText(licenceController.fullLicences[index].licence!.state.toString(),
+      
       style: TextStyle(
         color: (licenceController.fullLicences[index].licence!.state=='Activee')?Colors.green:((licenceController.fullLicences[index].licence!.state=='En Attente')?Colors.orange[800]:Colors.red)
       ),

@@ -56,5 +56,9 @@ class ParameterProvider extends ChangeNotifier{
     Season season=Season(seasons: name,activated: false);
     paramNetwork.addSeason(season.toJson());
   }
+
+  notify(){
+    notifyListeners();
+  }
  
 }

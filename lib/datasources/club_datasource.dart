@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/models/full_licence.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../controllers/club_controller.dart';
@@ -21,10 +22,16 @@ class ClubDataSource extends DataTableSource{
   @override
   DataRow? getRow(int index) { 
      return DataRow(cells: [
-      DataCell(Checkbox(onChanged: (bool? value) { 
-        print(value);
-        print(index);
-       }, value: licenceController.clubChecks[index],)),
+      DataCell(Consumer<LicenceProvider>(
+        builder: (context,licenceController,child) {
+          return Checkbox(onChanged: (bool? value) { 
+            licenceController.clubChecks[index]=!licenceController.clubChecks[index];
+            licenceController.notify();
+            print(value);
+            print(index);
+           }, value: licenceController.clubChecks[index],);
+        }
+      )),
      
       
       DataCell(SelectableText(licenceController.parameters!.clubs![index].name.toString())),
