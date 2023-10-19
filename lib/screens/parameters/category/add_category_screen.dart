@@ -45,7 +45,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
         body: CustomScrollView(
 
           slivers:[
-            MyAppBar("Ajouter une categorie", context, false, licenceController, false, true),
+            MyAppBar("اضافة عمر", context, false, licenceController, false, true),
             SliverToBoxAdapter(child: SizedBox(height: 3.h),),
             SliverToBoxAdapter(
               child: Center(
@@ -53,9 +53,9 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
               width: 40.w,
               child: Column(
                 children: [
-                  TextInput("Categorie", categoryController),
-                  TextInput("Age minimale", minController),
-                  TextInput("Age maximale", maxController),        
+                  TextInput('العمر', categoryController),
+                  TextInput('العمر الادنى', minController),
+                  TextInput('العمر الاقصى', maxController),        
                 ],
               ),
             ),
@@ -76,8 +76,8 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                      
                       if ((categoryController.text == null)||(categoryController.text == "")) {
                         final snackBar = MySnackBar(
-                            title: "Champs Obligatoires",
-                            msg: "Merci de remplir tous les champs svp",
+                            title: 'خانات اجبارية',
+                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
                             state: ContentType.warning);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
@@ -89,7 +89,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                         // GoRouter.of(context).go(Routes.CategoryListScreen);
                       }
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

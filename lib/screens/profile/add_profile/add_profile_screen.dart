@@ -45,7 +45,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
         // ),
         body: CustomScrollView(
           slivers:[
-            MyAppBar("Ajouter les informations du profile", context, false, licenceController, false, true),
+            MyAppBar("اضافة معلومات الحساب", context, false, licenceController, false, true),
             SliverToBoxAdapter(
               child: SizedBox(height: 3.h),
             ),
@@ -55,42 +55,40 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
               width: 80.w,
               child: Column(
                 children: [
-                  TextInput('Prenom', prenomController),
-                  TextInput('Nom', nomController),
-                  TextInput('Telephone', phoneController),
+                  TextInput('الاسم', prenomController),
+                  TextInput('اللقب', nomController),
+                  TextInput('رقم الهاتف', phoneController),
           
-                  TextInput('CIN', cinController),
-                  SelectInput('Sexe', licenceController.selectedSex,
-                      licenceController, ['Male', 'Femelle']),
-                  SelectInput('Governorat', licenceController.selectedState,
-                      licenceController, [
-                    'Ariana',
-                    'Béja',
-                    'Ben Arous',
-                    'Bizerte',
-                    'Gabès',
-                    'Gafsa',
-                    'Jendouba',
-                    'Kairouan',
-                    'Kasserine',
-                    'Kébili',
-                    'Kef',
-                    'Mahdia',
-                    'Manouba',
-                    'Médenine',
-                    'Monastir',
-                    'Nabeul',
-                    'Sfax',
-                    'Sidi Bouzid',
-                    'Siliana',
-                    'Sousse',
-                    'Tataouine',
-                    'Tozeur',
-                    'Tunis',
-                    'Zaghouan'
-                  ]),
-                  TextInput('Addresse', addresseController),
-                  Dateinput('Date de naissance', birthController, context,
+                  TextInput('رقم الهوية', cinController),
+                  SelectInput('الجنس', licenceController.selectedSex,
+                      licenceController, ['ذكر', 'انثى']),
+                  SelectInput('الولاية', licenceController.selectedState,
+                      licenceController, ['اريانة'	,
+'باجة'	,
+'بن عروس' ,
+'بنزرت'	,
+'قابس'	,
+'قفصة'	,
+'جندوبة'	,
+'القيروان'	,
+'القصرين'	,
+'قبلي'	,
+'الكاف'	,
+'المهدية'	,
+'منوبة'	,
+'مدنين'	,
+'المنستير'	,
+'نابل'	,
+'صفاقس'	,
+'سيدي بوزيد'	,
+'سليانة'	,
+'سوسة'	,
+'تطاوين'	,
+'توزر'	,
+'تونس'	,
+'زغوان']),
+                  TextInput('عنوان السكن', addresseController),
+                  Dateinput('تاريخ الولادة', birthController, context,
                       licenceController.selectedBirth, licenceController)
           
                   // String? birthday;
@@ -123,27 +121,25 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                           (phoneController.text == "") ||
                           (licenceController.selectedState == null) ||
                           (licenceController.selectedState == "") ||
-                          (licenceController.selectedState == "Governorat") ||
+                          (licenceController.selectedState == "الولاية") ||
                           (licenceController.selectedSex == "") ||
                           (licenceController.selectedSex == null) ||
-                          (licenceController.selectedSex == "Sexe")
+                          (licenceController.selectedSex == "الجنس")
                            ||
                            (birthController.text == null) ||
                           (birthController.text == "")
                           // (licenceController.selectedBirth == null) ||
                           // (licenceController.selectedBirth == "")
                           ) {
-                        print('i am here');
 
                         final snackBar = MySnackBar(
-                            title: "Champs Obligatoires",
-                            msg: "Merci de remplir tous les champs svp",
+                            title: 'خانات اجبارية',
+                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
                             state: ContentType.warning);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
                           ..showSnackBar(snackBar);
                       } else {
-                        print(licenceController.selectedRole.id.toString());
                         if(licenceController.selectedRole.id==2){
                         licenceController.createAthleteProfile(
                             address: addresseController.text,
@@ -156,7 +152,6 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                             .push(Routes.AddAthleteLicenceScreen);
                       }
                       else if(licenceController.selectedRole.id==4){
-                        print('blabla');
                         licenceController.createCoachProfile(
                             address: addresseController.text,
                             cin: cinController.text,
@@ -168,7 +163,6 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                             .push(Routes.AddCoachLicenceScreen);
                       }
                       else if(licenceController.selectedRole.id==7){
-                                                print('albalb');
 
                         Provider.of<ClubProvider>(context,listen: false).createClubProfile(
                           licenceController,
@@ -195,7 +189,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                       }
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddAthleteScreen()));
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

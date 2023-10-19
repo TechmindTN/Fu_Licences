@@ -1,70 +1,130 @@
 import 'package:dio/dio.dart';
-
 import 'apis.dart';
 
 class ParameterNetwork{
   Apis apis = Apis();
   addLigue(data) async {
-    print(apis.baseUrl);
-    Response res = await apis.dio.post(apis.baseUrl + apis.addLigue,
+    Response res = await apis.dio.post(apis.baseUrl + apis.ligue,
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
         data: data
     );
     return res;
   }
+
   addCategory(data) async {
-    print(apis.baseUrl);
-    Response res = await apis.dio.post(apis.baseUrl + apis.addCategory,
+    Response res = await apis.dio.post(apis.baseUrl + apis.category,
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
         data: data
     );
     return res;
   }
+
   addDegree(data) async {
-    print(apis.baseUrl);
-    Response res = await apis.dio.post(apis.baseUrl + apis.addDegree,
+    Response res = await apis.dio.post(apis.baseUrl + apis.degree,
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
         data: data
     );
     return res;
   }
+
   addGrade(data) async {
-    print(apis.baseUrl);
-    Response res = await apis.dio.post(apis.baseUrl + apis.addGrade,
+    Response res = await apis.dio.post(apis.baseUrl + apis.grade,
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
         data: data
     );
     return res;
   }
+
   addDiscipline(data) async {
-    print(apis.baseUrl);
-    Response res = await apis.dio.post(apis.baseUrl + apis.addDiscipline,
+    Response res = await apis.dio.post(apis.baseUrl + apis.discipline,
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
         data: data
     );
     return res;
   }
+
   addWeight(data) async {
-    print(apis.baseUrl);
-    Response res = await apis.dio.post(apis.baseUrl + apis.addWeight,
+    Response res = await apis.dio.post(apis.baseUrl + apis.weight,
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
         data: data
     );
     return res;
   }
+
   addSeason(data) async {
-    print(apis.baseUrl);
-    Response res = await apis.dio.post(apis.baseUrl + apis.addSeason,
+    Response res = await apis.dio.post(apis.baseUrl + apis.season,
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
         data: data
     );
     return res;
   }
+
+  deleteLigue(id) async {
+    Response res = await apis.dio.delete(apis.baseUrl + apis.ligue+id.toString()+'/',
+         options: Options(
+           headers: {"Authorization": Apis.tempToken}),
+    );
+    return res;
+  }
+  // addCategory(data) async {
+  //   //print(apis.baseUrl);
+  //   Response res = await apis.dio.post(apis.baseUrl + apis.category,
+  //        options: Options(
+  //          headers: {"Authorization": Apis.tempToken}),
+  //       data: data
+  //   );
+  //   return res;
+  // }
+  // addDegree(data) async {
+  //   //print(apis.baseUrl);
+  //   Response res = await apis.dio.post(apis.baseUrl + apis.degree,
+  //        options: Options(
+  //          headers: {"Authorization": Apis.tempToken}),
+  //       data: data
+  //   );
+  //   return res;
+  // }
+  // addGrade(data) async {
+  //   //print(apis.baseUrl);
+  //   Response res = await apis.dio.post(apis.baseUrl + apis.grade,
+  //        options: Options(
+  //          headers: {"Authorization": Apis.tempToken}),
+  //       data: data
+  //   );
+  //   return res;
+  // }
+  // addDiscipline(data) async {
+  //   //print(apis.baseUrl);
+  //   Response res = await apis.dio.post(apis.baseUrl + apis.discipline,
+  //        options: Options(
+  //          headers: {"Authorization": Apis.tempToken}),
+  //       data: data
+  //   );
+  //   return res;
+  // }
+  // addWeight(data) async {
+  //   //print(apis.baseUrl);
+  //   Response res = await apis.dio.post(apis.baseUrl + apis.weight,
+  //        options: Options(
+  //          headers: {"Authorization": Apis.tempToken}),
+  //       data: data
+  //   );
+  //   return res;
+  // }
+  // addSeason(data) async {
+  //   //print(apis.baseUrl);
+  //   Response res = await apis.dio.post(apis.baseUrl + apis.season,
+  //        options: Options(
+  //          headers: {"Authorization": Apis.tempToken}),
+  //       data: data
+  //   );
+  //   return res;
+  // }
 }

@@ -28,10 +28,10 @@ class _EditAthleteLicenceImagesState extends State<EditAthleteLicenceImages> {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
       return Scaffold(
-        // appBar: AppBar(title: Text("Modifier licence "+licenceController.selectedFullLicence!.licence!.numLicences!),),
+        // appBar: AppBar(title: Text('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
         body: CustomScrollView(
           slivers:[
-            MyAppBar("Modifier licence "+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+            MyAppBar('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
             
             
             SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
@@ -39,27 +39,27 @@ class _EditAthleteLicenceImagesState extends State<EditAthleteLicenceImages> {
 
                 delegate: SliverChildListDelegate([
                   AthleteImageEditWidget(
-                    'photo',
+                    'صورة الحساب',
                     licenceController,
                     context,
                     'profilePhoto',
                     licenceController
                         .createdFullLicence!.profile!.profilePhoto,0),
                 AthleteImageEditWidget(
-                  'Identite',
+                  'صورة الهوية',
                   licenceController,
                   context,
                   'idphoto',
                   licenceController.createdFullLicence!.athlete!.identityPhoto,1
                 ),
                 AthleteImageEditWidget(
-                    'Assurance',
+                    'صورة التامين',
                     licenceController,
                     context,
                     'photo',
                     licenceController.createdFullLicence!.athlete!.photo,2),
                 AthleteImageEditWidget(
-                    'Medicale',
+                    'الصورة الطبية',
                     licenceController,
                     context,
                     'medphoto',
@@ -131,7 +131,7 @@ class _EditAthleteLicenceImagesState extends State<EditAthleteLicenceImages> {
                       licenceController.editAthleteProfile(context);
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

@@ -16,12 +16,12 @@ class Discipline {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['created'] = this.created;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['description'] = this.description;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['created'] = created;
+    data['name'] = name;
+    data['image'] = image;
+    data['description'] = description;
     return data;
   }
 }

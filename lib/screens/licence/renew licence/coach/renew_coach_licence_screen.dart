@@ -34,11 +34,11 @@ class _RenewCoachLicenceScreenState extends State<RenewCoachLicenceScreen> {
         builder: (context, licenceController, child) {
       return Scaffold(
         backgroundColor: Color(0xfffafafa),
-        // appBar: AppBar(title: Text("Renouvellement Licence "+licenceController.createdFullLicence!.licence!.numLicences.toString()),
+        // appBar: AppBar(title: Text('تجديد الاجازة '+licenceController.createdFullLicence!.licence!.numLicences.toString()),
 
         // ),
         body: CustomScrollView(slivers: [
-          MyAppBar("Renouvellement Licence "+licenceController.createdFullLicence!.licence!.numLicences.toString(), context, false, licenceController, false, true),
+          MyAppBar('تجديد الاجازة '+licenceController.createdFullLicence!.licence!.numLicences.toString(), context, false, licenceController, false, true),
           SliverToBoxAdapter(
             child: Column(
               children: [
@@ -95,22 +95,22 @@ class _RenewCoachLicenceScreenState extends State<RenewCoachLicenceScreen> {
                     ),
                   ),
                 ),
-                // Text('Information de licence'),
+                // Text('معلومات الاجازة'),
                 SizedBox(
                   height: 1.h,
                 ),
-                GategorySelectInput('Categorie',
+                GategorySelectInput('العمر',
                     licenceController.selectedCategory, licenceController),
                 GradeSelectInput(
                     'Grade', licenceController.selectedGrade, licenceController),
                 DegreeSelectInput('Degree', licenceController.selectedDegree,
                     licenceController),
-                DisciplineSelectInput('Discipline',
+                DisciplineSelectInput('الرياضة',
                     licenceController.selectedDiscipline, licenceController),
                 WeightSelectInput(
-                    'Poids', licenceController.selectedWeight, licenceController),
+                    'الوزن', licenceController.selectedWeight, licenceController),
                 ClubSelectInput(
-                    'Club', licenceController.selectedClub, licenceController),
+                    'النادي', licenceController.selectedClub, licenceController),
                 SizedBox(
                   height: 3.h,
                 ),
@@ -128,7 +128,7 @@ class _RenewCoachLicenceScreenState extends State<RenewCoachLicenceScreen> {
               children: [
                 FloatingActionButton.extended(onPressed: (){
                   licenceController.renewCoachLicecne(context);
-                }, label: Text("Confirm"),
+                }, label: Text('تاكيد'),
                 
                 )
               ],

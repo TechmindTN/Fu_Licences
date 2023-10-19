@@ -27,9 +27,7 @@ late  TextEditingController addresseController;
  late TextEditingController cinController;
   @override
   void initState() {
-    
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
-    licenceController.initFields();
     prenomController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.lastName,);
     phoneController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.phone.toString(),);
   nomController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.firstName,);
@@ -38,9 +36,7 @@ late  TextEditingController addresseController;
  stateController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.state,);
   birthController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.birthday,);
  cinController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.cin,);
- 
 
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -48,12 +44,12 @@ late  TextEditingController addresseController;
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
-          // appBar: AppBar(title: Text("Modifier Licence "+licenceController.selectedFullLicence!.licence!.numLicences.toString()),
+          // appBar: AppBar(title: Text('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences.toString()),
          
           // ),
           body: CustomScrollView(
             slivers:[ 
-              MyAppBar("Modifier Licence "+licenceController.selectedFullLicence!.licence!.numLicences.toString(), context, false, licenceController, false, true),
+              MyAppBar('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences.toString(), context, false, licenceController, false, true),
               SliverToBoxAdapter(
                 child: Column(
 
@@ -95,45 +91,45 @@ late  TextEditingController addresseController;
               ),
             ),
             
-             TextInput('Prenom',prenomController),
-                  TextInput('Nom',nomController),
-                  TextInput('Telephone',phoneController),
+             TextInput('الاسم',prenomController),
+                  TextInput('اللقب',nomController),
+                  TextInput('رقم الهاتف',phoneController),
                   
-                  TextInput('CIN',cinController),
-                  SelectInput('Sexe',licenceController.selectedSex,licenceController,['Male','Femelle']),
-                  SelectInput('Governorat',licenceController.selectedState,licenceController,['Ariana'	,
-'Béja'	,
-'Ben Arous' ,
-'Bizerte'	,
-'Gabès'	,
-'Gafsa'	,
-'Jendouba'	,
-'Kairouan'	,
-'Kasserine'	,
-'Kébili'	,
-'Kef'	,
-'Mahdia'	,
-'Manouba'	,
-'Médenine'	,
-'Monastir'	,
-'Nabeul'	,
-'Sfax'	,
-'Sidi Bouzid'	,
-'Siliana'	,
-'Sousse'	,
-'Tataouine'	,
-'Tozeur'	,
-'Tunis'	,
-'Zaghouan']),
+                  TextInput('رقم الهوية',cinController),
+                  SelectInput('الجنس',licenceController.selectedSex,licenceController,['ذكر','انثى']),
+                  SelectInput('الولاية',licenceController.selectedState,licenceController,['اريانة'	,
+'باجة'	,
+'بن عروس' ,
+'بنزرت'	,
+'قابس'	,
+'قفصة'	,
+'جندوبة'	,
+'القيروان'	,
+'القصرين'	,
+'قبلي'	,
+'الكاف'	,
+'المهدية'	,
+'منوبة'	,
+'مدنين'	,
+'المنستير'	,
+'نابل'	,
+'صفاقس'	,
+'سيدي بوزيد'	,
+'سليانة'	,
+'سوسة'	,
+'تطاوين'	,
+'توزر'	,
+'تونس'	,
+'زغوان']),
 
 
 
-                  TextInput('Addresse',addresseController),
+                  TextInput('عنوان السكن',addresseController),
                                 SizedBox(height: 3.h,),
 
 FloatingActionButton.extended(onPressed: (){
   licenceController.editProfile(context,address: addresseController.text,phone: phoneController.text,firstName: nomController.text,lastName: prenomController.text,cin: cinController.text);
-}, label: Text('Confirmer')),
+}, label: Text('تاكيد')),
               SizedBox(height: 5.h,),
 
 Divider(color: Colors.black38,
@@ -141,24 +137,24 @@ thickness: 2,
 ),
               SizedBox(height: 5.h,),
 
-Text('Information de licence'),
+Text('معلومات الاجازة'),
 Text(licenceController.selectedFullLicence!.licence!.numLicences.toString()),
               SizedBox(height: 3.h,),
-                  Dateinput('Date de naissance',birthController,context,licenceController.selectedBirth,licenceController),
-                  // GategorySelectInput('Categorie',licenceController.selectedCategory,licenceController),
+                  Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController),
+                  // GategorySelectInput('العمر',licenceController.selectedCategory,licenceController),
                   GradeSelectInput('Grade',licenceController.selectedGrade,licenceController)	,
                   // DegreeSelectInput('Degree',licenceController.selectedDegree,licenceController),
-                  // DisciplineSelectInput('Discipline',licenceController.selectedDiscipline,licenceController)	,
+                  // DisciplineSelectInput('الرياضة',licenceController.selectedDiscipline,licenceController)	,
                 
-                  // WeightSelectInput('Poids',licenceController.selectedWeight,licenceController),
+                  // WeightSelectInput('الوزن',licenceController.selectedWeight,licenceController),
                  
                   if(licenceController.currentUser.club!.id==null)
-                  ClubSelectInput('Club',licenceController.selectedClub,licenceController),
+                  ClubSelectInput('النادي',licenceController.selectedClub,licenceController),
                                 SizedBox(height: 3.h,),
 
                   FloatingActionButton.extended(onPressed: (){
                     licenceController.editLicenceArbitrator(context);
-                  }, label: Text('Confirmer')),
+                  }, label: Text('تاكيد')),
               SizedBox(height: 3.h,),
 
             ],

@@ -1,26 +1,21 @@
 import 'package:dio/dio.dart';
-
 import 'apis.dart';
 
 class ClubNetwork{
   Apis apis = Apis();
-  addClub(data) async {
-    print(apis.baseUrl);
-    Response res = await apis.dio.post(apis.baseUrl + apis.addClub,
+  editClub(data,id) async {
+    Response res = await apis.dio.put("${apis.baseUrl}${apis.editClub}$id/",
+         options: Options(
+           headers: {"Authorization": Apis.tempToken}),
+        data: data
+    );   
+    return res;
+  }
 
-        //  options: Options(
-        //    headers: {"Authorization": Apis.tempToken}),
-        // data: {"username": "hama",
-        // "password":"hama1234"
-        // });
+  addClub(data) async {
+    Response res = await apis.dio.post(apis.baseUrl + apis.addClub,
         data: data
     );
-        //  data: {"username": "club",
-        // "password":"12345"
-        // });
-
-        
     return res;
-
   }
 }

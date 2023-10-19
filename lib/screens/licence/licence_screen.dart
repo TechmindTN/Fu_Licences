@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/router/routes.dart';
+import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_athlete_images_screen.dart';
 import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_licence_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_images_screen.dart';
@@ -29,6 +30,9 @@ class _LicenceScreenState extends State<LicenceScreen> {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
         return Scaffold(
+          // floatingActionButton: FloatingActionButton(onPressed: (){
+          //   Navigator.push(context, MaterialPageRoute(builder: (context)=>SelectRoleScreen()));
+          // }),
           // appBar: AppBar(title: Text("Licence "+licenceController.selectedFullLicence!.licence!.numLicences.toString()),
           // actions: [
           //   PopupMenuButton(itemBuilder: (context){
@@ -101,7 +105,7 @@ class _LicenceScreenState extends State<LicenceScreen> {
 
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Licence "+licenceController.selectedFullLicence!.licence!.numLicences!, context, false,licenceController,true,true),
+              MyAppBar("الاجازة "+licenceController.selectedFullLicence!.licence!.numLicences!, context, false,licenceController,true,true),
               SliverToBoxAdapter(
                 child: Column(
                         
@@ -136,25 +140,25 @@ class _LicenceScreenState extends State<LicenceScreen> {
                     ),
                   ),
                 ),
-                  LicenceRow('Nom',licenceController.selectedFullLicence!.profile!.lastName),
-                  LicenceRow('Prenom',licenceController.selectedFullLicence!.profile!.firstName),
-                  LicenceRow('Sexe',licenceController.selectedFullLicence!.profile!.sexe),
+                  LicenceRow('اللقب',licenceController.selectedFullLicence!.profile!.lastName),
+                  LicenceRow('الاسم',licenceController.selectedFullLicence!.profile!.firstName),
+                  LicenceRow('الجنس',licenceController.selectedFullLicence!.profile!.sexe),
                         
-                  LicenceRow('Telephone',licenceController.selectedFullLicence!.profile!.phone),
-                  LicenceRow('Addresse',licenceController.selectedFullLicence!.profile!.address),
-                  LicenceRow('Role',licenceController.selectedFullLicence!.licence!.role),
-                  LicenceRow('Age',licenceController.selectedFullLicence!.licence!.categorie),
-                  LicenceRow('CIN',licenceController.selectedFullLicence!.profile!.cin),
-                  LicenceRow('Naissance',licenceController.selectedFullLicence!.profile!.birthday.toString()),
-                  LicenceRow('Club',licenceController.selectedFullLicence!.licence!.club),
-                  // LicenceRow('Ligue',licenceController.selectedFullLicence!.licence!.),
-                  LicenceRow('Discipline',licenceController.selectedFullLicence!.licence!.discipline),
+                  LicenceRow('رقم الهاتف',licenceController.selectedFullLicence!.profile!.phone),
+                  LicenceRow('عنوان السكن',licenceController.selectedFullLicence!.profile!.address),
+                  LicenceRow('نوع الاجازة',licenceController.selectedFullLicence!.licence!.role),
+                  LicenceRow('العمر',licenceController.selectedFullLicence!.licence!.categorie),
+                  LicenceRow('رقم الهوية',licenceController.selectedFullLicence!.profile!.cin),
+                  LicenceRow('تاريخ الولادة',licenceController.selectedFullLicence!.profile!.birthday.toString()),
+                  LicenceRow('النادي',licenceController.selectedFullLicence!.licence!.club),
+                  // LicenceRow('الولاية',licenceController.selectedFullLicence!.licence!.),
+                  LicenceRow('الرياضة',licenceController.selectedFullLicence!.licence!.discipline),
                   // LicenceRow('Nationalite',licenceController.selectedFullLicence!.profile!.),
                   LicenceRow('Degree',licenceController.selectedFullLicence!.licence!.degree),
                   LicenceRow('Grade',licenceController.selectedFullLicence!.licence!.grade),
-                  LicenceRow('Saison',licenceController.selectedFullLicence!.licence!.seasons),
+                  LicenceRow('الموسم',licenceController.selectedFullLicence!.licence!.seasons),
                   
-                  LicenceRow('Etat',licenceController.selectedFullLicence!.licence!.state),
+                  LicenceRow('الحالة',licenceController.selectedFullLicence!.licence!.state),
                   RolePhotos(licenceController.selectedFullLicence!,context,licenceController)
                 ],
                           ),
@@ -169,13 +173,13 @@ class _LicenceScreenState extends State<LicenceScreen> {
               children: [
                 ElevatedButton(onPressed: (){
                   licenceController.validateLicence(context);
-                }, child: Text("Valider"),
+                }, child: Text("قبول"),
                 style: ButtonStyle(
 
     backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
   ),
                 ),
-                 ElevatedButton(onPressed: (){}, child: Text("Refuser"),
+                 ElevatedButton(onPressed: (){}, child: Text("رفض"),
                  style: ButtonStyle(
     backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
   ),

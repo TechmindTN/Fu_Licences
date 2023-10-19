@@ -59,7 +59,7 @@ class _SeasonListScreenState extends State<SeasonListScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Saison", context, false,licenceController,false,true),
+              MyAppBar('الموسم', context, false,licenceController,false,true),
               // SliverToBoxAdapter(child: Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
               // children: [
@@ -80,10 +80,10 @@ class _SeasonListScreenState extends State<SeasonListScreen> {
           //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //         children: [
           //           Text("Id"),
-          //             Text("Nom"),
-          //             Text("Cree le"),
+          //             Text('الاسم'),
+          //             Text('اضيف يوم'),
           //             Text("Active"),
-          //             Text("Actions")
+          //             Text('الاجراءات')
           //         ],
           //       ),
           //     ),
@@ -115,10 +115,10 @@ class _SeasonListScreenState extends State<SeasonListScreen> {
                     columns: [ 
                       DataColumn(label: Text(''),),
                       // DataColumn(label: Text('logo'),),                     
-                      DataColumn(label: Text('saison')),   
-                      DataColumn(label: Text('Activee')),                   
-                      // DataColumn(label: Text('Age Maximale')),                     
-                      DataColumn(label: Text('Actions')),
+                      DataColumn(label: Text('الموسم')),   
+                      DataColumn(label: Text('نشط')),                   
+                      // DataColumn(label: Text('العمر الاقصى')),                     
+                      DataColumn(label: Text('الاجراءات')),
                       ],
                     // actions: [
                     //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))

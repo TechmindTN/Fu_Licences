@@ -3,15 +3,17 @@ import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/athlete/add_athlete/add_athlete_screen.dart';
 import 'package:fu_licences/screens/auth/login_Screen.dart';
 import 'package:fu_licences/screens/club/club_screen.dart';
-import 'package:fu_licences/screens/home/bottom_bar.dart';
+import 'package:fu_licences/screens/club/edit_club_screen.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
+import 'package:fu_licences/screens/licence/arbitrator_licence_screen.dart';
+import 'package:fu_licences/screens/licence/athlete_licence_screen.dart';
+import 'package:fu_licences/screens/licence/coach_licence_screen.dart';
 import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_athlete_images_screen.dart';
 import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_licence_screen.dart';
 import 'package:fu_licences/screens/licence/filtered_licences_list.dart';
 import 'package:fu_licences/screens/licence/licence_list_screen%20copy.dart';
-import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/arbitre/renew_arbitrator_licence_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_images_screen.dart';
 import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_licence_screen.dart';
@@ -20,7 +22,6 @@ import 'package:fu_licences/screens/parameters/parameters_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
-
 import '../screens/arbitre/add_arbitre_screen.dart';
 import '../screens/club/add_club_screen.dart';
 import '../screens/club/club_list_screen.dart';
@@ -29,8 +30,6 @@ import '../screens/licence/addlicence/upload_arbitre_images_screen.dart';
 import '../screens/licence/addlicence/upload_coach_images_screen.dart';
 import '../screens/licence/edit_licence/arbitre/edit_arbitrator_licence_screen.dart';
 import '../screens/licence/edit_licence/arbitre/edit_arbitre_images_screen.dart';
-// import '../screens/licence/edit_licence/coach/edit_coach_licence_screen.dart';
-// import '../screens/licence/edit_licence/coach/edit_coach_images_screen.dart';
 import '../screens/licence/edit_licence/coach/edit_coach_images_screen.dart';
 import '../screens/licence/edit_licence/coach/edit_coach_licence_screen.dart';
 import '../screens/licence/licence_screen.dart';
@@ -69,14 +68,21 @@ class Pages{
       GoRoute(path: Routes.ClubListScreen,
       builder: (context, state) => ClubListScreen(),
       ),
+            GoRoute(path: Routes.EditClubScreen,
+      builder: (context, state) => EditClubScreen(),
+      ),
       GoRoute(path: Routes.LicenceListScreen,
       builder: (context, state) => LicenceListScreenCopy(),
       ),
-      // GoRoute(path: Routes.LicenceListScreen,
-      // builder: (context, state) => LicenceListScreen(),
-      // ),
-      // 
-      // 
+      GoRoute(path: Routes.AthleteLicenceListScreen,
+      builder: (context, state) => AthleteLicenceListScreenCopy(),
+      ),
+      GoRoute(path: Routes.ArbitratorLicenceListScreen,
+      builder: (context, state) => ArbitratorLicenceListScreenCopy(),
+      ),
+      GoRoute(path: Routes.CoachLicenceListScreen,
+      builder: (context, state) => CoachLicenceListScreenCopy(),
+      ),
       GoRoute(path: Routes.AddAthleteLicenceScreen,
       builder: (context, state) => AddAthleteScreen(),
       ),
@@ -95,7 +101,6 @@ class Pages{
       GoRoute(path: Routes.EditArbitratorLicenceScreen,
       builder: (context, state) => EditArbitratorLicenceScreen(),
       ),
-      
       GoRoute(path: Routes.EditCoachImagesScreen,
       builder: (context, state) => EditCoachLicenceImages(),
       ),
@@ -195,9 +200,5 @@ class Pages{
       GoRoute(path: Routes.ClubScreen,
       builder: (context, state) =>ClubScreen(),
       ),
-      
-      // GoRoute(path: Routes.LicenceScreen,
-      // builder: (context, state) => LicenceScreen(),
-      // ),
   ]);
 }

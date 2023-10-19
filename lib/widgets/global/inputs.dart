@@ -71,7 +71,7 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
         dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: "الرجاء اختيار "+txt,
               
         ),
     ),
@@ -81,17 +81,16 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
     // },
     onChanged: (value){
       selected=value;
-      if(txt=="Sexe"){
+      if(txt=="الجنس"){
         licenceController.selectedSex=value!;
       }
-      else if(txt=="Governorat"){
+      else if(txt=="الولاية"){
           licenceController.selectedState=value!;
         }
-        else if(txt=="Etat"){
+        else if(txt=="الحالة"){
           licenceController.selectedStatus=value!;
         }
       
-      print(selected);
       
     },
     selectedItem: selected,
@@ -146,7 +145,7 @@ SeasonSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: 'الرجاء اختيار '+txt,
               
         ),
     ),
@@ -157,7 +156,6 @@ SeasonSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedSeason=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -202,7 +200,7 @@ RoleSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: 'الرجاء اختيار '+txt,
               
         ),
     ),
@@ -213,7 +211,6 @@ RoleSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.filteredRole=value!;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -258,7 +255,7 @@ GategorySelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: 'الرجاء اختيار '+txt,
               
         ),
     ),
@@ -269,7 +266,6 @@ GategorySelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedCategory=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -314,7 +310,7 @@ LigueSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: 'الرجاء اختيار '+txt,
               
         ),
     ),
@@ -325,7 +321,6 @@ LigueSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedLigue=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -369,7 +364,7 @@ DegreeSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: 'الرجاء اختيار '+txt,
               
         ),
     ),
@@ -380,7 +375,6 @@ DegreeSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedDegree=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -425,7 +419,7 @@ WeightSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: 'الرجاء اختيار '+txt,
               
         ),
     ),
@@ -436,7 +430,6 @@ WeightSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedWeight=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -481,7 +474,7 @@ ClubSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: 'الرجاء اختيار '+txt,
               
         ),
     ),
@@ -492,7 +485,6 @@ ClubSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedClub=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -537,7 +529,7 @@ DisciplineSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: 'الرجاء اختيار '+txt,
               
         ),
     ),
@@ -548,7 +540,6 @@ DisciplineSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedDiscipline=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -594,7 +585,7 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: 'الرجاء اختيار '+txt,
               
         ),
     ),
@@ -605,7 +596,6 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedGrade=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -630,7 +620,6 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
              selected=date;
              control.text=date!.year.toString()+"-"+date.month.toString()+"-"+date.day.toString();
              licenceController.notify();
-            print(date);
           },
           child: Container(
             width: 50.w,
@@ -669,7 +658,7 @@ SearchInput(LicenceProvider licenceController,numControl,context){
         },
         controller: numControl,
           decoration: InputDecoration.collapsed(
-        hintText: 'Rechercher',
+        hintText: 'بحث',
       ),
       // trol,
       ),
@@ -741,11 +730,9 @@ Widget AuthInput(txt,control,hide){
            border: InputBorder.none,
     //        suffixIcon: trailing??(((widget.hint=="Password")||(widget.hint=="Confirm Password"))?widget.hide?IconButton(icon:Icon(Icons.remove_red_eye,), onPressed: () { 
     //         hide=false;
-    // print("changed "+widget.hide.toString()+" "+(!widget.hide).toString());
     // authController.notifyListeners();
     //         },):IconButton(icon:Icon(Icons.lock,), onPressed: () { 
     //           hide=true;
-    // print("changed "+widget.hide.toString()+" "+(!widget.hide).toString());
     // authController.notifyListeners();
     //          // controller.hideNShow(hide);
     //         },):null)

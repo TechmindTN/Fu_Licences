@@ -1,6 +1,8 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
+import 'package:fu_licences/datasources/arbitre_licence_datasource.dart';
+import 'package:fu_licences/datasources/athlete_licence_datasource.dart';
 import 'package:fu_licences/models/full_licence.dart';
 import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
@@ -16,12 +18,12 @@ import '../../datasources/club_datasource.dart';
 import '../../datasources/licence_datasource.dart';
 import '../../widgets/clubs/club_widgets.dart';
 
-class LicenceListScreenCopy extends StatefulWidget{
+class ArbitratorLicenceListScreenCopy extends StatefulWidget{
   @override
-  State<LicenceListScreenCopy> createState() => _LicenceListScreenCopyState();
+  State<ArbitratorLicenceListScreenCopy> createState() => _ArbitratorLicenceListScreenCopyState();
 }
 
-class _LicenceListScreenCopyState extends State<LicenceListScreenCopy> {
+class _ArbitratorLicenceListScreenCopyState extends State<ArbitratorLicenceListScreenCopy> {
   late LicenceProvider licenceController;
     // late ClubProvider clubController;
 late DataTableSource dataSource;
@@ -79,7 +81,7 @@ late DataTableSource dataSource;
 
   @override
   Widget build(BuildContext context) {
-    dataSource=LicenceDataSource(licenceController,context);
+    dataSource=ArbitreLicenceDataSource(licenceController,context);
     //  if(licenceController.added){
     //   final snackBar=MySnackBar(title: 'تمت الاضافة بنجاح',msg: 'تمت اضافة الاجازة بنجاح',state: ContentType.success);
     //   ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
@@ -108,7 +110,7 @@ late DataTableSource dataSource;
             //       child: Center(child: CircularProgressIndicator(),)):Column(
             //       children: [
                     
-            //         // for(FullLicence fullLicence in licenceController.fullLicences)
+            //         // for(FullLicence fullLicence in licenceController.fullArbitratorLicences)
             //         // Center(child: LicenceItem(fullLicence,licenceController,context)),
             //       ],
             //     ),
@@ -119,7 +121,7 @@ late DataTableSource dataSource;
              builder: (context,snaphot) {
               if(snaphot.connectionState==ConnectionState.done){
                     
-                licenceController.licenceChecks=List.generate(licenceController.fullLicences.length,(index)=>false);
+                licenceController.licenceChecks=List.generate(licenceController.fullArbitratorLicences.length,(index)=>false);
                 // print('club length is '+licenceController.parameters!.clubs!.length.toString());
                  return SliverToBoxAdapter(
               child: Padding(

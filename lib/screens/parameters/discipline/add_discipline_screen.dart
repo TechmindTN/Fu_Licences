@@ -44,7 +44,7 @@ class _AddDisciplineScreenState extends State<AddDisciplineScreen> {
         body: CustomScrollView(
 
           slivers:[
-            MyAppBar("Ajouter une discipline", context, false, licenceController, false, true),
+            MyAppBar("اضافة رياضة", context, false, licenceController, false, true),
             SliverToBoxAdapter(child: SizedBox(height: 3.h),),
             SliverToBoxAdapter(
               child: Center(
@@ -52,7 +52,7 @@ class _AddDisciplineScreenState extends State<AddDisciplineScreen> {
               width: 40.w,
               child: Column(
                 children: [
-                  TextInput("Discipline", disciplineController)          
+                  TextInput('الرياضة', disciplineController)          
                 ],
               ),
             ),
@@ -73,8 +73,8 @@ class _AddDisciplineScreenState extends State<AddDisciplineScreen> {
                      
                       if ((disciplineController.text == null)||(disciplineController.text == "")) {
                         final snackBar = MySnackBar(
-                            title: "Champs Obligatoires",
-                            msg: "Merci de remplir tous les champs svp",
+                            title: 'خانات اجبارية',
+                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
                             state: ContentType.warning);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
@@ -86,7 +86,7 @@ class _AddDisciplineScreenState extends State<AddDisciplineScreen> {
                         // GoRouter.of(context).go(Routes.DisciplineListScreen);
                       }
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

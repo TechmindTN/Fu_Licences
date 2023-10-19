@@ -5,7 +5,6 @@ import 'package:fu_licences/models/grade.dart';
 import 'package:fu_licences/models/ligue.dart';
 import 'package:fu_licences/models/role.dart';
 import 'package:fu_licences/models/season.dart';
-
 import 'category.dart';
 import 'weight.dart';
 

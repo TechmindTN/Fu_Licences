@@ -46,7 +46,7 @@ class _ParametersScreenState extends State<ParametersScreen> {
     //   //  Future.delayed(Duration(seconds: 3), () => 
     //    {
     //     if(licenceController.added){
-    //   final snackBar=MySnackBar(title: "Ajout de licence succees",msg: "La licence a ete ajoutee avec succees",state: ContentType.success);
+    //   final snackBar=MySnackBar(title: 'تمت الاضافة بنجاح',msg: 'تمت اضافة الاجازة بنجاح',state: ContentType.success);
     //   ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
     //   licenceController.added=false;
     // }
@@ -61,7 +61,7 @@ class _ParametersScreenState extends State<ParametersScreen> {
   @override
   Widget build(BuildContext context) {
     //  if(licenceController.added){
-    //   final snackBar=MySnackBar(title: "Ajout de licence succees",msg: "La licence a ete ajoutee avec succees",state: ContentType.success);
+    //   final snackBar=MySnackBar(title: 'تمت الاضافة بنجاح',msg: 'تمت اضافة الاجازة بنجاح',state: ContentType.success);
     //   ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
     //   licenceController.added=false;
     // }
@@ -74,7 +74,7 @@ class _ParametersScreenState extends State<ParametersScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Parameters", context, true,licenceController,false,false),
+              MyAppBar('الاعدادات', context, true,licenceController,false,false),
               // SliverToBoxAdapter(child: Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
               // children: [
@@ -101,15 +101,15 @@ class _ParametersScreenState extends State<ParametersScreen> {
                 // }, 
                 delegate: SliverChildListDelegate(
                   [
-                    ParamCard("Ligue", context, licenceController),
-                    ParamCard("Categorie", context, licenceController),
+                    ParamCard('الولاية', context, licenceController),
+                    ParamCard('العمر', context, licenceController),
                     ParamCard("Grade", context, licenceController),
                     ParamCard("Degree", context, licenceController),
-                    ParamCard("Discipline", context, licenceController),
-                    ParamCard("Poids", context, licenceController),
-                    ParamCard("Saison", context, licenceController),
-                    // ParamCard("Ligue", context, licenceController),
-                    // ParamCard("Ligue", context, licenceController),
+                    ParamCard('الرياضة', context, licenceController),
+                    ParamCard('الوزن', context, licenceController),
+                    ParamCard('الموسم', context, licenceController),
+                    // ParamCard('الولاية', context, licenceController),
+                    // ParamCard('الولاية', context, licenceController),
                   ]
                ),);
              }

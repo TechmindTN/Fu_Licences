@@ -49,9 +49,10 @@ class _LigueListScreenState extends State<LigueListScreen> {
   Widget build(BuildContext context) {
     paramController.ligueChecks=List.generate(licenceController.parameters!.ligues!.length,(index)=>false);
     dataSource=LigueDataSource(licenceController,context,paramController);
-   Ligue ligue=Ligue();
+  //  Ligue ligue=Ligue();
+  print("ligue length "+licenceController.parameters!.ligues!.length.toString());
    //ligue.
-    return Consumer<ParameterProvider>(
+    return Consumer<LicenceProvider>(
       builder: (context,clubController,child) {
         return Scaffold(
           drawer: MyDrawer(licenceController, context),
@@ -60,7 +61,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Ligue", context, false,licenceController,false,true),
+              MyAppBar('الولاية', context, false,licenceController,false,true),
               // SliverToBoxAdapter(child: Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
               // children: [
@@ -83,9 +84,9 @@ class _LigueListScreenState extends State<LigueListScreen> {
           //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //         children: [
           //           Text("Id"),
-          //             Text("Nom"),
-          //             Text("Cree le"),
-          //             Text("Actions")
+          //             Text('الاسم'),
+          //             Text('اضيف يوم'),
+          //             Text('الاجراءات')
           //         ],
           //       ),
           //     ),
@@ -95,6 +96,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
             future: licenceController.getParameters(),
              builder: (context,snaphot) {
               if(snaphot.connectionState==ConnectionState.done){
+                print("Got Ligues");
 //Desktop View
               return SliverToBoxAdapter(
               child: Padding(
@@ -118,9 +120,9 @@ class _LigueListScreenState extends State<LigueListScreen> {
                     columns: [ 
                       DataColumn(label: Text(''),),
                       // DataColumn(label: Text('logo'),),                     
-                      DataColumn(label: Text('nom')),                     
-                      // DataColumn(label: Text('ligue')),                     
-                      DataColumn(label: Text('Actions')),
+                      DataColumn(label: Text('اللقب')),                     
+                      // DataColumn(label: Text('الولاية')),                     
+                      DataColumn(label: Text('الاجراءات')),
                       ],
                     // actions: [
                     //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))
@@ -164,15 +166,56 @@ class _LigueListScreenState extends State<LigueListScreen> {
               //  }),);
              }
              else{
-           return SliverToBoxAdapter(child: Container(
-              height: 40.h,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(child: CircularProgressIndicator()),
-                ],
+          //     print("Didn't get ligues");
+          //  return SliverToBoxAdapter(child: Container(
+          //     height: 40.h,
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         Center(child: CircularProgressIndicator()),
+          //       ],
+          //     ),
+          //   ));
+          return SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal:30.0,vertical: 8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    // border: Border.all(color: Colors.black)
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: [BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+
+                    )]
+                  ),
+                  child: PaginatedDataTable(
+                    sortColumnIndex: licenceController.currentSortColumn,
+                    sortAscending: licenceController.isAscending,
+                    columnSpacing: 0,
+                    rowsPerPage: 10,
+                    // header:  LicenceListHeader(licenceController,numControl,context),
+                    columns: [ 
+                      DataColumn(label: Text(''),),
+                      // DataColumn(label: Text('logo'),),                     
+                      DataColumn(label: Text('اللقب')),                     
+                      // DataColumn(label: Text('الولاية')),                     
+                      DataColumn(label: Text('الاجراءات')),
+                      ],
+                    // actions: [
+                    //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))
+                    // ],
+                    
+                    arrowHeadColor: Colors.blue,
+                    availableRowsPerPage: [10,20,50,100],
+              
+                    showCheckboxColumn: true,
+                    showFirstLastButtons: true,
+                     source: dataSource)
+                  ),
               ),
-            ));}
+            );
+            }
              })
               ]
             

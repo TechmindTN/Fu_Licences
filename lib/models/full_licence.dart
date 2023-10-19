@@ -2,7 +2,6 @@ import 'package:fu_licences/models/arbitrator.dart';
 import 'package:fu_licences/models/coach.dart';
 import 'package:fu_licences/models/profile.dart';
 import 'package:fu_licences/models/user.dart';
-
 import 'athlete.dart';
 import 'licence.dart';
 
@@ -13,7 +12,6 @@ class FullLicence{
   Athlete? athlete;
   Arbitrator? arbitrator;
   Coach? coach;
-  
 
   FullLicence({
     this.profile,

@@ -72,8 +72,8 @@ class _AddDegreeScreenState extends State<AddDegreeScreen> {
                      
                       if ((degreeController.text == null)||(degreeController.text == "")) {
                         final snackBar = MySnackBar(
-                            title: "Champs Obligatoires",
-                            msg: "Merci de remplir tous les champs svp",
+                            title: 'خانات اجبارية',
+                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
                             state: ContentType.warning);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
@@ -85,7 +85,7 @@ class _AddDegreeScreenState extends State<AddDegreeScreen> {
                         // GoRouter.of(context).go(Routes.DegreeListScreen);
                       }
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

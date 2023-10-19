@@ -32,10 +32,10 @@ class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceIma
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
       return Scaffold(
-        // appBar: AppBar(title: Text("Renouvellement Licence"+licenceController.selectedFullLicence!.licence!.numLicences!),),
+        // appBar: AppBar(title: Text('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
         body: CustomScrollView(
           slivers:[
-            MyAppBar("Renouvellement Licence"+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+            MyAppBar('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
              
              
             SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
@@ -43,14 +43,14 @@ class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceIma
 
                 delegate: SliverChildListDelegate([
                   ArbitreImageEditWidget(
-                    'Identite',
+                    'صورة الهوية',
                     licenceController,
                     context,
                     'idphoto',
                     licenceController.createdFullLicence!.arbitrator!.identityPhoto,1
                   ),
                   ArbitreImageEditWidget(
-                      'Assurance',
+                      'صورة التامين',
                       licenceController,
                       context,
                       'photo',
@@ -120,7 +120,7 @@ class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceIma
                       GoRouter.of(context).push(Routes.RenewArbitratorLicenceScreen);
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>RenewLicenceScreen()));
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

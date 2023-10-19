@@ -45,7 +45,7 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Licences Filtree", context, false, licenceController, false,true),
+              MyAppBar("الاجازات المصفاة", context, false, licenceController, false,true),
              (licenceController.filteredFullLicences.length>0)?
                 SliverGrid.builder(
               
@@ -61,7 +61,7 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
               height: 40.h,
               child: Column(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Center(child: Text('La liste est vide merci de changer vos filtres'),),
+                  Center(child: Text('قائمة الاجازات المصفاة فارغة الرجاء تعديل اعدادات التصفية'),),
                 ],
               ),
             ),

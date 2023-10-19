@@ -31,10 +31,10 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
       return Scaffold(
-        // appBar: AppBar(title: Text("Renouvellement Licence"+licenceController.selectedFullLicence!.licence!.numLicences!),),
+        // appBar: AppBar(title: Text('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
         body: CustomScrollView(
           slivers:[
-            MyAppBar("Renouvellement Licence"+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+            MyAppBar('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
              
              
             SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
@@ -42,20 +42,20 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
 
                 delegate: SliverChildListDelegate([
                   AthleteImageEditWidget(
-                    'Identite',
+                    'صورة الهوية',
                     licenceController,
                     context,
                     'idphoto',
                     licenceController.createdFullLicence!.athlete!.identityPhoto,1
                   ),
                   AthleteImageEditWidget(
-                      'Assurance',
+                      'صورة التامين',
                       licenceController,
                       context,
                       'photo',
                       licenceController.createdFullLicence!.athlete!.photo,2),
                   AthleteImageEditWidget(
-                      'Medicale',
+                      'الصورة الطبية',
                       licenceController,
                       context,
                       'medphoto',
@@ -119,7 +119,7 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
                       GoRouter.of(context).push(Routes.RenewAthleteLicenceScreen);
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>RenewLicenceScreen()));
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

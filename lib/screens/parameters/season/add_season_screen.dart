@@ -43,7 +43,7 @@ class _AddSeasonScreenState extends State<AddSeasonScreen> {
         body: CustomScrollView(
 
           slivers:[
-            MyAppBar("Ajouter une season", context, false, licenceController, false, true),
+            MyAppBar("اضافة موسم", context, false, licenceController, false, true),
             SliverToBoxAdapter(child: SizedBox(height: 3.h),),
             SliverToBoxAdapter(
               child: Center(
@@ -51,7 +51,7 @@ class _AddSeasonScreenState extends State<AddSeasonScreen> {
               width: 40.w,
               child: Column(
                 children: [
-                  TextInput("Season", seasonController)          
+                  TextInput("الموسم", seasonController)          
                 ],
               ),
             ),
@@ -72,8 +72,8 @@ class _AddSeasonScreenState extends State<AddSeasonScreen> {
                      
                       if ((seasonController.text == null)||(seasonController.text == "")) {
                         final snackBar = MySnackBar(
-                            title: "Champs Obligatoires",
-                            msg: "Merci de remplir tous les champs svp",
+                            title: 'خانات اجبارية',
+                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
                             state: ContentType.warning);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
@@ -85,7 +85,7 @@ class _AddSeasonScreenState extends State<AddSeasonScreen> {
                         // GoRouter.of(context).go(Routes.SeasonListScreen);
                       }
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

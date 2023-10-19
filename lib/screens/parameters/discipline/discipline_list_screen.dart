@@ -59,7 +59,7 @@ class _DisciplineListScreenState extends State<DisciplineListScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Disciplines", context, false,licenceController,false,true),
+              MyAppBar("الرياضات", context, false,licenceController,false,true),
               // SliverToBoxAdapter(child: Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
               // children: [
@@ -80,10 +80,10 @@ class _DisciplineListScreenState extends State<DisciplineListScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Id"),
-                      Text("Nom"),
-                      Text("Description"),
-                      Text("Cree le"),
-                      Text("Actions")
+                      Text('الاسم'),
+                      Text("الوصف"),
+                      Text('اضيف يوم'),
+                      Text('الاجراءات')
                   ],
                 ),
               ),
@@ -115,10 +115,10 @@ class _DisciplineListScreenState extends State<DisciplineListScreen> {
                     columns: [ 
                       DataColumn(label: Text(''),),
                       // DataColumn(label: Text('logo'),),                     
-                      DataColumn(label: Text('nom')),   
-                      DataColumn(label: Text('descriptions')),                   
-                      // DataColumn(label: Text('Age Maximale')),                     
-                      DataColumn(label: Text('Actions')),
+                      DataColumn(label: Text('اللقب')),   
+                      DataColumn(label: Text('الوصف')),                   
+                      // DataColumn(label: Text('العمر الاقصى')),                     
+                      DataColumn(label: Text('الاجراءات')),
                       ],
                     // actions: [
                     //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))

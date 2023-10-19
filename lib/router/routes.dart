@@ -1,21 +1,23 @@
+ // ignore_for_file: constant_identifier_names
+
  class Routes{
   static const String Home="/";
     static const String Splash="/splash";
-
   static const String Login="/login";
-
   static const String LicenceListScreen="/licence_list";
+    static const String AthleteLicenceListScreen="/athlete_licence_list";
+    static const String ArbitratorLicenceListScreen="/arbitrator_licence_list";
+    static const String CoachLicenceListScreen="/coach_licence_list";
+
   static const String LicenceScreen="/licence";
   static const String ClubScreen="/club";
-
   static const String AddProfileScreen="/add_licence_profile";
   static const String AddAthleteLicenceScreen="/add_licence_athlete";
   static const String AddCoachLicenceScreen="/add_licence_coach";
   static const String AddArbitreLicenceScreen="/add_licence_arbitre";
   static const String EditAthleteLicenceScreen="/edit_athlete_licence";
-
   static const String ClubListScreen="/club_list";
-
+  static const String EditClubScreen="/edit_club_list";
   static const String AddClubScreen="/add_club_screen";
   static const String RenewAthleteImages="/renew_athlete_images";
   static const String RenewAthleteLicenceScreen="/renew_athlete_licence";
@@ -28,10 +30,8 @@
     static const String DisciplineListScreen="/discipline_list_screen";
     static const String WeightListScreen="/weight_list_screen";
     static const String SeasonListScreen="/season_list_screen";
-
     static const String RenewArbitratorImagesScreen="/renew_arbitrator_images";
     static const String RenewCoachLicenceScreen="/renew_coach_liccence";
-
     static const String RenewArbitratorLicenceScreen="/renew_arbitrator_liccence";
   static const String RenewCoachImagesScreen="/renew_coach_images";
   static const String EditAthleteImagesScreen="/edit_athlete_images";
@@ -42,7 +42,6 @@
   static const String UploadAthleteImagesScreen="/upload_athlete_images";
   static const String UploadCoachImagesScreen="/upload_coach_images";
   static const String UploadArbitreImagesScreen="/upload_arbitre_images";
-
   static const String FilteredLicencesScreen="/filtered_licences";
   static const String AddLigueScreen="/add_ligue";
     static const String AddDegreeScreen="/add_degree";
@@ -51,6 +50,4 @@
   static const String AddCategoryScreen="/add_category";
   static const String AddDisciplineScreen="/add_discipline";
   static const String AddSeasonScreen="/add_season";
-
-
 }

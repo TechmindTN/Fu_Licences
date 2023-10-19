@@ -30,10 +30,10 @@ class _EditArbitratorLicenceImagesState extends State<EditArbitratorLicenceImage
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
       return Scaffold(
-        // appBar: AppBar(title: Text("Modifier licence "+licenceController.selectedFullLicence!.licence!.numLicences!),),
+        // appBar: AppBar(title: Text('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
         body: CustomScrollView(
           slivers:[
-            MyAppBar("Modifier licence "+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+            MyAppBar('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
             
             
             SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
@@ -41,14 +41,14 @@ class _EditArbitratorLicenceImagesState extends State<EditArbitratorLicenceImage
 
                 delegate: SliverChildListDelegate([
                   ArbitreImageEditWidget(
-                    'Profile',
+                    'صورة الحساب',
                     licenceController,
                     context,
                     'profilePhoto',
                     licenceController
                         .createdFullLicence!.profile!.profilePhoto,0),
                 ArbitreImageEditWidget(
-                  'Identite',
+                  'صورة الهوية',
                   licenceController,
                   context,
                   'idphoto',
@@ -127,7 +127,7 @@ class _EditArbitratorLicenceImagesState extends State<EditArbitratorLicenceImage
                       licenceController.editArbitratorImages(context);
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

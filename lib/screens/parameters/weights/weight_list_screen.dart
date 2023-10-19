@@ -59,7 +59,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Poids", context, false,licenceController,false,true),
+              MyAppBar('الوزن', context, false,licenceController,false,true),
               // SliverToBoxAdapter(child: Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
               // children: [
@@ -83,8 +83,8 @@ class _WeightListScreenState extends State<WeightListScreen> {
           //             Text("Masse"),
           //             Text("Min"),
           //             Text("Max"),
-          //             Text("Cree le"),
-          //             Text("Actions")
+          //             Text('اضيف يوم'),
+          //             Text('الاجراءات')
           //         ],
           //       ),
           //     ),
@@ -117,10 +117,10 @@ class _WeightListScreenState extends State<WeightListScreen> {
                     columns: [ 
                       DataColumn(label: Text(''),),
                       // DataColumn(label: Text('logo'),),                     
-                      DataColumn(label: Text('nom')),   
-                      DataColumn(label: Text('Age Minimale')),                   
-                      DataColumn(label: Text('Age Maximale')),                     
-                      DataColumn(label: Text('Actions')),
+                      DataColumn(label: Text('اللقب')),   
+                      DataColumn(label: Text('العمر الادنى')),                   
+                      DataColumn(label: Text('العمر الاقصى')),                     
+                      DataColumn(label: Text('الاجراءات')),
                       ],
                     // actions: [
                     //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))

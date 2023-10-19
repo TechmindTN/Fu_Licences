@@ -11,9 +11,10 @@ import 'package:fu_licences/widgets/parameter/parameter_widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:fu_licences/datasources/category_datasource.dart';
 
 import '../../../controllers/parameters_controller.dart';
-import '../../../datasources/category_datasource.dart';
+// import '../../../datasources/category_datasource.dart';
 import '../../../models/category.dart';
 import '../../../models/ligue.dart';
 
@@ -62,7 +63,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Categorie d'age", context, false,licenceController,false,true),
+              MyAppBar("العمر", context, false,licenceController,false,true),
               // SliverToBoxAdapter(child: Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
               // children: [
@@ -83,11 +84,11 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
           //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //         children: [
           //           Text("Id"),
-          //             Text("Categorie"),
-          //             Text("Age Minimale"),
-          //             Text("Age Maximale"),
-          //             Text("Cree le"),
-          //             Text("Actions")
+          //             Text('العمر'),
+          //             Text('العمر الادنى'),
+          //             Text('العمر الاقصى'),
+          //             Text('اضيف يوم'),
+          //             Text('الاجراءات')
           //         ],
           //       ),
           //     ),
@@ -120,10 +121,10 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
                     columns: [ 
                       DataColumn(label: Text(''),),
                       // DataColumn(label: Text('logo'),),                     
-                      DataColumn(label: Text('nom')),   
-                      DataColumn(label: Text('Age Minimale')),                   
-                      DataColumn(label: Text('Age Maximale')),                     
-                      DataColumn(label: Text('Actions')),
+                      DataColumn(label: Text('اللقب')),   
+                      DataColumn(label: Text('العمر الادنى')),                   
+                      DataColumn(label: Text('العمر الاقصى')),                     
+                      DataColumn(label: Text('الاجراءات')),
                       ],
                     // actions: [
                     //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))

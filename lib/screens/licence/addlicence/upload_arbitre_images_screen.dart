@@ -32,13 +32,13 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
           // appBar: AppBar(title: Text('Coach Images'),),
           body: CustomScrollView(
             slivers:[ 
-              MyAppBar("Images d'arbitre", context, false, licenceController, false, true),
+              MyAppBar("صور الحكم", context, false, licenceController, false, true),
                 SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
             SliverGrid(
 
                 delegate: SliverChildListDelegate([
-                  ArbitreImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
-                  ArbitreImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.arbitrator!.identityPhoto,1),
+                  ArbitreImageUploadWidget('صورة الحساب',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
+                  ArbitreImageUploadWidget('صورة الهوية',licenceController,context,'idphoto',licenceController.createdFullLicence!.arbitrator!.identityPhoto,1),
                   ArbitreImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.arbitrator!.photo,2),
                 ]),
                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -74,7 +74,7 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
                   child: FloatingActionButton.extended(onPressed: (){
                     // licenceController.createProfile();
                     if((licenceController.createdFullLicence!.profile!.profilePhoto==null)||(licenceController.createdFullLicence!.arbitrator!.identityPhoto==null)||(licenceController.createdFullLicence!.arbitrator!.photo==null)){
-                      final snackBar=MySnackBar(title: "Photos Manquantes",msg: "Merci de remplir tous les photos svp",state: ContentType.warning);
+                      final snackBar=MySnackBar(title: 'صور ناقصة',msg: 'الرجاء تقديم جميع الصور الناقصة',state: ContentType.warning);
                       ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
                     }
                     else{
@@ -82,7 +82,7 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
                     }
                     
                     // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
-                  },label: Text("Confirmer"),)),
+                  },label: Text('تاكيد'),)),
               ],
             ),
           )),

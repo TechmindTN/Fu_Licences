@@ -82,8 +82,8 @@ class _GradeListScreenState extends State<GradeListScreen> {
           //         children: [
           //           Text("Id"),
           //             Text("Grade"),
-          //             Text("Cree le"),
-          //             Text("Actions")
+          //             Text('اضيف يوم'),
+          //             Text('الاجراءات')
           //         ],
           //       ),
           //     ),
@@ -116,10 +116,10 @@ return SliverToBoxAdapter(
                     columns: [ 
                       DataColumn(label: Text(''),),
                       // DataColumn(label: Text('logo'),),                     
-                      DataColumn(label: Text('nom')),   
-                      // DataColumn(label: Text('Age Minimale')),                   
-                      // DataColumn(label: Text('Age Maximale')),                     
-                      DataColumn(label: Text('Actions')),
+                      DataColumn(label: Text('اللقب')),   
+                      // DataColumn(label: Text('العمر الادنى')),                   
+                      // DataColumn(label: Text('العمر الاقصى')),                     
+                      DataColumn(label: Text('الاجراءات')),
                       ],
                     // actions: [
                     //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))

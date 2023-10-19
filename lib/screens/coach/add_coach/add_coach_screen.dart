@@ -46,7 +46,7 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
         builder: (context, licenceController, child) {
       return Scaffold(
         appBar: AppBar(
-          title: Text("Ajouter licence d'entraineur"),
+          title: Text("اضافة اجازة المدرب"),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -60,26 +60,26 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
 
                 // dynamic? weights;
                 // String? club;
-                // TextInput('Prenom',categoryController),
-                // TextInput('Nom',gradeController),
-                // TextInput('Telephone',degreeController),
+                // TextInput('الاسم',categoryController),
+                // TextInput('اللقب',gradeController),
+                // TextInput('رقم الهاتف',degreeController),
 
-                // TextInput('CIN',disciplineController),
-                GategorySelectInput('Categorie',
+                // TextInput('رقم الهوية',disciplineController),
+                GategorySelectInput('العمر',
                     licenceController.selectedCategory, licenceController),
                 GradeSelectInput('Grade', licenceController.selectedGrade,
                     licenceController),
                 DegreeSelectInput('Degree', licenceController.selectedDegree,
                     licenceController),
-                DisciplineSelectInput('Discipline',
+                DisciplineSelectInput('الرياضة',
                     licenceController.selectedDiscipline, licenceController),
 
-                WeightSelectInput('Poids', licenceController.selectedWeight,
+                WeightSelectInput('الوزن', licenceController.selectedWeight,
                     licenceController),
                 ClubSelectInput(
-                    'Club', licenceController.selectedClub, licenceController),
-                // TextInput('Addresse',prenomController),
-                // Dateinput('Date de naissance',birthController,context,licenceController.selectedBirth,licenceController)
+                    'النادي', licenceController.selectedClub, licenceController),
+                // TextInput('عنوان السكن',prenomController),
+                // Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController)
               ],
             ),
           ),
@@ -94,12 +94,12 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
                   width: 30.w,
                   child: FloatingActionButton.extended(
                     onPressed: () {
-                      print(licenceController.selectedCategory!.id);
-                      print(licenceController.selectedGrade!.id);
-                      print(licenceController.selectedDegree!.id);
-                      print(licenceController.selectedDiscipline!.id);
-                      print(licenceController.selectedGrade!.id);
-                      print(licenceController.selectedWeight!.id);
+                      //print(licenceController.selectedCategory!.id);
+                      //print(licenceController.selectedGrade!.id);
+                      //print(licenceController.selectedDegree!.id);
+                      //print(licenceController.selectedDiscipline!.id);
+                      //print(licenceController.selectedGrade!.id);
+                      //print(licenceController.selectedWeight!.id);
                       if ((licenceController.selectedCategory == null) ||
                           (licenceController.selectedCategory!.id == -1) ||
                           (licenceController.selectedClub == null) ||
@@ -113,8 +113,8 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
                           (licenceController.selectedWeight == null) ||
                           (licenceController.selectedWeight!.id == -1)) {
                         final snackBar = MySnackBar(
-                            title: "Champs Obligatoires",
-                            msg: "Merci de remplir tous les champs svp",
+                            title: 'خانات اجبارية',
+                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
                             state: ContentType.warning);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
@@ -129,7 +129,7 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
 // true).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
 // LicenceListScreen()), (route) => false);                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddLicenceScreen()));
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

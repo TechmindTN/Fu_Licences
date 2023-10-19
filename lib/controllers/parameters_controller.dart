@@ -2,20 +2,14 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/models/ligue.dart';
-import 'package:fu_licences/network/club_network.dart';
-
 import '../models/category.dart';
-import '../models/club.dart';
 import '../models/degree.dart';
 import '../models/discipline.dart';
 import '../models/grade.dart';
-import '../models/parameters.dart';
 import '../models/season.dart';
-import '../models/user.dart';
 import '../models/weight.dart';
 import '../network/parameter_network.dart';
 import '../widgets/global/snackbars.dart';
-import 'licence_controller.dart';
 
 class ParameterProvider extends ChangeNotifier{
   bool isLoading=false;
@@ -55,6 +49,31 @@ class ParameterProvider extends ChangeNotifier{
   addSeason(String name){
     Season season=Season(seasons: name,activated: false);
     paramNetwork.addSeason(season.toJson());
+  }
+  
+  removeLigue(int id,context) async {
+    // Ligue ligue=Ligue(name: name);
+    Response res= await paramNetwork.deleteLigue(id);
+    if(res.statusCode==204){
+       final snackBar = MySnackBar(
+          title: 'Succees',
+          msg: 'La ligue a ete supprimee avec succees',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'La ligue n\'est pas supprimee ',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
   }
 
   notify(){

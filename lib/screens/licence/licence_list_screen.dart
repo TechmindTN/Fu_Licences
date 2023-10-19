@@ -45,7 +45,7 @@ late DataTableSource dataSource;
       //  Future.delayed(Duration(seconds: 3), () => 
        {
         if(licenceController.added){
-      final snackBar=MySnackBar(title: "Ajout de licence succees",msg: "La licence a ete ajoutee avec succees",state: ContentType.success);
+      final snackBar=MySnackBar(title: 'تمت الاضافة بنجاح',msg: 'تمت اضافة الاجازة بنجاح',state: ContentType.success);
       ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
       licenceController.added=false;
     }
@@ -62,7 +62,7 @@ late DataTableSource dataSource;
         
     dataSource=LicenceDataSource(licenceController,context);
     //  if(licenceController.added){
-    //   final snackBar=MySnackBar(title: "Ajout de licence succees",msg: "La licence a ete ajoutee avec succees",state: ContentType.success);
+    //   final snackBar=MySnackBar(title: 'تمت الاضافة بنجاح',msg: 'تمت اضافة الاجازة بنجاح',state: ContentType.success);
     //   ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
     //   licenceController.added=false;
     // }
@@ -75,7 +75,7 @@ late DataTableSource dataSource;
           backgroundColor: Color(0xfffafafa),
           body: CustomScrollView(
             slivers: [
-              MyAppBar("Licences", context, true,licenceController,false,false),
+              MyAppBar('الاجازات', context, true,licenceController,false,false),
               
             //   SliverToBoxAdapter(child: Column(
             //   crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,22 +125,22 @@ late DataTableSource dataSource;
                         header:  LicenceListHeader(licenceController,numControl,context),
                         columns: [ 
                           DataColumn(label: Text(''),),
-                          DataColumn(label: Text('photo de profile'),),
-                          DataColumn(label: Text('licence'),
+                          DataColumn(label: Text('صورة الحساب'),),
+                          DataColumn(label: Text('الاجازة'),
                           // onSort: licenceController.sortColumn(0)
                           ),
-                          DataColumn(label: Text('cin')),
-                          DataColumn(label: Text('Naissance')),
-                          DataColumn(label: Text('nom')),
-                          DataColumn(label: Text('sexe')),
-                          DataColumn(label: Text('telephone')),
-                          DataColumn(label: Text('role')),
-                          DataColumn(label: Text('discipline')),
-                          DataColumn(label: Text('club')),
-                          DataColumn(label: Text('ligue')),
-                          DataColumn(label: Text('saison')),
-                          DataColumn(label: Text('status')),
-                          DataColumn(label: Text('Actions')),
+                          DataColumn(label: Text('رقم الهوية')),
+                          DataColumn(label: Text('تاريخ الولادة')),
+                          DataColumn(label: Text('اللقب')),
+                          DataColumn(label: Text('الجنس')),
+                          DataColumn(label: Text('رقم الهاتف')),
+                          DataColumn(label: Text('نوع الاجازة')),
+                          DataColumn(label: Text('الرياضة')),
+                          DataColumn(label: Text('النادي')),
+                          DataColumn(label: Text('الولاية')),
+                          DataColumn(label: Text('الموسم')),
+                          DataColumn(label: Text('الحالة')),
+                          DataColumn(label: Text('الاجراءات')),
                           ],
                         // actions: [
                         //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))

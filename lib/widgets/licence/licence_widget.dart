@@ -1,20 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/models/full_licence.dart';
 import 'package:fu_licences/models/role.dart';
-import 'package:fu_licences/screens/licence/addlicence/add_licence_screen.dart';
-import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
-import 'package:fu_licences/screens/licence/filtered_licences_list.dart';
-import 'package:fu_licences/screens/licence/licence_screen.dart';
 import 'package:fu_licences/widgets/global/buttons.dart';
-import 'package:fu_licences/widgets/global/modals.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../global/utils.dart';
 import '../../router/routes.dart';
 import '../global/inputs.dart';
@@ -23,14 +15,12 @@ Widget LicenceItem(
     FullLicence fullLicence, LicenceProvider licenceController, context) {
   return Center(
     child: Container(
-     
       width: 40.w,
       height: 20.h,
-      
       decoration: BoxDecoration(
-        color: Color(0xffffffff),
+        color: const Color(0xffffffff),
         borderRadius: BorderRadius.circular(5),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color(0x3f000000),
             offset: Offset(0, 2),
@@ -41,10 +31,7 @@ Widget LicenceItem(
       child: InkWell(
         onTap: () {
           licenceController.selectedFullLicence = fullLicence;
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: ((context) => LicenceScreen())));
           GoRouter.of(context).push(Routes.LicenceScreen);
-          // Navigator.pushNamed(context, Routes.LicenceScreen);
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -52,9 +39,7 @@ Widget LicenceItem(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                      // man2L5W (2:231)
-                      margin: EdgeInsets.fromLTRB(0, 2, 2, 0),
-                      // width: 25.w,
+                      margin: const EdgeInsets.fromLTRB(0, 2, 2, 0),
                       height: 8.h,
                       child: (fullLicence.profile!.profilePhoto != null &&
                               fullLicence.profile!.profilePhoto != "")
@@ -66,246 +51,189 @@ Widget LicenceItem(
                     ),
                     SizedBox(height: 1.h,),
               Container(
-                // height: .h,
-                // autogroupitbe2SC (F37UKZcanBTmfvyEYdiTBE)
-                margin: EdgeInsets.fromLTRB(2, 0, 0, 6),
-                //width: double.infinity,
+                margin: const EdgeInsets.fromLTRB(2, 0, 0, 6),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      // licencenum16358749xKr (1:62)
-                      margin: EdgeInsets.fromLTRB(0, 0, 27, 0),
+                      margin: const EdgeInsets.fromLTRB(0, 0, 27, 0),
                       child: Text(
-                        'num : ' + fullLicence.licence!.numLicences!,
+                        'رقم : ${fullLicence.licence!.numLicences!}',
                         style: SafeGoogleFont(
                           'Inter',
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
-                          // height: 1.2125,
-                          color: Color(0xff000000),
+                          color: const Color(0xff000000),
                         ),
                       ),
                     ),
                     Text(
-                      // valideTXW (1:64)
                       fullLicence.licence!.state!,
                       style: SafeGoogleFont(
                         'Inter',
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
-                        // height: 1.2125,
                         color: (fullLicence.licence!.state.toString() ==
                                 "Activee")
-                            ? Color(0xff02ce16)
+                            ? const Color(0xff02ce16)
                             : (fullLicence.licence!.state.toString() ==
                                     "En Attente")
-                                ? Color(0xfff5700a)
-                                : Color(0xfffc0303),
+                                ? const Color(0xfff5700a)
+                                : const Color(0xfffc0303),
                       ),
                     ),
                   ],
                 ),
               ),
               Container(
-                // autogroupubylbtc (F37UQoxqf6Dn3wXHhuubYL)
-                margin: EdgeInsets.fromLTRB(0, 0, 110, 3),
-                //width: double.infinity,
+                margin: const EdgeInsets.fromLTRB(0, 0, 110, 3),
                 height: 1.h,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    
-                    Container(
-                      // autogroupf8ygfNg (F37UWyTEf3kHxVUS2BF8YG)
-                      //height: double.infinity,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 38.w,
-                            // athletecYp (1:65)
-                            margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Role",
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff000000),
-                                  ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 38.w,
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "نوع الاجازة",
+                                style: SafeGoogleFont(
+                                  'Inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff000000),
                                 ),
-                                Text(
-                                  fullLicence.licence!.role!,
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff717171),
-                                  ),
+                              ),
+                              Text(
+                                fullLicence.licence!.role!,
+                                style: SafeGoogleFont(
+                                  'Inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff717171),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Container(
-                            width: 38.w,
-                            // mohsenclub8XA (1:63)
-                            margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Club",
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff000000),
-                                  ),
+                        ),
+                        Container(
+                          width: 38.w,
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "النادي",
+                                style: SafeGoogleFont(
+                                  'Inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff000000),
                                 ),
-                                Text(
-                                  fullLicence.licence!.club.toString(),
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff717171),
-                                  ),
+                              ),
+                              Text(
+                                fullLicence.licence!.club.toString(),
+                                style: SafeGoogleFont(
+                                  'Inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff717171),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                            width: 38.w,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Age",
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff000000),
-                                  ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                          width: 38.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "العمر",
+                                style: SafeGoogleFont(
+                                  'Inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff000000),
                                 ),
-                                Text(
-                                  // akaberTZS (2:232)
-                                  fullLicence.licence!.categorie.toString(),
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff717171),
-                                  ),
+                              ),
+                              Text(
+                                fullLicence.licence!.categorie.toString(),
+                                style: SafeGoogleFont(
+                                  'Inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff717171),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                            width: 38.w,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Ligue",
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff000000),
-                                  ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                          width: 38.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'الولاية',
+                                style: SafeGoogleFont(
+                                  'Inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff000000),
                                 ),
-                                Text(
-                                  fullLicence.profile!.state.toString(),
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff717171),
-                                  ),
+                              ),
+                              Text(
+                                fullLicence.profile!.state.toString(),
+                                style: SafeGoogleFont(
+                                  'Inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff717171),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                            width: 38.w,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              
-                              children: [
-                               Text(
-                                  "Saison",
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff000000),
-                                  ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                          width: 38.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                             Text(
+                                'الموسم',
+                                style: SafeGoogleFont(
+                                  'Inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff000000),
                                 ),
-                                
-                                Text(
-                                  fullLicence.licence!.seasons.toString(),
-                                  style: SafeGoogleFont(
-                                    'Inter',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    // height: 1.2125,
-                                    color: Color(0xff717171),
-                                  ),
+                              ),
+                              Text(
+                                fullLicence.licence!.seasons.toString(),
+                                style: SafeGoogleFont(
+                                  'Inter',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff717171),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-              // Container(
-              //   // benarouscBS (2:233)
-              //   margin: EdgeInsets.fromLTRB(0, 0, 68, 5),
-              //   child: Text(
-              //     'Ben Arous',
-              //     style: SafeGoogleFont (
-              //       'Inter',
-              //       fontSize: 18,
-              //       fontWeight: FontWeight.w400,
-              //       height: 1.2125,
-              //       color: Color(0xff717171),
-              //     ),
-              //   ),
-              // ),
-              // Container(
-              //   // 8Qg (2:234)
-              //   margin: EdgeInsets.fromLTRB(0, 0, 58, 0),
-              //   child: Text(
-              //     '2022-2023',
-              //     style: SafeGoogleFont (
-              //       'Inter',
-              //       fontSize: 18,
-              //       fontWeight: FontWeight.w400,
-              //       height: 1.2125,
-              //       color: Color(0xff717171),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -316,25 +244,20 @@ Widget LicenceItem(
 
 Widget LicenceRow(String key, dynamic value) {
   return Container(
-    // autogroup88fjWYp (F37ZNvBnENG3MzFKy188fJ)
-    margin: EdgeInsets.fromLTRB(51, 0, 36, 24),
+    margin: const EdgeInsets.fromLTRB(51, 0, 36, 24),
     width: double.infinity,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          // ageqb6 (1:95)
-          // margin: EdgeInsets.fromLTRB(0, 0, 120, 0),
-          child: Text(
-            key,
-            style: SafeGoogleFont(
-              'Inter',
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-              height: 1.2125,
-              color: Color(0xff717171),
-            ),
+        Text(
+          key,
+          style: SafeGoogleFont(
+            'Inter',
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+            height: 1.2125,
+            color: const Color(0xff717171),
           ),
         ),
         Text(
@@ -345,7 +268,7 @@ Widget LicenceRow(String key, dynamic value) {
             fontSize: 18,
             fontWeight: FontWeight.w400,
             height: 1.2125,
-            color: Color(0xff717171),
+            color: const Color(0xff717171),
           ),
         ),
       ],
@@ -361,121 +284,116 @@ Widget RolePhotos(FullLicence fullLicence,context,LicenceProvider licenceControl
   } else if (fullLicence.licence!.role == "Entraineur") {
     return CoachPhotosWidget(fullLicence,licenceController,context);
   } else {
-    return SizedBox();
+    return const SizedBox();
   }
 }
 
 Widget ArbitratorPhotosWidget(FullLicence fullLicence,LicenceProvider licenceController,context) {
-  return Container(
-    child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      (fullLicence.arbitrator!.identityPhoto != null &&
-              fullLicence.arbitrator!.identityPhoto != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.arbitrator!.identityPhoto);
-                      },
-            child: Image.network(
-                fullLicence.arbitrator!.identityPhoto!,
-                width: 40.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+  return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    (fullLicence.arbitrator!.identityPhoto != null &&
+            fullLicence.arbitrator!.identityPhoto != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.arbitrator!.identityPhoto);
+                    },
+          child: Image.network(
+              fullLicence.arbitrator!.identityPhoto!,
               width: 40.w,
-              fit: BoxFit.cover,
             ),
-      (fullLicence.arbitrator!.photo != null &&
-              fullLicence.arbitrator!.photo != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.arbitrator!.photo);
-                      },
-            child: Image.network(
-                fullLicence.arbitrator!.photo!,
-                width: 40.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 40.w,
+            fit: BoxFit.cover,
+          ),
+    (fullLicence.arbitrator!.photo != null &&
+            fullLicence.arbitrator!.photo != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.arbitrator!.photo);
+                    },
+          child: Image.network(
+              fullLicence.arbitrator!.photo!,
               width: 40.w,
-              fit: BoxFit.cover,
             ),
-    ]),
-  );
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 40.w,
+            fit: BoxFit.cover,
+          ),
+  ]);
 }
 
 Widget CoachPhotosWidget(FullLicence fullLicence,LicenceProvider licenceController,context) {
-  return Container(
-    child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      (fullLicence.coach!.identityPhoto != null &&
-              fullLicence.coach!.identityPhoto != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.coach!.identityPhoto);
-                      },
-            child: Image.network(
-                fullLicence.coach!.identityPhoto!,
-                width: 20.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+  return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    (fullLicence.coach!.identityPhoto != null &&
+            fullLicence.coach!.identityPhoto != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.coach!.identityPhoto);
+                    },
+          child: Image.network(
+              fullLicence.coach!.identityPhoto!,
               width: 20.w,
-              fit: BoxFit.cover,
             ),
-      (fullLicence.coach!.photo != null && fullLicence.coach!.photo != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.coach!.photo);
-                      },
-            child: Image.network(
-                fullLicence.coach!.photo!,
-                width: 20.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 20.w,
+            fit: BoxFit.cover,
+          ),
+    (fullLicence.coach!.photo != null && fullLicence.coach!.photo != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.coach!.photo);
+                    },
+          child: Image.network(
+              fullLicence.coach!.photo!,
               width: 20.w,
-              fit: BoxFit.cover,
             ),
-      (fullLicence.coach!.degreePhoto != null &&
-              fullLicence.coach!.degreePhoto != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.coach!.degreePhoto);
-                      },
-            child: Image.network(
-                fullLicence.coach!.degreePhoto!,
-                width: 20.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 20.w,
+            fit: BoxFit.cover,
+          ),
+    (fullLicence.coach!.degreePhoto != null &&
+            fullLicence.coach!.degreePhoto != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.coach!.degreePhoto);
+                    },
+          child: Image.network(
+              fullLicence.coach!.degreePhoto!,
               width: 20.w,
-              fit: BoxFit.cover,
             ),
-      (fullLicence.coach!.gradePhoto != null &&
-              fullLicence.coach!.gradePhoto != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.coach!.gradePhoto);
-                      },
-            child: Image.network(
-                fullLicence.coach!.gradePhoto!,
-                width: 20.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 20.w,
+            fit: BoxFit.cover,
+          ),
+    (fullLicence.coach!.gradePhoto != null &&
+            fullLicence.coach!.gradePhoto != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.coach!.gradePhoto);
+                    },
+          child: Image.network(
+              fullLicence.coach!.gradePhoto!,
               width: 20.w,
-              fit: BoxFit.cover,
             ),
-    ]),
-  );
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 20.w,
+            fit: BoxFit.cover,
+          ),
+  ]);
 }
 
 Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceController,context) {
-  print('object');
   return Container(
     constraints: BoxConstraints(maxWidth: 100.w),
     width: 100.w,
@@ -483,7 +401,7 @@ Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceContro
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
+          SizedBox(
             height: 18.h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -505,11 +423,11 @@ Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceContro
                         fit: BoxFit.cover,
                         width: 30.w,
                       ),
-                Center(child: Text('Identite'))
+                const Center(child: Text('صورة الهوية'))
               ],
             ),
           ),
-          Container(
+          SizedBox(
             height: 18.h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -531,11 +449,11 @@ Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceContro
                         fit: BoxFit.cover,
                         width: 30.w,
                       ),
-                Center(child: Text('Assurance'))
+                const Center(child: Text('صورة التامين'))
               ],
             ),
           ),
-          Container(
+          SizedBox(
             height: 18.h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -557,7 +475,7 @@ Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceContro
                         fit: BoxFit.cover,
                         width: 30.w,
                       ),
-                Center(child: Text('Fiche medical'))
+                const Center(child: Text('الصورة الطبية'))
               ],
             ),
           ),
@@ -569,7 +487,6 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
   if(licenceController.currentUser.club!.id==null){
     String img="assets/images/logo-ftwkf.png";
    if (role.roles == "Athlete") {
-              print('athlete');
               img="assets/icons/running-white.png";
             }
             else if (role.roles == "Entraineur") {
@@ -587,36 +504,26 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
           onTap: (() {
             licenceController.selectedRole=role;
             if (role.roles == "Athlete") {
-              print('athlete');
               img="assets/icons/running.png";
               GoRouter.of(context).push(Routes.UploadAthleteImagesScreen);
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
             }
             else if (role.roles == "Entraineur") {
               img="assets/icons/coach.png";
               GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
             }
              else if (role.roles == "club") {
               img="assets/icons/club.png";
               GoRouter.of(context).push(Routes.AddProfileScreen);
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
             }
             else if (role.roles == "Arbitre") {
               img="assets/icons/referee.png";
               GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
             }
           }),
           child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   color: Color(0xff92DDFF,
-        
         )  ),
               width: 20.w,
               height: 12.h,
@@ -628,15 +535,14 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
         ),
       ),
       Text(role.roles!,
-         style: TextStyle(
+         style: const TextStyle(
                 fontSize: 18
               ),)
     ],
   );}
-
    else{
     if(role.roles=="club"||role.roles=="manager"){
-      return SizedBox();
+      return const SizedBox();
     }
     else{
        return Padding(
@@ -646,26 +552,18 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
         licenceController.selectedRole=role;
         if (role.roles == "Athlete") {
           GoRouter.of(context).push(Routes.UploadAthleteImagesScreen);
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
         }
         else if (role.roles == "Entraineur") {
           GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
         }else if (role.roles == "Arbitre") {
           GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
         }
         else if (role.roles == "club") {
           GoRouter.of(context).push(Routes.AddProfileScreen);
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
         }
       }),
       child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.red),
           width: 60.w,
@@ -674,70 +572,58 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
     ),
   );
     }
-
   }
 }
 
 Widget AthleteImageUploadWidget(txt, licenceController, context,
     String? toFillImage, String? placeHolderImage,int index) {
-    //  bool ishovered=true;
   return Consumer<LicenceProvider>(
-
     builder: (context,licenceController,child) {
       return Column(
-
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
               onHover: (value) {
-                
                 if(value){
                   licenceController.isHovered[index]=true;
                   licenceController.notify();
-                  
                 }
                 else{
                   licenceController.isHovered[index]=false;
                   licenceController.notify();
                 }
               },
-              
               onTap: (() {
                 licenceController.pickAthleteImage(true,context,toFillImage);
               }),
               child: Container(
-               
                   decoration: BoxDecoration(
                     image: (placeHolderImage != null)
                       ? DecorationImage(image: NetworkImage(placeHolderImage,
-                      
-                      
                       ),
                       opacity: (licenceController.isHovered[index])?0.3:1,
                       fit: BoxFit.cover
                       ):null,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(color: Colors.black26),
                       BoxShadow(
                         color: Color(0xffD9D9D9),
                         spreadRadius: -12,
                         blurRadius: 20,
-
                       )
                     ],
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
                       ),
                   width: 30.w,
                   height: 22.h,
-               
                    child: (licenceController.isHovered[index])?
                    Center(
                     child: Icon(Icons.camera_alt,
                     size: 5.w,
                     ),
                    )
-                   :SizedBox(),
+                   :const SizedBox(),
                       ),
             ),
           ),
@@ -745,7 +631,7 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
             height: 0.5.h,
           ),
           Text(txt,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20
           ),
           ),
@@ -758,7 +644,6 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
   );
 }
 
-
 Widget CoachImageUploadWidget(txt, licenceController, context,
     String? toFillImage, String? placeHolderImage,int index) {
   return Column(
@@ -767,18 +652,15 @@ Widget CoachImageUploadWidget(txt, licenceController, context,
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
            onHover: (value) {
-                
                 if(value){
                   licenceController.isHovered[index]=true;
                   licenceController.notify();
-                  
                 }
                 else{
                   licenceController.isHovered[index]=false;
                   licenceController.notify();
                 }
               },
-              
               onTap: (() {
                 licenceController.pickCoachImage(true,context,toFillImage);
               }),
@@ -786,57 +668,42 @@ Widget CoachImageUploadWidget(txt, licenceController, context,
                decoration: BoxDecoration(
                     image: (placeHolderImage != null)
                       ? DecorationImage(image: NetworkImage(placeHolderImage,
-                      
-                      
                       ),
                       opacity: (licenceController.isHovered[index])?0.3:1,
                       fit: BoxFit.cover
                       ):null,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(color: Colors.black26),
                       BoxShadow(
                         color: Color(0xffD9D9D9),
                         spreadRadius: -12,
                         blurRadius: 20,
-
                       )
                     ],
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
                       ),
                   width: 30.w,
                   height: 22.h,
-               
                    child: (licenceController.isHovered[index])?
                    Center(
                     child: Icon(Icons.camera_alt,
                     size: 5.w,
                     ),
                    )
-                   :SizedBox(),),
+                   :const SizedBox(),),
         ),
       ),
-      // Text(placeHolderImage.toString()),
         SizedBox(
             height: 0.5.h,
           ),
           Text(txt,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20
           ),
           ),
       SizedBox(
         height: 1.h,
       ),
-      // FloatingActionButton.extended(
-      //   onPressed: () {
-      //     showModalBottomSheet(
-      //         context: context,
-      //         builder: (context) {
-      //           return CoachMediaModal(licenceController, context, toFillImage);
-      //         });
-      //   },
-      //   label: Text("Select"),
-      // )
     ],
   );
 }
@@ -850,11 +717,9 @@ Widget ArbitreImageUploadWidget(txt,LicenceProvider licenceController, context,
          await licenceController.pickArbitreImage(true, context, toFillImage);
         },
         onHover: (value) {
-                
                 if(value){
                   licenceController.isHovered[index]=true;
                   licenceController.notify();
-                  
                 }
                 else{
                   licenceController.isHovered[index]=false;
@@ -865,23 +730,19 @@ Widget ArbitreImageUploadWidget(txt,LicenceProvider licenceController, context,
             decoration: BoxDecoration(
                     image: (placeHolderImage != null)
                       ? DecorationImage(image: NetworkImage(placeHolderImage,
-                      
-                      
                       ),
                       opacity: (licenceController.isHovered[index])?0.3:1,
                       fit: BoxFit.cover
                       ):null,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(color: Colors.black26),
                       BoxShadow(
                         color: Color(0xffD9D9D9),
                         spreadRadius: -12,
                         blurRadius: 20,
-
                       )
                     ],
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
-                      // color: Color(0xffD9D9D9)
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
                       ),
                   width: 30.w,
                   height: 22.h,
@@ -891,30 +752,19 @@ Widget ArbitreImageUploadWidget(txt,LicenceProvider licenceController, context,
                     size: 5.w,
                     ),
                    )
-                   :SizedBox(),),
+                   :const SizedBox(),),
       ),
-      // Text(placeHolderImage.toString()),
      SizedBox(
             height: 0.5.h,
           ),
           Text(txt,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20
           ),
           ),
           SizedBox(
             height: 1.h,
           ),
-      // FloatingActionButton.extended(
-      //   onPressed: () {
-      //     showModalBottomSheet(
-      //         context: context,
-      //         builder: (context) {
-                // return ArbitreMediaModal(licenceController, context, toFillImage);
-      //         });
-      //   },
-      //   label: Text("Select"),
-      // )
     ],
   );
 }
@@ -930,11 +780,9 @@ Widget AthleteImageEditWidget(
          await licenceController.pickAthleteImage(true, context, imageName);
         },
         onHover: (value) {
-                
                 if(value){
                   licenceController.isHovered[index]=true;
                   licenceController.notify();
-                  
                 }
                 else{
                   licenceController.isHovered[index]=false;
@@ -945,23 +793,19 @@ Widget AthleteImageEditWidget(
                decoration: BoxDecoration(
                     image: (img != null)
                       ? DecorationImage(image: NetworkImage(img,
-                      
-                      
                       ),
                       opacity: (licenceController.isHovered[index])?0.3:1,
                       fit: BoxFit.cover
                       ):null,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(color: Colors.black26),
                       BoxShadow(
                         color: Color(0xffD9D9D9),
                         spreadRadius: -12,
                         blurRadius: 20,
-
                       )
                     ],
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
-                      // color: Color(0xffD9D9D9)
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
                       ),
                   width: 30.w,
                   height: 22.h,
@@ -971,40 +815,28 @@ Widget AthleteImageEditWidget(
                     size: 5.w,
                     ),
                    )
-                   :SizedBox(),),
+                   :const SizedBox(),),
         ),
       ),
-      // Text(placeHolderImage.toString()),
       SizedBox(
             height: 0.5.h,
           ),
           Text(txt,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20
           ),
           ),
           SizedBox(
             height: 1.h,
           ),
-      // FloatingActionButton.extended(
-      //   onPressed: () {
-      //     showModalBottomSheet(
-      //         context: context,
-      //         builder: (context) {
-      //           return EditMediaModal(
-      //               licenceController, context, imageName, img);
-      //         });
-      //   },
-      //   label: Text("Select"),
-      // )
     ],
   );
 }
 
 SearchDialog(LicenceProvider licenceController, numControl, context) {
   return AlertDialog(
-    title: Text('Recherche avec numero de licence'),
-    content: Container(
+    title: const Text('البحث برقم الاجازة'),
+    content: SizedBox(
         width: 70.w,
         height: 10.h,
         child: Center(
@@ -1020,9 +852,7 @@ SearchDialog(LicenceProvider licenceController, numControl, context) {
             onTap: () {
               licenceController.findLicence(numControl.text, context);
             },
-            child: Container(
-              child: Center(child: Text('Confirmer')),
-            ),
+            child: const Center(child: Text('تاكيد')),
           )
         ],
       )
@@ -1032,43 +862,33 @@ SearchDialog(LicenceProvider licenceController, numControl, context) {
 
 FilterDialog(LicenceProvider licenceController, context) {
   return AlertDialog(
-    
-    contentPadding: EdgeInsets.only(left: 4,right: 4,top: 24,bottom: 20),
-    insetPadding: EdgeInsets.symmetric(horizontal: 36,vertical: 24),
+    contentPadding: const EdgeInsets.only(left: 4,right: 4,top: 24,bottom: 20),
+    insetPadding: const EdgeInsets.symmetric(horizontal: 36,vertical: 24),
     scrollable: true,
-    title: Center(child: Text('Filtrer')),
-    content: Container(
+    title: const Center(child: Text('تصفية')),
+    content: SizedBox(
         width: 50.w,
-        // height: 90.h,
         child: Center(
           child: Column(
-            
             children: [
-              SeasonSelectInput('Season',licenceController.selectedSeason,licenceController),
-                   RoleSelectInput('Role',licenceController.filteredRole,licenceController),
-
-              GategorySelectInput('Categorie',licenceController.filteredCategory,licenceController),
+              SeasonSelectInput('الموسم',licenceController.selectedSeason,licenceController),
+                   RoleSelectInput('نوع الاجازة',licenceController.filteredRole,licenceController),
+              GategorySelectInput('العمر',licenceController.filteredCategory,licenceController),
                   GradeSelectInput('Grade',licenceController.filteredGrade,licenceController)	,
                   DegreeSelectInput('Degree',licenceController.filteredDegree,licenceController),
-                  DisciplineSelectInput('Discipline',licenceController.filteredDiscipline,licenceController)	,
-                
-                  WeightSelectInput('Poids',licenceController.filteredWeight,licenceController),
+                  DisciplineSelectInput('الرياضة',licenceController.filteredDiscipline,licenceController)	,
+                  WeightSelectInput('الوزن',licenceController.filteredWeight,licenceController),
                   if(licenceController.currentUser.club?.id==null)
-                  ClubSelectInput('Club',licenceController.filteredClub,licenceController),
-                   SelectInput('Sexe',licenceController.filteredSex,licenceController,['Male','Femelle']),
-                   SelectInput('Etat',licenceController.filteredStatus,licenceController,['Activee','En Attente','Expiree']),
-
+                  ClubSelectInput('النادي',licenceController.filteredClub,licenceController),
+                   SelectInput('الجنس',licenceController.filteredSex,licenceController,['ذكر','انثى']),
+                   SelectInput('الحالة',licenceController.filteredStatus,licenceController,['Activee','En Attente','Expiree']),
             ],
           ),
-
-          // child: TextFormField(
-          //   controller: numControl,
-          // ),
         )),
-        actionsPadding: EdgeInsets.all(0),
+        actionsPadding: const EdgeInsets.all(0),
     actions: [
       Container(
-        color: Color(0xff4C9AFF),
+        color: const Color(0xff4C9AFF),
         width: 54.w,
         height: 4.h,
         child: Row(
@@ -1077,17 +897,12 @@ FilterDialog(LicenceProvider licenceController, context) {
             InkWell(
               onTap: () {
                 licenceController.filterLicences(context);
-                
-                // licenceController.findLicence(numControl.text, context);
               },
-              child: Container(
-                
-                child: Center(child: Text('Confirmer',
-                style: TextStyle(
-                  color: Colors.white
-                ),
-                )),
+              child: const Center(child: Text('تاكيد',
+              style: TextStyle(
+                color: Colors.white
               ),
+              )),
             )
           ],
         ),
@@ -1099,7 +914,7 @@ FilterDialog(LicenceProvider licenceController, context) {
 
 Widget LicenceListHeader(LicenceProvider licenceController,numControl,context){
   return Center(
-    child: Container(
+    child: SizedBox(
       width: 183.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1108,6 +923,9 @@ Widget LicenceListHeader(LicenceProvider licenceController,numControl,context){
         
         SearchFilter(licenceController,numControl,context),
         SizedBox(height: 3.h,),
+        ElevatedButton(onPressed: (){
+          licenceController.exportToExcel();
+        }, child: Text("Export"))
         
         //  FirstRow(licenceController),
         //  SizedBox(height: 3.h,),
@@ -1121,8 +939,8 @@ Widget FirstRow(LicenceProvider licenceController){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-    Text("Total: "+licenceController.fullLicences.length.toString(),
-     style: TextStyle(
+    Text("المجموع: ${licenceController.fullLicences.length}",
+     style: const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 20
     ),),
@@ -1163,14 +981,14 @@ Widget SearchField(LicenceProvider licenceController,numControl,context){
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(6),
       boxShadow: [
-        (licenceController.isShadow)?BoxShadow(
+        (licenceController.isShadow)?const BoxShadow(
           
           color: Colors.black26,
           blurRadius: 10,
           offset: Offset(0,2)
-        ):BoxShadow()
+        ):const BoxShadow()
       ],
-      color: Color(0xffedeef0)
+      color: const Color(0xffedeef0)
     ),
     child: SearchInput(licenceController,numControl,context)
   );
@@ -1188,7 +1006,7 @@ Widget FilterField(LicenceProvider licenceController,context){
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(6),
-          boxShadow: [
+          boxShadow: const [
             
             BoxShadow(
               color: Colors.black26,

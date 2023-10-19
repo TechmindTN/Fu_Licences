@@ -5,7 +5,8 @@ class Photo {
   int? size;
   String? name;
   String? extension;
-  Null? type;
+  // ignore: prefer_void_to_null
+  Null type;
   String? uploaded;
   int? season;
   int? user;
@@ -36,17 +37,17 @@ class Photo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['url'] = this.url;
-    data['path'] = this.path;
-    data['size'] = this.size;
-    data['name'] = this.name;
-    data['extension'] = this.extension;
-    data['type'] = this.type;
-    data['uploaded'] = this.uploaded;
-    data['season'] = this.season;
-    data['user'] = this.user;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['url'] = url;
+    data['path'] = path;
+    data['size'] = size;
+    data['name'] = name;
+    data['extension'] = extension;
+    data['type'] = type;
+    data['uploaded'] = uploaded;
+    data['season'] = season;
+    data['user'] = user;
     return data;
   }
 }

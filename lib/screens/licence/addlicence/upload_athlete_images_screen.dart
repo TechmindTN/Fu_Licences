@@ -31,22 +31,22 @@ class _UploadAthleteLicenceImagesState
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
     list = [
       {
-        'txt': 'photo de profile',
+        'txt': 'صورة الحساب',
         'tofill': 'profilePhoto',
         'holder': licenceController.createdFullLicence!.profile!.profilePhoto
       },
       {
-        'txt': 'photo d\'identite',
+        'txt': 'صورة الهوية',
         'tofill': 'idphoto',
         'holder': licenceController.createdFullLicence!.athlete!.identityPhoto
       },
       {
-        'txt': 'photo d\'assurance',
+        'txt': 'صورة التامين',
         'tofill': 'photo',
         'holder': licenceController.createdFullLicence!.athlete!.photo
       },
       {
-        'txt': 'photo medical',
+        'txt': 'الصورة الطبية',
         'tofill': 'medphoto',
         'holder': licenceController.createdFullLicence!.athlete!.medicalPhoto
       }
@@ -59,21 +59,21 @@ class _UploadAthleteLicenceImagesState
   void didChangeDependencies() {
     // licenceController.myItems = [
     //   AthleteImageUploadWidget(
-    //       'photo de profile',
+    //       'صورة الحساب',
     //       licenceController,
     //       context,
     //       'profilePhoto',
     //       licenceController.createdFullLicence!.profile!.profilePhoto),
     //   AthleteImageUploadWidget(
-    //       'photo d\'identite',
+    //       'صورة الهوية',
     //       licenceController,
     //       context,
     //       'idphoto',
     //       licenceController.createdFullLicence!.athlete!.identityPhoto),
-    //   AthleteImageUploadWidget('photo d\'assurance', licenceController, context,
+    //   AthleteImageUploadWidget('صورة التامين', licenceController, context,
     //       'photo', licenceController.createdFullLicence!.athlete!.photo),
     //   AthleteImageUploadWidget(
-    //       'photo medical',
+    //       'الصورة الطبية',
     //       licenceController,
     //       context,
     //       'medphoto',
@@ -91,14 +91,14 @@ class _UploadAthleteLicenceImagesState
         // appBar: AppBar(),
         body: CustomScrollView(
           slivers: [
-            MyAppBar("Photos Athletes", context, false, licenceController,
+            MyAppBar("صور الرياضي", context, false, licenceController,
                 false, true),
                 SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
             SliverGrid(
 
                 delegate: SliverChildListDelegate([
                   AthleteImageUploadWidget(
-                      'photo de profile',
+                      'صورة الحساب',
                       licenceController,
                       context,
                       'profilePhoto',
@@ -107,20 +107,20 @@ class _UploadAthleteLicenceImagesState
                           0
                           ),
                   AthleteImageUploadWidget(
-                      'photo d\'identite',
+                      'صورة الهوية',
                       licenceController,
                       context,
                       'idphoto',
                       licenceController
                           .createdFullLicence!.athlete!.identityPhoto,1),
                   AthleteImageUploadWidget(
-                      'photo d\'assurance',
+                      'صورة التامين',
                       licenceController,
                       context,
                       'photo',
                       licenceController.createdFullLicence!.athlete!.photo,2),
                   AthleteImageUploadWidget(
-                      'photo medical',
+                      'الصورة الطبية',
                       licenceController,
                       context,
                       'medphoto',
@@ -158,8 +158,8 @@ class _UploadAthleteLicenceImagesState
                                   .createdFullLicence!.athlete!.medicalPhoto ==
                               null)) {
                         final snackBar = MySnackBar(
-                            title: "Photos Manquantes",
-                            msg: "Merci de remplir tous les photos svp",
+                            title: 'صور ناقصة',
+                            msg: 'الرجاء تقديم جميع الصور الناقصة',
                             state: ContentType.warning);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
@@ -170,7 +170,7 @@ class _UploadAthleteLicenceImagesState
 
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
                     },
-                    label: Text("Confirmer"),
+                    label: Text("تاكيد"),
                   )),
             ],
           ),

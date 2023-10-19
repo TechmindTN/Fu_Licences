@@ -3,9 +3,9 @@ class Arbitrator {
   String? created;
   String? identityPhoto;
   String? photo;
-  dynamic? profile;
-  dynamic? grade;
-  dynamic? club;
+  dynamic profile;
+  dynamic grade;
+  dynamic club;
 
   Arbitrator(
       {this.id,
@@ -27,14 +27,14 @@ class Arbitrator {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['created'] = this.created;
-    data['identity_photo'] = this.identityPhoto;
-    data['photo'] = this.photo;
-    data['profile'] = this.profile;
-    data['grade'] = this.grade;
-    data['club'] = this.club;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['created'] = created;
+    data['identity_photo'] = identityPhoto;
+    data['photo'] = photo;
+    data['profile'] = profile;
+    data['grade'] = grade;
+    data['club'] = club;
     return data;
   }
 }

@@ -29,19 +29,19 @@ class _RenewCoachLicenceImagesState extends State<RenewCoachLicenceImages> {
       return Scaffold(
         body: CustomScrollView(
           slivers:[
-            MyAppBar("Renouvellement Licence "+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true), 
+            MyAppBar('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true), 
             SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
             SliverGrid(
                 delegate: SliverChildListDelegate([
                   CoachImageEditWidget(
-                    'Identite',
+                    'صورة الهوية',
                     licenceController,
                     context,
                     'idphoto',
                     licenceController.createdFullLicence!.coach!.identityPhoto,1
                   ),
                   CoachImageEditWidget(
-                      'Assurance',
+                      'صورة التامين',
                       licenceController,
                       context,
                       'photo',
@@ -79,7 +79,7 @@ class _RenewCoachLicenceImagesState extends State<RenewCoachLicenceImages> {
                       licenceController.editCoachProfile(context);
                       GoRouter.of(context).push(Routes.RenewCoachLicenceScreen);
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

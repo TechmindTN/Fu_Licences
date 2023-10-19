@@ -80,9 +80,9 @@ class _DegreeListScreenState extends State<DegreeListScreen> {
           //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //         children: [
           //           Text("Id"),
-          //             Text("Nom"),
-          //             Text("Cree le"),
-          //             Text("Actions")
+          //             Text('الاسم'),
+          //             Text('اضيف يوم'),
+          //             Text('الاجراءات')
           //         ],
           //       ),
           //     ),
@@ -115,10 +115,10 @@ return SliverToBoxAdapter(
                     columns: [ 
                       DataColumn(label: Text(''),),
                       // DataColumn(label: Text('logo'),),                     
-                      DataColumn(label: Text('nom')),   
-                      // DataColumn(label: Text('Age Minimale')),                   
-                      // DataColumn(label: Text('Age Maximale')),                     
-                      DataColumn(label: Text('Actions')),
+                      DataColumn(label: Text('اللقب')),   
+                      // DataColumn(label: Text('العمر الادنى')),                   
+                      // DataColumn(label: Text('العمر الاقصى')),                     
+                      DataColumn(label: Text('الاجراءات')),
                       ],
                     // actions: [
                     //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))

@@ -37,7 +37,7 @@ List<Widget> _buildScreens() => [
         
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.settings),
-          title: "Parametres",
+          title: 'الاعدادات',
           activeColorPrimary: Colors.teal,
           inactiveColorPrimary: Colors.grey,
           routeAndNavigatorSettings: RouteAndNavigatorSettings(
@@ -51,13 +51,13 @@ List<Widget> _buildScreens() => [
         ),
         PersistentBottomNavBarItem(
             icon: const Icon(Icons.home),
-            title: "Acceuil",
+            title: "الشاشة الرئيسية",
             activeColorPrimary: Colors.blue,
             inactiveColorPrimary: Colors.grey,
             inactiveColorSecondary: Colors.purple),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.list_alt),
-          title: "Licences",
+          title: 'الاجازات',
           activeColorPrimary: Colors.blueAccent,
           inactiveColorPrimary: Colors.grey,
           routeAndNavigatorSettings: RouteAndNavigatorSettings(

@@ -33,13 +33,13 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
           // appBar: AppBar(title: Text('Coach Images'),),
           body: CustomScrollView(
             slivers:[ 
-              MyAppBar("Images d'entraineur", context, false, licenceController, false, true),
+              MyAppBar("صور المدرب", context, false, licenceController, false, true),
                 SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
             SliverGrid(
 
                 delegate: SliverChildListDelegate([
-                   CoachImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
-                  CoachImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto,1),
+                   CoachImageUploadWidget('صورة الحساب',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
+                  CoachImageUploadWidget('صورة الهوية',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto,1),
                   CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo,2),
                   CoachImageUploadWidget('photo de degree',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto,3),
                   CoachImageUploadWidget('photo de grade',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto,4),
@@ -54,7 +54,7 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
             //   Center(
             //   child: Column(
             //     children: [
-            //       CoachImageUploadWidget('photo de profile',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
+            //       CoachImageUploadWidget('صورة الحساب',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
             //       CoachImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto,1),
             //       CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo,2),
             //       CoachImageUploadWidget('photo de degree',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto,3),
@@ -76,7 +76,7 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
                   child: FloatingActionButton.extended(onPressed: (){
                     // licenceController.createProfile();
                     if((licenceController.createdFullLicence!.profile!.profilePhoto==null)||(licenceController.createdFullLicence!.coach!.identityPhoto==null)||(licenceController.createdFullLicence!.coach!.photo==null)||(licenceController.createdFullLicence!.coach!.degreePhoto==null)||(licenceController.createdFullLicence!.coach!.gradePhoto==null)){
-                      final snackBar=MySnackBar(title: "Photos Manquantes",msg: "Merci de remplir tous les photos svp",state: ContentType.warning);
+                      final snackBar=MySnackBar(title: 'صور ناقصة',msg: 'الرجاء تقديم جميع الصور الناقصة',state: ContentType.warning);
                       ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
                     }
                     else{
@@ -84,7 +84,7 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
                     }
                     
                     // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
-                  },label: Text("Confirmer"),)),
+                  },label: Text('تاكيد'),)),
               ],
             ),
           )),

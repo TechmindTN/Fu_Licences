@@ -25,7 +25,7 @@ Widget SearchButton(LicenceProvider licenceController,numControl,context){
             ],
       ),
       
-      child: Center(child: Text("Search",
+      child: Center(child: Text("بحث",
       style: TextStyle(
         color: Colors.white
       ),

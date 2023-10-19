@@ -61,24 +61,24 @@ class Profile {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['created'] = this.created;
-    data['sexe'] = this.sexe;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
-    data['country'] = this.country;
-    data['state'] = this.state;
-    data['city'] = this.city;
-    data['address'] = this.address;
-    data['zip_code'] = this.zipCode;
-    data['profile_photo'] = this.profilePhoto;
-    data['phone'] = this.phone;
-    data['location'] = this.location;
-    data['birthday'] = this.birthday;
-    data['cin'] = this.cin;
-    data['role'] = this.role;
-    data['user'] = this.user;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['created'] = created;
+    data['sexe'] = sexe;
+    data['first_name'] = firstName;
+    data['last_name'] = lastName;
+    data['country'] = country;
+    data['state'] = state;
+    data['city'] = city;
+    data['address'] = address;
+    data['zip_code'] = zipCode;
+    data['profile_photo'] = profilePhoto;
+    data['phone'] = phone;
+    data['location'] = location;
+    data['birthday'] = birthday;
+    data['cin'] = cin;
+    data['role'] = role;
+    data['user'] = user;
     // data['licences'] = this.licences;
     return data;
   }

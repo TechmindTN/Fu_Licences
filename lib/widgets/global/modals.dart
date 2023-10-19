@@ -16,7 +16,7 @@ AthleteMediaModal(LicenceProvider licenceController,context,String? toFillImage)
             children: [
               Icon(Icons.photo),
               SizedBox(width: 5.w,),
-              Text("Ouvrir le gallerie des photos")
+              Text('فتح البوم الصور')
             ],
           ),
           
@@ -33,7 +33,7 @@ AthleteMediaModal(LicenceProvider licenceController,context,String? toFillImage)
             children: [
               Icon(Icons.camera_alt),
               SizedBox(width: 5.w,),
-              Text("Ouvrir la camera"),
+              Text('فتح آلة التصوير'),
             ],
           ),
           
@@ -48,7 +48,6 @@ CoachMediaModal(LicenceProvider licenceController,context,String? toFillImage){
     children: [
       InkWell(
         onTap: (() async {
-          print('from gallery');
           // await licenceController.pickCoachImage(true,context,toFillImage);
         }),
         child: Padding(
@@ -57,7 +56,7 @@ CoachMediaModal(LicenceProvider licenceController,context,String? toFillImage){
             children: [
               Icon(Icons.photo),
               SizedBox(width: 5.w,),
-              Text("Ouvrir le gallerie des photos")
+              Text('فتح البوم الصور')
             ],
           ),
           
@@ -65,7 +64,6 @@ CoachMediaModal(LicenceProvider licenceController,context,String? toFillImage){
       ),
       InkWell(
         onTap: (() {
-          print('from camera');
           // licenceController.pickCoachImage(false,context,toFillImage);
         }),
         child: Padding(
@@ -74,7 +72,7 @@ CoachMediaModal(LicenceProvider licenceController,context,String? toFillImage){
             children: [
               Icon(Icons.camera_alt),
               SizedBox(width: 5.w,),
-              Text("Ouvrir la camera"),
+              Text('فتح آلة التصوير'),
             ],
           ),
           
@@ -90,7 +88,6 @@ ArbitreMediaModal(LicenceProvider licenceController,context,String? toFillImage)
     children: [
       InkWell(
         onTap: (() async {
-          print('from gallery');
           // await licenceController.pickArbitreImage(true,context,toFillImage);
         }),
         child: Padding(
@@ -99,7 +96,7 @@ ArbitreMediaModal(LicenceProvider licenceController,context,String? toFillImage)
             children: [
               Icon(Icons.photo),
               SizedBox(width: 5.w,),
-              Text("Ouvrir le gallerie des photos")
+              Text('فتح البوم الصور')
             ],
           ),
           
@@ -107,7 +104,6 @@ ArbitreMediaModal(LicenceProvider licenceController,context,String? toFillImage)
       ),
       InkWell(
         onTap: (() {
-          print('from camera');
           // licenceController.pickArbitreImage(false,context,toFillImage);
         }),
         child: Padding(
@@ -116,7 +112,7 @@ ArbitreMediaModal(LicenceProvider licenceController,context,String? toFillImage)
             children: [
               Icon(Icons.camera_alt),
               SizedBox(width: 5.w,),
-              Text("Ouvrir la camera"),
+              Text('فتح آلة التصوير'),
             ],
           ),
           
@@ -141,7 +137,7 @@ EditMediaModal(LicenceProvider licenceController,context,String? imageName,img){
             children: [
               Icon(Icons.photo),
               SizedBox(width: 5.w,),
-              Text("Ouvrir le gallerie des photos")
+              Text('فتح البوم الصور')
             ],
           ),
           
@@ -158,7 +154,7 @@ EditMediaModal(LicenceProvider licenceController,context,String? imageName,img){
             children: [
               Icon(Icons.camera_alt),
               SizedBox(width: 5.w,),
-              Text("Ouvrir la camera"),
+              Text('فتح آلة التصوير'),
             ],
           ),
           

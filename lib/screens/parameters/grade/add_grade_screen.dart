@@ -72,8 +72,8 @@ class _AddGradeScreenState extends State<AddGradeScreen> {
                      
                       if ((gradeController.text == null)||(gradeController.text == "")) {
                         final snackBar = MySnackBar(
-                            title: "Champs Obligatoires",
-                            msg: "Merci de remplir tous les champs svp",
+                            title: 'خانات اجبارية',
+                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
                             state: ContentType.warning);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
@@ -85,7 +85,7 @@ class _AddGradeScreenState extends State<AddGradeScreen> {
                         // GoRouter.of(context).go(Routes.GradeListScreen);
                       }
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

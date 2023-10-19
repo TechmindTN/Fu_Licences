@@ -107,7 +107,7 @@ Widget ClubItem(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Ligue",
+                                  'الولاية',
                                   style: SafeGoogleFont(
                                     'Inter',
                                     fontSize: 18,
@@ -168,7 +168,7 @@ Widget ClubItem(
                           //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           //     children: [
                           //       Text(
-                          //         "Ligue",
+                          //         'الولاية',
                           //         style: SafeGoogleFont(
                           //           'Inter',
                           //           fontSize: 18,
@@ -198,7 +198,7 @@ Widget ClubItem(
                               
                           //     children: [
                           //      Text(
-                          //         "Saison",
+                          //         'الموسم',
                           //         style: SafeGoogleFont(
                           //           'Inter',
                           //           fontSize: 18,

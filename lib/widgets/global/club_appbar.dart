@@ -5,77 +5,82 @@ import 'package:sizer/sizer.dart';
 
 import '../../router/routes.dart';
 
-Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions,isback){
+Widget MyClubAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions,isback){
   return SliverAppBar(
-    
     
     actions: (isActions)?[
             PopupMenuButton(
               
               // surfaceTintColor: Colors.white,
               color: Colors.white,
-              icon: Icon(Icons.more_vert,color: Colors.white,),
+              icon: Icon(Icons.more_vert,color: Colors.black,),
               itemBuilder: (context){
                     //  if(licenceController.currentUser.club!.id!=null)
                      return [
                             PopupMenuItem<int>(
                               
                                 value: 0,
-                                child: Text("تعديل الاجازة"),
+                                child: Text("تعديل النادي"),
                             ),
 
                             PopupMenuItem<int>(
                                 value: 1,
-                                child: Text("تعديل صور الاجازة"),
+                                child: Text("تعديل صور النادي"),
                             ),
 
-                            PopupMenuItem<int>(
-                                value: 2,
-                                child: Text("تجديد الاجازة"),
-                            ),
+                            // PopupMenuItem<int>(
+                            //     value: 2,
+                            //     child: Text("Renouvellement"),
+                            // ),
                             
                         ];
                        
                    },
                    onSelected:(value){
-                    if(licenceController.selectedFullLicence!.licence!.role=="Athlete"){
-                      if(value == 0){
-                        GoRouter.of(context).push(Routes.EditAthleteLicenceScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceScreen())));
-                      }else if(value == 1){
-                        GoRouter.of(context).push(Routes.EditAthleteImagesScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
-                      }else if(value == 2){
-                        GoRouter.of(context).push(Routes.RenewAthleteImages);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => RenewLicenceImages())));
-                      }
-                   }
-                    else if(licenceController.selectedFullLicence!.licence!.role=="Arbitre"){
-                      if(value==0){
-                        GoRouter.of(context).push(Routes.EditArbitratorLicenceScreen);
-                      }
-                      else if(value == 1){
-                        GoRouter.of(context).push(Routes.EditArbitratorImagesScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
-                      }
-                      else if(value == 2){
-                        GoRouter.of(context).push(Routes.RenewArbitratorImagesScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
-                      }
+                    if(value==0){
+                                              GoRouter.of(context).push(Routes.EditClubScreen);
+
                     }
-                    else if(licenceController.selectedFullLicence!.licence!.role=="Entraineur"){
-                      if(value==0){
-                        GoRouter.of(context).push(Routes.EditCoachLicenceScreen);
-                      }
-                      else if(value == 1){
-                        GoRouter.of(context).push(Routes.EditCoachImagesScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
-                      }
-                      else if(value == 2){
-                        GoRouter.of(context).push(Routes.RenewCoachImagesScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
-                      }
-                    }
+                    else{}
+
+                  //   if(licenceController.selectedFullLicence!.licence!.role=="Athlete"){
+                  //     if(value == 0){
+                  //       GoRouter.of(context).push(Routes.EditAthleteLicenceScreen);
+                  //       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceScreen())));
+                  //     }else if(value == 1){
+                  //       GoRouter.of(context).push(Routes.EditAthleteImagesScreen);
+                  //       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                  //     }else if(value == 2){
+                  //       GoRouter.of(context).push(Routes.RenewAthleteImages);
+                  //       // Navigator.push(context, MaterialPageRoute(builder: ((context) => RenewLicenceImages())));
+                  //     }
+                  //  }
+                  //   else if(licenceController.selectedFullLicence!.licence!.role=="Arbitre"){
+                  //     if(value==0){
+                  //       GoRouter.of(context).push(Routes.EditArbitratorLicenceScreen);
+                  //     }
+                  //     else if(value == 1){
+                  //       GoRouter.of(context).push(Routes.EditArbitratorImagesScreen);
+                  //       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                  //     }
+                  //     else if(value == 2){
+                  //       GoRouter.of(context).push(Routes.RenewArbitratorImagesScreen);
+                  //       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                  //     }
+                  //   }
+                  //   else if(licenceController.selectedFullLicence!.licence!.role=="Entraineur"){
+                  //     if(value==0){
+                  //       GoRouter.of(context).push(Routes.EditCoachLicenceScreen);
+                  //     }
+                  //     else if(value == 1){
+                  //       GoRouter.of(context).push(Routes.EditCoachImagesScreen);
+                  //       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                  //     }
+                  //     else if(value == 2){
+                  //       GoRouter.of(context).push(Routes.RenewCoachImagesScreen);
+                  //       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                  //     }
+                  //   }
                    }
                   
                    )
@@ -86,15 +91,13 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
             pinned: false,
             foregroundColor: Colors.white,
     // collapsedHeight: 10.h,
-    leading: (isback)?IconButton(icon:Icon(Icons.arrow_back,color: Colors.white,),onPressed: (){
+    leading: (isback)?IconButton(icon:Icon(Icons.arrow_back,color: Colors.black,),onPressed: (){
       GoRouter.of(context).pop();
     },):Visibility(
       visible: isDrawer,
       child: Builder(
         builder: (context) {
-          return IconButton(icon:Icon(Icons.short_text_rounded,color: Colors.white,
-          size: 40,
-          ),
+          return IconButton(icon:Icon(Icons.short_text_rounded),
           onPressed: ( ){
             Scaffold.of(context).openDrawer();
           },
@@ -104,9 +107,9 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
       ),
     ),
     centerTitle: true,
-    backgroundColor: Colors.blue,
+    backgroundColor: Colors.white,
     title: Text(title,
-    style: TextStyle(color: Colors.white),
+    style: TextStyle(color: Colors.black),
     ),
   );
 }
@@ -123,9 +126,6 @@ Widget MyDrawer(LicenceProvider licenceController,context){
           IdentifierField(licenceController,context),
           DrawerField(Icons.home,'الشاشة الرئيسية',Routes.Home,context),
           DrawerField(Icons.list,'الاجازات',Routes.LicenceListScreen,context),
-          DrawerField(Icons.list,"الرياضيين",Routes.AthleteLicenceListScreen,context),
-          DrawerField(Icons.list,"الحكام",Routes.ArbitratorLicenceListScreen,context),
-          DrawerField(Icons.list,"المدربين",Routes.CoachLicenceListScreen,context),
           DrawerField(Icons.list,"النوادي",Routes.ClubListScreen,context),
           DrawerField(Icons.list,'الاعدادات',Routes.SelectParameterScreen,context),
           // DrawerField(Icons.list,'الاجازات'),
@@ -280,17 +280,17 @@ Widget DrawerField(icon,txt,togo,context,){
 
 Widget LogoutDialog(LicenceProvider licenceController,context){
   return AlertDialog(
-    title: Text("Logout"),
-    content: Text("Voulez vous vraiment quitter?"),
+    title: Text("تسجيل الخروج"),
+    content: Text("هل تود فعلا الخروج؟؟"),
     actions: [
       TextButton(onPressed: (){
         licenceController.logout(context);
-      }, child: Text("Logut",
+      }, child: Text("تسجيل الخروج",
       style: TextStyle(
         color: Colors.red
       ),
       )),
-      TextButton(onPressed: (){}, child: Text("Cancel"))
+      TextButton(onPressed: (){}, child: Text("الغاء"))
     ],
   );
 }

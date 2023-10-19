@@ -48,21 +48,21 @@ class Licence {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['num_licences'] = this.numLicences;
-    data['created'] = this.created;
-    data['activated'] = this.activated;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['num_licences'] = numLicences;
+    data['created'] = created;
+    data['activated'] = activated;
     // data['state'] = this.state;
-    data['verified'] = this.verified;
-    data['user'] = this.user;
-    data['role'] = this.role;
-    data['seasons'] = this.seasons;
-    data['degree'] = this.degree;
-    data['grade'] = this.grade;
-    data['weight'] = this.weight;
-    data['categorie'] = this.categorie;
-    data['club'] = this.club;
-    data['discipline'] = this.discipline;
+    data['verified'] = verified;
+    data['user'] = user;
+    data['role'] = role;
+    data['seasons'] = seasons;
+    data['degree'] = degree;
+    data['grade'] = grade;
+    data['weight'] = weight;
+    data['categorie'] = categorie;
+    data['club'] = club;
+    data['discipline'] = discipline;
     return data;
   }
 }

@@ -1,6 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../controllers/licence_controller.dart';
 
 Widget CoachImageEditWidget(
@@ -14,11 +15,9 @@ Widget CoachImageEditWidget(
          await licenceController.pickCoachImage(true, context, imageName);
         },
         onHover: (value) {
-                
                 if(value){
                   licenceController.isHovered[index]=true;
                   licenceController.notify();
-                  
                 }
                 else{
                   licenceController.isHovered[index]=false;
@@ -33,17 +32,15 @@ Widget CoachImageEditWidget(
                       opacity: (licenceController.isHovered[index])?0.3:1,
                       fit: BoxFit.cover
                       ):null,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(color: Colors.black26),
                       BoxShadow(
                         color: Color(0xffD9D9D9),
                         spreadRadius: -12,
                         blurRadius: 20,
-
                       )
                     ],
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
-                      // color: Color(0xffD9D9D9)
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
                       ),
                   width: 30.w,
                   height: 22.h,
@@ -53,32 +50,20 @@ Widget CoachImageEditWidget(
                     size: 5.w,
                     ),
                    )
-                   :SizedBox(),),
+                   :const SizedBox(),),
         ),
       ),
-      // Text(placeHolderImage.toString()),
       SizedBox(
             height: 0.5.h,
           ),
           Text(txt,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20
           ),
           ),
           SizedBox(
             height: 1.h,
           ),
-      // FloatingActionButton.extended(
-      //   onPressed: () {
-      //     showModalBottomSheet(
-      //         context: context,
-      //         builder: (context) {
-      //           return EditMediaModal(
-      //               licenceController, context, imageName, img);
-      //         });
-      //   },
-      //   label: Text("Select"),
-      // )
     ],
   );
 }

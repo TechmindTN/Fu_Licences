@@ -32,10 +32,10 @@ class _EditCoachLicenceImagesState extends State<EditCoachLicenceImages> {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
       return Scaffold(
-        // appBar: AppBar(title: Text("Modifier licence "+licenceController.selectedFullLicence!.licence!.numLicences!),),
+        // appBar: AppBar(title: Text('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
         body: CustomScrollView(
           slivers:[
-            MyAppBar("Modifier licence "+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+            MyAppBar('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
             
             
             SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
@@ -43,14 +43,14 @@ class _EditCoachLicenceImagesState extends State<EditCoachLicenceImages> {
 
                 delegate: SliverChildListDelegate([
                   CoachImageEditWidget(
-                    'Profile',
+                    'صورة الحساب',
                     licenceController,
                     context,
                     'profilePhoto',
                     licenceController
                         .createdFullLicence!.profile!.profilePhoto,0),
                 CoachImageEditWidget(
-                  'Identite',
+                  'صورة الهوية',
                   licenceController,
                   context,
                   'idphoto',
@@ -104,7 +104,7 @@ class _EditCoachLicenceImagesState extends State<EditCoachLicenceImages> {
                       licenceController.editCoachImages(context);
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

@@ -43,7 +43,7 @@ class _AddLigueScreenState extends State<AddLigueScreen> {
         body: CustomScrollView(
 
           slivers:[
-            MyAppBar("Ajouter une ligue", context, false, licenceController, false, true),
+            MyAppBar("اضافة ولاية", context, false, licenceController, false, true),
             SliverToBoxAdapter(child: SizedBox(height: 3.h),),
             SliverToBoxAdapter(
               child: Center(
@@ -51,7 +51,7 @@ class _AddLigueScreenState extends State<AddLigueScreen> {
               width: 40.w,
               child: Column(
                 children: [
-                  TextInput("Ligue", ligueController)          
+                  TextInput('الولاية', ligueController)          
                 ],
               ),
             ),
@@ -72,8 +72,8 @@ class _AddLigueScreenState extends State<AddLigueScreen> {
                      
                       if ((ligueController.text == null)||(ligueController.text == "")) {
                         final snackBar = MySnackBar(
-                            title: "Champs Obligatoires",
-                            msg: "Merci de remplir tous les champs svp",
+                            title: 'خانات اجبارية',
+                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
                             state: ContentType.warning);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
@@ -85,7 +85,7 @@ class _AddLigueScreenState extends State<AddLigueScreen> {
                         // GoRouter.of(context).go(Routes.LigueListScreen);
                       }
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),

@@ -2,7 +2,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/network/club_network.dart';
-
 import '../models/club.dart';
 import '../models/parameters.dart';
 import '../models/user.dart';
@@ -17,12 +16,13 @@ class ClubProvider extends ChangeNotifier{
   chargeClub(LicenceProvider licenceController) async {
     isLoading=true;
     Parameters? params=await licenceController.getParameters();
-    
     clubs=params!.clubs;
     isLoading=false;
-
     notify();
-    print('clubs length: '+clubs!.length.toString());
+  }
+
+  getLigue(){
+
   }
 
   createClubProfile(
@@ -33,11 +33,8 @@ class ClubProvider extends ChangeNotifier{
       String? lastName,
       String? phone,
       String? state}) {
-        
     licenceController.createdFullLicence!.profile!.address = address;
-    //licenceController.createdFullLicence!.profile!.birthday = licenceController.selectedBirth.toString();
     licenceController.createdFullLicence!.profile!.cin = cin;
-    // createdFullLicence!.profile!.country=address;
     licenceController.createdFullLicence!.profile!.firstName = firstName;
     licenceController.createdFullLicence!.profile!.lastName = lastName;
     licenceController.createdFullLicence!.profile!.phone = int.parse(phone!);
@@ -49,9 +46,8 @@ class ClubProvider extends ChangeNotifier{
         username: licenceController.createdFullLicence!.profile!.phone.toString(),
         password: "12345");
     licenceController.createdFullLicence!.user = user;
-    // createdFullLicence!.profile!.=address;
-    // createdFullLicence!.profile!.user=user;
   }
+
   createClub(context,LicenceProvider licenceController,name) async {
     try {
       Club club=Club(name: name,ligue: licenceController.selectedLigue!.id);
@@ -61,20 +57,13 @@ class ClubProvider extends ChangeNotifier{
     mapdata['profile'] = licenceController.createdFullLicence!.profile!.toJson();
       Response res = await clubNetwork.addClub(mapdata);
       if (res.statusCode == 200) {
-        print('club created successfully');
-        print('ok');
-        
         // for (Season s in parameters!.seasons!){
         //   if (s.id==res.data['licence']['seasons']){
         //     createdFullLicence!.licence!.seasons=s.seasons;
         //   }
         // }
-       
-
-    
     // createdFullLicence!.licence!.club = selectedClub!.id;
     // createdFullLicence!.profile!.country=address;
-       
     notify();
         // Navigator.pop(context);
         // Navigator.pop(context);
@@ -90,38 +79,67 @@ class ClubProvider extends ChangeNotifier{
         //   ..hideCurrentSnackBar()
         //   ..showSnackBar(snackBar);
       } else {
-        print('not ok');
-        print(res.statusMessage);
         final snackBar = MySnackBar(
           title: 'Echec',
           msg:
               'Il y a une probleme avec cet licence merci d verifier vos donnees',
-
-          /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
           state: ContentType.warning,
         );
-
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
       }
     } catch (e) {
-       print(e);
       final snackBar = MySnackBar(
         title: 'Probleme',
         msg:
             'Il y a une probleme dans cet instant merci d\'essayer ulterieurement',
-       
-        /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
         state: ContentType.failure,
       );
-
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(snackBar);
-      
     }
+  }
 
+  editClub(String name,context) async {
+    Map<String,dynamic> data={"name":name};
+    try{
+    Response res=await clubNetwork.editClub(data,selectedClub.id);
+    if(res.statusCode==200){
+      final snackBar = MySnackBar(
+          title: 'Succees',
+          msg:
+              'Les informations du club sont modifiee en succees',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg:
+              'Il y a une probleme avec cet licence merci d verifier vos donnees',
+          state: ContentType.warning,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    }
+    catch(e){
+      final snackBar = MySnackBar(
+        title: 'Probleme',
+        msg:
+            'Il y a une probleme dans cet instant merci d\'essayer ulterieurement',
+        state: ContentType.failure,
+      );
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    }
   }
 
   notify(){

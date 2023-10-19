@@ -45,7 +45,7 @@ class _AddWeightScreenState extends State<AddWeightScreen> {
         body: CustomScrollView(
 
           slivers:[
-            MyAppBar("Ajouter une weight", context, false, licenceController, false, true),
+            MyAppBar("اضافة وزن", context, false, licenceController, false, true),
             SliverToBoxAdapter(child: SizedBox(height: 3.h),),
             SliverToBoxAdapter(
               child: Center(
@@ -53,9 +53,9 @@ class _AddWeightScreenState extends State<AddWeightScreen> {
               width: 40.w,
               child: Column(
                 children: [
-                  TextInput("Poids", weightController),
-                  TextInput("Poids minimale", minController),  
-                  TextInput("Poids Maximale",  maxController)          
+                  TextInput('الوزن', weightController),
+                  TextInput("الوزن الادنى", minController),  
+                  TextInput("الوزن الاقصى",  maxController)          
                 ],
               ),
             ),
@@ -76,8 +76,8 @@ class _AddWeightScreenState extends State<AddWeightScreen> {
                      
                       if ((weightController.text == null)||(weightController.text == "")) {
                         final snackBar = MySnackBar(
-                            title: "Champs Obligatoires",
-                            msg: "Merci de remplir tous les champs svp",
+                            title: 'خانات اجبارية',
+                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
                             state: ContentType.warning);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
@@ -89,7 +89,7 @@ class _AddWeightScreenState extends State<AddWeightScreen> {
                         // GoRouter.of(context).go(Routes.WeightListScreen);
                       }
                     },
-                    label: Text("Confirmer"),
+                    label: Text('تاكيد'),
                   )),
             ],
           ),
