@@ -29,66 +29,70 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
-        return Scaffold(
-          // appBar: AppBar(title: Text('Coach Images'),),
-          body: CustomScrollView(
-            slivers:[ 
-              MyAppBar("صور المدرب", context, false, licenceController, false, true),
-                SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
-            SliverGrid(
+        return Directionality(
+                  textDirection: TextDirection.rtl,
 
-                delegate: SliverChildListDelegate([
-                   CoachImageUploadWidget('صورة الحساب',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
-                  CoachImageUploadWidget('صورة الهوية',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto,1),
-                  CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo,2),
-                  CoachImageUploadWidget('photo de degree',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto,3),
-                  CoachImageUploadWidget('photo de grade',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto,4),
-
-                ]),
-                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 0,
-                    childAspectRatio: 0.5 ,
-                    // mainAxisExtent: ,
-                    crossAxisSpacing: 0,
-                    crossAxisCount: 5)),
-            //   Center(
-            //   child: Column(
-            //     children: [
-            //       CoachImageUploadWidget('صورة الحساب',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
-            //       CoachImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto,1),
-            //       CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo,2),
-            //       CoachImageUploadWidget('photo de degree',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto,3),
-            //       CoachImageUploadWidget('photo de grade',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto,4),
-
-            //       SizedBox(height: 5.h,)
-            //     ],
-            //   ),
-            // ),
-            ]
-          ),
-          bottomNavigationBar: BottomAppBar(child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(onPressed: (){
-                    // licenceController.createProfile();
-                    if((licenceController.createdFullLicence!.profile!.profilePhoto==null)||(licenceController.createdFullLicence!.coach!.identityPhoto==null)||(licenceController.createdFullLicence!.coach!.photo==null)||(licenceController.createdFullLicence!.coach!.degreePhoto==null)||(licenceController.createdFullLicence!.coach!.gradePhoto==null)){
-                      final snackBar=MySnackBar(title: 'صور ناقصة',msg: 'الرجاء تقديم جميع الصور الناقصة',state: ContentType.warning);
-                      ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
-                    }
-                    else{
-                      GoRouter.of(context).push(Routes.AddProfileScreen);
-                    }
-                    
-                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
-                  },label: Text('تاكيد'),)),
-              ],
+          child: Scaffold(
+            // appBar: AppBar(title: Text('Coach Images'),),
+            body: CustomScrollView(
+              slivers:[ 
+                MyAppBar("صور المدرب", context, false, licenceController, false, true),
+                  SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
+              SliverGrid(
+        
+                  delegate: SliverChildListDelegate([
+                     CoachImageUploadWidget('صورة الحساب',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
+                    CoachImageUploadWidget('صورة الهوية',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto,1),
+                    CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo,2),
+                    CoachImageUploadWidget('photo de degree',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto,3),
+                    CoachImageUploadWidget('photo de grade',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto,4),
+        
+                  ]),
+                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 0,
+                      childAspectRatio: 0.5 ,
+                      // mainAxisExtent: ,
+                      crossAxisSpacing: 0,
+                      crossAxisCount: 5)),
+              //   Center(
+              //   child: Column(
+              //     children: [
+              //       CoachImageUploadWidget('صورة الحساب',licenceController,context,'profilePhoto',licenceController.createdFullLicence!.profile!.profilePhoto,0),
+              //       CoachImageUploadWidget('photo d\'identite',licenceController,context,'idphoto',licenceController.createdFullLicence!.coach!.identityPhoto,1),
+              //       CoachImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.coach!.photo,2),
+              //       CoachImageUploadWidget('photo de degree',licenceController,context,'degreephoto',licenceController.createdFullLicence!.coach!.degreePhoto,3),
+              //       CoachImageUploadWidget('photo de grade',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto,4),
+        
+              //       SizedBox(height: 5.h,)
+              //     ],
+              //   ),
+              // ),
+              ]
             ),
-          )),
-
+            bottomNavigationBar: BottomAppBar(child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(onPressed: (){
+                      // licenceController.createProfile();
+                      if((licenceController.createdFullLicence!.profile!.profilePhoto==null)||(licenceController.createdFullLicence!.coach!.identityPhoto==null)||(licenceController.createdFullLicence!.coach!.photo==null)||(licenceController.createdFullLicence!.coach!.degreePhoto==null)||(licenceController.createdFullLicence!.coach!.gradePhoto==null)){
+                        final snackBar=MySnackBar(title: 'صور ناقصة',msg: 'الرجاء تقديم جميع الصور الناقصة',state: ContentType.warning);
+                        ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
+                      }
+                      else{
+                        GoRouter.of(context).push(Routes.AddProfileScreen);
+                      }
+                      
+                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
+                    },label: Text('تاكيد'),)),
+                ],
+              ),
+            )),
+        
+          ),
         );
       }
     );

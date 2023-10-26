@@ -73,8 +73,50 @@ class ParameterNetwork{
     );
     return res;
   }
+  deleteDegree(id) async {
+    Response res = await apis.dio.delete(apis.baseUrl + apis.degree+id.toString()+'/',
+         options: Options(
+           headers: {"Authorization": Apis.tempToken}),
+    );
+    return res;
+  }
+  deleteGrade(id) async {
+    Response res = await apis.dio.delete(apis.baseUrl + apis.grade+id.toString()+'/',
+         options: Options(
+           headers: {"Authorization": Apis.tempToken}),
+    );
+    return res;
+  }
+  deleteDiscipline(id) async {
+    Response res = await apis.dio.delete(apis.baseUrl + apis.discipline+id.toString()+'/',
+         options: Options(
+           headers: {"Authorization": Apis.tempToken}),
+    );
+    return res;
+  }
+  deleteCategory(id) async {
+    Response res = await apis.dio.delete(apis.baseUrl + apis.category+id.toString()+'/',
+         options: Options(
+           headers: {"Authorization": Apis.tempToken}),
+    );
+    return res;
+  }
+  deleteWeight(id) async {
+    Response res = await apis.dio.delete(apis.baseUrl + apis.weight+id.toString()+'/',
+         options: Options(
+           headers: {"Authorization": Apis.tempToken}),
+    );
+    return res;
+  }
+  deleteSeason(id) async {
+    Response res = await apis.dio.delete(apis.baseUrl + apis.season+id.toString()+'/',
+         options: Options(
+           headers: {"Authorization": Apis.tempToken}),
+    );
+    return res;
+  }
   // addCategory(data) async {
-  //   //print(apis.baseUrl);
+  //   ////print(apis.baseUrl);
   //   Response res = await apis.dio.post(apis.baseUrl + apis.category,
   //        options: Options(
   //          headers: {"Authorization": Apis.tempToken}),
@@ -83,7 +125,7 @@ class ParameterNetwork{
   //   return res;
   // }
   // addDegree(data) async {
-  //   //print(apis.baseUrl);
+  //   ////print(apis.baseUrl);
   //   Response res = await apis.dio.post(apis.baseUrl + apis.degree,
   //        options: Options(
   //          headers: {"Authorization": Apis.tempToken}),
@@ -92,7 +134,7 @@ class ParameterNetwork{
   //   return res;
   // }
   // addGrade(data) async {
-  //   //print(apis.baseUrl);
+  //   ////print(apis.baseUrl);
   //   Response res = await apis.dio.post(apis.baseUrl + apis.grade,
   //        options: Options(
   //          headers: {"Authorization": Apis.tempToken}),
@@ -101,7 +143,7 @@ class ParameterNetwork{
   //   return res;
   // }
   // addDiscipline(data) async {
-  //   //print(apis.baseUrl);
+  //   ////print(apis.baseUrl);
   //   Response res = await apis.dio.post(apis.baseUrl + apis.discipline,
   //        options: Options(
   //          headers: {"Authorization": Apis.tempToken}),
@@ -110,7 +152,7 @@ class ParameterNetwork{
   //   return res;
   // }
   // addWeight(data) async {
-  //   //print(apis.baseUrl);
+  //   ////print(apis.baseUrl);
   //   Response res = await apis.dio.post(apis.baseUrl + apis.weight,
   //        options: Options(
   //          headers: {"Authorization": Apis.tempToken}),
@@ -119,7 +161,7 @@ class ParameterNetwork{
   //   return res;
   // }
   // addSeason(data) async {
-  //   //print(apis.baseUrl);
+  //   ////print(apis.baseUrl);
   //   Response res = await apis.dio.post(apis.baseUrl + apis.season,
   //        options: Options(
   //          headers: {"Authorization": Apis.tempToken}),

@@ -24,7 +24,11 @@ class DegreeDataSource extends DataTableSource{
       DataCell(SelectableText(licenceController.parameters!.degrees![index].degree.toString())),
       DataCell(Row(
         children: [
-          FloatingActionButton.small(onPressed: (){},child: Icon(Icons.delete),
+          FloatingActionButton.small(onPressed: (){
+             paramController.removeDegree(licenceController.parameters!.degrees![index].id!,context);
+            licenceController.parameters!.degrees!.remove(licenceController.parameters!.degrees![index]);
+            licenceController.notify();
+          },child: Icon(Icons.delete),
           backgroundColor: Colors.red,
           ),
         ],

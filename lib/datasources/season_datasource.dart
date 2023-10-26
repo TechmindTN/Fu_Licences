@@ -35,7 +35,9 @@ class SeasonDataSource extends DataTableSource{
           // SizedBox(width:1.w),
            if(licenceController.parameters!.seasons![index].activated==false)ElevatedButton(
                           onPressed: (){
-
+                             paramController.removeSeason(licenceController.parameters!.seasons![index].id!,context);
+            licenceController.parameters!.seasons!.remove(licenceController.parameters!.seasons![index]);
+            licenceController.notify();
                           }, child: Text("Activer")),
                           if(licenceController.parameters!.seasons![index].activated==true) SizedBox(width: 9.2.w,),
                           SizedBox(width: 10,),

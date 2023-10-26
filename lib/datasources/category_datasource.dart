@@ -28,8 +28,8 @@ class CategoryDataSource extends DataTableSource{
           return Checkbox(onChanged: (bool? value) { 
             paramController.categoryChecks[index]=!paramController.categoryChecks[index];
             paramController.notify();
-            print(value);
-            print(index);
+            //print(value);
+            //print(index);
            }, value: paramController.categoryChecks[index],);
         }
       )),
@@ -47,7 +47,11 @@ class CategoryDataSource extends DataTableSource{
           // },child: Icon(Icons.remove_red_eye),),
           // SizedBox(width:1.w),
           
-          FloatingActionButton.small(onPressed: (){},child: Icon(Icons.delete),
+          FloatingActionButton.small(onPressed: (){
+             paramController.removeCategory(licenceController.parameters!.categories![index].id!,context);
+            licenceController.parameters!.categories!.remove(licenceController.parameters!.categories![index]);
+            licenceController.notify();
+          },child: Icon(Icons.delete),
           backgroundColor: Colors.red,
           ),
           

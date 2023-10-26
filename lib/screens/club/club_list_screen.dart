@@ -40,77 +40,81 @@ late DataTableSource dataSource;
     dataSource=ClubDataSource(licenceController,context,clubController);
     return Consumer<ClubProvider>(
       builder: (context,clubController,child) {
-        return Scaffold(
-          drawer: MyDrawer(licenceController, context),
-          backgroundColor: const Color(0xfffafafa),
-          body: CustomScrollView(
-            slivers: [
-              MyAppBar("النوادي", context, true,licenceController,false,false),
-              SliverToBoxAdapter(child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 2.h),
-                ClubListHeader(licenceController,clubController,numControl,context),
-              ]
-              )),
-           FutureBuilder(
-            future: licenceController.getParameters(),
-             builder: (context,snaphot) {
-              if(snaphot.connectionState==ConnectionState.done){
-                    licenceController.clubChecks=List.generate(licenceController.parameters!.clubs!.length,(index)=>false);
-                 return SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal:30.0,vertical: 8),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: const [BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 10,
-                    )]
-                  ),
-                  child: PaginatedDataTable(
-                    sortColumnIndex: licenceController.currentSortColumn,
-                    sortAscending: licenceController.isAscending,
-                    columnSpacing: 0,
-                    rowsPerPage: 10,
-                    columns: const [ 
-                      DataColumn(label: Text(''),),
-                      DataColumn(label: Text('الاسم')),                     
-                      DataColumn(label: Text('الولاية')),                     
-                      DataColumn(label: Text('اجراءات')),
-                      ],
-                    arrowHeadColor: Colors.blue,
-                    availableRowsPerPage: const [10,20,50,100],
-                    showCheckboxColumn: true,
-                    showFirstLastButtons: true,
-                     source: dataSource)
-                  ),
-              ),
-            );
-             }
-             else{
-           return SliverToBoxAdapter(child: SizedBox(
-              height: 40.h,
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+        return Directionality(
+                  textDirection: TextDirection.rtl,
+
+          child: Scaffold(
+            drawer: MyDrawer(licenceController, context),
+            backgroundColor: const Color(0xfffafafa),
+            body: CustomScrollView(
+              slivers: [
+                MyAppBar("النوادي", context, true,licenceController,false,false),
+                SliverToBoxAdapter(child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Center(child: CircularProgressIndicator()),
-                ],
-              ),
-            ));
-            }
-             }
-             )
-              ]
-          ),
-           floatingActionButton: FloatingActionButton(onPressed: () {
-            licenceController.selectedRole=licenceController.parameters!.roles!.firstWhere((element) => element.id==7);
-            GoRouter.of(context).push(Routes.AddProfileScreen);
-          },
-          child: const Icon(Icons.add),
-          ),
-          );
+                  SizedBox(height: 2.h),
+                  ClubListHeader(licenceController,clubController,numControl,context),
+                ]
+                )),
+             FutureBuilder(
+              future: licenceController.getParameters(),
+               builder: (context,snaphot) {
+                if(snaphot.connectionState==ConnectionState.done){
+                      licenceController.clubChecks=List.generate(licenceController.parameters!.clubs!.length,(index)=>false);
+                   return SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:30.0,vertical: 8),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: const [BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 10,
+                      )]
+                    ),
+                    child: PaginatedDataTable(
+                      sortColumnIndex: licenceController.currentSortColumn,
+                      sortAscending: licenceController.isAscending,
+                      columnSpacing: 0,
+                      rowsPerPage: 10,
+                      columns: const [ 
+                        DataColumn(label: Text(''),),
+                        DataColumn(label: Text('الاسم')),                     
+                        DataColumn(label: Text('الولاية')),                     
+                        DataColumn(label: Text('اجراءات')),
+                        ],
+                      arrowHeadColor: Colors.blue,
+                      availableRowsPerPage: const [10,20,50,100],
+                      showCheckboxColumn: true,
+                      showFirstLastButtons: true,
+                       source: dataSource)
+                    ),
+                ),
+              );
+               }
+               else{
+             return SliverToBoxAdapter(child: SizedBox(
+                height: 40.h,
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(child: CircularProgressIndicator()),
+                  ],
+                ),
+              ));
+              }
+               }
+               )
+                ]
+            ),
+             floatingActionButton: FloatingActionButton(onPressed: () {
+              licenceController.selectedRole=licenceController.parameters!.roles!.firstWhere((element) => element.id==7);
+              GoRouter.of(context).push(Routes.AddProfileScreen);
+            },
+            child: const Icon(Icons.add),
+            ),
+            ),
+        );
       }
     );
   }

@@ -38,58 +38,62 @@ class _AddGradeScreenState extends State<AddGradeScreen> {
   Widget build(BuildContext context) {
     return Consumer<ParameterProvider>(
         builder: (context, paramController, child) {
-      return Scaffold(
-      
-        body: CustomScrollView(
+      return Directionality(
+                textDirection: TextDirection.rtl,
 
-          slivers:[
-            MyAppBar("Ajouter une grade", context, false, licenceController, false, true),
-            SliverToBoxAdapter(child: SizedBox(height: 3.h),),
-            SliverToBoxAdapter(
-              child: Center(
-            child: Container(
-              width: 40.w,
-              child: Column(
-                children: [
-                  TextInput("Grade", gradeController)          
-                ],
+        child: Scaffold(
+        
+          body: CustomScrollView(
+      
+            slivers:[
+              MyAppBar("Ajouter une grade", context, false, licenceController, false, true),
+              SliverToBoxAdapter(child: SizedBox(height: 3.h),),
+              SliverToBoxAdapter(
+                child: Center(
+              child: Container(
+                width: 40.w,
+                child: Column(
+                  children: [
+                    TextInput("Grade", gradeController)          
+                  ],
+                ),
               ),
             ),
+              )
+            ] 
           ),
-            )
-          ] 
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                       
+                        if ((gradeController.text == null)||(gradeController.text == "")) {
+                          final snackBar = MySnackBar(
+                              title: 'خانات اجبارية',
+                              msg: 'الرجاء ملئ جميع الخانات الاجبارية',
+                              state: ContentType.warning);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        } else {
+                          paramController.addGrade(gradeController.text);
+                          GoRouter.of(context).pop();
+                          // licenceController.createAthlete(context);
+                          // GoRouter.of(context).go(Routes.GradeListScreen);
+                        }
+                      },
+                      label: Text('تاكيد'),
+                    )),
+              ],
+            ),
+          )),
         ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                     
-                      if ((gradeController.text == null)||(gradeController.text == "")) {
-                        final snackBar = MySnackBar(
-                            title: 'خانات اجبارية',
-                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
-                            state: ContentType.warning);
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      } else {
-                        paramController.addGrade(gradeController.text);
-                        GoRouter.of(context).pop();
-                        // licenceController.createAthlete(context);
-                        // GoRouter.of(context).go(Routes.GradeListScreen);
-                      }
-                    },
-                    label: Text('تاكيد'),
-                  )),
-            ],
-          ),
-        )),
       );
     });
     // TODO: implement build

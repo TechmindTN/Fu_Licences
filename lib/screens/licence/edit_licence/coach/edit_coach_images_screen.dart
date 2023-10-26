@@ -31,84 +31,88 @@ class _EditCoachLicenceImagesState extends State<EditCoachLicenceImages> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
-      return Scaffold(
-        // appBar: AppBar(title: Text('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
-        body: CustomScrollView(
-          slivers:[
-            MyAppBar('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
-            
-            
-            SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
-            SliverGrid(
+      return Directionality(
+                textDirection: TextDirection.rtl,
 
-                delegate: SliverChildListDelegate([
+        child: Scaffold(
+          // appBar: AppBar(title: Text('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
+          body: CustomScrollView(
+            slivers:[
+              MyAppBar('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+              
+              
+              SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
+              SliverGrid(
+      
+                  delegate: SliverChildListDelegate([
+                    CoachImageEditWidget(
+                      'صورة الحساب',
+                      licenceController,
+                      context,
+                      'profilePhoto',
+                      licenceController
+                          .createdFullLicence!.profile!.profilePhoto,0),
                   CoachImageEditWidget(
-                    'صورة الحساب',
+                    'صورة الهوية',
                     licenceController,
                     context,
-                    'profilePhoto',
-                    licenceController
-                        .createdFullLicence!.profile!.profilePhoto,0),
-                CoachImageEditWidget(
-                  'صورة الهوية',
-                  licenceController,
-                  context,
-                  'idphoto',
-                  licenceController.createdFullLicence!.coach!.identityPhoto,1
-                ),
-                CoachImageEditWidget(
-                    'Photo',
-                    licenceController,
-                    context,
-                    'photo',
-                    licenceController.createdFullLicence!.coach!.photo,2),
-                    CoachImageEditWidget(
-                    'Photo de degree',
-                    licenceController,
-                    context,
-                    'degreephoto',
-                    licenceController.createdFullLicence!.coach!.degreePhoto,3),
-                    CoachImageEditWidget(
-                    'Photo de grade',
-                    licenceController,
-                    context,
-                    'gradephoto',
-                    licenceController.createdFullLicence!.coach!.gradePhoto,4),
-                
-                ]),
-                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 0,
-                    childAspectRatio: 0.5 ,
-                    // mainAxisExtent: ,
-                    crossAxisSpacing: 0,
-                    crossAxisCount: 5)),
-
-
-
-
-            
-        
-          ] 
-        ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      // licenceController.createProfile();
-                      licenceController.editCoachImages(context);
-                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
-                    },
-                    label: Text('تاكيد'),
-                  )),
-            ],
+                    'idphoto',
+                    licenceController.createdFullLicence!.coach!.identityPhoto,1
+                  ),
+                  CoachImageEditWidget(
+                      'Photo',
+                      licenceController,
+                      context,
+                      'photo',
+                      licenceController.createdFullLicence!.coach!.photo,2),
+                      CoachImageEditWidget(
+                      'Photo de degree',
+                      licenceController,
+                      context,
+                      'degreephoto',
+                      licenceController.createdFullLicence!.coach!.degreePhoto,3),
+                      CoachImageEditWidget(
+                      'Photo de grade',
+                      licenceController,
+                      context,
+                      'gradephoto',
+                      licenceController.createdFullLicence!.coach!.gradePhoto,4),
+                  
+                  ]),
+                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 0,
+                      childAspectRatio: 0.5 ,
+                      // mainAxisExtent: ,
+                      crossAxisSpacing: 0,
+                      crossAxisCount: 5)),
+      
+      
+      
+      
+              
+          
+            ] 
           ),
-        )),
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        // licenceController.createProfile();
+                        licenceController.editCoachImages(context);
+                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
+                      },
+                      label: Text('تاكيد'),
+                    )),
+              ],
+            ),
+          )),
+        ),
       );
     });
     // TODO: implement build

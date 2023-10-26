@@ -53,137 +53,141 @@ class _GradeListScreenState extends State<GradeListScreen> {
    //ligue.
     return Consumer<ParameterProvider>(
       builder: (context,clubController,child) {
-        return Scaffold(
-          drawer: MyDrawer(licenceController, context),
-          
-          
-          backgroundColor: Color(0xfffafafa),
-          body: CustomScrollView(
-            slivers: [
-              MyAppBar("Grade", context, false,licenceController,false,true),
-              // SliverToBoxAdapter(child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              // children: [
-              //   SizedBox(height: 2.h),
-              //   ClubListHeader(licenceController,numControl,context),
-              // ]
-                
-              // )),
-          //  SliverToBoxAdapter(
-          //   child: Container(
-          //     height: 4.h,
-          //     color: Colors.white,
-          //     child: Padding(
-          //       padding: const EdgeInsets.symmetric(horizontal: 256,
-              
-          //       ),
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           Text("Id"),
-          //             Text("Grade"),
-          //             Text('اضيف يوم'),
-          //             Text('الاجراءات')
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          //  ),
-           FutureBuilder(
-            future: licenceController.getParameters(),
-             builder: (context,snaphot) {
-              if(snaphot.connectionState==ConnectionState.done){
-//Desktop View
-return SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal:30.0,vertical: 8),
-                child: Container(
-                  decoration: BoxDecoration(
-                    // border: Border.all(color: Colors.black)
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 10,
+        return Directionality(
+                  textDirection: TextDirection.rtl,
 
-                    )]
-                  ),
-                  child: PaginatedDataTable(
-                    sortColumnIndex: licenceController.currentSortColumn,
-                    sortAscending: licenceController.isAscending,
-                    columnSpacing: 0,
-                    rowsPerPage: 10,
-                    // header:  LicenceListHeader(licenceController,numControl,context),
-                    columns: [ 
-                      DataColumn(label: Text(''),),
-                      // DataColumn(label: Text('logo'),),                     
-                      DataColumn(label: Text('اللقب')),   
-                      // DataColumn(label: Text('العمر الادنى')),                   
-                      // DataColumn(label: Text('العمر الاقصى')),                     
-                      DataColumn(label: Text('الاجراءات')),
-                      ],
-                    // actions: [
-                    //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))
-                    // ],
-                    
-                    arrowHeadColor: Colors.blue,
-                    availableRowsPerPage: [10,20,50,100],
-              
-                    showCheckboxColumn: true,
-                    showFirstLastButtons: true,
-                     source: dataSource)
-                  ),
-              ),
-            );
-
-
-//Mobile View
-              // return  SliverList(
-
-                
-              //   delegate: SliverChildBuilderDelegate(
-                  
-              //    childCount:  licenceController.parameters!.grades!.length,
-              //     (context, index) {
-              //   return Padding(
-              //     padding: const EdgeInsets.symmetric(horizontal:256,
-              //     vertical: 10
-              //     ),
-              //     child: Row(
-              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    
-              //       children: [
-              //         Text(licenceController.parameters!.grades![index].id.toString()),
-              //       Text(licenceController.parameters!.grades![index].grade.toString()),
-              //       Text(licenceController.parameters!.grades![index].created.toString()),
-              //       FloatingActionButton(
-              //         mini: true,
-              //         onPressed: (){}, child: Icon(Icons.delete))
-              //       ],
-              //     ),
-              //   );
-              //  }),);
-             }
-             else{
-           return SliverToBoxAdapter(child: Container(
-              height: 40.h,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(child: CircularProgressIndicator()),
-                ],
-              ),
-            ));}
-             })
-              ]
+          child: Scaffold(
+            drawer: MyDrawer(licenceController, context),
             
-          ),
-           floatingActionButton: FloatingActionButton(onPressed: () {
-            GoRouter.of(context).push(Routes.AddGradeScreen);
-            // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
-          },
-          child: Icon(Icons.add),
-          ),
-          );
+            
+            backgroundColor: Color(0xfffafafa),
+            body: CustomScrollView(
+              slivers: [
+                MyAppBar("Grade", context, false,licenceController,false,true),
+                // SliverToBoxAdapter(child: Column(
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                // children: [
+                //   SizedBox(height: 2.h),
+                //   ClubListHeader(licenceController,numControl,context),
+                // ]
+                  
+                // )),
+            //  SliverToBoxAdapter(
+            //   child: Container(
+            //     height: 4.h,
+            //     color: Colors.white,
+            //     child: Padding(
+            //       padding: const EdgeInsets.symmetric(horizontal: 256,
+                
+            //       ),
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text("Id"),
+            //             Text("Grade"),
+            //             Text('اضيف يوم'),
+            //             Text('الاجراءات')
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            //  ),
+             FutureBuilder(
+              future: licenceController.getParameters(),
+               builder: (context,snaphot) {
+                if(snaphot.connectionState==ConnectionState.done){
+        //Desktop View
+        return SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:30.0,vertical: 8),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      // border: Border.all(color: Colors.black)
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: [BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 10,
+        
+                      )]
+                    ),
+                    child: PaginatedDataTable(
+                      sortColumnIndex: licenceController.currentSortColumn,
+                      sortAscending: licenceController.isAscending,
+                      columnSpacing: 0,
+                      rowsPerPage: 10,
+                      // header:  LicenceListHeader(licenceController,numControl,context),
+                      columns: [ 
+                        DataColumn(label: Text(''),),
+                        // DataColumn(label: Text('logo'),),                     
+                        DataColumn(label: Text('اللقب')),   
+                        // DataColumn(label: Text('العمر الادنى')),                   
+                        // DataColumn(label: Text('العمر الاقصى')),                     
+                        DataColumn(label: Text('الاجراءات')),
+                        ],
+                      // actions: [
+                      //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))
+                      // ],
+                      
+                      arrowHeadColor: Colors.blue,
+                      availableRowsPerPage: [10,20,50,100],
+                
+                      showCheckboxColumn: true,
+                      showFirstLastButtons: true,
+                       source: dataSource)
+                    ),
+                ),
+              );
+        
+        
+        //Mobile View
+                // return  SliverList(
+        
+                  
+                //   delegate: SliverChildBuilderDelegate(
+                    
+                //    childCount:  licenceController.parameters!.grades!.length,
+                //     (context, index) {
+                //   return Padding(
+                //     padding: const EdgeInsets.symmetric(horizontal:256,
+                //     vertical: 10
+                //     ),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      
+                //       children: [
+                //         Text(licenceController.parameters!.grades![index].id.toString()),
+                //       Text(licenceController.parameters!.grades![index].grade.toString()),
+                //       Text(licenceController.parameters!.grades![index].created.toString()),
+                //       FloatingActionButton(
+                //         mini: true,
+                //         onPressed: (){}, child: Icon(Icons.delete))
+                //       ],
+                //     ),
+                //   );
+                //  }),);
+               }
+               else{
+             return SliverToBoxAdapter(child: Container(
+                height: 40.h,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(child: CircularProgressIndicator()),
+                  ],
+                ),
+              ));}
+               })
+                ]
+              
+            ),
+             floatingActionButton: FloatingActionButton(onPressed: () {
+              GoRouter.of(context).push(Routes.AddGradeScreen);
+              // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
+            },
+            child: Icon(Icons.add),
+            ),
+            ),
+        );
       }
     );
     // TODO: implement build

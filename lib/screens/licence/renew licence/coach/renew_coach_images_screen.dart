@@ -26,64 +26,68 @@ class _RenewCoachLicenceImagesState extends State<RenewCoachLicenceImages> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
-      return Scaffold(
-        body: CustomScrollView(
-          slivers:[
-            MyAppBar('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true), 
-            SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
-            SliverGrid(
-                delegate: SliverChildListDelegate([
-                  CoachImageEditWidget(
-                    'صورة الهوية',
-                    licenceController,
-                    context,
-                    'idphoto',
-                    licenceController.createdFullLicence!.coach!.identityPhoto,1
-                  ),
-                  CoachImageEditWidget(
-                      'صورة التامين',
+      return Directionality(
+                textDirection: TextDirection.rtl,
+
+        child: Scaffold(
+          body: CustomScrollView(
+            slivers:[
+              MyAppBar('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true), 
+              SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
+              SliverGrid(
+                  delegate: SliverChildListDelegate([
+                    CoachImageEditWidget(
+                      'صورة الهوية',
                       licenceController,
                       context,
-                      'photo',
-                      licenceController.createdFullLicence!.coach!.photo,2),
-                      CoachImageEditWidget(
-                      'Photo de degree',
-                      licenceController,
-                      context,
-                      'degreePhoto',
-                      licenceController.createdFullLicence!.coach!.degreePhoto,3),
-                      CoachImageEditWidget(
-                      'Photo de grade',
-                      licenceController,
-                      context,
-                      'gradePhoto',
-                      licenceController.createdFullLicence!.coach!.gradePhoto,4),
-                ]),
-                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 0,
-                    childAspectRatio: 0.5 ,
-                    crossAxisSpacing: 0,
-                    crossAxisCount: 4)),
-             ]
-        ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      licenceController.editCoachProfile(context);
-                      GoRouter.of(context).push(Routes.RenewCoachLicenceScreen);
-                    },
-                    label: Text('تاكيد'),
-                  )),
-            ],
+                      'idphoto',
+                      licenceController.createdFullLicence!.coach!.identityPhoto,1
+                    ),
+                    CoachImageEditWidget(
+                        'صورة التامين',
+                        licenceController,
+                        context,
+                        'photo',
+                        licenceController.createdFullLicence!.coach!.photo,2),
+                        CoachImageEditWidget(
+                        'Photo de degree',
+                        licenceController,
+                        context,
+                        'degreePhoto',
+                        licenceController.createdFullLicence!.coach!.degreePhoto,3),
+                        CoachImageEditWidget(
+                        'Photo de grade',
+                        licenceController,
+                        context,
+                        'gradePhoto',
+                        licenceController.createdFullLicence!.coach!.gradePhoto,4),
+                  ]),
+                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 0,
+                      childAspectRatio: 0.5 ,
+                      crossAxisSpacing: 0,
+                      crossAxisCount: 4)),
+               ]
           ),
-        )),
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        licenceController.editCoachProfile(context);
+                        GoRouter.of(context).push(Routes.RenewCoachLicenceScreen);
+                      },
+                      label: Text('تاكيد'),
+                    )),
+              ],
+            ),
+          )),
+        ),
       );
     });
     // TODO: implement build ghghg 

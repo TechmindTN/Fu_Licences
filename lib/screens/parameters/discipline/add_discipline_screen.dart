@@ -39,58 +39,62 @@ class _AddDisciplineScreenState extends State<AddDisciplineScreen> {
   Widget build(BuildContext context) {
     return Consumer<ParameterProvider>(
         builder: (context, paramController, child) {
-      return Scaffold(
-      
-        body: CustomScrollView(
+      return Directionality(
+                textDirection: TextDirection.rtl,
 
-          slivers:[
-            MyAppBar("اضافة رياضة", context, false, licenceController, false, true),
-            SliverToBoxAdapter(child: SizedBox(height: 3.h),),
-            SliverToBoxAdapter(
-              child: Center(
-            child: Container(
-              width: 40.w,
-              child: Column(
-                children: [
-                  TextInput('الرياضة', disciplineController)          
-                ],
+        child: Scaffold(
+        
+          body: CustomScrollView(
+      
+            slivers:[
+              MyAppBar("اضافة رياضة", context, false, licenceController, false, true),
+              SliverToBoxAdapter(child: SizedBox(height: 3.h),),
+              SliverToBoxAdapter(
+                child: Center(
+              child: Container(
+                width: 40.w,
+                child: Column(
+                  children: [
+                    TextInput('الرياضة', disciplineController)          
+                  ],
+                ),
               ),
             ),
+              )
+            ] 
           ),
-            )
-          ] 
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                       
+                        if ((disciplineController.text == null)||(disciplineController.text == "")) {
+                          final snackBar = MySnackBar(
+                              title: 'خانات اجبارية',
+                              msg: 'الرجاء ملئ جميع الخانات الاجبارية',
+                              state: ContentType.warning);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        } else {
+                          paramController.addDiscipline(disciplineController.text,descController.text);
+                          GoRouter.of(context).pop();
+                          // licenceController.createAthlete(context);
+                          // GoRouter.of(context).go(Routes.DisciplineListScreen);
+                        }
+                      },
+                      label: Text('تاكيد'),
+                    )),
+              ],
+            ),
+          )),
         ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                     
-                      if ((disciplineController.text == null)||(disciplineController.text == "")) {
-                        final snackBar = MySnackBar(
-                            title: 'خانات اجبارية',
-                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
-                            state: ContentType.warning);
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      } else {
-                        paramController.addDiscipline(disciplineController.text,descController.text);
-                        GoRouter.of(context).pop();
-                        // licenceController.createAthlete(context);
-                        // GoRouter.of(context).go(Routes.DisciplineListScreen);
-                      }
-                    },
-                    label: Text('تاكيد'),
-                  )),
-            ],
-          ),
-        )),
       );
     });
     // TODO: implement build

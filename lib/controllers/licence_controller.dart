@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 import 'dart:developer';
 import 'dart:io';
+import 'package:fu_licences/models/version.dart';
+import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dio/dio.dart';
@@ -37,6 +39,10 @@ import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
+  Version currentVersion=Version(
+    version: "0.1"
+  );
+  bool logged=false;
   bool isAscending =true;
   int currentSortColumn = 0;
   List<bool> licenceChecks=[];
@@ -50,28 +56,28 @@ class LicenceProvider extends ChangeNotifier {
   late User currentUser;
   late Role selectedRole;
   bool added = false;
-  Season? selectedSeason = Season(seasons: "Saison", id: -1);
-  Category? selectedCategory = Category(categorieAge: "Catgorie", id: -1);
+  Season? selectedSeason = Season(seasons: "الموسم", id: -1);
+  Category? selectedCategory = Category(categorieAge: "العمر", id: -1);
   Grade? selectedGrade = Grade(grade: "Grade", id: -1);
-  Ligue? selectedLigue = Ligue(name: "Ligue", id: -1);
+  Ligue? selectedLigue = Ligue(name: "الولاية", id: -1);
   Degree? selectedDegree = Degree(degree: "Degree", id: -1);
   Weight? selectedWeight = Weight(masseEnKillograme: 0, id: -1);
-  Discipline? selectedDiscipline = Discipline(name: "Discipline", id: -1);
-  Club? selectedClub = Club(name: "Club", id: -1);
-    Category? filteredCategory = Category(categorieAge: "Catgorie", id: -1);
+  Discipline? selectedDiscipline = Discipline(name: "الرياضة", id: -1);
+  Club? selectedClub = Club(name: "النادي", id: -1);
+    Category? filteredCategory = Category(categorieAge: "العمر", id: -1);
 
-  Role? filteredRole = Role(roles: "Role", id: -1);
+  Role? filteredRole = Role(roles: "نوع الرياضة", id: -1);
   Grade? filteredGrade = Grade(grade: "Grade", id: -1);
   Degree? filteredDegree = Degree(degree: "Degree", id: -1);
   Weight? filteredWeight = Weight(masseEnKillograme: 0, id: -1);
-  Discipline? filteredDiscipline = Discipline(name: "Discipline", id: -1);
-  Club? filteredClub = Club(name: "Club", id: -1);
-  String filteredSex = "Sexe";
-  String filteredStatus = "Etat";
-  String selectedStatus = "Etat";
+  Discipline? filteredDiscipline = Discipline(name: "الرياضة", id: -1);
+  Club? filteredClub = Club(name: "النادي", id: -1);
+  String filteredSex = "الجنس";
+  String filteredStatus = "الحالة";
+  String selectedStatus = "الحالة";
   DateTime? selectedBirth;
-  String selectedSex = "Sexe";
-  String selectedState = "Governorat";
+  String selectedSex = "الجنس";
+  String selectedState = "الولاية";
   Apis apis = Apis();
   late  SharedPreferences prefs;
   late Stats stats=Stats();
@@ -98,45 +104,54 @@ class LicenceProvider extends ChangeNotifier {
     notify();
   }
 
-  login(context,login,password) async {
+  Future<bool> login(context,login,password) async {
     
-    // //print('ddd');
+    // ////print('ddd');
     try{
       Map<String,dynamic> data={
       "username":login,
       "password":password
     };
       Response res=await licenceNetwork.login(data);
+      //print(res.data);
     if(res.statusCode==200){
       if(res.data!=null){
         Apis.tempToken='TOKEN '+res.data['token'];
+
         currentUser=User.fromJson(res.data);
+      
+       
+        currentUser.isSuperuser=res.data['user_data']['is_superuser'];
          prefs= await SharedPreferences.getInstance();
          prefs.setString('user', login);
          prefs.setString('psd', password);
         GoRouter.of(context).go(Routes.Home);
+        
       }
+      return true;
     }
     else{
       final snackBar = MySnackBar(
-          title: 'Echec',
-          msg: 'Le numero ou mot de passe est incorrecte',
+          title: 'فشل تسجيل الدخول',
+          msg: 'رقم الهاتف او كلمة المرور خاطئين',
           state: ContentType.failure,
         );
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
+          return false;
     }
     }
     catch(e){
       final snackBar = MySnackBar(
-          title: 'Echec',
-          msg: 'Le numero ou mot de passe est incorrecte',
+          title: 'فشل تسجيل الدخول',
+          msg: 'رقم الهاتف او كلمة المرور خاطئين',
           state: ContentType.failure,
         );
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
+          return false;
     }
     
   } 
@@ -145,11 +160,19 @@ class LicenceProvider extends ChangeNotifier {
     prefs=await SharedPreferences.getInstance();
     prefs.clear();
   }
+
   checkLogin(context) async {
     prefs=await SharedPreferences.getInstance();
     if (prefs.containsKey('user') && prefs.getString('user')!=null && prefs.getString('user')!=""){
-      next=HomeScreen();
-      login(context, prefs.getString('user'), prefs.getString('psd'));
+      
+      bool ok=await login(context, prefs.getString('user'), prefs.getString('psd'));
+      if(ok==true){
+        next=HomeScreen();
+      }
+      else{
+        next=LoginScreen();
+        GoRouter.of(context).go(Routes.Login);
+      }
     }
     else{
       next=LoginScreen();
@@ -173,8 +196,8 @@ class LicenceProvider extends ChangeNotifier {
     Response res =await licenceNetwork.deleteLicence(id);
     if(res.statusCode==204){
     final snackBar = MySnackBar(
-          title: 'Succees',
-          msg: 'La licence de ce athlete a ete supprimee avec succees',          
+          title: 'نجاح الحذف',
+          msg: 'تم حذف اجازة الرياضي بنجاح',          
           state: ContentType.success,
         );
         ScaffoldMessenger.of(context)
@@ -184,8 +207,8 @@ class LicenceProvider extends ChangeNotifier {
       }
       else{
         final snackBar = MySnackBar(
-          title: 'Echec',
-          msg: 'Impossible de supprimer cette licence',
+          title: 'فشل الحذف',
+          msg: 'لا يمكن حذف اجازة الرياضي',
           state: ContentType.failure,
         );
         ScaffoldMessenger.of(context)
@@ -205,6 +228,38 @@ class LicenceProvider extends ChangeNotifier {
     }
   }
 
+  checkVersion(context) async {
+    Response res = await licenceNetwork.getLatestVersion();
+    Version version=Version.fromJson(res.data);
+    //print('got version');
+    if(version.version==currentVersion.version){
+     
+      //print('good');
+    }
+    else{
+       showDialog(context: context, builder: (context){
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: AlertDialog(
+            
+            title: Text("تحديث جديد"),
+            content: Container(
+              height: 10.h,
+              child: Center(child: Text("يوجد تحديث جديد من البرنامج الرجاء التحديث"))),
+            actions: [
+              ElevatedButton(onPressed: (){
+                
+              }, child: Text("تحديث")),
+              ElevatedButton(onPressed: (){
+                Navigator.pop(context);
+              }, child: Text("الغاء"))
+            ],
+          ),
+        );
+      });
+      //print('please update');
+    }
+  }
 
   showImage(context,img){
     showDialog(context: context, builder: (context){
@@ -241,11 +296,11 @@ class LicenceProvider extends ChangeNotifier {
      if (res.statusCode == 200) {
       if (res.data != null) {
         selectedFullLicence!.licence!.activated=true;
-        selectedFullLicence!.licence!.state="Activee";
+        selectedFullLicence!.licence!.state="نشطة";
         notify();
         final snackBar = MySnackBar(
-          title: 'Succees',
-          msg: 'La licence de ce athlete a ete ajoute avec succees',          
+          title: 'نجاح الاضافة',
+          msg: 'تم نجاح تفعيل اجازة الرياضي',          
           state: ContentType.success,
         );
         ScaffoldMessenger.of(context)
@@ -254,8 +309,8 @@ class LicenceProvider extends ChangeNotifier {
       }
       else{
         final snackBar = MySnackBar(
-          title: 'Echec',
-          msg: 'L\'activation de cette licence a echoue',
+          title: 'فشل التفعيل',
+          msg: 'تم فشل تفعيل هذه الاجازة',
           state: ContentType.failure,
         );
         ScaffoldMessenger.of(context)
@@ -281,18 +336,19 @@ class LicenceProvider extends ChangeNotifier {
           FullLicence fullLicence = FullLicence();
           
           Profile profile = Profile.fromJson(r['profile']);
+          print('photo: '+profile.profilePhoto.toString());
           fullLicence.profile = profile;
           Licence licence = Licence.fromJson(r['licence']);
           fullLicence.licence = licence;
-          if (licence.role == "Athlete") {
+          if (licence.role == "رياضي") {
             Athlete athlete = Athlete.fromJson(r['data']);
             fullLicence.athlete = athlete;
             fullAthleteLicences.add(fullLicence);
-          } else if (licence.role == "Arbitre") {
+          } else if (licence.role == "حكم") {
             Arbitrator arbitrator = Arbitrator.fromJson(r['data']);
             fullLicence.arbitrator = arbitrator;
             fullArbitratorLicences.add(fullLicence);
-          } else if (licence.role == "Entraineur") {
+          } else if (licence.role == "مدرب") {
             Coach coach = Coach.fromJson(r['data']);
             fullLicence.coach = coach;
             fullCoachLicences.add(fullLicence);
@@ -327,15 +383,15 @@ class LicenceProvider extends ChangeNotifier {
 
   initSelected() {
     selectedFullLicence = FullLicence();
-    selectedSeason = Season(seasons: "Saison", id: -1);
-    selectedCategory = Category(categorieAge: "Catgorie", id: -1);
+    selectedSeason = Season(seasons: "الموسم", id: -1);
+    selectedCategory = Category(categorieAge: "العمر", id: -1);
     selectedGrade = Grade(grade: "Grade", id: -1);
     selectedDegree = Degree(degree: "Degree", id: -1);
     selectedWeight = Weight(masseEnKillograme: 0, id: -1);
-    selectedDiscipline = Discipline(name: "Discipline", id: -1);
-    selectedClub = Club(name: "Club", id: -1);
-    selectedState = 'Governorat';
-    selectedSex = 'Sexe';
+    selectedDiscipline = Discipline(name: "الرياضة", id: -1);
+    selectedClub = Club(name: "النادي", id: -1);
+    selectedState = "الولاية";
+    selectedSex = 'الجنس';
   }
 
   getParameters() async {
@@ -535,7 +591,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       ),
       "path": path,
       "season": season,
-      "user": 1
+      "user": 274
     });
     Response res = await licenceNetwork.uploadImage(formData);
     if (res.statusCode == 200) {
@@ -555,7 +611,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       ),
       "path": path,
       "season": season,
-      "user": 1
+      "user": 6
     });
     Response res = await licenceNetwork.uploadImage(formData);
     if (res.statusCode == 200) {
@@ -572,7 +628,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       "url": await MultipartFile.fromFile(image.path, filename: fileName),
       "path": path,
       "season": season,
-      "user": 1
+      "user": 6
     });
     Response res = await licenceNetwork.uploadImage(formData);
     if (res.statusCode == 200) {
@@ -593,7 +649,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       ),
       "path": path,
       "season": season,
-      "user": 1
+      "user": 6
     });
     Response res = await licenceNetwork.uploadImage(formData);
     if (res.statusCode == 200) {
@@ -709,7 +765,7 @@ createArbitreLicence(context) async {
     try {
       Response res = await licenceNetwork.addFullLicence(mapdata);
       if (res.statusCode == 200) {
-        //print('ok');
+        ////print('ok');
         // Navigator.pop(context);
         // Navigator.pop(context);
         // Navigator.pop(context);
@@ -724,12 +780,12 @@ createArbitreLicence(context) async {
         //   ..hideCurrentSnackBar()
         //   ..showSnackBar(snackBar);
       } else {
-        //print('not ok');
-        //print(res.statusMessage);
+        ////print('not ok');
+        ////print(res.statusMessage);
         final snackBar = MySnackBar(
-          title: 'Echec',
+          title: 'فشل الاضافة',
           msg:
-              'Il y a une probleme avec cet licence merci d verifier vos donnees',
+              'تم فشل اضافة اجازة الحكم',
           state: ContentType.warning,
         );
         ScaffoldMessenger.of(context)
@@ -809,7 +865,7 @@ createArbitreLicence(context) async {
     try {
       Response res = await licenceNetwork.addFullLicence(mapdata);
       if (res.statusCode == 200) {
-        //print('ok');
+        ////print('ok');
         // Navigator.pop(context);
         // Navigator.pop(context);
         // Navigator.pop(context);
@@ -825,9 +881,9 @@ createArbitreLicence(context) async {
         //   ..showSnackBar(snackBar);
       } else {
         final snackBar = MySnackBar(
-          title: 'Echec',
+          title: 'فشل الاضافة',
           msg:
-              'Il y a une probleme avec cet licence merci d verifier vos donnees',
+              'تم فشل اضافة اجازة المدرب',
           state: ContentType.warning,
         );
         ScaffoldMessenger.of(context)
@@ -870,9 +926,10 @@ createArbitreLicence(context) async {
     mapdata['athlete'] = createdFullLicence!.athlete!.toJson();
     mapdata['profile'] = createdFullLicence!.profile!.toJson();
     try {
+      print("map data is: "+mapdata.toString());
       Response res = await licenceNetwork.addFullLicence(mapdata);
       if (res.statusCode == 200) {
-        createdFullLicence!.licence!.role="Athlete";
+        createdFullLicence!.licence!.role="رياضي";
         createdFullLicence!.licence!.categorie = selectedCategory!.categorieAge;
     createdFullLicence!.licence!.grade = selectedGrade!.grade;
     if(currentUser.club!.id==null){
@@ -901,9 +958,9 @@ createArbitreLicence(context) async {
     notify();
       } else {
         final snackBar = MySnackBar(
-          title: 'Echec',
+          title: 'فشل اضافة',
           msg:
-              'Il y a une probleme avec cet licence merci d verifier vos donnees',
+              'تم فشل اضافة اجازة الرياضي',
           state: ContentType.warning,
         );
 
@@ -933,15 +990,15 @@ createArbitreLicence(context) async {
   }
 
   showFilterDialog(context) {
-    selectedSeason = Season(seasons: "Saison", id: -1);
-    selectedCategory = Category(categorieAge: "Categorie", id: -1);
-    (currentUser.club!.id!=null)?selectedClub =currentUser.club:selectedClub = Club(name: "Club", id: -1);
+    selectedSeason = Season(seasons: "الموسم", id: -1);
+    selectedCategory = Category(categorieAge: "العمر", id: -1);
+    (currentUser.club!.id!=null)?selectedClub =currentUser.club:selectedClub = Club(name: "النادي", id: -1);
     selectedDegree = Degree(degree: "Degree", id: -1);
-    selectedDiscipline = Discipline(name: "Discipline", id: -1);
+    selectedDiscipline = Discipline(name: "الرياضة", id: -1);
     selectedGrade = Grade(grade: "Grade", id: -1);
     selectedWeight = Weight(masseEnKillograme: 0, id: -1);
-    selectedSex = "Sexe";
-    selectedStatus = "Etat";
+    selectedSex = "الجنس";
+    selectedStatus = "الحالة";
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -950,6 +1007,7 @@ createArbitreLicence(context) async {
   }
 
   findLicence(String numLicence, context) {
+    filteredFullLicences.clear();
     bool ok = false;
     for (FullLicence licence in fullLicences) {
       if (licence.licence!.numLicences == numLicence) {
@@ -958,7 +1016,12 @@ createArbitreLicence(context) async {
         GoRouter.of(context).push(Routes.LicenceScreen);
         break;
       }
+      else if(licence.licence!.numLicences!.contains(numLicence)){
+        ok=true;
+        filteredFullLicences.add(licence);
+      }
     }
+
     if (!ok) {
       final snackBar = MySnackBar(
           title: 'Licence Introuvable',
@@ -968,6 +1031,9 @@ createArbitreLicence(context) async {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(snackBar);
+    }
+    else{
+      GoRouter.of(context).push(Routes.FilteredLicencesScreen);
     }
     numLicence = '';
   }
@@ -1112,7 +1178,7 @@ initArbitreFields() {
     selectedFullLicence!.licence!.degree = selectedDegree!.degree;
     selectedFullLicence!.licence!.discipline = selectedDiscipline!.name;
     selectedFullLicence!.licence!.club = selectedClub!.name;
-    selectedFullLicence!.licence!.role = "Athlete";
+    selectedFullLicence!.licence!.role = "رياضي";
     selectedFullLicence!.licence!.seasons = s.seasons;
     Map<String, dynamic> athleteData = selectedFullLicence!.athlete!.toJson();
     Map<String, dynamic> mapData = {
@@ -1263,7 +1329,7 @@ editCoachProfile(context) async {
     Map<String, dynamic> licenceData = selectedFullLicence!.licence!.toJson();
     selectedFullLicence!.licence!.grade = selectedGrade!.grade;
     selectedFullLicence!.licence!.club = selectedClub!.name;
-    selectedFullLicence!.licence!.role = "Arbitre";
+    selectedFullLicence!.licence!.role = "حكم";
     selectedFullLicence!.licence!.seasons = s.seasons;
     Map<String, dynamic> arbitratorData = selectedFullLicence!.arbitrator!.toJson();
     Map<String, dynamic> mapData = {
@@ -1335,7 +1401,7 @@ editLicenceCoach(
     selectedFullLicence!.licence!.degree = selectedDegree!.degree;
     selectedFullLicence!.licence!.discipline = selectedDiscipline!.name;
     selectedFullLicence!.licence!.club = selectedClub!.name;
-    selectedFullLicence!.licence!.role = "Entraineur";
+    selectedFullLicence!.licence!.role = "مدرب";
     selectedFullLicence!.licence!.seasons = s.seasons;
     Map<String, dynamic> coachData = selectedFullLicence!.coach!.toJson();
     Map<String, dynamic> mapData = {
@@ -1465,7 +1531,7 @@ editLicenceCoach(
   //   Response res = await licenceNetwork.editArbitreProfile(
   //       mapData, selectedFullLicence!.arbitrator!.id);
   //   if (res.statusCode == 200) {
-  //     //print('ok');
+  //     ////print('ok');
   //     final snackBar = MySnackBar(
   //         title: "Modification Succees",
   //         msg: "La licence de ce arbitre a ete modifie avec succees",
@@ -1493,7 +1559,7 @@ editLicenceCoach(
       'weight': selectedWeight!.id,
       'club': selectedClub!.id,
       'categorie': selectedCategory!.id,
-      'state':'En Attente',
+      'state':"في الانتظار",
       'activated':false
     };
     try {
@@ -1618,9 +1684,9 @@ editLicenceCoach(
         (selectedGrade!.id != -1) ||
         (selectedWeight!.id != -1) ||
         (selectedSeason!.id != -1) ||
-        (selectedSex != "Sexe") ||
+        (selectedSex != "الجنس") ||
         (filteredRole!.id != -1) ||
-        (selectedStatus != "Etat")) {
+        (selectedStatus != "الحالة")) {
       Navigator.pop(context);
       GoRouter.of(context).push(Routes.FilteredLicencesScreen);
       filteredFullLicences.clear();
@@ -1725,7 +1791,7 @@ editLicenceCoach(
           notifyListeners();
         }
       }
-      if (selectedSex != "Sexe") {
+      if (selectedSex != "الجنس") {
         int i = 0;
         while (i < filteredFullLicences.length) {
           if (filteredFullLicences[i].profile!.sexe != selectedSex) {
@@ -1736,7 +1802,7 @@ editLicenceCoach(
           notifyListeners();
         }
       }
-      if (selectedStatus != "Etat") {
+      if (selectedStatus != "الحالة") {
         int i = 0;
         while (i < filteredFullLicences.length) {
           if (filteredFullLicences[i].licence!.state != selectedStatus) {
@@ -1763,7 +1829,7 @@ editLicenceCoach(
     Response res =await licenceNetwork.getGeneralStats();
     if(res.statusCode==200){
       stats=Stats.fromJson(res.data);
-      notify();
+      // notify();
       return stats;
       
     }
@@ -1772,8 +1838,24 @@ editLicenceCoach(
       return false;
     }
   }
+
+
+  getClubStats() async {
+    Response res =await licenceNetwork.getClubStats(currentUser.club!.id);
+    if(res.statusCode==200){
+      stats=Stats.fromJson(res.data);
+      // notify();
+      return stats;
+      
+    }
+    else{
+      notify();
+      return false;
+    }
+  }
+
   exportToExcel(){
-    print('exporting');
+    //print('exporting');
     final Workbook workbook = new Workbook();
     //Accessing worksheet via index.
     workbook.worksheets[0];

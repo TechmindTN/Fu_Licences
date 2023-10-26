@@ -30,7 +30,11 @@ class WeightDataSource extends DataTableSource{
           // // GoRouter.of(context).push(Routes.ClubScreen);
           // },child: Icon(Icons.remove_red_eye),),
           // SizedBox(width:1.w),
-          FloatingActionButton.small(onPressed: (){},child: Icon(Icons.delete),
+          FloatingActionButton.small(onPressed: (){
+             paramController.removeWeight(licenceController.parameters!.weights![index].id!,context);
+            licenceController.parameters!.weights!.remove(licenceController.parameters!.weights![index]);
+            licenceController.notify();
+          },child: Icon(Icons.delete),
           backgroundColor: Colors.red,
           ),
         ],

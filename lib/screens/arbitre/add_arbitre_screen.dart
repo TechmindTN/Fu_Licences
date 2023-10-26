@@ -34,75 +34,78 @@ class _AddArbitreScreenState extends State<AddArbitreScreen> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('اضافة اجازة حكم'),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              // String? categoryId;
-              // dynamic? gradeId;
-              // dynamic? idDegree;
-
-              // int? discipline;
-
-              // dynamic? weights;
-              // String? club;
-              // TextInput('الاسم',categoryController),
-              // TextInput('اللقب',gradeController),
-              // TextInput('رقم الهاتف',degreeController),
-
-              // TextInput('رقم الهوية',disciplineController),
-              // GategorySelectInput('العمر',
-              //     licenceController.selectedCategory, licenceController),
-              GradeSelectInput('Grade', licenceController.selectedGrade,
-                  licenceController),
-              // DegreeSelectInput('Degree', licenceController.selectedDegree,
-              //     licenceController),
-              // DisciplineSelectInput('الرياضة',
-              //     licenceController.selectedDiscipline, licenceController),
-
-              // WeightSelectInput('الوزن', licenceController.selectedWeight,
-              //     licenceController),
-              ClubSelectInput(
-                  'النادي', licenceController.selectedClub, licenceController),
-              // TextInput('عنوان السكن',prenomController),
-              // Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController)
-            ],
+      return Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('اضافة اجازة حكم'),
           ),
-        ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      if (
-                          (licenceController.selectedGrade == null) ||
-                          (licenceController.selectedGrade!.id == -1) 
-                          ) {
-                        final snackBar = MySnackBar(
-                            title: 'خانات اجبارية',
-                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
-                            state: ContentType.warning);
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      } else {
-                        licenceController.createArbitre(context);
-                        GoRouter.of(context).go(Routes.Home);
-                      }
-                    },
-                    label: const Text('تاكيد'),
-                  )),
-            ],
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                // String? categoryId;
+                // dynamic? gradeId;
+                // dynamic? idDegree;
+      
+                // int? discipline;
+      
+                // dynamic? weights;
+                // String? club;
+                // TextInput('الاسم',categoryController),
+                // TextInput('اللقب',gradeController),
+                // TextInput('رقم الهاتف',degreeController),
+      
+                // TextInput('رقم الهوية',disciplineController),
+                // GategorySelectInput('العمر',
+                //     licenceController.selectedCategory, licenceController),
+                GradeSelectInput('Grade', licenceController.selectedGrade,
+                    licenceController),
+                // DegreeSelectInput('Degree', licenceController.selectedDegree,
+                //     licenceController),
+                // DisciplineSelectInput('الرياضة',
+                //     licenceController.selectedDiscipline, licenceController),
+      
+                // WeightSelectInput('الوزن', licenceController.selectedWeight,
+                //     licenceController),
+                ClubSelectInput(
+                    'النادي', licenceController.selectedClub, licenceController),
+                // TextInput('عنوان السكن',prenomController),
+                // Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController)
+              ],
+            ),
           ),
-        )),
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        if (
+                            (licenceController.selectedGrade == null) ||
+                            (licenceController.selectedGrade!.id == -1) 
+                            ) {
+                          final snackBar = MySnackBar(
+                              title: 'خانات اجبارية',
+                              msg: 'الرجاء ملئ جميع الخانات الاجبارية',
+                              state: ContentType.warning);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        } else {
+                          licenceController.createArbitre(context);
+                          GoRouter.of(context).go(Routes.Home);
+                        }
+                      },
+                      label: const Text('تاكيد'),
+                    )),
+              ],
+            ),
+          )),
+        ),
       );
     });
   }

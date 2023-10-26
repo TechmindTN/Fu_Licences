@@ -14,21 +14,25 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 Widget TextInput(String txt,TextEditingController control){
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal:24.0,vertical: 8),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(txt),
-        Container(
-          width: 50.w,
-          height: 5.h,
-          child: TextFormField(
-            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)))),
-            controller: control,
-          ),
-        )
-      ],
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal:24.0,vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(txt),
+          Container(
+            width: 50.w,
+            height: 5.h,
+            child: TextFormField(
+              decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)))),
+              controller: control,
+            ),
+          )
+        ],
+      ),
     ),
   );
 }
@@ -669,81 +673,85 @@ SearchInput(LicenceProvider licenceController,numControl,context){
 
 
 Widget AuthInput(txt,control,hide){
-  return Container(
-      
-      
-      height: 4.h,
-      width: 50.w,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 10,
-            offset: Offset(0, 2)
-          )
-        ],
-         
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(5))
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: Container(
         
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(left:12.0),
         
-        child: TextFormField(
-         
-         expands: false,
-         // validator: (value) {
-         //   return authValidator(widget.required,widget.hint,value,psdController: widget.psdControl);
-         // },
-
-
-
-         
-         // toolbarOptions: ,
-         // validator: authValidator(required,hint),
-         // validator: (value) {
-         //   if(this.required){
-         //     if (value == null || value.isEmpty) {
-         //       return 'Please enter some text';
-         //     }
-    
-         //   }
+        height: 4.h,
+        width: 50.w,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 10,
+              offset: Offset(0, 2)
+            )
+          ],
            
-         //   if(hint=="Phone Number"){
-         //     if(int.tryParse(value!)==null){
-         //       return 'Only numbers are allowed';
-         //     }
-         //     else{
-         //       if(value.length!=8){
-         //         return 'Phone number must be 8 digits';
-         //       }
-         //     }
-         //   }
-         // },
-         enabled: true,
-         controller: control,
-         obscureText: hide,
-         decoration: InputDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(5))
+          
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left:12.0),
+          
+          child: TextFormField(
            
-           hintText: txt,
-           border: InputBorder.none,
-    //        suffixIcon: trailing??(((widget.hint=="Password")||(widget.hint=="Confirm Password"))?widget.hide?IconButton(icon:Icon(Icons.remove_red_eye,), onPressed: () { 
-    //         hide=false;
-    // authController.notifyListeners();
-    //         },):IconButton(icon:Icon(Icons.lock,), onPressed: () { 
-    //           hide=true;
-    // authController.notifyListeners();
-    //          // controller.hideNShow(hide);
-    //         },):null)
-         ),
-         
-         // decoration: InputDecoration.collapsed(
+           expands: false,
+           // validator: (value) {
+           //   return authValidator(widget.required,widget.hint,value,psdController: widget.psdControl);
+           // },
+  
+  
+  
            
+           // toolbarOptions: ,
+           // validator: authValidator(required,hint),
+           // validator: (value) {
+           //   if(this.required){
+           //     if (value == null || value.isEmpty) {
+           //       return 'Please enter some text';
+           //     }
+      
+           //   }
+             
+           //   if(hint=="Phone Number"){
+           //     if(int.tryParse(value!)==null){
+           //       return 'Only numbers are allowed';
+           //     }
+           //     else{
+           //       if(value.length!=8){
+           //         return 'Phone number must be 8 digits';
+           //       }
+           //     }
+           //   }
+           // },
+           enabled: true,
+           controller: control,
+           obscureText: hide,
+           decoration: InputDecoration(
+             
+             hintText: txt,
+             border: InputBorder.none,
+      //        suffixIcon: trailing??(((widget.hint=="Password")||(widget.hint=="Confirm Password"))?widget.hide?IconButton(icon:Icon(Icons.remove_red_eye,), onPressed: () { 
+      //         hide=false;
+      // authController.notifyListeners();
+      //         },):IconButton(icon:Icon(Icons.lock,), onPressed: () { 
+      //           hide=true;
+      // authController.notifyListeners();
+      //          // controller.hideNShow(hide);
+      //         },):null)
+           ),
            
-         //   hintText: hint
-         // ),
-            ),
+           // decoration: InputDecoration.collapsed(
+             
+             
+           //   hintText: hint
+           // ),
+              ),
+        ),
       ),
-    );
+  );
 }

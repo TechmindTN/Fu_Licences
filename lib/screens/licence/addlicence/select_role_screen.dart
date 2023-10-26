@@ -29,24 +29,28 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
-        return Scaffold(
-          // appBar: AppBar(title: Text("Selectioner le role"),),
-          body: CustomScrollView(
-            slivers: [
-              MyAppBar("اختيار نوع الاجازة", context, false, licenceController, false,true),
-              SliverToBoxAdapter(
-                child: SizedBox(height: 2.h),
-              ),
-              SliverGrid.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-          
-            ), itemCount: licenceController.parameters!.roles!.length,
-             itemBuilder: (context, index) {
-              return RoleCard(licenceController.parameters!.roles![index], context, licenceController);
-            },)
-              
-            ],
-             
+        return Directionality(
+                  textDirection: TextDirection.rtl,
+
+          child: Scaffold(
+            // appBar: AppBar(title: Text("Selectioner le role"),),
+            body: CustomScrollView(
+              slivers: [
+                MyAppBar("اختيار نوع الاجازة", context, false, licenceController, false,true),
+                SliverToBoxAdapter(
+                  child: SizedBox(height: 2.h),
+                ),
+                SliverGrid.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+            
+              ), itemCount: licenceController.parameters!.roles!.length,
+               itemBuilder: (context, index) {
+                return RoleCard(licenceController.parameters!.roles![index], context, licenceController);
+              },)
+                
+              ],
+               
+            ),
           ),
         );
       }

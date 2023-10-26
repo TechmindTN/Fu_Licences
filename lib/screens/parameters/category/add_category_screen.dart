@@ -40,60 +40,64 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
   Widget build(BuildContext context) {
     return Consumer<ParameterProvider>(
         builder: (context, paramController, child) {
-      return Scaffold(
-      
-        body: CustomScrollView(
+      return Directionality(
+                textDirection: TextDirection.rtl,
 
-          slivers:[
-            MyAppBar("اضافة عمر", context, false, licenceController, false, true),
-            SliverToBoxAdapter(child: SizedBox(height: 3.h),),
-            SliverToBoxAdapter(
-              child: Center(
-            child: Container(
-              width: 40.w,
-              child: Column(
-                children: [
-                  TextInput('العمر', categoryController),
-                  TextInput('العمر الادنى', minController),
-                  TextInput('العمر الاقصى', maxController),        
-                ],
+        child: Scaffold(
+        
+          body: CustomScrollView(
+      
+            slivers:[
+              MyAppBar("اضافة عمر", context, false, licenceController, false, true),
+              SliverToBoxAdapter(child: SizedBox(height: 3.h),),
+              SliverToBoxAdapter(
+                child: Center(
+              child: Container(
+                width: 40.w,
+                child: Column(
+                  children: [
+                    TextInput('العمر', categoryController),
+                    TextInput('العمر الادنى', minController),
+                    TextInput('العمر الاقصى', maxController),        
+                  ],
+                ),
               ),
             ),
+              )
+            ] 
           ),
-            )
-          ] 
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                       
+                        if ((categoryController.text == null)||(categoryController.text == "")) {
+                          final snackBar = MySnackBar(
+                              title: 'خانات اجبارية',
+                              msg: 'الرجاء ملئ جميع الخانات الاجبارية',
+                              state: ContentType.warning);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        } else {
+                          paramController.addCategory(categoryController.text,int.parse(minController.text),int.parse(maxController.text));
+                          GoRouter.of(context).pop();
+                          // licenceController.createAthlete(context);
+                          // GoRouter.of(context).go(Routes.CategoryListScreen);
+                        }
+                      },
+                      label: Text('تاكيد'),
+                    )),
+              ],
+            ),
+          )),
         ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                     
-                      if ((categoryController.text == null)||(categoryController.text == "")) {
-                        final snackBar = MySnackBar(
-                            title: 'خانات اجبارية',
-                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
-                            state: ContentType.warning);
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      } else {
-                        paramController.addCategory(categoryController.text,int.parse(minController.text),int.parse(maxController.text));
-                        GoRouter.of(context).pop();
-                        // licenceController.createAthlete(context);
-                        // GoRouter.of(context).go(Routes.CategoryListScreen);
-                      }
-                    },
-                    label: Text('تاكيد'),
-                  )),
-            ],
-          ),
-        )),
       );
     });
     // TODO: implement build

@@ -23,13 +23,17 @@ class MyApp extends StatelessWidget {
         ],
       child: Sizer(
         builder: (context, orientation, deviceType) {
-          return MaterialApp.router(
-             debugShowCheckedModeBanner: false,
-            title: 'FTWKF',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
+          return Directionality(
+                    textDirection: TextDirection.rtl,
+
+            child: MaterialApp.router(
+               debugShowCheckedModeBanner: false,
+              title: 'FTWKF',
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+              ),
+              routerConfig: pages.router,
             ),
-            routerConfig: pages.router,
           );
         }
       ),

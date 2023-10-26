@@ -30,7 +30,11 @@ class GradeDataSource extends DataTableSource{
           // // GoRouter.of(context).push(Routes.ClubScreen);
           // },child: Icon(Icons.remove_red_eye),),
           // SizedBox(width:1.w),
-          FloatingActionButton.small(onPressed: (){},child: Icon(Icons.delete),
+          FloatingActionButton.small(onPressed: (){
+             paramController.removeGrade(licenceController.parameters!.grades![index].id!,context);
+            licenceController.parameters!.grades!.remove(licenceController.parameters!.grades![index]);
+            licenceController.notify();
+          },child: Icon(Icons.delete),
           backgroundColor: Colors.red,
           ),
         ],

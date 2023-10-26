@@ -87,94 +87,98 @@ class _UploadAthleteLicenceImagesState
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
-      return Scaffold(
-        // appBar: AppBar(),
-        body: CustomScrollView(
-          slivers: [
-            MyAppBar("صور الرياضي", context, false, licenceController,
-                false, true),
-                SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
-            SliverGrid(
+      return Directionality(
+                textDirection: TextDirection.rtl,
 
-                delegate: SliverChildListDelegate([
-                  AthleteImageUploadWidget(
-                      'صورة الحساب',
-                      licenceController,
-                      context,
-                      'profilePhoto',
-                      licenceController
-                          .createdFullLicence!.profile!.profilePhoto,
-                          0
-                          ),
-                  AthleteImageUploadWidget(
-                      'صورة الهوية',
-                      licenceController,
-                      context,
-                      'idphoto',
-                      licenceController
-                          .createdFullLicence!.athlete!.identityPhoto,1),
-                  AthleteImageUploadWidget(
-                      'صورة التامين',
-                      licenceController,
-                      context,
-                      'photo',
-                      licenceController.createdFullLicence!.athlete!.photo,2),
-                  AthleteImageUploadWidget(
-                      'الصورة الطبية',
-                      licenceController,
-                      context,
-                      'medphoto',
-                      licenceController
-                          .createdFullLicence!.athlete!.medicalPhoto,3),
-                ]),
-                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 0,
-                    childAspectRatio: 0.5 ,
-                    // mainAxisExtent: ,
-                    crossAxisSpacing: 0,
-                    crossAxisCount: 4)),
-           
-          ],
-        ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      // licenceController.createProfile();
-                      if ((licenceController.createdFullLicence!.profile!.profilePhoto == null) ||
-                          (licenceController
-                                  .createdFullLicence!.athlete!.identityPhoto ==
-                              null) ||
-                          (licenceController
-                                  .createdFullLicence!.athlete!.photo ==
-                              null) ||
-                          (licenceController
-                                  .createdFullLicence!.athlete!.medicalPhoto ==
-                              null)) {
-                        final snackBar = MySnackBar(
-                            title: 'صور ناقصة',
-                            msg: 'الرجاء تقديم جميع الصور الناقصة',
-                            state: ContentType.warning);
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      } else {
-                        GoRouter.of(context).push(Routes.AddProfileScreen);
-                      }
-
-                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
-                    },
-                    label: Text("تاكيد"),
-                  )),
+        child: Scaffold(
+          // appBar: AppBar(),
+          body: CustomScrollView(
+            slivers: [
+              MyAppBar("صور الرياضي", context, false, licenceController,
+                  false, true),
+                  SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
+              SliverGrid(
+      
+                  delegate: SliverChildListDelegate([
+                    AthleteImageUploadWidget(
+                        'صورة الحساب',
+                        licenceController,
+                        context,
+                        'profilePhoto',
+                        licenceController
+                            .createdFullLicence!.profile!.profilePhoto,
+                            0
+                            ),
+                    AthleteImageUploadWidget(
+                        'صورة الهوية',
+                        licenceController,
+                        context,
+                        'idphoto',
+                        licenceController
+                            .createdFullLicence!.athlete!.identityPhoto,1),
+                    AthleteImageUploadWidget(
+                        'صورة التامين',
+                        licenceController,
+                        context,
+                        'photo',
+                        licenceController.createdFullLicence!.athlete!.photo,2),
+                    AthleteImageUploadWidget(
+                        'الصورة الطبية',
+                        licenceController,
+                        context,
+                        'medphoto',
+                        licenceController
+                            .createdFullLicence!.athlete!.medicalPhoto,3),
+                  ]),
+                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 0,
+                      childAspectRatio: 0.5 ,
+                      // mainAxisExtent: ,
+                      crossAxisSpacing: 0,
+                      crossAxisCount: 4)),
+             
             ],
           ),
-        )),
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        // licenceController.createProfile();
+                        if ((licenceController.createdFullLicence!.profile!.profilePhoto == null) ||
+                            (licenceController
+                                    .createdFullLicence!.athlete!.identityPhoto ==
+                                null) ||
+                            (licenceController
+                                    .createdFullLicence!.athlete!.photo ==
+                                null) ||
+                            (licenceController
+                                    .createdFullLicence!.athlete!.medicalPhoto ==
+                                null)) {
+                          final snackBar = MySnackBar(
+                              title: 'صور ناقصة',
+                              msg: 'الرجاء تقديم جميع الصور الناقصة',
+                              state: ContentType.warning);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        } else {
+                          GoRouter.of(context).push(Routes.AddProfileScreen);
+                        }
+      
+                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
+                      },
+                      label: Text("تاكيد"),
+                    )),
+              ],
+            ),
+          )),
+        ),
       );
     });
     // TODO: implement build

@@ -28,64 +28,68 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
-        return Scaffold(
-          // appBar: AppBar(
-          //   title: Text('Licences Filtree'),
-          //   actions: [
-          //     //  IconButton(onPressed: (){
-          //     //   licenceController.showFilterDialog(context,numControl);
-          //     //   // licenceController.showSearchDialog(context,numControl);
-          //     // }, icon: Icon(Icons.filter_alt_sharp)),
-          //     // IconButton(onPressed: (){
-          //     //   licenceController.showSearchDialog(context,numControl);
-          //     // }, icon: Icon(Icons.search)),
+        return Directionality(
+                  textDirection: TextDirection.rtl,
 
-          //   ],
-          // ),
-          backgroundColor: Color(0xfffafafa),
-          body: CustomScrollView(
-            slivers: [
-              MyAppBar("الاجازات المصفاة", context, false, licenceController, false,true),
-             (licenceController.filteredFullLicences.length>0)?
-                SliverGrid.builder(
-              
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,
-            crossAxisSpacing: 0.w
-            ),
-
-            itemCount: licenceController.filteredFullLicences.length,
-             itemBuilder: (context,index){
-              return LicenceItem(licenceController.filteredFullLicences[index], licenceController, context);
-            }): SliverToBoxAdapter(
-                child:  Container(
-              height: 40.h,
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(child: Text('قائمة الاجازات المصفاة فارغة الرجاء تعديل اعدادات التصفية'),),
-                ],
-              ),
-            ),
-            //     Column(
-            //   crossAxisAlignment: CrossAxisAlignment.center,
-            //   children: [
-            //     SizedBox(height: 2.h),
-            //     for(FullLicence fullLicence in licenceController.filteredFullLicences)
-            //     Center(child: LicenceItem(fullLicence,licenceController,context)),
+          child: Scaffold(
+            // appBar: AppBar(
+            //   title: Text('Licences Filtree'),
+            //   actions: [
+            //     //  IconButton(onPressed: (){
+            //     //   licenceController.showFilterDialog(context,numControl);
+            //     //   // licenceController.showSearchDialog(context,numControl);
+            //     // }, icon: Icon(Icons.filter_alt_sharp)),
+            //     // IconButton(onPressed: (){
+            //     //   licenceController.showSearchDialog(context,numControl);
+            //     // }, icon: Icon(Icons.search)),
+        
             //   ],
-            // )
-            
-              )
+            // ),
+            backgroundColor: Color(0xfffafafa),
+            body: CustomScrollView(
+              slivers: [
+                MyAppBar("الاجازات المصفاة", context, false, licenceController, false,true),
+               (licenceController.filteredFullLicences.length>0)?
+                  SliverGrid.builder(
+                
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,
+              crossAxisSpacing: 0.w
+              ),
+        
+              itemCount: licenceController.filteredFullLicences.length,
+               itemBuilder: (context,index){
+                return LicenceItem(licenceController.filteredFullLicences[index], licenceController, context);
+              }): SliverToBoxAdapter(
+                  child:  Container(
+                height: 40.h,
+                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(child: Text('قائمة الاجازات المصفاة فارغة الرجاء تعديل اعدادات التصفية'),),
+                  ],
+                ),
+              ),
+              //     Column(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     SizedBox(height: 2.h),
+              //     for(FullLicence fullLicence in licenceController.filteredFullLicences)
+              //     Center(child: LicenceItem(fullLicence,licenceController,context)),
+              //   ],
+              // )
               
-            ],
-            
-            
-          ),
-          //  floatingActionButton: FloatingActionButton(onPressed: () {
-          //   Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
-          // },
-          // child: Icon(Icons.add),
-          // ),
-          );
+                )
+                
+              ],
+              
+              
+            ),
+            //  floatingActionButton: FloatingActionButton(onPressed: () {
+            //   Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
+            // },
+            // child: Icon(Icons.add),
+            // ),
+            ),
+        );
       }
     );
     // TODO: implement build

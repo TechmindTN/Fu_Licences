@@ -11,34 +11,275 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 Widget imageWidget(){
-  return SizedBox(
-    width: 120.w,
-    height: 17.h,
-    child: ClipRRect(
-borderRadius: BorderRadius.circular(5),
-      child: Image.asset('assets/images/image.PNG',
-      fit: BoxFit.fill,
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: SizedBox(
+      width: 120.w,
+      height: 17.h,
+      child: ClipRRect(
+  borderRadius: BorderRadius.circular(5),
+        child: Image.asset('assets/images/image.PNG',
+        fit: BoxFit.fill,
+        ),
       ),
     ),
   );
 }
 
 Widget SeasonWidget(){
-  return const Padding(
-    padding: EdgeInsets.all(16.0),
-    child: Center(
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: const Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("الموسم ",
+            style: TextStyle(
+              fontSize: 20
+            ),
+            ),
+            Text("2022-2023",
+            style: TextStyle(
+              fontSize: 20,
+              color: Color(0xff2DA9E0)
+            ),
+            )
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget StatItems(Stats stats,context,LicenceProvider licenceController){
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: Padding(
+      padding: const EdgeInsets.only(bottom:12.0),
+      child: SizedBox(
+        width: 90.w,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            if(licenceController.currentUser.club!.id==null)
+            InkWell(
+              onTap: (){
+                GoRouter.of(context).go(Routes.ClubListScreen);
+              },
+              child: StatItem("النوادي",stats.clubs.toString(),"assets/icons/club-white.png")),
+            InkWell(
+               onTap: (){
+                GoRouter.of(context).go(Routes.AthleteLicenceListScreen);
+              },
+              child: StatItem("الرياضيين",stats.athletes.toString(),"assets/icons/running-white.png")),
+            InkWell(
+               onTap: (){
+                GoRouter.of(context).go(Routes.CoachLicenceListScreen);
+              },
+              child: StatItem("المدربين",stats.coaches.toString(),"assets/icons/coach-white.png")),
+            InkWell(
+               onTap: (){
+                GoRouter.of(context).go(Routes.ArbitratorLicenceListScreen);
+              },
+              child: StatItem("الحكام",stats.arbitrators.toString(),"assets/icons/referee-white.png"))
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget StatItem(txt,val,img){
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: Column(
+      children: [
+        Container(
+          width: 22 .w,
+          height: 10.h,
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 66, 144, 208),
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          boxShadow: [
+             BoxShadow(color: Colors.black12,
+                blurRadius: 10,
+                offset: Offset(0, 2))
+          ]
+          ),
+          child: Center(child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset(img,
+              scale: 10,
+              ),
+              Text(val,
+              style: const TextStyle(
+                fontSize: 22,
+                color: Colors.white
+              ),
+              ),
+              Text(txt,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 15
+        ),
+        )
+            ],
+          )),
+        ),
+        const SizedBox(height: 10,),
+      ],
+    ),
+  );
+}
+
+Widget MyChart(Stats stats){
+  //print('active '+stats.activeLicences.toString());
+  //print('pending '+stats.pendingLicences.toString());
+  //print('expired '+stats.expiredLicences.toString());
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: Padding(
+      padding: const EdgeInsets.only(top:12.0),
+      child: SizedBox(
+        width: 90.w,
+        height: 23.h,
+        child: Column(
+          children: [
+            const SizedBox(height: 16,),
+            Container
+            (
+              width: 90.w,
+              height: 21.h,
+              decoration: const BoxDecoration(color:  Color.fromARGB(255, 66, 144, 208),
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+              boxShadow: [
+                BoxShadow(color: Colors.black12,
+                blurRadius: 10,
+                offset: Offset(0, 2)
+                )
+              ]
+              ),
+              child: Column(
+                children: [
+                   const Text("حالة الاجازات",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.white
+            ),
+            ),
+            SizedBox(height: 2.h,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MyLegend(),
+                      SizedBox(
+                        width: 60.w,
+              height: 1.h,
+                        child: PieChart(
+                        swapAnimationDuration: const Duration(milliseconds: 150), // Optional
+                        swapAnimationCurve: Curves.linear, // Optional
+                        PieChartData(
+                          startDegreeOffset: 0,
+                          centerSpaceRadius: 0,
+                          sectionsSpace: 0,
+                          sections: [
+                            PieChartSectionData(
+                              radius: 120,
+                              badgeWidget: Badge(label: Text(stats.expiredLicences.toString(),
+                              style: const TextStyle(fontSize: 14),
+                              )),
+                               badgePositionPercentageOffset: 1.3,
+                              showTitle: false,
+                            color: Colors.red,
+                            value: (stats.expiredLicences!/100)*100,
+                            title: stats.expiredLicences.toString(),
+                          ),
+                           PieChartSectionData(
+                             badgeWidget: Badge(
+                              backgroundColor: Colors.orange,
+                              label: Text(stats.pendingLicences.toString(),
+                              style: const TextStyle(fontSize: 14),
+                              )),
+                               badgePositionPercentageOffset: 1.3,
+                              showTitle: false,
+                                             radius: 120,
+                            color: Colors.orange,
+                            value: (stats.pendingLicences!/100)*100,
+                            title: stats.pendingLicences.toString()
+                          ), PieChartSectionData(
+                            color: Colors.green,
+                            value: (stats.activeLicences!/100)*100,                radius: 120,
+                             badgeWidget: Badge(
+                              backgroundColor: Colors.green,
+                              label: Text(stats.activeLicences.toString(),
+                              style: const TextStyle(fontSize: 14),
+                              )),
+                               badgePositionPercentageOffset: 1.3,
+                              showTitle: false,
+                            title: stats.activeLicences.toString()
+                          ),
+                          ]
+                        ),
+                              ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),)
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget MyLegend(){
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: SizedBox(
+      width: 30.w,
+      height: 15.h,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [LegendItem("نشطة",Colors.green),
+        LegendItem("في الانتظار",Colors.orange),
+        LegendItem("منتهية",Colors.red)
+        ],
+      ),
+    ),
+  );
+}
+
+LegendItem(txt,color){
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: Padding(
+      padding: const EdgeInsets.only(right:16.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text("الموسم ",
-          style: TextStyle(
-            fontSize: 20
+          Container(
+            width: 15,
+            height: 15,
+            decoration: BoxDecoration(color: color,
+            borderRadius: const BorderRadius.all(Radius.circular(500))
+            ),
           ),
-          ),
-          Text("2022-2023",
-          style: TextStyle(
-            fontSize: 20,
-            color: Color(0xff2DA9E0)
+      const SizedBox(width: 10,),
+          Text(txt,
+          style: const TextStyle(
+            fontSize: 16,
+              color: Colors.white
           ),
           )
         ],
@@ -47,256 +288,55 @@ Widget SeasonWidget(){
   );
 }
 
-Widget StatItems(Stats stats,context){
-  return Padding(
-    padding: const EdgeInsets.only(bottom:12.0),
-    child: SizedBox(
-      width: 90.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          InkWell(
-            onTap: (){
-              GoRouter.of(context).go(Routes.ClubListScreen);
-            },
-            child: StatItem("النوادي",stats.clubs.toString(),"assets/icons/club-white.png")),
-          InkWell(
-             onTap: (){
-              GoRouter.of(context).go(Routes.AthleteLicenceListScreen);
-            },
-            child: StatItem("الرياضيين",stats.athletes.toString(),"assets/icons/running-white.png")),
-          InkWell(
-             onTap: (){
-              GoRouter.of(context).go(Routes.CoachLicenceListScreen);
-            },
-            child: StatItem("المدربين",stats.coaches.toString(),"assets/icons/coach-white.png")),
-          InkWell(
-             onTap: (){
-              GoRouter.of(context).go(Routes.ArbitratorLicenceListScreen);
-            },
-            child: StatItem("الحكام",stats.arbitrators.toString(),"assets/icons/referee-white.png"))
-        ],
-      ),
-    ),
-  );
-}
-
-Widget StatItem(txt,val,img){
-  return Column(
-    children: [
-      Container(
-        width: 22 .w,
-        height: 10.h,
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 66, 144, 208),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-        boxShadow: [
-           BoxShadow(color: Colors.black12,
-              blurRadius: 10,
-              offset: Offset(0, 2))
-        ]
-        ),
-        child: Center(child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image.asset(img,
-            scale: 10,
-            ),
-            Text(val,
-            style: const TextStyle(
-              fontSize: 22,
-              color: Colors.white
-            ),
-            ),
-            Text(txt,
-      style: const TextStyle(
-        color: Colors.white,
-        fontSize: 15
-      ),
-      )
-          ],
-        )),
-      ),
-      const SizedBox(height: 10,),
-    ],
-  );
-}
-
-Widget MyChart(Stats stats){
-  return Padding(
-    padding: const EdgeInsets.only(top:12.0),
-    child: SizedBox(
-      width: 90.w,
-      height: 23.h,
-      child: Column(
-        children: [
-          const SizedBox(height: 16,),
-          Container
-          (
-            width: 90.w,
-            height: 21.h,
-            decoration: const BoxDecoration(color:  Color.fromARGB(255, 66, 144, 208),
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            boxShadow: [
-              BoxShadow(color: Colors.black12,
-              blurRadius: 10,
-              offset: Offset(0, 2)
-              )
-            ]
-            ),
-            child: Column(
-              children: [
-                 const Text("حالة الاجازات",
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.white
-          ),
-          ),
-          SizedBox(height: 2.h,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    MyLegend(),
-                    SizedBox(
-                      width: 60.w,
-            height: 1.h,
-                      child: PieChart(
-                      swapAnimationDuration: const Duration(milliseconds: 150), // Optional
-                      swapAnimationCurve: Curves.linear, // Optional
-                      PieChartData(
-                        startDegreeOffset: 0,
-                        centerSpaceRadius: 0,
-                        sectionsSpace: 0,
-                        sections: [
-                          PieChartSectionData(
-                            radius: 120,
-                            badgeWidget: Badge(label: Text(stats.expiredLicences.toString(),
-                            style: const TextStyle(fontSize: 14),
-                            )),
-                             badgePositionPercentageOffset: 1.3,
-                            showTitle: false,
-                          color: Colors.red,
-                          value: (stats.expiredLicences!/100)*100,
-                          title: stats.expiredLicences.toString(),
-                        ),
-                         PieChartSectionData(
-                           badgeWidget: Badge(
-                            backgroundColor: Colors.orange,
-                            label: Text(stats.pendingLicences.toString(),
-                            style: const TextStyle(fontSize: 14),
-                            )),
-                             badgePositionPercentageOffset: 1.3,
-                            showTitle: false,
-                                           radius: 120,
-                          color: Colors.orange,
-                          value: (stats.pendingLicences!/100)*100,
-                          title: stats.pendingLicences.toString()
-                        ), PieChartSectionData(
-                          color: Colors.green,
-                          value: (stats.activeLicences!/100)*100,                radius: 120,
-                           badgeWidget: Badge(
-                            backgroundColor: Colors.green,
-                            label: Text(stats.activeLicences.toString(),
-                            style: const TextStyle(fontSize: 14),
-                            )),
-                             badgePositionPercentageOffset: 1.3,
-                            showTitle: false,
-                          title: stats.activeLicences.toString()
-                        ),
-                        ]
-                      ),
-                            ),
-                    ),
-                  ],
-                ),
-              ],
-            ),)
-        ],
-      ),
-    ),
-  );
-}
-
-Widget MyLegend(){
-  return SizedBox(
-    width: 30.w,
-    height: 15.h,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [LegendItem("Active",Colors.green),
-      LegendItem("En Attente",Colors.orange),
-      LegendItem("Expire",Colors.red)
-      ],
-    ),
-  );
-}
-
-LegendItem(txt,color){
-  return Padding(
-    padding: const EdgeInsets.only(left:16.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          width: 15,
-          height: 15,
-          decoration: BoxDecoration(color: color,
-          borderRadius: const BorderRadius.all(Radius.circular(500))
-          ),
-        ),
-    const SizedBox(width: 10,),
-        Text(txt,
-        style: const TextStyle(
-          fontSize: 16,
-            color: Colors.white
-        ),
-        )
-      ],
-    ),
-  );
-}
-
 Widget RecentLicences(){
-  return SizedBox(
-    width: 90.w,
-    height: 30.h,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text("الاجازات الاخيرة",
-        style: TextStyle(
-          fontSize: 20
-        ),
-        ),
-        const SizedBox(height: 10,),
-        SizedBox( width: 90.w,
-    height: 20.h,
-          child: ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            children: [
-              RecentLicenceItem(),
-              RecentLicenceItem(),
-              RecentLicenceItem(),
-              RecentLicenceItem(),
-              RecentLicenceItem(),
-            ],
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: SizedBox(
+      width: 90.w,
+      height: 30.h,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("الاجازات الاخيرة",
+          style: TextStyle(
+            fontSize: 20
           ),
-        ),
-      ],
-    )
+          ),
+          const SizedBox(height: 10,),
+          SizedBox( width: 90.w,
+      height: 20.h,
+            child: ListView(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              children: [
+                RecentLicenceItem(),
+                RecentLicenceItem(),
+                RecentLicenceItem(),
+                RecentLicenceItem(),
+                RecentLicenceItem(),
+              ],
+            ),
+          ),
+        ],
+      )
+    ),
   );
 }
 
 Widget RecentLicenceItem(){
-  return Padding(
-    padding: const EdgeInsets.only(right:20.0,),
-    child: Container(
-      width: 50.w,
-      height: 5.h,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-        color: Colors.grey
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: Padding(
+      padding: const EdgeInsets.only(right:20.0,),
+      child: Container(
+        width: 50.w,
+        height: 5.h,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          color: Colors.grey
+        ),
       ),
     ),
   );
@@ -338,23 +378,27 @@ class BarChartSample1State extends State<BarChartSample1> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 20.w,
-                      width: 30.w,
-      child: Column(
-        children: [
-          Text(txt,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
-          SizedBox(height: 1.h,),
-          Expanded(
-            child: AspectRatio(
-              aspectRatio: 20,
-              child: BarChart(
-                 mainBarData(),
-                swapAnimationDuration: animDuration,
+    return Directionality(
+              textDirection: TextDirection.rtl,
+
+      child: SizedBox(
+        height: 20.w,
+                        width: 30.w,
+        child: Column(
+          children: [
+            Text(txt,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),),
+            SizedBox(height: 1.h,),
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 20,
+                child: BarChart(
+                   mainBarData(),
+                  swapAnimationDuration: animDuration,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -390,7 +434,7 @@ class BarChartSample1State extends State<BarChartSample1> {
   }
 
   List<BarChartGroupData> showingGroups() => List.generate(4, (i) {
-    if(txt=="Athletes"){
+    if(txt=="الرياضيين"){
       switch (i) {
           case 0:
             return makeGroupData(0, (licenceController.stats.athletesLicences!.total!/1)*1,isTouched: i == touchedIndex);
@@ -410,7 +454,7 @@ class BarChartSample1State extends State<BarChartSample1> {
             return throw Error();
         }
     }
-    else if(txt=="Arbitres"){
+    else if(txt=="الحكام"){
       switch (i) {
           case 0:
             return makeGroupData(0, (licenceController.stats.arbitratorsLicences!.total!/1)*1,isTouched: i == touchedIndex);
@@ -581,10 +625,14 @@ class BarChartSample1State extends State<BarChartSample1> {
         text = const Text('', style: style);
         break;
     }
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 16,
-      child: text,
+    return Directionality(
+              textDirection: TextDirection.rtl,
+
+      child: SideTitleWidget(
+        axisSide: meta.axisSide,
+        space: 16,
+        child: text,
+      ),
     );
   }
 

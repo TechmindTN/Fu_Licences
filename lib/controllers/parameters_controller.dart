@@ -75,6 +75,150 @@ class ParameterProvider extends ChangeNotifier{
           ..showSnackBar(snackBar);
     }
   }
+  removeCategory(int id,context) async {
+    // Ligue ligue=Ligue(name: name);
+    Response res= await paramNetwork.deleteCategory(id);
+    if(res.statusCode==204){
+       final snackBar = MySnackBar(
+          title: 'Succees',
+          msg: 'La ligue a ete supprimee avec succees',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'La ligue n\'est pas supprimee ',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+  }
+  removeGrade(int id,context) async {
+    // Ligue ligue=Ligue(name: name);
+    Response res= await paramNetwork.deleteGrade(id);
+    if(res.statusCode==204){
+       final snackBar = MySnackBar(
+          title: 'Succees',
+          msg: 'La ligue a ete supprimee avec succees',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'La ligue n\'est pas supprimee ',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+  }
+  removeDegree(int id,context) async {
+    // Ligue ligue=Ligue(name: name);
+    Response res= await paramNetwork.deleteDegree(id);
+    if(res.statusCode==204){
+       final snackBar = MySnackBar(
+          title: 'Succees',
+          msg: 'La ligue a ete supprimee avec succees',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'La ligue n\'est pas supprimee ',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+  }
+  removeDiscipline(int id,context) async {
+    // Ligue ligue=Ligue(name: name);
+    Response res= await paramNetwork.deleteDiscipline(id);
+    if(res.statusCode==204){
+       final snackBar = MySnackBar(
+          title: 'Succees',
+          msg: 'La ligue a ete supprimee avec succees',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'La ligue n\'est pas supprimee ',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+  }
+  removeSeason(int id,context) async {
+    // Ligue ligue=Ligue(name: name);
+    Response res= await paramNetwork.deleteSeason(id);
+    if(res.statusCode==204){
+       final snackBar = MySnackBar(
+          title: 'Succees',
+          msg: 'La ligue a ete supprimee avec succees',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'La ligue n\'est pas supprimee ',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+  }
+  removeWeight(int id,context) async {
+    // Ligue ligue=Ligue(name: name);
+    Response res= await paramNetwork.deleteWeight(id);
+    if(res.statusCode==204){
+       final snackBar = MySnackBar(
+          title: 'Succees',
+          msg: 'La ligue a ete supprimee avec succees',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'La ligue n\'est pas supprimee ',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+  }
 
   notify(){
     notifyListeners();

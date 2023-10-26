@@ -35,8 +35,12 @@ class _MySplashScreenState extends State<MySplashScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Image.asset("assets/images/logo-ftwkf.png")),
+    return Directionality(
+              textDirection: TextDirection.rtl,
+
+      child: Scaffold(
+        body: Center(child: Image.asset("assets/images/logo-ftwkf.png")),
+      ),
     );
     // TODO: implement build
     throw UnimplementedError();

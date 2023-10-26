@@ -44,96 +44,100 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text("اضافة اجازة المدرب"),
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                // String? categoryId;
-                // dynamic? gradeId;
-                // dynamic? idDegree;
+      return Directionality(
+                textDirection: TextDirection.rtl,
 
-                // int? discipline;
-
-                // dynamic? weights;
-                // String? club;
-                // TextInput('الاسم',categoryController),
-                // TextInput('اللقب',gradeController),
-                // TextInput('رقم الهاتف',degreeController),
-
-                // TextInput('رقم الهوية',disciplineController),
-                GategorySelectInput('العمر',
-                    licenceController.selectedCategory, licenceController),
-                GradeSelectInput('Grade', licenceController.selectedGrade,
-                    licenceController),
-                DegreeSelectInput('Degree', licenceController.selectedDegree,
-                    licenceController),
-                DisciplineSelectInput('الرياضة',
-                    licenceController.selectedDiscipline, licenceController),
-
-                WeightSelectInput('الوزن', licenceController.selectedWeight,
-                    licenceController),
-                ClubSelectInput(
-                    'النادي', licenceController.selectedClub, licenceController),
-                // TextInput('عنوان السكن',prenomController),
-                // Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController)
-              ],
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("اضافة اجازة المدرب"),
+          ),
+          body: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  // String? categoryId;
+                  // dynamic? gradeId;
+                  // dynamic? idDegree;
+      
+                  // int? discipline;
+      
+                  // dynamic? weights;
+                  // String? club;
+                  // TextInput('الاسم',categoryController),
+                  // TextInput('اللقب',gradeController),
+                  // TextInput('رقم الهاتف',degreeController),
+      
+                  // TextInput('رقم الهوية',disciplineController),
+                  GategorySelectInput('العمر',
+                      licenceController.selectedCategory, licenceController),
+                  GradeSelectInput('Grade', licenceController.selectedGrade,
+                      licenceController),
+                  DegreeSelectInput('Degree', licenceController.selectedDegree,
+                      licenceController),
+                  DisciplineSelectInput('الرياضة',
+                      licenceController.selectedDiscipline, licenceController),
+      
+                  WeightSelectInput('الوزن', licenceController.selectedWeight,
+                      licenceController),
+                  ClubSelectInput(
+                      'النادي', licenceController.selectedClub, licenceController),
+                  // TextInput('عنوان السكن',prenomController),
+                  // Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController)
+                ],
+              ),
             ),
           ),
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        ////print(licenceController.selectedCategory!.id);
+                        ////print(licenceController.selectedGrade!.id);
+                        ////print(licenceController.selectedDegree!.id);
+                        ////print(licenceController.selectedDiscipline!.id);
+                        ////print(licenceController.selectedGrade!.id);
+                        ////print(licenceController.selectedWeight!.id);
+                        if ((licenceController.selectedCategory == null) ||
+                            (licenceController.selectedCategory!.id == -1) ||
+                            (licenceController.selectedClub == null) ||
+                            (licenceController.selectedClub!.id == -1) ||
+                            (licenceController.selectedDegree == null) ||
+                            (licenceController.selectedDegree!.id == -1) ||
+                            (licenceController.selectedDiscipline == null) ||
+                            (licenceController.selectedDiscipline!.id == -1) ||
+                            (licenceController.selectedGrade == null) ||
+                            (licenceController.selectedGrade!.id == -1) ||
+                            (licenceController.selectedWeight == null) ||
+                            (licenceController.selectedWeight!.id == -1)) {
+                          final snackBar = MySnackBar(
+                              title: 'خانات اجبارية',
+                              msg: 'الرجاء ملئ جميع الخانات الاجبارية',
+                              state: ContentType.warning);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        } else {
+                          licenceController.createCoach(context);
+                          // GoRouter.of(context).dispose();
+                          GoRouter.of(context).go(Routes.Home);
+                        }
+      
+      // Navigator.of(context, rootNavigator:
+      // true).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+      // LicenceListScreen()), (route) => false);                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddLicenceScreen()));
+                      },
+                      label: Text('تاكيد'),
+                    )),
+              ],
+            ),
+          )),
         ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      //print(licenceController.selectedCategory!.id);
-                      //print(licenceController.selectedGrade!.id);
-                      //print(licenceController.selectedDegree!.id);
-                      //print(licenceController.selectedDiscipline!.id);
-                      //print(licenceController.selectedGrade!.id);
-                      //print(licenceController.selectedWeight!.id);
-                      if ((licenceController.selectedCategory == null) ||
-                          (licenceController.selectedCategory!.id == -1) ||
-                          (licenceController.selectedClub == null) ||
-                          (licenceController.selectedClub!.id == -1) ||
-                          (licenceController.selectedDegree == null) ||
-                          (licenceController.selectedDegree!.id == -1) ||
-                          (licenceController.selectedDiscipline == null) ||
-                          (licenceController.selectedDiscipline!.id == -1) ||
-                          (licenceController.selectedGrade == null) ||
-                          (licenceController.selectedGrade!.id == -1) ||
-                          (licenceController.selectedWeight == null) ||
-                          (licenceController.selectedWeight!.id == -1)) {
-                        final snackBar = MySnackBar(
-                            title: 'خانات اجبارية',
-                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
-                            state: ContentType.warning);
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      } else {
-                        licenceController.createCoach(context);
-                        // GoRouter.of(context).dispose();
-                        GoRouter.of(context).go(Routes.Home);
-                      }
-
-// Navigator.of(context, rootNavigator:
-// true).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-// LicenceListScreen()), (route) => false);                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddLicenceScreen()));
-                    },
-                    label: Text('تاكيد'),
-                  )),
-            ],
-          ),
-        )),
       );
     });
     // TODO: implement build

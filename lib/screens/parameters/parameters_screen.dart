@@ -67,73 +67,77 @@ class _ParametersScreenState extends State<ParametersScreen> {
     // }
     return Consumer<ClubProvider>(
       builder: (context,clubController,child) {
-        return Scaffold(
-          drawer: MyDrawer(licenceController, context),
-          
-          
-          backgroundColor: Color(0xfffafafa),
-          body: CustomScrollView(
-            slivers: [
-              MyAppBar('الاعدادات', context, true,licenceController,false,false),
-              // SliverToBoxAdapter(child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              // children: [
-              //   SizedBox(height: 2.h),
-              //   ClubListHeader(licenceController,numControl,context),
-              // ]
-                
-              // )),
-           
-           FutureBuilder(
-            future: licenceController.getParameters(),
-             builder: (context,snaphot) {
-              if(snaphot.connectionState==ConnectionState.done){
-               return SliverGrid(
-                  
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,
-                crossAxisSpacing: 0.w
-                ),
+        return Directionality(
+                  textDirection: TextDirection.rtl,
 
-                // itemCount: licenceController.parameters!.clubs!.length-1,
-                //  itemBuilder: (context,index){
-                  
-                //   return ClubItem(licenceController.parameters!.clubs![index], licenceController,clubController, context);
-                // }, 
-                delegate: SliverChildListDelegate(
-                  [
-                    ParamCard('الولاية', context, licenceController),
-                    ParamCard('العمر', context, licenceController),
-                    ParamCard("Grade", context, licenceController),
-                    ParamCard("Degree", context, licenceController),
-                    ParamCard('الرياضة', context, licenceController),
-                    ParamCard('الوزن', context, licenceController),
-                    ParamCard('الموسم', context, licenceController),
-                    // ParamCard('الولاية', context, licenceController),
-                    // ParamCard('الولاية', context, licenceController),
-                  ]
-               ),);
-             }
-             else{
-           return SliverToBoxAdapter(child: Container(
-              height: 40.h,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(child: CircularProgressIndicator()),
-                ],
-              ),
-            ));}
-             })
-              ]
+          child: Scaffold(
+            drawer: MyDrawer(licenceController, context),
             
-          ),
-           floatingActionButton: FloatingActionButton(onPressed: () {
-            // GoRouter.of(context).push(Routes.SelectRoleScreen);
-            // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
-          },
-          child: Icon(Icons.add),
-          ),
-          );
+            
+            backgroundColor: Color(0xfffafafa),
+            body: CustomScrollView(
+              slivers: [
+                MyAppBar('الاعدادات', context, true,licenceController,false,false),
+                // SliverToBoxAdapter(child: Column(
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                // children: [
+                //   SizedBox(height: 2.h),
+                //   ClubListHeader(licenceController,numControl,context),
+                // ]
+                  
+                // )),
+             
+             FutureBuilder(
+              future: licenceController.getParameters(),
+               builder: (context,snaphot) {
+                if(snaphot.connectionState==ConnectionState.done){
+                 return SliverGrid(
+                    
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,
+                  crossAxisSpacing: 0.w
+                  ),
+        
+                  // itemCount: licenceController.parameters!.clubs!.length-1,
+                  //  itemBuilder: (context,index){
+                    
+                  //   return ClubItem(licenceController.parameters!.clubs![index], licenceController,clubController, context);
+                  // }, 
+                  delegate: SliverChildListDelegate(
+                    [
+                      ParamCard('الولاية', context, licenceController),
+                      ParamCard('العمر', context, licenceController),
+                      ParamCard("Grade", context, licenceController),
+                      ParamCard("Degree", context, licenceController),
+                      ParamCard('الرياضة', context, licenceController),
+                      ParamCard('الوزن', context, licenceController),
+                      ParamCard('الموسم', context, licenceController),
+                      // ParamCard('الولاية', context, licenceController),
+                      // ParamCard('الولاية', context, licenceController),
+                    ]
+                 ),);
+               }
+               else{
+             return SliverToBoxAdapter(child: Container(
+                height: 40.h,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(child: CircularProgressIndicator()),
+                  ],
+                ),
+              ));}
+               })
+                ]
+              
+            ),
+             floatingActionButton: FloatingActionButton(onPressed: () {
+              // GoRouter.of(context).push(Routes.SelectRoleScreen);
+              // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
+            },
+            child: Icon(Icons.add),
+            ),
+            ),
+        );
       }
     );
     // TODO: implement build

@@ -31,14 +31,14 @@ class EntraineurLicenceDataSource extends DataTableSource{
       DataCell(SelectableText(licenceController.fullCoachLicences[index].profile!.sexe.toString())),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].profile!.phone.toString())),
       DataCell(SelectableText(
-        (licenceController.fullCoachLicences[index].profile!.role==4)?"Entraineur":(licenceController.fullCoachLicences[index].profile!.role==1)?"Arbitre":(licenceController.fullCoachLicences[index].profile!.role==2)?"Athlete":"")),
+        (licenceController.fullCoachLicences[index].profile!.role==4)?"مدرب":(licenceController.fullCoachLicences[index].profile!.role==1)?"حكم":(licenceController.fullCoachLicences[index].profile!.role==2)?"رياضي":"")),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].licence!.discipline.toString())),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].licence!.club.toString())),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].profile!.state.toString())),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].licence!.seasons.toString())),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].licence!.state.toString(),
       style: TextStyle(
-        color: (licenceController.fullCoachLicences[index].licence!.state=='Activee')?Colors.green:((licenceController.fullCoachLicences[index].licence!.state=='En Attente')?Colors.orange[800]:Colors.red)
+        color: (licenceController.fullCoachLicences[index].licence!.state=="نشطة")?Colors.green:((licenceController.fullCoachLicences[index].licence!.state=="في الانتظار")?Colors.orange[800]:Colors.red)
       ),
       )),
       DataCell(Row(

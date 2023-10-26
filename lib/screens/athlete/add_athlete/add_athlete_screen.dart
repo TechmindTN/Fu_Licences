@@ -35,76 +35,80 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
-      return Scaffold(
-        body: CustomScrollView(
-          slivers:[
-            MyAppBar("اضافة اجازة رياضي", context, false, licenceController, false, true),
-            SliverToBoxAdapter(child: SizedBox(height: 3.h),),
-            SliverToBoxAdapter(
-              child: Center(
-            child: SizedBox(
-              width: 40.w,
-              child: Column(
-                children: [
-                  GategorySelectInput('العمر',
-                      licenceController.selectedCategory, licenceController),
-                  GradeSelectInput('Grade', licenceController.selectedGrade,
-                      licenceController),
-                  DegreeSelectInput('Degree', licenceController.selectedDegree,
-                      licenceController),
-                  DisciplineSelectInput('الرياضة',
-                      licenceController.selectedDiscipline, licenceController),
-                  WeightSelectInput('الوزن', licenceController.selectedWeight,
-                      licenceController),
-                  if(licenceController.currentUser.club!.id==null)
-                  ClubSelectInput(
-                      'النادي', licenceController.selectedClub, licenceController),
-                ],
+      return Directionality(
+                textDirection: TextDirection.rtl,
+
+        child: Scaffold(
+          body: CustomScrollView(
+            slivers:[
+              MyAppBar("اضافة اجازة رياضي", context, false, licenceController, false, true),
+              SliverToBoxAdapter(child: SizedBox(height: 3.h),),
+              SliverToBoxAdapter(
+                child: Center(
+              child: SizedBox(
+                width: 40.w,
+                child: Column(
+                  children: [
+                    GategorySelectInput('العمر',
+                        licenceController.selectedCategory, licenceController),
+                    GradeSelectInput('Grade', licenceController.selectedGrade,
+                        licenceController),
+                    DegreeSelectInput('Degree', licenceController.selectedDegree,
+                        licenceController),
+                    DisciplineSelectInput('الرياضة',
+                        licenceController.selectedDiscipline, licenceController),
+                    WeightSelectInput('الوزن', licenceController.selectedWeight,
+                        licenceController),
+                    if(licenceController.currentUser.club!.id==null)
+                    ClubSelectInput(
+                        'النادي', licenceController.selectedClub, licenceController),
+                  ],
+                ),
               ),
             ),
+              )
+            ] 
           ),
-            )
-          ] 
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        if ((licenceController.selectedCategory == null) ||
+                            (licenceController.selectedCategory!.id == -1) ||
+                            (licenceController.currentUser.club!.id == null)&&((licenceController.selectedClub == null) ||
+                            (licenceController.selectedClub!.id == -1)) ||
+                            (licenceController.selectedDegree == null) ||
+                            (licenceController.selectedDegree!.id == -1) ||
+                            (licenceController.selectedDiscipline == null) ||
+                            (licenceController.selectedDiscipline!.id == -1) ||
+                            (licenceController.selectedGrade == null) ||
+                            (licenceController.selectedGrade!.id == -1) ||
+                            (licenceController.selectedWeight == null) ||
+                            (licenceController.selectedWeight!.id == -1)) {
+                          final snackBar = MySnackBar(
+                              title: 'خانات اجبارية',
+                              msg: 'الرجاء ملئ جميع الخانات الاجبارية',
+                              state: ContentType.warning);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        } else {
+                          licenceController.createAthlete(context);
+                          GoRouter.of(context).go(Routes.LicenceListScreen);
+                        }
+                      },
+                      label: Text('تاكيد'),
+                    )),
+              ],
+            ),
+          )),
         ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      if ((licenceController.selectedCategory == null) ||
-                          (licenceController.selectedCategory!.id == -1) ||
-                          (licenceController.currentUser.club!.id == null)&&((licenceController.selectedClub == null) ||
-                          (licenceController.selectedClub!.id == -1)) ||
-                          (licenceController.selectedDegree == null) ||
-                          (licenceController.selectedDegree!.id == -1) ||
-                          (licenceController.selectedDiscipline == null) ||
-                          (licenceController.selectedDiscipline!.id == -1) ||
-                          (licenceController.selectedGrade == null) ||
-                          (licenceController.selectedGrade!.id == -1) ||
-                          (licenceController.selectedWeight == null) ||
-                          (licenceController.selectedWeight!.id == -1)) {
-                        final snackBar = MySnackBar(
-                            title: 'خانات اجبارية',
-                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
-                            state: ContentType.warning);
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      } else {
-                        licenceController.createAthlete(context);
-                        GoRouter.of(context).go(Routes.LicenceListScreen);
-                      }
-                    },
-                    label: Text('تاكيد'),
-                  )),
-            ],
-          ),
-        )),
       );
     });
   }

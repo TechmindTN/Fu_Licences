@@ -36,49 +36,53 @@ class _AddClubScreenState extends State<AddClubScreen> {
   Widget build(BuildContext context) {
     return Consumer<ClubProvider>(
         builder: (context, clubController, child) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text("اضفة نادي"),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              LigueSelectInput('الولاية',
-                  licenceController.selectedLigue, licenceController),
-              TextInput('الاسم', nameController,)
-            ],
+      return Directionality(
+                textDirection: TextDirection.rtl,
+
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text("اضفة نادي"),
           ),
-        ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      if ((licenceController.selectedLigue == null) ||
-                          (licenceController.selectedLigue!.id == -1) 
-                          ) {
-                        final snackBar = MySnackBar(
-                            title: 'خانات اجبارية',
-                            msg: 'الرجاء ملئ جميع الخانات الاجبارية',
-                            state: ContentType.warning);
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      } else {
-                         clubController.createClub(context,licenceController,nameController.text);
-                        GoRouter.of(context).go(Routes.Home);
-                      }
-                    },
-                    label: const Text('تاكيد'),
-                  )),
-            ],
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                LigueSelectInput('الولاية',
+                    licenceController.selectedLigue, licenceController),
+                TextInput('الاسم', nameController,)
+              ],
+            ),
           ),
-        )),
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        if ((licenceController.selectedLigue == null) ||
+                            (licenceController.selectedLigue!.id == -1) 
+                            ) {
+                          final snackBar = MySnackBar(
+                              title: 'خانات اجبارية',
+                              msg: 'الرجاء ملئ جميع الخانات الاجبارية',
+                              state: ContentType.warning);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        } else {
+                           clubController.createClub(context,licenceController,nameController.text);
+                          GoRouter.of(context).go(Routes.Home);
+                        }
+                      },
+                      label: const Text('تاكيد'),
+                    )),
+              ],
+            ),
+          )),
+        ),
       );
     });
   }

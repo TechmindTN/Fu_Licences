@@ -108,9 +108,9 @@ class ClubProvider extends ChangeNotifier{
     Response res=await clubNetwork.editClub(data,selectedClub.id);
     if(res.statusCode==200){
       final snackBar = MySnackBar(
-          title: 'Succees',
+          title: 'نجاح التعديل',
           msg:
-              'Les informations du club sont modifiee en succees',
+              'تم تعديل معلومات النادي بنجاح',
           state: ContentType.success,
         );
         ScaffoldMessenger.of(context)
@@ -119,9 +119,9 @@ class ClubProvider extends ChangeNotifier{
     }
     else{
       final snackBar = MySnackBar(
-          title: 'Echec',
+          title: 'فشل التعديل',
           msg:
-              'Il y a une probleme avec cet licence merci d verifier vos donnees',
+              'تم فشل تعديل معلومات النادي الرجاء التاكد من المعلومات المعطاة',
           state: ContentType.warning,
         );
         ScaffoldMessenger.of(context)

@@ -25,7 +25,11 @@ class DisciplineDataSource extends DataTableSource{
       DataCell(SelectableText(licenceController.parameters!.disciplines![index].description.toString())),
       DataCell(Row(
         children: [
-          FloatingActionButton.small(onPressed: (){},child: Icon(Icons.delete),
+          FloatingActionButton.small(onPressed: (){
+             paramController.removeDiscipline(licenceController.parameters!.disciplines![index].id!,context);
+            licenceController.parameters!.disciplines!.remove(licenceController.parameters!.disciplines![index]);
+            licenceController.notify();
+          },child: Icon(Icons.delete),
           backgroundColor: Colors.red,
           ),
         ],

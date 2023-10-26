@@ -31,100 +31,104 @@ class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceIma
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
-      return Scaffold(
-        // appBar: AppBar(title: Text('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
-        body: CustomScrollView(
-          slivers:[
-            MyAppBar('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
-             
-             
-            SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
-            SliverGrid(
+      return Directionality(
+                textDirection: TextDirection.rtl,
 
-                delegate: SliverChildListDelegate([
-                  ArbitreImageEditWidget(
-                    'صورة الهوية',
-                    licenceController,
-                    context,
-                    'idphoto',
-                    licenceController.createdFullLicence!.arbitrator!.identityPhoto,1
-                  ),
-                  ArbitreImageEditWidget(
-                      'صورة التامين',
+        child: Scaffold(
+          // appBar: AppBar(title: Text('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
+          body: CustomScrollView(
+            slivers:[
+              MyAppBar('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+               
+               
+              SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
+              SliverGrid(
+      
+                  delegate: SliverChildListDelegate([
+                    ArbitreImageEditWidget(
+                      'صورة الهوية',
                       licenceController,
                       context,
-                      'photo',
-                      licenceController.createdFullLicence!.arbitrator!.photo,2),
-                  // ArbitratorImageEditWidget(
-                  //     'Medicale',
-                  //     licenceController,
-                  //     context,
-                  //     'medphoto',
-                  //     licenceController
-                  //         .createdFullLicence!.arbitrator!.medicalPhoto,3),
-                ]),
-                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 0,
-                    childAspectRatio: 0.5 ,
-                    // mainAxisExtent: ,
-                    crossAxisSpacing: 0,
-                    crossAxisCount: 2)),
-
-
-            //  SliverToBoxAdapter(
-            //    child: Center(
-            //              child: Column(
-            //     children: [
-                  
-            //       ArbitratorImageEditWidget(
-            //         'Identite',
-            //         licenceController,
-            //         context,
-            //         'idphoto',
-            //         licenceController.createdFullLicence!.arbitrator!.identityPhoto,1
-            //       ),
-            //       ArbitratorImageEditWidget(
-            //           'Assurance',
-            //           licenceController,
-            //           context,
-            //           'photo',
-            //           licenceController.createdFullLicence!.arbitrator!.photo,2),
-            //       ArbitratorImageEditWidget(
-            //           'Medicale',
-            //           licenceController,
-            //           context,
-            //           'medphoto',
-            //           licenceController
-            //               .createdFullLicence!.arbitrator!.medicalPhoto,3),
-            //       SizedBox(
-            //         height: 5.h,
-            //       )
-            //     ],
-            //              ),
-            //            ),
-            //  ),
-             ]
-        ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      // licenceController.createProfile();
-                      licenceController.editArbitratorProfile(context);
-                      GoRouter.of(context).push(Routes.RenewArbitratorLicenceScreen);
-                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>RenewLicenceScreen()));
-                    },
-                    label: Text('تاكيد'),
-                  )),
-            ],
+                      'idphoto',
+                      licenceController.createdFullLicence!.arbitrator!.identityPhoto,1
+                    ),
+                    ArbitreImageEditWidget(
+                        'صورة التامين',
+                        licenceController,
+                        context,
+                        'photo',
+                        licenceController.createdFullLicence!.arbitrator!.photo,2),
+                    // ArbitratorImageEditWidget(
+                    //     'Medicale',
+                    //     licenceController,
+                    //     context,
+                    //     'medphoto',
+                    //     licenceController
+                    //         .createdFullLicence!.arbitrator!.medicalPhoto,3),
+                  ]),
+                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 0,
+                      childAspectRatio: 0.5 ,
+                      // mainAxisExtent: ,
+                      crossAxisSpacing: 0,
+                      crossAxisCount: 2)),
+      
+      
+              //  SliverToBoxAdapter(
+              //    child: Center(
+              //              child: Column(
+              //     children: [
+                    
+              //       ArbitratorImageEditWidget(
+              //         'Identite',
+              //         licenceController,
+              //         context,
+              //         'idphoto',
+              //         licenceController.createdFullLicence!.arbitrator!.identityPhoto,1
+              //       ),
+              //       ArbitratorImageEditWidget(
+              //           'Assurance',
+              //           licenceController,
+              //           context,
+              //           'photo',
+              //           licenceController.createdFullLicence!.arbitrator!.photo,2),
+              //       ArbitratorImageEditWidget(
+              //           'Medicale',
+              //           licenceController,
+              //           context,
+              //           'medphoto',
+              //           licenceController
+              //               .createdFullLicence!.arbitrator!.medicalPhoto,3),
+              //       SizedBox(
+              //         height: 5.h,
+              //       )
+              //     ],
+              //              ),
+              //            ),
+              //  ),
+               ]
           ),
-        )),
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        // licenceController.createProfile();
+                        licenceController.editArbitratorProfile(context);
+                        GoRouter.of(context).push(Routes.RenewArbitratorLicenceScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>RenewLicenceScreen()));
+                      },
+                      label: Text('تاكيد'),
+                    )),
+              ],
+            ),
+          )),
+        ),
       );
     });
     // TODO: implement build ghghg 

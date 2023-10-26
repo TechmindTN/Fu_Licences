@@ -13,7 +13,7 @@ class LicenceNetwork {
   getLicenceListInfo(clubid) async {
     Response res = await apis.dio.post(apis.baseUrl + apis.licenceListInfo,
         options: Options(headers: {"Authorization": Apis.tempToken}),
-        data: {'userid': 1,
+        data: {'userid': 274,
         'club':clubid
         });
     return res;
@@ -114,7 +114,7 @@ class LicenceNetwork {
     return res;
   }
   catch(e){
-    //print(e);
+    ////print(e);
   }
   }
 
@@ -126,7 +126,7 @@ class LicenceNetwork {
     return res;
   }
   catch(e){
-    //print(e);
+    ////print(e);
   }
   }
 
@@ -138,7 +138,7 @@ class LicenceNetwork {
     return res;
   }
   catch(e){
-    //print(e);
+    ////print(e);
   }
   }
 
@@ -153,6 +153,27 @@ class LicenceNetwork {
     Response res = await apis.dio.get(apis.baseUrl + apis.generalStats,
         options: Options(headers: {"Authorization": Apis.tempToken}),
         );
+    return res;
+  }
+
+
+  getClubStats(id) async {
+    Response res = await apis.dio.get(apis.baseUrl + apis.clubStats,
+        options: Options(headers: {"Authorization": Apis.tempToken},
+        
+        ),
+        data: {'club':id}
+        );
+    return res;
+  }
+
+
+  getLatestVersion() async {
+    //print("getting version");
+    Response res = await apis.dio.get(apis.baseUrl + apis.getLatestVersion,
+        options: Options(headers: {"Authorization": Apis.tempToken}),
+        );
+        //print('version data: '+res.data.toString());
     return res;
   }
 }

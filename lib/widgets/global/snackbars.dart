@@ -11,7 +11,7 @@ MySnackBar({state,title,msg}){
                     title: title??'Snackbar',
                     message:
                         msg??'Snack Message',
-
+  
                     /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
                     contentType: state??ContentType.success,
                   ),
