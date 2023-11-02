@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 // import 'package:fu_licences/screens/licence/renew%20licence/arbitrator/renew_licence_screen.dart';
-import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
-import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -12,6 +10,8 @@ import '../../../../router/routes.dart';
 import '../../../../widgets/licence/arbitre/arbitre_licence_widgets.dart';
 
 class RenewArbitratorLicenceImages extends StatefulWidget {
+  const RenewArbitratorLicenceImages({super.key});
+
   @override
   State<RenewArbitratorLicenceImages> createState() => _RenewArbitratorLicenceImagesState();
 }
@@ -38,7 +38,7 @@ class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceIma
           // appBar: AppBar(title: Text('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
           body: CustomScrollView(
             slivers:[
-              MyAppBar('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+              MyAppBar('تجديد الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences!}', context, false, licenceController, false, true),
                
                
               SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
@@ -66,7 +66,7 @@ class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceIma
                     //     licenceController
                     //         .createdFullLicence!.arbitrator!.medicalPhoto,3),
                   ]),
-                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 0,
                       childAspectRatio: 0.5 ,
                       // mainAxisExtent: ,
@@ -114,7 +114,7 @@ class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceIma
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                     width: 30.w,
                     child: FloatingActionButton.extended(
                       onPressed: () {
@@ -123,7 +123,7 @@ class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceIma
                         GoRouter.of(context).push(Routes.RenewArbitratorLicenceScreen);
                         // Navigator.push(context, MaterialPageRoute(builder: (context)=>RenewLicenceScreen()));
                       },
-                      label: Text('تاكيد'),
+                      label: const Text('تاكيد'),
                     )),
               ],
             ),

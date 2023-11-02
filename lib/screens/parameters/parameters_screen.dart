@@ -1,22 +1,16 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/models/full_licence.dart';
-import 'package:fu_licences/router/routes.dart';
-import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
-import 'package:fu_licences/widgets/global/snackbars.dart';
-import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:fu_licences/widgets/parameter/parameter_widgets.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/club_controller.dart';
 import '../../controllers/parameters_controller.dart';
-import '../../widgets/clubs/club_widgets.dart';
 
 class ParametersScreen extends StatefulWidget{
+  const ParametersScreen({super.key});
+
   @override
   State<ParametersScreen> createState() => _ParametersScreenState();
 }
@@ -74,7 +68,7 @@ class _ParametersScreenState extends State<ParametersScreen> {
             drawer: MyDrawer(licenceController, context),
             
             
-            backgroundColor: Color(0xfffafafa),
+            backgroundColor: const Color(0xfffafafa),
             body: CustomScrollView(
               slivers: [
                 MyAppBar('الاعدادات', context, true,licenceController,false,false),
@@ -117,9 +111,9 @@ class _ParametersScreenState extends State<ParametersScreen> {
                  ),);
                }
                else{
-             return SliverToBoxAdapter(child: Container(
+             return SliverToBoxAdapter(child: SizedBox(
                 height: 40.h,
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(child: CircularProgressIndicator()),
@@ -134,7 +128,7 @@ class _ParametersScreenState extends State<ParametersScreen> {
               // GoRouter.of(context).push(Routes.SelectRoleScreen);
               // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
             },
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
             ),
             ),
         );

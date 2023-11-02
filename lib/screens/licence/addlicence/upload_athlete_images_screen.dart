@@ -2,7 +2,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
@@ -13,6 +12,8 @@ import 'package:sizer/sizer.dart';
 import '../../../router/routes.dart';
 
 class UploadAthleteLicenceImages extends StatefulWidget {
+  const UploadAthleteLicenceImages({super.key});
+
   @override
   State<UploadAthleteLicenceImages> createState() =>
       _UploadAthleteLicenceImagesState();
@@ -130,7 +131,7 @@ class _UploadAthleteLicenceImagesState
                         licenceController
                             .createdFullLicence!.athlete!.medicalPhoto,3),
                   ]),
-                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 0,
                       childAspectRatio: 0.5 ,
                       // mainAxisExtent: ,
@@ -145,7 +146,7 @@ class _UploadAthleteLicenceImagesState
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                     width: 30.w,
                     child: FloatingActionButton.extended(
                       onPressed: () {
@@ -173,7 +174,7 @@ class _UploadAthleteLicenceImagesState
       
                         // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
                       },
-                      label: Text("تاكيد"),
+                      label: const Text("تاكيد"),
                     )),
               ],
             ),

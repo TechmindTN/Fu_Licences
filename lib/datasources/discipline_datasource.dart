@@ -29,8 +29,8 @@ class DisciplineDataSource extends DataTableSource{
              paramController.removeDiscipline(licenceController.parameters!.disciplines![index].id!,context);
             licenceController.parameters!.disciplines!.remove(licenceController.parameters!.disciplines![index]);
             licenceController.notify();
-          },child: Icon(Icons.delete),
-          backgroundColor: Colors.red,
+          },
+          backgroundColor: Colors.red,child: const Icon(Icons.delete),
           ),
         ],
       )),

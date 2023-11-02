@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
-import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -11,6 +9,8 @@ import '../../../../widgets/licence/coach/coach_licence_widgets.dart';
 
 
 class EditCoachLicenceImages extends StatefulWidget {
+  const EditCoachLicenceImages({super.key});
+
   @override
   State<EditCoachLicenceImages> createState() => _EditCoachLicenceImagesState();
 }
@@ -38,7 +38,7 @@ class _EditCoachLicenceImagesState extends State<EditCoachLicenceImages> {
           // appBar: AppBar(title: Text('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
           body: CustomScrollView(
             slivers:[
-              MyAppBar('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+              MyAppBar('تعديل الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences!}', context, false, licenceController, false, true),
               
               
               SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
@@ -79,7 +79,7 @@ class _EditCoachLicenceImagesState extends State<EditCoachLicenceImages> {
                       licenceController.createdFullLicence!.coach!.gradePhoto,4),
                   
                   ]),
-                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 0,
                       childAspectRatio: 0.5 ,
                       // mainAxisExtent: ,
@@ -99,7 +99,7 @@ class _EditCoachLicenceImagesState extends State<EditCoachLicenceImages> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                     width: 30.w,
                     child: FloatingActionButton.extended(
                       onPressed: () {
@@ -107,7 +107,7 @@ class _EditCoachLicenceImagesState extends State<EditCoachLicenceImages> {
                         licenceController.editCoachImages(context);
                         // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
                       },
-                      label: Text('تاكيد'),
+                      label: const Text('تاكيد'),
                     )),
               ],
             ),

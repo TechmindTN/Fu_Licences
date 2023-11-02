@@ -23,9 +23,9 @@ Widget ClubItem(
         height: 15.h,
         
         decoration: BoxDecoration(
-          color: Color(0xffffffff),
+          color: const Color(0xffffffff),
           borderRadius: BorderRadius.circular(5),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Color(0x3f000000),
               offset: Offset(0, 2),
@@ -48,7 +48,7 @@ Widget ClubItem(
               children: [
                 Container(
                         // man2L5W (2:231)
-                        margin: EdgeInsets.fromLTRB(0, 2, 2, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 2, 2, 0),
                         // width: 25.w,
                         height: 8.h,
                         child: (club.logo != null &&
@@ -63,7 +63,7 @@ Widget ClubItem(
                 Container(
                   // height: .h,
                   // autogroupitbe2SC (F37UKZcanBTmfvyEYdiTBE)
-                  margin: EdgeInsets.fromLTRB(2, 0, 0, 6),
+                  margin: const EdgeInsets.fromLTRB(2, 0, 0, 6),
                   //width: double.infinity,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,7 +71,7 @@ Widget ClubItem(
                     children: [
                       Container(
                         // licencenum16358749xKr (1:62)
-                        margin: EdgeInsets.fromLTRB(0, 0, 27, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 0, 27, 0),
                         child: Text(
                            club.name.toString(),
                           style: SafeGoogleFont(
@@ -79,7 +79,7 @@ Widget ClubItem(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
                             // height: 1.2125,
-                            color: Color(0xff000000),
+                            color: const Color(0xff000000),
                           ),
                         ),
                       ),
@@ -89,7 +89,7 @@ Widget ClubItem(
                 ),
                 Container(
                   // autogroupubylbtc (F37UQoxqf6Dn3wXHhuubYL)
-                  margin: EdgeInsets.fromLTRB(0, 0, 110, 3),
+                  margin: const EdgeInsets.fromLTRB(0, 0, 110, 3),
                   //width: double.infinity,
                   height: 1.h,
                   child: Row(
@@ -105,7 +105,7 @@ Widget ClubItem(
                             Container(
                               width: 28.w,
                               // athletecYp (1:65)
-                              margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                              margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -116,7 +116,7 @@ Widget ClubItem(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w400,
                                       // height: 1.2125,
-                                      color: Color(0xff000000),
+                                      color: const Color(0xff000000),
                                     ),
                                   ),
                                   Text(
@@ -127,7 +127,7 @@ Widget ClubItem(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w400,
                                       // height: 1.2125,
-                                      color: Color(0xff717171),
+                                      color: const Color(0xff717171),
                                     ),
                                   ),
                                 ],
@@ -273,7 +273,7 @@ Widget ClubListHeader(LicenceProvider licenceController,ClubProvider clubControl
             textDirection: TextDirection.rtl,
 
     child: Center(
-      child: Container(
+      child: SizedBox(
         width: 183.w,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -293,7 +293,7 @@ Widget ClubListHeader(LicenceProvider licenceController,ClubProvider clubControl
 }
 
 Widget FirstRow(LicenceProvider licenceController){
-  return Directionality(
+  return const Directionality(
             textDirection: TextDirection.rtl,
 
     child: Row(
@@ -349,12 +349,12 @@ Widget SearchField(LicenceProvider licenceController,numControl,context){
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         boxShadow: [
-          (licenceController.isShadow)?BoxShadow(
+          (licenceController.isShadow)?const BoxShadow(
             
             color: Colors.black26,
             blurRadius: 10,
             offset: Offset(0,2)
-          ):BoxShadow()
+          ):const BoxShadow()
         ],
         color: Colors.white
       ),
@@ -378,7 +378,7 @@ Widget FilterField(LicenceProvider licenceController,context){
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(6),
-            boxShadow: [
+            boxShadow: const [
               
               BoxShadow(
                 color: Colors.black26,

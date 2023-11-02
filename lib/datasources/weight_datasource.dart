@@ -34,8 +34,8 @@ class WeightDataSource extends DataTableSource{
              paramController.removeWeight(licenceController.parameters!.weights![index].id!,context);
             licenceController.parameters!.weights!.remove(licenceController.parameters!.weights![index]);
             licenceController.notify();
-          },child: Icon(Icons.delete),
-          backgroundColor: Colors.red,
+          },
+          backgroundColor: Colors.red,child: const Icon(Icons.delete),
           ),
         ],
       )),

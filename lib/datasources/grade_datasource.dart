@@ -34,8 +34,8 @@ class GradeDataSource extends DataTableSource{
              paramController.removeGrade(licenceController.parameters!.grades![index].id!,context);
             licenceController.parameters!.grades!.remove(licenceController.parameters!.grades![index]);
             licenceController.notify();
-          },child: Icon(Icons.delete),
-          backgroundColor: Colors.red,
+          },
+          backgroundColor: Colors.red,child: const Icon(Icons.delete),
           ),
         ],
       )),

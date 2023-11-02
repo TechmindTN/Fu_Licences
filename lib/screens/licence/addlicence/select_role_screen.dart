@@ -4,10 +4,11 @@ import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../models/role.dart';
 import '../../../widgets/licence/licence_widget.dart';
 
 class SelectRoleScreen extends StatefulWidget{
+  const SelectRoleScreen({super.key});
+
 
   @override
   State<SelectRoleScreen> createState() => _SelectRoleScreenState();
@@ -40,7 +41,7 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
                 SliverToBoxAdapter(
                   child: SizedBox(height: 2.h),
                 ),
-                SliverGrid.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                SliverGrid.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
             
               ), itemCount: licenceController.parameters!.roles!.length,

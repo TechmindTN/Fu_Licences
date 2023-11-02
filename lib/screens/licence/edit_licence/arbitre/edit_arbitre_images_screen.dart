@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
-import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../widgets/licence/arbitre/arbitre_licence_widgets.dart';
 
 class EditArbitratorLicenceImages extends StatefulWidget {
+  const EditArbitratorLicenceImages({super.key});
+
   @override
   State<EditArbitratorLicenceImages> createState() => _EditArbitratorLicenceImagesState();
 }
@@ -36,7 +36,7 @@ class _EditArbitratorLicenceImagesState extends State<EditArbitratorLicenceImage
           // appBar: AppBar(title: Text('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!),),
           body: CustomScrollView(
             slivers:[
-              MyAppBar('تعديل الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true),
+              MyAppBar('تعديل الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences!}', context, false, licenceController, false, true),
               
               
               SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
@@ -65,7 +65,7 @@ class _EditArbitratorLicenceImagesState extends State<EditArbitratorLicenceImage
                       licenceController.createdFullLicence!.arbitrator!.photo,2),
                   
                   ]),
-                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 0,
                       childAspectRatio: 0.5 ,
                       // mainAxisExtent: ,
@@ -122,7 +122,7 @@ class _EditArbitratorLicenceImagesState extends State<EditArbitratorLicenceImage
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                     width: 30.w,
                     child: FloatingActionButton.extended(
                       onPressed: () {
@@ -130,7 +130,7 @@ class _EditArbitratorLicenceImagesState extends State<EditArbitratorLicenceImage
                         licenceController.editArbitratorImages(context);
                         // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
                       },
-                      label: Text('تاكيد'),
+                      label: const Text('تاكيد'),
                     )),
               ],
             ),

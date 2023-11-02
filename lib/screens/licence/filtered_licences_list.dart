@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/models/full_licence.dart';
-import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class FilteredLicencesScreen extends StatefulWidget{
+  const FilteredLicencesScreen({super.key});
+
   @override
   State<FilteredLicencesScreen> createState() => _FilteredLicencesScreenState();
 }
@@ -45,11 +45,11 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
         
             //   ],
             // ),
-            backgroundColor: Color(0xfffafafa),
+            backgroundColor: const Color(0xfffafafa),
             body: CustomScrollView(
               slivers: [
                 MyAppBar("الاجازات المصفاة", context, false, licenceController, false,true),
-               (licenceController.filteredFullLicences.length>0)?
+               (licenceController.filteredFullLicences.isNotEmpty)?
                   SliverGrid.builder(
                 
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,
@@ -60,9 +60,9 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
                itemBuilder: (context,index){
                 return LicenceItem(licenceController.filteredFullLicences[index], licenceController, context);
               }): SliverToBoxAdapter(
-                  child:  Container(
+                  child:  SizedBox(
                 height: 40.h,
-                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                child: const Column(mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(child: Text('قائمة الاجازات المصفاة فارغة الرجاء تعديل اعدادات التصفية'),),
                   ],

@@ -28,10 +28,10 @@ Widget imageWidget(){
 }
 
 Widget SeasonWidget(){
-  return Directionality(
+  return const Directionality(
             textDirection: TextDirection.rtl,
 
-    child: const Padding(
+    child: Padding(
       padding: EdgeInsets.all(16.0),
       child: Center(
         child: Row(

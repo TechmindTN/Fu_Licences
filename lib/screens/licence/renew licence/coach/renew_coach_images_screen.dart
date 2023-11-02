@@ -8,6 +8,8 @@ import '../../../../router/routes.dart';
 import '../../../../widgets/licence/coach/coach_licence_widgets.dart';
 
 class RenewCoachLicenceImages extends StatefulWidget {
+  const RenewCoachLicenceImages({super.key});
+
   @override
   State<RenewCoachLicenceImages> createState() => _RenewCoachLicenceImagesState();
 }
@@ -32,7 +34,7 @@ class _RenewCoachLicenceImagesState extends State<RenewCoachLicenceImages> {
         child: Scaffold(
           body: CustomScrollView(
             slivers:[
-              MyAppBar('تجديد الاجازة '+licenceController.selectedFullLicence!.licence!.numLicences!, context, false, licenceController, false, true), 
+              MyAppBar('تجديد الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences!}', context, false, licenceController, false, true), 
               SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
               SliverGrid(
                   delegate: SliverChildListDelegate([
@@ -62,7 +64,7 @@ class _RenewCoachLicenceImagesState extends State<RenewCoachLicenceImages> {
                         'gradePhoto',
                         licenceController.createdFullLicence!.coach!.gradePhoto,4),
                   ]),
-                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 0,
                       childAspectRatio: 0.5 ,
                       crossAxisSpacing: 0,
@@ -75,14 +77,14 @@ class _RenewCoachLicenceImagesState extends State<RenewCoachLicenceImages> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                     width: 30.w,
                     child: FloatingActionButton.extended(
                       onPressed: () {
                         licenceController.editCoachProfile(context);
                         GoRouter.of(context).push(Routes.RenewCoachLicenceScreen);
                       },
-                      label: Text('تاكيد'),
+                      label: const Text('تاكيد'),
                     )),
               ],
             ),

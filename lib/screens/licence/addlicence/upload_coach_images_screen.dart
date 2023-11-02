@@ -1,8 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/main.dart';
-import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
@@ -13,6 +11,8 @@ import 'package:sizer/sizer.dart';
 import '../../../router/routes.dart';
 
 class UploadCoachLicenceImages extends StatefulWidget{
+  const UploadCoachLicenceImages({super.key});
+
   @override
   State<UploadCoachLicenceImages> createState() => _UploadCoachLicenceImagesState();
 }
@@ -48,7 +48,7 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
                     CoachImageUploadWidget('photo de grade',licenceController,context,'gradephoto',licenceController.createdFullLicence!.coach!.gradePhoto,4),
         
                   ]),
-                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 0,
                       childAspectRatio: 0.5 ,
                       // mainAxisExtent: ,
@@ -74,7 +74,7 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 30.w,
                     child: FloatingActionButton.extended(onPressed: (){
                       // licenceController.createProfile();
@@ -87,7 +87,7 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
                       }
                       
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
-                    },label: Text('تاكيد'),)),
+                    },label: const Text('تاكيد'),)),
                 ],
               ),
             )),

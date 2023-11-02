@@ -2,6 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/network/club_network.dart';
+import 'package:provider/provider.dart';
 import '../models/club.dart';
 import '../models/parameters.dart';
 import '../models/user.dart';
@@ -139,6 +140,62 @@ class ClubProvider extends ChangeNotifier{
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(snackBar);
+    }
+  }
+
+  changeClubPassword(String psd,context) async {
+    // User user=Provider.of<LicenceProvider>(context,listen: false).currentUser;
+    Map<String,dynamic> data={"password":psd};
+    Response res=await clubNetwork.changeClubPassword(data,selectedClub.id.toString());
+    if(res.statusCode==200){
+      final snackBar = MySnackBar(
+          title: 'نجاح التعديل',
+          msg:
+              'تم تعديل معلومات النادي بنجاح',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'فشل التعديل',
+          msg:
+              'تم فشل تعديل معلومات النادي الرجاء التاكد من المعلومات المعطاة',
+          state: ContentType.warning,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+  }
+
+  changePassword(String psd,context) async {
+    User user=Provider.of<LicenceProvider>(context,listen: false).currentUser;
+    Map<String,dynamic> data={"password":psd};
+    Response res=await clubNetwork.changePassword(data,user.id.toString());
+    if(res.statusCode==200){
+      final snackBar = MySnackBar(
+          title: 'نجاح التعديل',
+          msg:
+              'تم تعديل معلومات النادي بنجاح',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'فشل التعديل',
+          msg:
+              'تم فشل تعديل معلومات النادي الرجاء التاكد من المعلومات المعطاة',
+          state: ContentType.warning,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
     }
   }
 

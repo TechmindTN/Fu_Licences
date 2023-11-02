@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/router/routes.dart';
-import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
-import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_athlete_images_screen.dart';
-import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_licence_screen.dart';
-import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_images_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../global/utils.dart';
 
 class LicenceScreen extends StatefulWidget{
+  const LicenceScreen({super.key});
+
   @override
   State<LicenceScreen> createState() => _LicenceScreenState();
 }
@@ -108,14 +104,14 @@ class _LicenceScreenState extends State<LicenceScreen> {
         
             body: CustomScrollView(
               slivers: [
-                MyAppBar("الاجازة "+licenceController.selectedFullLicence!.licence!.numLicences!, context, false,licenceController,true,true),
+                MyAppBar("الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences!}", context, false,licenceController,true,true),
                 SliverToBoxAdapter(
                   child: Column(
                           
                   children: [
                     Container(
                     // man2Fct (1:93)
-                    margin: EdgeInsets.fromLTRB(0, 20, 1, 19),
+                    margin: const EdgeInsets.fromLTRB(0, 20, 1, 19),
                     width: 121,
                     height: 121,
                     child: (licenceController.selectedFullLicence!.profile!.profilePhoto!=null && licenceController.selectedFullLicence!.profile!.profilePhoto!="")?
@@ -131,15 +127,15 @@ class _LicenceScreenState extends State<LicenceScreen> {
                   ),
                   Container(
                     // mohsenbenmohsenbAx (1:94)
-                    margin: EdgeInsets.fromLTRB(9, 0, 0, 22),
+                    margin: const EdgeInsets.fromLTRB(9, 0, 0, 22),
                     child: Text(
-                      licenceController.selectedFullLicence!.profile!.lastName.toString()+' '+licenceController.selectedFullLicence!.profile!.firstName.toString(),
+                      '${licenceController.selectedFullLicence!.profile!.lastName} ${licenceController.selectedFullLicence!.profile!.firstName}',
                       style: SafeGoogleFont (
                         'Inter',
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
                         height: 1.2125,
-                        color: Color(0xff000000),
+                        color: const Color(0xff000000),
                       ),
                     ),
                   ),
@@ -176,20 +172,20 @@ class _LicenceScreenState extends State<LicenceScreen> {
                 children: [
                   ElevatedButton(onPressed: (){
                     licenceController.validateLicence(context);
-                  }, child: Text("قبول"),
+                  },
                   style: ButtonStyle(
         
             backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-          ),
+          ), child: const Text("قبول"),
                   ),
-                   ElevatedButton(onPressed: (){}, child: Text("رفض"),
+                   ElevatedButton(onPressed: (){},
                    style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-          ),
+          ), child: const Text("رفض"),
                    )
                 ],
               ),
-            )):BottomAppBar(),
+            )):const BottomAppBar(),
            
           ),
         );

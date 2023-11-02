@@ -2,8 +2,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/controllers/parameters_controller.dart';
-import 'package:fu_licences/router/routes.dart';
-import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:go_router/go_router.dart';
@@ -11,9 +9,10 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../widgets/global/inputs.dart';
-import '../../licence/addlicence/add_licence_screen.dart';
 
 class AddDisciplineScreen extends StatefulWidget {
+  const AddDisciplineScreen({super.key});
+
   @override
   State<AddDisciplineScreen> createState() => _AddDisciplineScreenState();
 }
@@ -51,7 +50,7 @@ class _AddDisciplineScreenState extends State<AddDisciplineScreen> {
               SliverToBoxAdapter(child: SizedBox(height: 3.h),),
               SliverToBoxAdapter(
                 child: Center(
-              child: Container(
+              child: SizedBox(
                 width: 40.w,
                 child: Column(
                   children: [
@@ -69,7 +68,7 @@ class _AddDisciplineScreenState extends State<AddDisciplineScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                     width: 30.w,
                     child: FloatingActionButton.extended(
                       onPressed: () {
@@ -89,7 +88,7 @@ class _AddDisciplineScreenState extends State<AddDisciplineScreen> {
                           // GoRouter.of(context).go(Routes.DisciplineListScreen);
                         }
                       },
-                      label: Text('تاكيد'),
+                      label: const Text('تاكيد'),
                     )),
               ],
             ),

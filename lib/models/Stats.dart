@@ -38,44 +38,44 @@ class Stats {
     pendingLicences = json['pending_licences'];
     expiredLicences = json['expired_licences'];
     athletesLicences = json['athletes_licences'] != null
-        ? new AthletesLicences.fromJson(json['athletes_licences'])
+        ? AthletesLicences.fromJson(json['athletes_licences'])
         : null;
     coachesLicences = json['coaches licences'] != null
-        ? new AthletesLicences.fromJson(json['coaches licences'])
+        ? AthletesLicences.fromJson(json['coaches licences'])
         : null;
     arbitratorsLicences = json['arbitrators licences'] != null
-        ? new AthletesLicences.fromJson(json['arbitrators licences'])
+        ? AthletesLicences.fromJson(json['arbitrators licences'])
         : null;
     supportersLicences = json['supporters licences'] != null
-        ? new AthletesLicences.fromJson(json['supporters licences'])
+        ? AthletesLicences.fromJson(json['supporters licences'])
         : null;
-    users = json['users'] != null ? new Users.fromJson(json['users']) : null;
+    users = json['users'] != null ? Users.fromJson(json['users']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['athletes'] = this.athletes;
-    data['coaches'] = this.coaches;
-    data['arbitrators'] = this.arbitrators;
-    data['supporters'] = this.supporters;
-    data['clubs'] = this.clubs;
-    data['active_licences'] = this.activeLicences;
-    data['pending_licences'] = this.pendingLicences;
-    data['expired_licences'] = this.expiredLicences;
-    if (this.athletesLicences != null) {
-      data['athletes_licences'] = this.athletesLicences!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['athletes'] = athletes;
+    data['coaches'] = coaches;
+    data['arbitrators'] = arbitrators;
+    data['supporters'] = supporters;
+    data['clubs'] = clubs;
+    data['active_licences'] = activeLicences;
+    data['pending_licences'] = pendingLicences;
+    data['expired_licences'] = expiredLicences;
+    if (athletesLicences != null) {
+      data['athletes_licences'] = athletesLicences!.toJson();
     }
-    if (this.coachesLicences != null) {
-      data['coaches licences'] = this.coachesLicences!.toJson();
+    if (coachesLicences != null) {
+      data['coaches licences'] = coachesLicences!.toJson();
     }
-    if (this.arbitratorsLicences != null) {
-      data['arbitrators licences'] = this.arbitratorsLicences!.toJson();
+    if (arbitratorsLicences != null) {
+      data['arbitrators licences'] = arbitratorsLicences!.toJson();
     }
-    if (this.supportersLicences != null) {
-      data['supporters licences'] = this.supportersLicences!.toJson();
+    if (supportersLicences != null) {
+      data['supporters licences'] = supportersLicences!.toJson();
     }
-    if (this.users != null) {
-      data['users'] = this.users!.toJson();
+    if (users != null) {
+      data['users'] = users!.toJson();
     }
     return data;
   }
@@ -97,11 +97,11 @@ class AthletesLicences {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['total'] = this.total;
-    data['active'] = this.active;
-    data['pending'] = this.pending;
-    data['expired'] = this.expired;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['total'] = total;
+    data['active'] = active;
+    data['pending'] = pending;
+    data['expired'] = expired;
     return data;
   }
 }
@@ -124,12 +124,12 @@ class Users {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['total'] = this.total;
-    data['active'] = this.active;
-    data['inactive'] = this.inactive;
-    data['staff'] = this.staff;
-    data['admins'] = this.admins;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['total'] = total;
+    data['active'] = active;
+    data['inactive'] = inactive;
+    data['staff'] = staff;
+    data['admins'] = admins;
     return data;
   }
 }

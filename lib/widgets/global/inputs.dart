@@ -10,7 +10,6 @@ import 'package:fu_licences/models/ligue.dart';
 import 'package:fu_licences/models/role.dart';
 import 'package:fu_licences/models/season.dart';
 import 'package:fu_licences/models/weight.dart';
-import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 Widget TextInput(String txt,TextEditingController control){
@@ -23,11 +22,36 @@ Widget TextInput(String txt,TextEditingController control){
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(txt),
-          Container(
+          SizedBox(
             width: 50.w,
             height: 5.h,
             child: TextFormField(
-              decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)))),
+              decoration: const InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)))),
+              controller: control,
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+Widget PSDInput(String txt,TextEditingController control){
+  return Directionality(
+            textDirection: TextDirection.rtl,
+
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal:24.0,vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(txt),
+          SizedBox(
+            width: 50.w,
+            height: 5.h,
+            child: TextFormField(
+              obscureText: true,
+              decoration: const InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)))),
               controller: control,
             ),
           )
@@ -50,7 +74,7 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
 
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 25.w,
@@ -126,7 +150,7 @@ SeasonSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 25.w,
@@ -181,7 +205,7 @@ RoleSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 25.w,
@@ -236,7 +260,7 @@ GategorySelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 25.w,
@@ -291,7 +315,7 @@ LigueSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 25.w,
@@ -345,7 +369,7 @@ DegreeSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 25.w,
@@ -400,7 +424,7 @@ WeightSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 25.w,
@@ -455,7 +479,7 @@ ClubSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 25.w,
@@ -510,7 +534,7 @@ DisciplineSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 25.w,
@@ -566,7 +590,7 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 25.w,
@@ -622,15 +646,15 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
           onTap: () async {
              DateTime? date=await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1800), lastDate: DateTime.now()); 
              selected=date;
-             control.text=date!.year.toString()+"-"+date.month.toString()+"-"+date.day.toString();
+             control.text="${date!.year}-${date.month}-${date.day}";
              licenceController.notify();
           },
-          child: Container(
+          child: SizedBox(
             width: 50.w,
             height: 5.h,
             child: TextFormField(
               enabled: false,
-              decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)),)),
+              decoration: const InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)),)),
               controller: control,
             ),
           ),
@@ -661,7 +685,7 @@ SearchInput(LicenceProvider licenceController,numControl,context){
           licenceController.findLicence(numControl.text, context);
         },
         controller: numControl,
-          decoration: InputDecoration.collapsed(
+          decoration: const InputDecoration.collapsed(
         hintText: 'بحث',
       ),
       // trol,
@@ -681,7 +705,7 @@ Widget AuthInput(txt,control,hide){
         
         height: 4.h,
         width: 50.w,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           boxShadow: [
             BoxShadow(
               color: Colors.black12,

@@ -10,9 +10,10 @@ import 'package:sizer/sizer.dart';
 
 import '../../../router/routes.dart';
 import '../../../widgets/global/inputs.dart';
-import '../../athlete/add_athlete/add_athlete_screen.dart';
 
 class AddProfileScreen extends StatefulWidget {
+  const AddProfileScreen({super.key});
+
   @override
   State<AddProfileScreen> createState() => _AddProfileScreenState();
 }
@@ -54,7 +55,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
               ),
               SliverToBoxAdapter(
                 child: Center(
-              child: Container(
+              child: SizedBox(
                 width: 80.w,
                 child: Column(
                   children: [
@@ -108,7 +109,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                     width: 30.w,
                     child: FloatingActionButton.extended(
                       onPressed: () {
@@ -187,7 +188,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                         }
                         // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddAthleteScreen()));
                       },
-                      label: Text('تاكيد'),
+                      label: const Text('تاكيد'),
                     )),
               ],
             ),

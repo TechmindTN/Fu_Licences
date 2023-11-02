@@ -67,49 +67,49 @@ class ParameterNetwork{
   }
 
   deleteLigue(id) async {
-    Response res = await apis.dio.delete(apis.baseUrl + apis.ligue+id.toString()+'/',
+    Response res = await apis.dio.delete('${apis.baseUrl}${apis.ligue}$id/',
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
     );
     return res;
   }
   deleteDegree(id) async {
-    Response res = await apis.dio.delete(apis.baseUrl + apis.degree+id.toString()+'/',
+    Response res = await apis.dio.delete('${apis.baseUrl}${apis.degree}$id/',
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
     );
     return res;
   }
   deleteGrade(id) async {
-    Response res = await apis.dio.delete(apis.baseUrl + apis.grade+id.toString()+'/',
+    Response res = await apis.dio.delete('${apis.baseUrl}${apis.grade}$id/',
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
     );
     return res;
   }
   deleteDiscipline(id) async {
-    Response res = await apis.dio.delete(apis.baseUrl + apis.discipline+id.toString()+'/',
+    Response res = await apis.dio.delete('${apis.baseUrl}${apis.discipline}$id/',
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
     );
     return res;
   }
   deleteCategory(id) async {
-    Response res = await apis.dio.delete(apis.baseUrl + apis.category+id.toString()+'/',
+    Response res = await apis.dio.delete('${apis.baseUrl}${apis.category}$id/',
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
     );
     return res;
   }
   deleteWeight(id) async {
-    Response res = await apis.dio.delete(apis.baseUrl + apis.weight+id.toString()+'/',
+    Response res = await apis.dio.delete('${apis.baseUrl}${apis.weight}$id/',
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
     );
     return res;
   }
   deleteSeason(id) async {
-    Response res = await apis.dio.delete(apis.baseUrl + apis.season+id.toString()+'/',
+    Response res = await apis.dio.delete('${apis.baseUrl}${apis.season}$id/',
          options: Options(
            headers: {"Authorization": Apis.tempToken}),
     );

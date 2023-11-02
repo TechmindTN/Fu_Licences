@@ -1,16 +1,9 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/parameters_controller.dart';
-import 'package:fu_licences/models/full_licence.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
-import '../controllers/club_controller.dart';
 import '../controllers/licence_controller.dart';
-import '../router/routes.dart';
-import '../models/licence.dart';
 
 class CategoryDataSource extends DataTableSource{
   final LicenceProvider licenceController;
@@ -51,8 +44,8 @@ class CategoryDataSource extends DataTableSource{
              paramController.removeCategory(licenceController.parameters!.categories![index].id!,context);
             licenceController.parameters!.categories!.remove(licenceController.parameters!.categories![index]);
             licenceController.notify();
-          },child: Icon(Icons.delete),
-          backgroundColor: Colors.red,
+          },
+          backgroundColor: Colors.red,child: const Icon(Icons.delete),
           ),
           
         ],

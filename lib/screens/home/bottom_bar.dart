@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
-import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/screens/licence/coach_licence_screen.dart';
-import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:fu_licences/screens/parameters/parameters_screen.dart';
-import 'package:go_router/go_router.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class BottomBarScreen extends StatefulWidget{
@@ -23,12 +19,12 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   _BottomBarScreenState(this.currentIndex);
   
 List<Widget> _buildScreens() => [
-        ParametersScreen(),
+        const ParametersScreen(),
         
-        HomeScreen(
+        const HomeScreen(
          
         ),
-        CoachLicenceListScreenCopy(
+        const CoachLicenceListScreenCopy(
         
         ),
        
@@ -41,7 +37,7 @@ List<Widget> _buildScreens() => [
           title: 'الاعدادات',
           activeColorPrimary: Colors.teal,
           inactiveColorPrimary: Colors.grey,
-          routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          routeAndNavigatorSettings: const RouteAndNavigatorSettings(
 
             // initialRoute: "/",
             // routes: {
@@ -61,7 +57,7 @@ List<Widget> _buildScreens() => [
           title: 'الاجازات',
           activeColorPrimary: Colors.blueAccent,
           inactiveColorPrimary: Colors.grey,
-          routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          routeAndNavigatorSettings: const RouteAndNavigatorSettings(
          
           ),
         ),
@@ -97,11 +93,11 @@ List<Widget> _buildScreens() => [
           ),
           popAllScreensOnTapOfSelectedTab: true,
           popActionScreens: PopActionScreensType.all,
-          itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
+          itemAnimationProperties: const ItemAnimationProperties( // Navigation Bar's items animation properties.
             duration: Duration(milliseconds: 200),
             curve: Curves.ease,
           ),
-          screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+          screenTransitionAnimation: const ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
             animateTabTransition: true,
             curve: Curves.ease,
             duration: Duration(milliseconds: 200),

@@ -1,25 +1,20 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/datasources/weight_datasource.dart';
-import 'package:fu_licences/models/full_licence.dart';
 import 'package:fu_licences/router/routes.dart';
-import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
-import 'package:fu_licences/widgets/global/snackbars.dart';
-import 'package:fu_licences/widgets/licence/licence_widget.dart';
-import 'package:fu_licences/widgets/parameter/parameter_widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/parameters_controller.dart';
-import '../../../models/ligue.dart';
 import '../../../models/weight.dart';
 
 
 
 class WeightListScreen extends StatefulWidget{
+  const WeightListScreen({super.key});
+
   @override
   State<WeightListScreen> createState() => _WeightListScreenState();
 }
@@ -59,7 +54,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
             drawer: MyDrawer(licenceController, context),
             
             
-            backgroundColor: Color(0xfffafafa),
+            backgroundColor: const Color(0xfffafafa),
             body: CustomScrollView(
               slivers: [
                 MyAppBar('الوزن', context, false,licenceController,false,true),
@@ -105,7 +100,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
                     decoration: BoxDecoration(
                       // border: Border.all(color: Colors.black)
                       borderRadius: BorderRadius.circular(5),
-                      boxShadow: [BoxShadow(
+                      boxShadow: const [BoxShadow(
                         color: Colors.black12,
                         blurRadius: 10,
         
@@ -117,7 +112,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
                       columnSpacing: 0,
                       rowsPerPage: 10,
                       // header:  LicenceListHeader(licenceController,numControl,context),
-                      columns: [ 
+                      columns: const [ 
                         DataColumn(label: Text(''),),
                         // DataColumn(label: Text('logo'),),                     
                         DataColumn(label: Text('اللقب')),   
@@ -130,7 +125,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
                       // ],
                       
                       arrowHeadColor: Colors.blue,
-                      availableRowsPerPage: [10,20,50,100],
+                      availableRowsPerPage: const [10,20,50,100],
                 
                       showCheckboxColumn: true,
                       showFirstLastButtons: true,
@@ -169,9 +164,9 @@ class _WeightListScreenState extends State<WeightListScreen> {
                 //  }),);
                }
                else{
-             return SliverToBoxAdapter(child: Container(
+             return SliverToBoxAdapter(child: SizedBox(
                 height: 40.h,
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(child: CircularProgressIndicator()),
@@ -186,7 +181,7 @@ class _WeightListScreenState extends State<WeightListScreen> {
               GoRouter.of(context).push(Routes.AddWeightScreen);
               // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
             },
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
             ),
             ),
         );

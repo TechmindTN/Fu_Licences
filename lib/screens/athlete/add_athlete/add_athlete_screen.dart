@@ -103,7 +103,7 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
                           GoRouter.of(context).go(Routes.LicenceListScreen);
                         }
                       },
-                      label: Text('تاكيد'),
+                      label: const Text('تاكيد'),
                     )),
               ],
             ),

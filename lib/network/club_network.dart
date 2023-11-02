@@ -18,4 +18,25 @@ class ClubNetwork{
     );
     return res;
   }
+  changeClubPassword(data,id) async {
+    Response res=await apis.dio.put("${apis.baseUrl+apis.changeClubPassword+id}/",
+    options: Options(
+      headers: {"Authorization":Apis.tempToken}
+    ),
+    data: data
+    );
+    return res;
+
+  }
+
+  changePassword(data,id) async {
+    Response res=await apis.dio.put("${apis.baseUrl+apis.changePassword+id}/",
+    options: Options(
+      headers: {"Authorization":Apis.tempToken}
+    ),
+    data: data
+    );
+    return res;
+
+  }
 }

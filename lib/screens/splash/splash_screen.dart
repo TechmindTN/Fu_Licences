@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import '../../controllers/licence_controller.dart';
 
 class MySplashScreen extends StatefulWidget{
+  const MySplashScreen({super.key});
+
   @override
   State<MySplashScreen> createState() => _MySplashScreenState();
 }

@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/router/routes.dart';
-import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_athlete_images_screen.dart';
-import 'package:fu_licences/screens/licence/edit_licence/athlete/edit_licence_screen.dart';
-import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_images_screen.dart';
-import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/club_appbar.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/club_controller.dart';
-import '../../global/utils.dart';
 
 class ClubScreen extends StatefulWidget{
+  const ClubScreen({super.key});
+
   @override
   State<ClubScreen> createState() => _ClubScreenState();
 }
@@ -119,7 +114,7 @@ class _ClubScreenState extends State<ClubScreen> {
                   children: [
                     Container(
                     // man2Fct (1:93)
-                    margin: EdgeInsets.fromLTRB(0, 20, 1, 19),
+                    margin: const EdgeInsets.fromLTRB(0, 20, 1, 19),
                     width: 121,
                     height: 121,
                     child: (licenceController.selectedClub!.logo!=null && licenceController.selectedClub!.logo!="")?
@@ -135,7 +130,7 @@ class _ClubScreenState extends State<ClubScreen> {
                   ),
                   Container(
                     // mohsenbenmohsenbAx (1:94)
-                    margin: EdgeInsets.fromLTRB(9, 0, 0, 22),
+                    margin: const EdgeInsets.fromLTRB(9, 0, 0, 22),
                     // child: Text(
                     //   licenceController.selectedClub!.name!.toString(),
                     //   style: SafeGoogleFont (

@@ -17,22 +17,22 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
                 
                 // surfaceTintColor: Colors.white,
                 color: Colors.white,
-                icon: Icon(Icons.more_vert,color: Colors.white,),
+                icon: const Icon(Icons.more_vert,color: Colors.white,),
                 itemBuilder: (context){
                       //  if(licenceController.currentUser.club!.id!=null)
                        return [
-                              PopupMenuItem<int>(
+                              const PopupMenuItem<int>(
                                 
                                   value: 0,
                                   child: Text("تعديل الاجازة"),
                               ),
   
-                              PopupMenuItem<int>(
+                              const PopupMenuItem<int>(
                                   value: 1,
                                   child: Text("تعديل صور الاجازة"),
                               ),
   
-                              PopupMenuItem<int>(
+                              const PopupMenuItem<int>(
                                   value: 2,
                                   child: Text("تجديد الاجازة"),
                               ),
@@ -89,13 +89,13 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
               pinned: false,
               foregroundColor: Colors.white,
       // collapsedHeight: 10.h,
-      leading: (isback)?IconButton(icon:Icon(Icons.arrow_back,color: Colors.white,),onPressed: (){
+      leading: (isback)?IconButton(icon:const Icon(Icons.arrow_back,color: Colors.white,),onPressed: (){
         GoRouter.of(context).pop();
       },):Visibility(
         visible: isDrawer,
         child: Builder(
           builder: (context) {
-            return IconButton(icon:Icon(Icons.short_text_rounded,color: Colors.white,
+            return IconButton(icon:const Icon(Icons.short_text_rounded,color: Colors.white,
             size: 40,
             ),
             onPressed: ( ){
@@ -109,7 +109,7 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
       centerTitle: true,
       backgroundColor: Colors.blue,
       title: Text(title,
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       ),
     ),
   );
@@ -124,6 +124,7 @@ Widget MyDrawer(LicenceProvider licenceController,context){
     child: Drawer(
       
       width: 30.w,
+      backgroundColor: Colors.white,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -137,6 +138,8 @@ Widget MyDrawer(LicenceProvider licenceController,context){
             DrawerField(Icons.list,"النوادي",Routes.ClubListScreen,context),
             if(licenceController.currentUser.club!.id==null)
             DrawerField(Icons.list,'الاعدادات',Routes.SelectParameterScreen,context),
+            if(licenceController.currentUser.club!.id!=null)
+            BackDrawerField(Icons.edit,'تعديل كلمة المرور',Routes.ChangePassword,context),
             // DrawerField(Icons.list,'الاجازات'),
             // DrawerField(Icons.list,'الاجازات'),
             // DrawerField(Icons.list,'الاجازات'),
@@ -150,7 +153,6 @@ Widget MyDrawer(LicenceProvider licenceController,context){
           ],
         ),
       ),
-      backgroundColor: Colors.white,
   
     ),
   );
@@ -162,7 +164,7 @@ Widget IdentifierField(LicenceProvider licenceController,context){
 
     child: Container(
       // color: Colors.red,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(bottom: BorderSide(
           width: 1,
           color: Colors.black,
@@ -185,7 +187,7 @@ Widget IdentifierField(LicenceProvider licenceController,context){
                       width: 7.w,
                       
                       decoration: BoxDecoration(
-                        boxShadow: [BoxShadow(
+                        boxShadow: const [BoxShadow(
      
                           color: Colors.black12,
                           blurRadius: 10,
@@ -204,7 +206,7 @@ Widget IdentifierField(LicenceProvider licenceController,context){
                   ),
                   SizedBox(width: 2.w,),
                   Text((licenceController.currentUser.club!.id!=null)?licenceController.currentUser.club!.name.toString():"Admin",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20
                   ),
                   )
@@ -224,7 +226,7 @@ Widget IdentifierField(LicenceProvider licenceController,context){
              child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Color(0xff2DA9E0),width: 2 )
+                border: Border.all(color: const Color(0xff2DA9E0),width: 2 )
                 // color: Color(0xff92DDFF),
                 // color: Colors.red,
               
@@ -232,7 +234,7 @@ Widget IdentifierField(LicenceProvider licenceController,context){
               width: 20.w,
               
               height: 3.h,
-              child: Center(child: Text("تسجيل الخروج",
+              child: const Center(child: Text("تسجيل الخروج",
               style: TextStyle(
                 color: Colors.black,
               fontWeight: FontWeight.w700,
@@ -261,7 +263,7 @@ Widget DrawerField(icon,txt,togo,context,){
       },
        child: Container(
         // color: Colors.red,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(
             width: 1,
             color: Colors.black,
@@ -278,7 +280,49 @@ Widget DrawerField(icon,txt,togo,context,){
               Icon(icon),
               SizedBox(width: 3.w,),
               Text(txt,
-              style: TextStyle(
+              style: const TextStyle(
+                fontSize: 20
+              ),
+              )
+            ],
+          ),
+          // SizedBox(),
+          
+       ]),
+     
+     
+       ),
+     ),
+   );
+}
+
+Widget BackDrawerField(icon,txt,togo,context,){
+   return Directionality(        textDirection: TextDirection.rtl,
+
+     child: InkWell(
+      onTap: (){
+        GoRouter.of(context).push(togo);
+      },
+       child: Container(
+        // color: Colors.red,
+        decoration: const BoxDecoration(
+          border: Border(bottom: BorderSide(
+            width: 1,
+            color: Colors.black,
+     
+          ))
+        ),
+        height: 4.h,
+       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(width: 6.w,),
+          Row(
+            children: [
+              Icon(icon),
+              SizedBox(width: 3.w,),
+              Text(txt,
+              style: const TextStyle(
                 fontSize: 20
               ),
               )
@@ -300,17 +344,17 @@ Widget LogoutDialog(LicenceProvider licenceController,context){
             textDirection: TextDirection.rtl,
 
     child: AlertDialog(
-      title: Text("تسجيل الخروج"),
-      content: Text("Voulez vous vraiment quitter?"),
+      title: const Text("تسجيل الخروج"),
+      content: const Text("هل تود فعلا تسجيل الخروج؟؟"),
       actions: [
         TextButton(onPressed: (){
           licenceController.logout(context);
-        }, child: Text("Logut",
+        }, child: const Text("تسجيل الخروج",
         style: TextStyle(
           color: Colors.red
         ),
         )),
-        TextButton(onPressed: (){}, child: Text("الغاء"))
+        TextButton(onPressed: (){}, child: const Text("الغاء"))
       ],
     ),
   );

@@ -9,17 +9,17 @@ import '../../../../widgets/global/inputs.dart';
 
 // import '../../global/utils.dart';
 
-class EditClubScreen extends StatefulWidget{
-  const EditClubScreen({super.key});
+class EditClubPasswordScreen extends StatefulWidget{
+  const EditClubPasswordScreen({super.key});
 
   @override
-  State<EditClubScreen> createState() => _EditClubScreenState();
+  State<EditClubPasswordScreen> createState() => _EditClubPasswordScreenState();
 }
 
-class _EditClubScreenState extends State<EditClubScreen> {
+class _EditClubPasswordScreenState extends State<EditClubPasswordScreen> {
   late LicenceProvider licenceController;
     late ClubProvider clubController;
- late TextEditingController nameController;
+ late TextEditingController psdController;
 
 //     late TextEditingController prenomController;
 //    late TextEditingController phoneController;
@@ -39,7 +39,7 @@ class _EditClubScreenState extends State<EditClubScreen> {
 //     prenomController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.lastName,);
 //     phoneController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.phone.toString(),);
 //print('getting name');
-  nameController=TextEditingController(text: clubController.selectedClub.name!);
+  psdController=TextEditingController();
   //print('got name');
 //  sexeController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.sexe,);
 //  addresseController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.address,);
@@ -64,7 +64,7 @@ class _EditClubScreenState extends State<EditClubScreen> {
             // ),
             body: CustomScrollView(
               slivers:[ 
-                MyClubAppBar("تعديل النادي${licenceController.selectedClub!.name}", context, false, licenceController, false, true),
+                MyClubAppBar("تعديل كلمة المرور${licenceController.selectedClub!.name}", context, false, licenceController, false, true),
                 SliverToBoxAdapter(
                   child: Column(
         
@@ -153,7 +153,8 @@ class _EditClubScreenState extends State<EditClubScreen> {
         //               SizedBox(height: 5.h,),
         
         // Text('Information de club'),
-        TextInput('الاسم',nameController),
+        
+        PSDInput('كلمة المرور',psdController),
         // Text(licenceController.selectedFullLicence!.licence!.numLicences.toString()),
         //               SizedBox(height: 3.h,),
         //                   Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController),
@@ -170,7 +171,7 @@ class _EditClubScreenState extends State<EditClubScreen> {
         
                     FloatingActionButton.extended(onPressed: (){
         
-                      clubController.editClub(nameController.text,context);
+                      clubController.changeClubPassword(psdController.text,context);
                     }, label: const Text('تاكيد')),
                 SizedBox(height: 3.h,),
         

@@ -28,8 +28,8 @@ class DegreeDataSource extends DataTableSource{
              paramController.removeDegree(licenceController.parameters!.degrees![index].id!,context);
             licenceController.parameters!.degrees!.remove(licenceController.parameters!.degrees![index]);
             licenceController.notify();
-          },child: Icon(Icons.delete),
-          backgroundColor: Colors.red,
+          },
+          backgroundColor: Colors.red,child: const Icon(Icons.delete),
           ),
         ],
       )),

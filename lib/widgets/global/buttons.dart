@@ -16,9 +16,9 @@ Widget SearchButton(LicenceProvider licenceController,numControl,context){
         height: 3.05.h,
         
         decoration: BoxDecoration(
-          color: Color(0xff5fcafa),
+          color: const Color(0xff5fcafa),
             borderRadius: BorderRadius.circular(6),
-              boxShadow: [
+              boxShadow: const [
                 
                 BoxShadow(
                   color: Colors.black26,
@@ -28,7 +28,7 @@ Widget SearchButton(LicenceProvider licenceController,numControl,context){
               ],
         ),
         
-        child: Center(child: Text("بحث",
+        child: const Center(child: Text("بحث",
         style: TextStyle(
           color: Colors.white
         ),

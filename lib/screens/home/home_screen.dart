@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fu_licences/network/apis.dart';
 import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/home/home_widgets.dart';
@@ -10,6 +9,8 @@ import 'package:sizer/sizer.dart';
 import '../../controllers/licence_controller.dart';
 
 class HomeScreen extends StatefulWidget{
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -39,12 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
               textDirection: TextDirection.rtl,
 
       child: Scaffold(
-        backgroundColor: Color(0xfffafafa),
+        backgroundColor: const Color(0xfffafafa),
         drawer: MyDrawer(licenceController,context),
         body: Consumer<LicenceProvider>(
           builder: (context,licenceController,child) {
             return FutureBuilder(
-              future: (licenceController.currentUser.club==null)?licenceController.getGeneralStats():licenceController.getClubStats(),
+              future: (licenceController.currentUser.club!.id==null)?licenceController.getGeneralStats():licenceController.getClubStats(),
               builder: (context,snapshot) {
                 return CustomScrollView(
                   slivers: [
@@ -63,9 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Image.asset("assets/images/logo-ftwkf.png"),
+                                    InkWell(
+                                      
+                                      child: Image.asset("assets/images/logo-ftwkf.png")),
                                     SizedBox(height: 0.5.h,),
-                                    Divider(color: Colors.white,),
+                                    const Divider(color: Colors.white,),
                                   InkWell(
                                     onTap: (){
                                       // GoRouter.of(context).go(Routes.LicenceListScreen);
@@ -73,13 +76,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Container(
                                       width: 30.w,
                                       height: 4.h,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 66, 144, 208)
+                                      decoration: const BoxDecoration(
+                                        color: Color.fromARGB(255, 66, 144, 208)
                                       ),
-                                      child: Center(child: Text('الشاشة الرئيسية',style: TextStyle(color: Colors.white,fontSize: 20),))),
+                                      child: const Center(child: Text('الشاشة الرئيسية',style: TextStyle(color: Colors.white,fontSize: 20),))),
                                   ),
                                 //  SizedBox(height: 0.5.h,),
-                                    Divider(color: Colors.white,),
+                                    const Divider(color: Colors.white,),
                                 //  SizedBox(height: 0.5.h,),
                                   InkWell(
                                     onTap: (){
@@ -88,12 +91,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Container(
                                       width: 30.w,
                                       height: 4.h,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 66, 144, 208)
+                                      decoration: const BoxDecoration(
+                                        color: Color.fromARGB(255, 66, 144, 208)
                                       ),
-                                      child: Center(child: Text('الاجازات',style: TextStyle(color: Colors.white,fontSize: 20),))),
+                                      child: const Center(child: Text('الاجازات',style: TextStyle(color: Colors.white,fontSize: 20),))),
                                   ),
-                                  Divider(color: Colors.white,),
+                                  const Divider(color: Colors.white,),
                                    InkWell(
                                     onTap: (){
                                       GoRouter.of(context).go(Routes.AthleteLicenceListScreen);
@@ -101,13 +104,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Container(
                                       width: 30.w,
                                       height: 4.h,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 66, 144, 208)
+                                      decoration: const BoxDecoration(
+                                        color: Color.fromARGB(255, 66, 144, 208)
                                       ),
-                                      child: Center(child: Text("الرياضيين",style: TextStyle(color: Colors.white,fontSize: 20),))),
+                                      child: const Center(child: Text("الرياضيين",style: TextStyle(color: Colors.white,fontSize: 20),))),
                                   ),
                                 //  SizedBox(height: 0.5.h,),
-                                    Divider(color: Colors.white,),
+                                    const Divider(color: Colors.white,),
                                    InkWell(
                                     onTap: (){
                                       GoRouter.of(context).go(Routes.ArbitratorLicenceListScreen);
@@ -115,13 +118,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Container(
                                       width: 30.w,
                                       height: 4.h,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 66, 144, 208)
+                                      decoration: const BoxDecoration(
+                                        color: Color.fromARGB(255, 66, 144, 208)
                                       ),
-                                      child: Center(child: Text("الحكام",style: TextStyle(color: Colors.white,fontSize: 20),))),
+                                      child: const Center(child: Text("الحكام",style: TextStyle(color: Colors.white,fontSize: 20),))),
                                   ),
                                 //  SizedBox(height: 0.5.h,),
-                                    Divider(color: Colors.white,),
+                                    const Divider(color: Colors.white,),
                                    InkWell(
                                     onTap: (){
                                       GoRouter.of(context).go(Routes.CoachLicenceListScreen);
@@ -129,16 +132,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Container(
                                       width: 30.w,
                                       height: 4.h,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 66, 144, 208)
+                                      decoration: const BoxDecoration(
+                                        color: Color.fromARGB(255, 66, 144, 208)
                                       ),
-                                      child: Center(child: Text("المدربين",style: TextStyle(color: Colors.white,fontSize: 20),))),
+                                      child: const Center(child: Text("المدربين",style: TextStyle(color: Colors.white,fontSize: 20),))),
                                   ),
                                 //  SizedBox(height: 0.5.h,),
                                     if(licenceController.currentUser.club!.id==null)
                                     Column(
                                       children: [
-                                        Divider(color: Colors.white,),
+                                        const Divider(color: Colors.white,),
                                         InkWell(
                                       onTap: (){
                                         GoRouter.of(context).go(Routes.ClubListScreen);
@@ -146,14 +149,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: Container(
                                       width: 30.w,
                                       height: 4.h,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 66, 144, 208)
+                                      decoration: const BoxDecoration(
+                                        color: Color.fromARGB(255, 66, 144, 208)
                                       ),
-                                      child: Center(child: Text("النوادي",style: TextStyle(color: Colors.white,fontSize: 20),))),
+                                      child: const Center(child: Text("النوادي",style: TextStyle(color: Colors.white,fontSize: 20),))),
                                     ),
                                 //  SizedBox(height: 0.5.h,),
                                   //  SizedBox(height: 0.5.h,),
-                                    Divider(color: Colors.white,),
+                                    const Divider(color: Colors.white,),
                                     InkWell(
                                       onTap: (){
                                         GoRouter.of(context).go(Routes.SelectParameterScreen);
@@ -161,17 +164,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: Container(
                                       width: 30.w,
                                       height: 4.h,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 66, 144, 208)
+                                      decoration: const BoxDecoration(
+                                        color: Color.fromARGB(255, 66, 144, 208)
                                       ),
-                                      child: Center(child: Text('الاعدادات',style: TextStyle(color: Colors.white,fontSize: 20),))),
+                                      child: const Center(child: Text('الاعدادات',style: TextStyle(color: Colors.white,fontSize: 20),))),
                                     ),
                                     // SizedBox(height: 0.5.h,),
                                    
                                       ],
                                     ),
                                 //  SizedBox(height: 0.5.h,),
-                                     Divider(color: Colors.white,),
+                                     const Divider(color: Colors.white,),
                                 ],),
                               ],
                             ),
@@ -182,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           //   builder: (context,snapshot) {
                           //     // licenceController.notify();
                           //     return
-                               Container(
+                               SizedBox(
                                 // color: Colors.red,
                                 width: 130.w,
                                 height: 48.h,
@@ -214,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: const Color.fromARGB(255, 66, 144, 208),
                                   child: BarChartSample1(txt:"الرياضيين"),
                                 ),
-                                Divider(
+                                const Divider(
                                   color: Colors.white,
                                 ),
                                 Container(
@@ -223,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: const Color.fromARGB(255, 66, 144, 208),
                                   child: BarChartSample1(txt:"الحكام"),
                                 ),
-                                Divider( color: Colors.white,),
+                                const Divider( color: Colors.white,),
                                 Container(
                                   height: 20.w,
                                   width: 30.w,

@@ -50,4 +50,6 @@
   static const String AddCategoryScreen="/add_category";
   static const String AddDisciplineScreen="/add_discipline";
   static const String AddSeasonScreen="/add_season";
+  static const String ChangeClubPassword="/change_club_password";
+  static const String ChangePassword="/change_password";
 }

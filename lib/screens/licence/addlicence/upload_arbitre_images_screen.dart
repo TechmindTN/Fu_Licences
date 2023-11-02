@@ -1,7 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
@@ -12,6 +11,8 @@ import 'package:sizer/sizer.dart';
 import '../../../router/routes.dart';
 
 class UploadArbitreLicenceImages extends StatefulWidget{
+  const UploadArbitreLicenceImages({super.key});
+
   @override
   State<UploadArbitreLicenceImages> createState() => _UploadArbitreLicenceImagesState();
 }
@@ -44,7 +45,7 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
                     ArbitreImageUploadWidget('صورة الهوية',licenceController,context,'idphoto',licenceController.createdFullLicence!.arbitrator!.identityPhoto,1),
                     ArbitreImageUploadWidget('photo',licenceController,context,'photo',licenceController.createdFullLicence!.arbitrator!.photo,2),
                   ]),
-                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 0,
                       childAspectRatio: 0.5 ,
                       // mainAxisExtent: ,
@@ -72,7 +73,7 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 30.w,
                     child: FloatingActionButton.extended(onPressed: (){
                       // licenceController.createProfile();
@@ -85,7 +86,7 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
                       }
                       
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
-                    },label: Text('تاكيد'),)),
+                    },label: const Text('تاكيد'),)),
                 ],
               ),
             )),

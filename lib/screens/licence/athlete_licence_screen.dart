@@ -2,9 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/datasources/athlete_licence_datasource.dart';
-import 'package:fu_licences/models/full_licence.dart';
 import 'package:fu_licences/router/routes.dart';
-import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
@@ -13,11 +11,10 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/club_controller.dart';
-import '../../datasources/club_datasource.dart';
-import '../../datasources/licence_datasource.dart';
-import '../../widgets/clubs/club_widgets.dart';
 
 class AthleteLicenceListScreenCopy extends StatefulWidget{
+  const AthleteLicenceListScreenCopy({super.key});
+
   @override
   State<AthleteLicenceListScreenCopy> createState() => _AthleteLicenceListScreenCopyState();
 }
@@ -95,7 +92,7 @@ late DataTableSource dataSource;
             drawer: MyDrawer(licenceController, context),
             
             
-            backgroundColor: Color(0xfffafafa),
+            backgroundColor: const Color(0xfffafafa),
             body: CustomScrollView(
               slivers: [
                 MyAppBar('اجازات الرياضيين', context, true,licenceController,false,false),
@@ -132,7 +129,7 @@ late DataTableSource dataSource;
                     decoration: BoxDecoration(
                       // border: Border.all(color: Colors.black)
                       borderRadius: BorderRadius.circular(5),
-                      boxShadow: [BoxShadow(
+                      boxShadow: const [BoxShadow(
                         color: Colors.black12,
                         blurRadius: 10,
         
@@ -144,7 +141,7 @@ late DataTableSource dataSource;
                       columnSpacing: 0,
                       rowsPerPage: 10,
                       // header:  LicenceListHeader(licenceController,numControl,context),
-                      columns: [ 
+                      columns: const [ 
                         DataColumn(label: Text(''),),
                         DataColumn(label: Text('صورة الحساب'),),
                         DataColumn(label: Text('الجازة'),
@@ -168,7 +165,7 @@ late DataTableSource dataSource;
                       // ],
                       
                       arrowHeadColor: Colors.blue,
-                      availableRowsPerPage: [10,20,50,100],
+                      availableRowsPerPage: const [10,20,50,100],
                 
                       showCheckboxColumn: true,
                       showFirstLastButtons: true,
@@ -188,9 +185,9 @@ late DataTableSource dataSource;
                 //   });
                }
                else{
-             return SliverToBoxAdapter(child: Container(
+             return SliverToBoxAdapter(child: SizedBox(
                 height: 40.h,
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(child: CircularProgressIndicator()),
@@ -212,7 +209,7 @@ late DataTableSource dataSource;
               // GoRouter.of(context).push(Routes.AddProfileScreen);
               // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
             },
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
             ),
             ),
         );

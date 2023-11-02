@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/main.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
-import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -12,6 +10,8 @@ import '../../../../widgets/global/inputs.dart';
 // import '../../global/utils.dart';
 
 class RenewCoachLicenceScreen extends StatefulWidget {
+  const RenewCoachLicenceScreen({super.key});
+
   @override
   State<RenewCoachLicenceScreen> createState() => _RenewCoachLicenceScreenState();
 }
@@ -36,12 +36,12 @@ class _RenewCoachLicenceScreenState extends State<RenewCoachLicenceScreen> {
                 textDirection: TextDirection.rtl,
 
         child: Scaffold(
-          backgroundColor: Color(0xfffafafa),
+          backgroundColor: const Color(0xfffafafa),
           // appBar: AppBar(title: Text('تجديد الاجازة '+licenceController.createdFullLicence!.licence!.numLicences.toString()),
       
           // ),
           body: CustomScrollView(slivers: [
-            MyAppBar('تجديد الاجازة '+licenceController.createdFullLicence!.licence!.numLicences.toString(), context, false, licenceController, false, true),
+            MyAppBar('تجديد الاجازة ${licenceController.createdFullLicence!.licence!.numLicences}', context, false, licenceController, false, true),
             SliverToBoxAdapter(
               child: Column(
                 children: [
@@ -54,7 +54,7 @@ class _RenewCoachLicenceScreenState extends State<RenewCoachLicenceScreen> {
                   //         )),
                   Container(
                     // man2Fct (1:93)
-                    margin: EdgeInsets.fromLTRB(0, 20, 1, 19),
+                    margin: const EdgeInsets.fromLTRB(0, 20, 1, 19),
                     width: 121,
                     height: 121,
                     child: (licenceController
@@ -82,19 +82,15 @@ class _RenewCoachLicenceScreenState extends State<RenewCoachLicenceScreen> {
                   ),
                   Container(
                     // mohsenbenmohsenbAx (1:94)
-                    margin: EdgeInsets.fromLTRB(9, 0, 0, 22),
+                    margin: const EdgeInsets.fromLTRB(9, 0, 0, 22),
                     child: Text(
-                      licenceController.createdFullLicence!.profile!.lastName
-                              .toString() +
-                          ' ' +
-                          licenceController.createdFullLicence!.profile!.firstName
-                              .toString(),
+                      '${licenceController.createdFullLicence!.profile!.lastName} ${licenceController.createdFullLicence!.profile!.firstName}',
                       style: SafeGoogleFont(
                         'Inter',
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
                         height: 1.2125,
-                        color: Color(0xff000000),
+                        color: const Color(0xff000000),
                       ),
                     ),
                   ),
@@ -131,7 +127,7 @@ class _RenewCoachLicenceScreenState extends State<RenewCoachLicenceScreen> {
                 children: [
                   FloatingActionButton.extended(onPressed: (){
                     licenceController.renewCoachLicecne(context);
-                  }, label: Text('تاكيد'),
+                  }, label: const Text('تاكيد'),
                   
                   )
                 ],

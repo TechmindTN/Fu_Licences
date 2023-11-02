@@ -21,6 +21,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_picker_windows/image_picker_windows.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/arbitrator.dart';
 import '../models/athlete.dart';
@@ -40,7 +41,7 @@ import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
   Version currentVersion=Version(
-    version: "0.1"
+    version: "0.7"
   );
   bool logged=false;
   bool isAscending =true;
@@ -120,7 +121,7 @@ class LicenceProvider extends ChangeNotifier {
 
         currentUser=User.fromJson(res.data);
       
-       
+        currentUser.id=res.data['user_data']['id'];
         currentUser.isSuperuser=res.data['user_data']['is_superuser'];
          prefs= await SharedPreferences.getInstance();
          prefs.setString('user', login);
@@ -167,15 +168,15 @@ class LicenceProvider extends ChangeNotifier {
       
       bool ok=await login(context, prefs.getString('user'), prefs.getString('psd'));
       if(ok==true){
-        next=HomeScreen();
+        next=const HomeScreen();
       }
       else{
-        next=LoginScreen();
+        next=const LoginScreen();
         GoRouter.of(context).go(Routes.Login);
       }
     }
     else{
-      next=LoginScreen();
+      next=const LoginScreen();
       GoRouter.of(context).go(Routes.Login);
     return true;
      }
@@ -242,17 +243,20 @@ class LicenceProvider extends ChangeNotifier {
           textDirection: TextDirection.rtl,
           child: AlertDialog(
             
-            title: Text("تحديث جديد"),
-            content: Container(
+            title: const Text("تحديث جديد"),
+            content: SizedBox(
               height: 10.h,
-              child: Center(child: Text("يوجد تحديث جديد من البرنامج الرجاء التحديث"))),
+              child: const Center(child: Text("يوجد تحديث جديد من البرنامج الرجاء التحديث"))),
             actions: [
-              ElevatedButton(onPressed: (){
-                
-              }, child: Text("تحديث")),
+              ElevatedButton(onPressed: () async {
+                final Uri url = Uri.parse(version.url!);
+                                        if (!await launchUrl(url)) {
+                                              throw Exception('Could not launch $url');
+                                        }
+              }, child: const Text("تحديث")),
               ElevatedButton(onPressed: (){
                 Navigator.pop(context);
-              }, child: Text("الغاء"))
+              }, child: const Text("الغاء"))
             ],
           ),
         );
@@ -1690,9 +1694,9 @@ editLicenceCoach(
       Navigator.pop(context);
       GoRouter.of(context).push(Routes.FilteredLicencesScreen);
       filteredFullLicences.clear();
-      fullLicences.forEach((element) {
+      for (var element in fullLicences) {
         filteredFullLicences.add(element);
-      });
+      }
       if (selectedCategory!.id != -1) {
         int i = 0;
         while (i < filteredFullLicences.length) {
@@ -1856,7 +1860,7 @@ editLicenceCoach(
 
   exportToExcel(){
     //print('exporting');
-    final Workbook workbook = new Workbook();
+    final Workbook workbook = Workbook();
     //Accessing worksheet via index.
     workbook.worksheets[0];
     // Save the document.

@@ -19,13 +19,13 @@ class Version {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['created'] = this.created;
-    data['version'] = this.version;
-    data['latest'] = this.latest;
-    data['url'] = this.url;
-    data['valid'] = this.valid;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['created'] = created;
+    data['version'] = version;
+    data['latest'] = latest;
+    data['url'] = url;
+    data['valid'] = valid;
     return data;
   }
 }

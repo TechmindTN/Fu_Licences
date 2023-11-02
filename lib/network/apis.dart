@@ -6,7 +6,7 @@ class Apis {
   static late String tempToken;
   //  String tempToken="TOKEN 306bf71e724147547708bd7c7c2b0b22c68c94e1e9dc35b14890279113762c4a";
   final String login="login/";
-    final String getLatestVersion="latest_version/";
+  final String getLatestVersion="latest_version/";
 
   final String validateLicence="validateLicence/";
   final String licenceListInfo="licencelist_info/";
@@ -37,6 +37,9 @@ final String discipline="discipline/";
 final String season="seasons/";
 final String generalStats="stats/";
 final String clubStats="club_stats/";
+final String changeClubPassword="change_club_password/";
+final String changePassword="change_password/";
+
 
 }
 

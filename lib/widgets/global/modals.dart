@@ -17,9 +17,9 @@ AthleteMediaModal(LicenceProvider licenceController,context,String? toFillImage)
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(Icons.photo),
+                const Icon(Icons.photo),
                 SizedBox(width: 5.w,),
-                Text('فتح البوم الصور')
+                const Text('فتح البوم الصور')
               ],
             ),
             
@@ -34,9 +34,9 @@ AthleteMediaModal(LicenceProvider licenceController,context,String? toFillImage)
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(Icons.camera_alt),
+                const Icon(Icons.camera_alt),
                 SizedBox(width: 5.w,),
-                Text('فتح آلة التصوير'),
+                const Text('فتح آلة التصوير'),
               ],
             ),
             
@@ -61,9 +61,9 @@ CoachMediaModal(LicenceProvider licenceController,context,String? toFillImage){
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(Icons.photo),
+                const Icon(Icons.photo),
                 SizedBox(width: 5.w,),
-                Text('فتح البوم الصور')
+                const Text('فتح البوم الصور')
               ],
             ),
             
@@ -77,9 +77,9 @@ CoachMediaModal(LicenceProvider licenceController,context,String? toFillImage){
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(Icons.camera_alt),
+                const Icon(Icons.camera_alt),
                 SizedBox(width: 5.w,),
-                Text('فتح آلة التصوير'),
+                const Text('فتح آلة التصوير'),
               ],
             ),
             
@@ -105,9 +105,9 @@ ArbitreMediaModal(LicenceProvider licenceController,context,String? toFillImage)
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(Icons.photo),
+                const Icon(Icons.photo),
                 SizedBox(width: 5.w,),
-                Text('فتح البوم الصور')
+                const Text('فتح البوم الصور')
               ],
             ),
             
@@ -121,9 +121,9 @@ ArbitreMediaModal(LicenceProvider licenceController,context,String? toFillImage)
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(Icons.camera_alt),
+                const Icon(Icons.camera_alt),
                 SizedBox(width: 5.w,),
-                Text('فتح آلة التصوير'),
+                const Text('فتح آلة التصوير'),
               ],
             ),
             
@@ -150,9 +150,9 @@ EditMediaModal(LicenceProvider licenceController,context,String? imageName,img){
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(Icons.photo),
+                const Icon(Icons.photo),
                 SizedBox(width: 5.w,),
-                Text('فتح البوم الصور')
+                const Text('فتح البوم الصور')
               ],
             ),
             
@@ -167,9 +167,9 @@ EditMediaModal(LicenceProvider licenceController,context,String? imageName,img){
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(Icons.camera_alt),
+                const Icon(Icons.camera_alt),
                 SizedBox(width: 5.w,),
-                Text('فتح آلة التصوير'),
+                const Text('فتح آلة التصوير'),
               ],
             ),
             
