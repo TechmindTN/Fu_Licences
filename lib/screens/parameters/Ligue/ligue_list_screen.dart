@@ -27,7 +27,6 @@ class _LigueListScreenState extends State<LigueListScreen> {
   @override
   Future<void> didChangeDependencies() async {
     // await licenceController.getParameters();
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -227,7 +226,6 @@ class _LigueListScreenState extends State<LigueListScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

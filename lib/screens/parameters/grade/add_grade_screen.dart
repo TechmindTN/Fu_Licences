@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
@@ -29,7 +31,6 @@ class _AddGradeScreenState extends State<AddGradeScreen> {
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
     paramController = Provider.of<ParameterProvider>(context, listen: false);
 
-    // TODO: implement initState
     super.initState();
   }
 
@@ -95,7 +96,6 @@ class _AddGradeScreenState extends State<AddGradeScreen> {
         ),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

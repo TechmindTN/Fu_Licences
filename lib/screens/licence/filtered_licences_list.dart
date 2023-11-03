@@ -21,7 +21,6 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
     // licenceController.getLicences();
     // licenceController.getParameters();
     // licenceController.initSelected();
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -92,7 +91,6 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

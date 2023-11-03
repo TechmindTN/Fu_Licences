@@ -52,7 +52,6 @@ class _UploadAthleteLicenceImagesState
         'holder': licenceController.createdFullLicence!.athlete!.medicalPhoto
       }
     ];
-    // TODO: implement initState
     super.initState();
   }
 
@@ -80,7 +79,6 @@ class _UploadAthleteLicenceImagesState
     //       'medphoto',
     //       licenceController.createdFullLicence!.athlete!.medicalPhoto),
     // ];
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -182,7 +180,6 @@ class _UploadAthleteLicenceImagesState
         ),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

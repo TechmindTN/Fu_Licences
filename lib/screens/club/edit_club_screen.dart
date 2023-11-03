@@ -48,7 +48,6 @@ class _EditClubScreenState extends State<EditClubScreen> {
 //  cinController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.cin,);
  
 
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -186,7 +185,6 @@ class _EditClubScreenState extends State<EditClubScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

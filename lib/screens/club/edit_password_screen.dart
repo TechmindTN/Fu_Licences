@@ -48,7 +48,6 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
 //  cinController=TextEditingController(text: licenceController.selectedFullLicence!.profile!.cin,);
  
 
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -187,7 +186,6 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

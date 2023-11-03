@@ -1,3 +1,5 @@
+// ignore_for_file: no_logic_in_create_state
+
 import 'package:flutter/material.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:fu_licences/screens/licence/coach_licence_screen.dart';
@@ -68,7 +70,6 @@ List<Widget> _buildScreens() => [
 @override
   void initState() {
     _controller = PersistentTabController(initialIndex: currentIndex);
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -105,7 +106,6 @@ List<Widget> _buildScreens() => [
           navBarStyle: NavBarStyle.style1, // Choose the nav bar style with this property.
       ),
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

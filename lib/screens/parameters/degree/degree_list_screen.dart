@@ -8,7 +8,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../../controllers/parameters_controller.dart';
 import '../../../datasources/degree_datasource.dart';
-import '../../../models/degree.dart';
 
 
 
@@ -27,7 +26,6 @@ class _DegreeListScreenState extends State<DegreeListScreen> {
   @override
   Future<void> didChangeDependencies() async {
     // await licenceController.getParameters();
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -43,7 +41,6 @@ class _DegreeListScreenState extends State<DegreeListScreen> {
   Widget build(BuildContext context) {
     paramController.degreeChecks=List.generate(licenceController.parameters!.ligues!.length,(index)=>false);
     dataSource=DegreeDataSource(licenceController,context,paramController);
-   Degree degree=Degree();
    //ligue.
     return Consumer<ParameterProvider>(
       builder: (context,clubController,child) {
@@ -184,7 +181,6 @@ class _DegreeListScreenState extends State<DegreeListScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

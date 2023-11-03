@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/parameters_controller.dart';
-import '../../../models/discipline.dart';
 
 
 
@@ -27,7 +26,6 @@ class _DisciplineListScreenState extends State<DisciplineListScreen> {
   @override
   Future<void> didChangeDependencies() async {
     // await licenceController.getParameters();
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -43,7 +41,6 @@ class _DisciplineListScreenState extends State<DisciplineListScreen> {
   Widget build(BuildContext context) {
   paramController.disciplineChecks=List.generate(licenceController.parameters!.disciplines!.length,(index)=>false);
     dataSource=DisciplineDataSource(licenceController,context,paramController);
-   Discipline discipline=Discipline();
    //ligue.
     return Consumer<ParameterProvider>(
       builder: (context,clubController,child) {
@@ -188,7 +185,6 @@ class _DisciplineListScreenState extends State<DisciplineListScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

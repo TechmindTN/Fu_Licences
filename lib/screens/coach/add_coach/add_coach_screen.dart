@@ -36,7 +36,6 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
   @override
   void initState() {
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
-    // TODO: implement initState
     super.initState();
   }
 
@@ -52,39 +51,37 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
             title: const Text("اضافة اجازة المدرب"),
           ),
           body: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                children: [
-                  // String? categoryId;
-                  // dynamic? gradeId;
-                  // dynamic? idDegree;
+            child: Column(
+              children: [
+                // String? categoryId;
+                // dynamic? gradeId;
+                // dynamic? idDegree;
       
-                  // int? discipline;
+                // int? discipline;
       
-                  // dynamic? weights;
-                  // String? club;
-                  // TextInput('الاسم',categoryController),
-                  // TextInput('اللقب',gradeController),
-                  // TextInput('رقم الهاتف',degreeController),
+                // dynamic? weights;
+                // String? club;
+                // TextInput('الاسم',categoryController),
+                // TextInput('اللقب',gradeController),
+                // TextInput('رقم الهاتف',degreeController),
       
-                  // TextInput('رقم الهوية',disciplineController),
-                  GategorySelectInput('العمر',
-                      licenceController.selectedCategory, licenceController),
-                  GradeSelectInput('Grade', licenceController.selectedGrade,
-                      licenceController),
-                  DegreeSelectInput('Degree', licenceController.selectedDegree,
-                      licenceController),
-                  DisciplineSelectInput('الرياضة',
-                      licenceController.selectedDiscipline, licenceController),
+                // TextInput('رقم الهوية',disciplineController),
+                GategorySelectInput('العمر',
+                    licenceController.selectedCategory, licenceController),
+                GradeSelectInput('Grade', licenceController.selectedGrade,
+                    licenceController),
+                DegreeSelectInput('Degree', licenceController.selectedDegree,
+                    licenceController),
+                DisciplineSelectInput('الرياضة',
+                    licenceController.selectedDiscipline, licenceController),
       
-                  WeightSelectInput('الوزن', licenceController.selectedWeight,
-                      licenceController),
-                  ClubSelectInput(
-                      'النادي', licenceController.selectedClub, licenceController),
-                  // TextInput('عنوان السكن',prenomController),
-                  // Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController)
-                ],
-              ),
+                WeightSelectInput('الوزن', licenceController.selectedWeight,
+                    licenceController),
+                ClubSelectInput(
+                    'النادي', licenceController.selectedClub, licenceController),
+                // TextInput('عنوان السكن',prenomController),
+                // Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController)
+              ],
             ),
           ),
           bottomNavigationBar: BottomAppBar(
@@ -140,7 +137,6 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
         ),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

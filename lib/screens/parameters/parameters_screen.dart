@@ -24,7 +24,6 @@ class _ParametersScreenState extends State<ParametersScreen> {
   @override
   Future<void> didChangeDependencies() async {
     // await licenceController.getParameters();
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -48,7 +47,6 @@ class _ParametersScreenState extends State<ParametersScreen> {
       //  );
     // });
     
-    // TODO: implement initState
     super.initState();
   }
 
@@ -134,7 +132,6 @@ class _ParametersScreenState extends State<ParametersScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

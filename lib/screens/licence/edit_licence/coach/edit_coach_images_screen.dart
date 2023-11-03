@@ -23,7 +23,6 @@ class _EditCoachLicenceImagesState extends State<EditCoachLicenceImages> {
     // licenceController.initFields();
     licenceController.createdFullLicence =
         licenceController.selectedFullLicence;
-    // TODO: implement initState
     super.initState();
   }
 
@@ -115,7 +114,6 @@ class _EditCoachLicenceImagesState extends State<EditCoachLicenceImages> {
         ),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

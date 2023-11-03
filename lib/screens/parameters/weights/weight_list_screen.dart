@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/parameters_controller.dart';
-import '../../../models/weight.dart';
 
 
 
@@ -27,7 +26,6 @@ class _WeightListScreenState extends State<WeightListScreen> {
   @override
   Future<void> didChangeDependencies() async {
     // await licenceController.getParameters();
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -43,7 +41,6 @@ class _WeightListScreenState extends State<WeightListScreen> {
   Widget build(BuildContext context) {
     paramController.weightChecks=List.generate(licenceController.parameters!.weights!.length,(index)=>false);
     dataSource=WeightDataSource(licenceController,context,paramController); 
-   Weight weight=Weight();
    //ligue.
     return Consumer<ParameterProvider>(
       builder: (context,clubController,child) {
@@ -187,7 +184,6 @@ class _WeightListScreenState extends State<WeightListScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

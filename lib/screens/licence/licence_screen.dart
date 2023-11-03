@@ -18,7 +18,6 @@ class _LicenceScreenState extends State<LicenceScreen> {
   @override
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -191,7 +190,6 @@ class _LicenceScreenState extends State<LicenceScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

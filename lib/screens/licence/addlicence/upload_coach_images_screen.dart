@@ -22,7 +22,6 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
   @override
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -96,7 +95,6 @@ class _UploadCoachLicenceImagesState extends State<UploadCoachLicenceImages> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

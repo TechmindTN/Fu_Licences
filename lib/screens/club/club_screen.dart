@@ -194,7 +194,6 @@ class _ClubScreenState extends State<ClubScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

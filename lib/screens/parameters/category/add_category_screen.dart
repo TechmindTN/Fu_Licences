@@ -31,7 +31,6 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
     paramController = Provider.of<ParameterProvider>(context, listen: false);
 
-    // TODO: implement initState
     super.initState();
   }
 
@@ -76,6 +75,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                     child: FloatingActionButton.extended(
                       onPressed: () {
                        
+                        // ignore: unnecessary_null_comparison
                         if ((categoryController.text == null)||(categoryController.text == "")) {
                           final snackBar = MySnackBar(
                               title: 'خانات اجبارية',
@@ -99,7 +99,6 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
         ),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

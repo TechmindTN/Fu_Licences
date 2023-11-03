@@ -32,7 +32,6 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
   @override
   void initState() {
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
-    // TODO: implement initState
     super.initState();
   }
 
@@ -196,7 +195,6 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
         ),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

@@ -22,7 +22,6 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
   @override
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -95,7 +94,6 @@ class _UploadArbitreLicenceImagesState extends State<UploadArbitreLicenceImages>
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

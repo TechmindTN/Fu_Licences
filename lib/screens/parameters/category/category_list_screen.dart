@@ -9,7 +9,6 @@ import 'package:fu_licences/datasources/category_datasource.dart';
 
 import '../../../controllers/parameters_controller.dart';
 // import '../../../datasources/category_datasource.dart';
-import '../../../models/category.dart';
 
 
 
@@ -29,7 +28,6 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
   @override
   Future<void> didChangeDependencies() async {
     // await licenceController.getParameters();
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -46,7 +44,6 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
     paramController.categoryChecks=List.generate(licenceController.parameters!.categories!.length,(index)=>false);
     dataSource=CategoryDataSource(licenceController,context,paramController);
   
-   Category category=Category();
    //category.
    //ligue.
     return Consumer<ParameterProvider>(
@@ -192,7 +189,6 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

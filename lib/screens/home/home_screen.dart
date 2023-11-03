@@ -24,14 +24,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     ////print(Apis.tempToken);
     // licenceController.login(context,login,);
-    // TODO: implement initState
     super.initState();
   }
 
   @override
   Future<void> didChangeDependencies() async {
     // await licenceController.getGeneralStats();
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
   @override
@@ -253,7 +251,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

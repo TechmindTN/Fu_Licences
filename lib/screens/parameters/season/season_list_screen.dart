@@ -8,7 +8,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../../controllers/parameters_controller.dart';
 import '../../../datasources/season_datasource.dart';
-import '../../../models/season.dart';
 
 
 
@@ -27,7 +26,6 @@ class _SeasonListScreenState extends State<SeasonListScreen> {
   @override
   Future<void> didChangeDependencies() async {
     // await licenceController.getParameters();
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -43,7 +41,6 @@ class _SeasonListScreenState extends State<SeasonListScreen> {
   Widget build(BuildContext context) {
     paramController.seasonChecks=List.generate(licenceController.parameters!.seasons!.length,(index)=>false);
     dataSource=SeasonDataSource(licenceController,context,paramController);
-   Season season=Season();
    //ligue.
     return Consumer<ParameterProvider>(
       builder: (context,clubController,child) {
@@ -196,7 +193,5 @@ class _SeasonListScreenState extends State<SeasonListScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }

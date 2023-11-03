@@ -22,7 +22,6 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
     licenceController.createdFullLicence =
         licenceController.selectedFullLicence;
-    // TODO: implement initState
     super.initState();
   }
 
@@ -130,7 +129,6 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
         ),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

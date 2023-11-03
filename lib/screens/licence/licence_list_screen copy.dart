@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
@@ -29,7 +31,6 @@ late DataTableSource dataSource;
   @override
   Future<void> didChangeDependencies() async {
     // await licenceController.getParameters();
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -71,7 +72,6 @@ late DataTableSource dataSource;
       //  );
     // });
     
-    // TODO: implement initState
     super.initState();
   }
 
@@ -136,12 +136,12 @@ late DataTableSource dataSource;
                       )]
                     ),
                     child: PaginatedDataTable(
-                      header: Container(
+                      header: SizedBox(
                         width: 80.w,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text("المجموع: "+ licenceController.stats.athletesLicences!.total.toString())
+                            Text("المجموع: ${licenceController.stats.athletesLicences!.total}")
                             
                           ],
                         ),
@@ -156,7 +156,6 @@ late DataTableSource dataSource;
                                 
                               });
                               }
-                              print(licenceController.currentPage);
                             }, icon:const Icon(Icons.keyboard_arrow_right_outlined)),
                             Text(licenceController.currentPage.toString()),
                             IconButton(onPressed: (){
@@ -165,7 +164,6 @@ late DataTableSource dataSource;
                               setState(() {
                                 
                               });
-                              print(licenceController.currentPage);
                             }, icon:const Icon(Icons.keyboard_arrow_left_outlined)),
                            
                             
@@ -255,7 +253,6 @@ late DataTableSource dataSource;
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

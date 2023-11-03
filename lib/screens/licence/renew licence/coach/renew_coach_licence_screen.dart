@@ -24,7 +24,6 @@ class _RenewCoachLicenceScreenState extends State<RenewCoachLicenceScreen> {
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
     licenceController.initFields();
 
-    // TODO: implement initState
     super.initState();
   }
 
@@ -137,7 +136,6 @@ class _RenewCoachLicenceScreenState extends State<RenewCoachLicenceScreen> {
         ),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

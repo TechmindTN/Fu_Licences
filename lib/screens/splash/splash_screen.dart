@@ -21,7 +21,6 @@ class _MySplashScreenState extends State<MySplashScreen> {
     // licenceController.clearPrefs();
     licenceController.checkLogin(context);
     // licenceController.checkLogin(context);
-    // TODO: implement initState
     super.initState();
   }
 
@@ -32,7 +31,6 @@ class _MySplashScreenState extends State<MySplashScreen> {
     Size size=await DesktopWindow.getWindowSize();
     await DesktopWindow.setMinWindowSize(size);
                     
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
   @override
@@ -44,7 +42,6 @@ class _MySplashScreenState extends State<MySplashScreen> {
         body: Center(child: Image.asset("assets/images/logo-ftwkf.png")),
       ),
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

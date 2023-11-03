@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/parameters_controller.dart';
-import '../../../models/grade.dart';
 
 
 
@@ -27,7 +26,6 @@ class _GradeListScreenState extends State<GradeListScreen> {
   @override
   Future<void> didChangeDependencies() async {
     // await licenceController.getParameters();
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -43,7 +41,6 @@ class _GradeListScreenState extends State<GradeListScreen> {
   Widget build(BuildContext context) {
     paramController.gradeChecks=List.generate(licenceController.parameters!.grades!.length,(index)=>false);
     dataSource=GradeDataSource(licenceController,context,paramController);
-   Grade grade=Grade();
   //  grade.
    //ligue.
     return Consumer<ParameterProvider>(
@@ -185,7 +182,6 @@ class _GradeListScreenState extends State<GradeListScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

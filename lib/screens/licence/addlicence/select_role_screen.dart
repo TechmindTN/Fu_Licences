@@ -23,7 +23,6 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
     licenceController.initSelected();
     licenceController.initCreate();
     // licenceController.initSelected();
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -56,7 +55,6 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

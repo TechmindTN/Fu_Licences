@@ -23,7 +23,6 @@ class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceIma
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
     licenceController.createdFullLicence =
         licenceController.selectedFullLicence;
-    // TODO: implement initState
     super.initState();
   }
 
@@ -131,7 +130,6 @@ class _RenewArbitratorLicenceImagesState extends State<RenewArbitratorLicenceIma
         ),
       );
     });
-    // TODO: implement build ghghg 
-    throw UnimplementedError();
+
   }
 }
