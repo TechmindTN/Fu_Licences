@@ -19,6 +19,17 @@ class LicenceNetwork {
     return res;
   }
 
+  getPaginatedLicenceListInfo(clubid,pageSize,pageNumber) async {
+    Response res = await apis.dio.post(apis.baseUrl + apis.paginatedLicenceListInfo,
+        options: Options(headers: {"Authorization": Apis.tempToken}),
+        data: {'userid': 274,
+        'club':clubid,
+        'page_size':pageSize,
+        'page_number':pageNumber
+        });
+    return res;
+  }
+
   getParameters() async {
     Response res = await apis.dio.get(
       apis.baseUrl + apis.getParameters,

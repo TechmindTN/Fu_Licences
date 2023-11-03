@@ -116,7 +116,7 @@ late DataTableSource dataSource;
               //   ],
               // ),),
              FutureBuilder(
-              future: licenceController.getLicences(),
+              future: licenceController.getPaginatedLicences(),
                builder: (context,snaphot) {
                 if(snaphot.connectionState==ConnectionState.done){
                       
@@ -136,6 +136,46 @@ late DataTableSource dataSource;
                       )]
                     ),
                     child: PaginatedDataTable(
+                      header: Container(
+                        width: 80.w,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("المجموع: "+ licenceController.stats.athletesLicences!.total.toString())
+                            
+                          ],
+                        ),
+                      ),
+                      actions: [
+                        Row(
+                          children: [
+                             IconButton(onPressed: (){
+                              if(licenceController.currentPage>1){
+                              licenceController.currentPage--;
+                              setState(() {
+                                
+                              });
+                              }
+                              print(licenceController.currentPage);
+                            }, icon:const Icon(Icons.keyboard_arrow_right_outlined)),
+                            Text(licenceController.currentPage.toString()),
+                            IconButton(onPressed: (){
+                              
+                              licenceController.currentPage++;
+                              setState(() {
+                                
+                              });
+                              print(licenceController.currentPage);
+                            }, icon:const Icon(Icons.keyboard_arrow_left_outlined)),
+                           
+                            
+                            // IconButton(onPressed: (){
+                            //   licenceController.currentPage--;
+                            //   print(licenceController.currentPage);
+                            // }, icon:const Icon(Icons.arrow_forward_ios)),
+                          ],
+                        )
+                      ],
                       sortColumnIndex: licenceController.currentSortColumn,
                       sortAscending: licenceController.isAscending,
                       columnSpacing: 0,
@@ -164,11 +204,11 @@ late DataTableSource dataSource;
                       //   IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye))
                       // ],
                       
-                      arrowHeadColor: Colors.blue,
+                      // arrowHeadColor: Colors.blue,
                       availableRowsPerPage: const [10,20,50,100],
                 
                       showCheckboxColumn: true,
-                      showFirstLastButtons: true,
+                      // showFirstLastButtons: true,
                        source: dataSource)
                     ),
                 ),

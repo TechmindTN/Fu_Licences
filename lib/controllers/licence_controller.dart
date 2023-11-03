@@ -40,6 +40,7 @@ import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
+  int currentPage=1;
   Version currentVersion=Version(
     version: "0.7"
   );
@@ -322,6 +323,49 @@ class LicenceProvider extends ChangeNotifier {
           ..showSnackBar(snackBar);
       }
      }
+  }
+
+getPaginatedLicences() async {
+
+    if (fullLicences.isNotEmpty) {
+      fullLicences.clear();
+    }
+    fullArbitratorLicences.clear();
+    fullAthleteLicences.clear();
+    fullCoachLicences.clear();
+    Response res = await licenceNetwork.getPaginatedLicenceListInfo(currentUser.club!.id??"",10,currentPage);
+    if (res.statusCode == 200) {
+      if (res.data != null) {
+        for (var r in res.data) {
+          if(r['profile']!=null){
+          FullLicence fullLicence = FullLicence();
+          
+          Profile profile = Profile.fromJson(r['profile']);
+          print('photo: '+profile.profilePhoto.toString());
+          fullLicence.profile = profile;
+          Licence licence = Licence.fromJson(r['licence']);
+          fullLicence.licence = licence;
+          if (licence.role == "رياضي") {
+            Athlete athlete = Athlete.fromJson(r['data']);
+            fullLicence.athlete = athlete;
+            fullAthleteLicences.add(fullLicence);
+          } else if (licence.role == "حكم") {
+            Arbitrator arbitrator = Arbitrator.fromJson(r['data']);
+            fullLicence.arbitrator = arbitrator;
+            fullArbitratorLicences.add(fullLicence);
+          } else if (licence.role == "مدرب") {
+            Coach coach = Coach.fromJson(r['data']);
+            fullLicence.coach = coach;
+            fullCoachLicences.add(fullLicence);
+          }
+          fullLicences.add(fullLicence);
+          // notify();
+        }}
+        // notify();
+      }
+    }
+    isLoading=false;
+    // notify();
   }
 
   getLicences() async {

@@ -10,6 +10,8 @@ class Apis {
 
   final String validateLicence="validateLicence/";
   final String licenceListInfo="licencelist_info/";
+  final String paginatedLicenceListInfo="paginated_licence/";
+
   final String getParameters="parameters/";
   final String uploadImage="upload_photo/";
   final String addFullLicence="add_full_licence/";
