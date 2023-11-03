@@ -35,7 +35,7 @@ class SeasonDataSource extends DataTableSource{
           // SizedBox(width:1.w),
            if(licenceController.parameters!.seasons![index].activated==false)ElevatedButton(
                           onPressed: (){
-                             
+                             paramController.activateSeason(licenceController.parameters!.seasons![index].id!, context);
                           }, child: const Text("Activer")),
                           if(licenceController.parameters!.seasons![index].activated==true) SizedBox(width: 9.2.w,),
                           const SizedBox(width: 10,),

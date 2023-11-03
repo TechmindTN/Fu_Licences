@@ -114,7 +114,7 @@ late DataTableSource dataSource;
               //   ],
               // ),),
              FutureBuilder(
-              future: licenceController.getLicences(),
+              future: licenceController.getPaginatedLicences(role: 4),
                builder: (context,snaphot) {
                 if(snaphot.connectionState==ConnectionState.done){
                       

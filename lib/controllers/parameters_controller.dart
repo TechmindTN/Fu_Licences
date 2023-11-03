@@ -50,6 +50,30 @@ class ParameterProvider extends ChangeNotifier{
     Season season=Season(seasons: name,activated: false);
     paramNetwork.addSeason(season.toJson());
   }
+
+  activateSeason(int id,context) async {
+    Response res=await paramNetwork.activateSeason(id.toString());
+   if(res.statusCode==204){
+       final snackBar = MySnackBar(
+          title: 'Succees',
+          msg: 'La ligue a ete supprimee avec succees',
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+    else{
+      final snackBar = MySnackBar(
+          title: 'Echec',
+          msg: 'La ligue n\'est pas supprimee ',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+  }
   
   removeLigue(int id,context) async {
     // Ligue ligue=Ligue(name: name);

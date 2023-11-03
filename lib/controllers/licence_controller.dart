@@ -325,7 +325,7 @@ class LicenceProvider extends ChangeNotifier {
      }
   }
 
-getPaginatedLicences() async {
+getPaginatedLicences({int? role}) async {
 
     if (fullLicences.isNotEmpty) {
       fullLicences.clear();
@@ -333,7 +333,7 @@ getPaginatedLicences() async {
     fullArbitratorLicences.clear();
     fullAthleteLicences.clear();
     fullCoachLicences.clear();
-    Response res = await licenceNetwork.getPaginatedLicenceListInfo(currentUser.club!.id??"",10,currentPage);
+    Response res = await licenceNetwork.getPaginatedLicenceListInfo(currentUser.club!.id??"",10,currentPage,role:role);
     if (res.statusCode == 200) {
       if (res.data != null) {
         for (var r in res.data) {
@@ -368,7 +368,7 @@ getPaginatedLicences() async {
     // notify();
   }
 
-  getLicences() async {
+  getLicences({int? role}) async {
 
     if (fullLicences.isNotEmpty) {
       fullLicences.clear();

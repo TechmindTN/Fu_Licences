@@ -14,12 +14,13 @@ class LicenceNetwork {
     Response res = await apis.dio.post(apis.baseUrl + apis.licenceListInfo,
         options: Options(headers: {"Authorization": Apis.tempToken}),
         data: {'userid': 274,
-        'club':clubid
+        'club':clubid,
+        
         });
     return res;
   }
 
-  getPaginatedLicenceListInfo(clubid,pageSize,pageNumber) async {
+  getPaginatedLicenceListInfo(clubid,pageSize,pageNumber,{int? role}) async {
     Response res = await apis.dio.post(apis.baseUrl + apis.paginatedLicenceListInfo,
         options: Options(headers: {"Authorization": Apis.tempToken}),
         data: {'userid': 274,
