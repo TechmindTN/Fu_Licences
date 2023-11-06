@@ -9,7 +9,13 @@ Widget SearchButton(LicenceProvider licenceController,numControl,context){
 
     child: InkWell(
       onTap: (){
-        licenceController.findLicence(numControl.text, context);
+        if(numControl.text.length==13){
+          licenceController.searchFullLicence(context,numControl.text.toString());
+        }
+        else if(numControl.text.length<13){
+          licenceController.searchLicences(context,numControl.text.toString());
+        }
+        
       },
       child: Container(
         width: 12.w,

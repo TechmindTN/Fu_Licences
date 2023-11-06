@@ -10,6 +10,8 @@ class Apis {
   final String activateSeason="activate_season";
   final String validateLicence="validateLicence/";
   final String licenceListInfo="licencelist_info/";
+  final String searchLicences="search_licences/";
+
   final String paginatedLicenceListInfo="paginated_licence/";
 
   final String getParameters="parameters/";
@@ -26,7 +28,7 @@ class Apis {
   final String editCoachProfile="edit_coach_profile/";
   final String editClub="club/";
   final String deleteLicence="licences/";
-  final String licenceById="licences/";
+  final String licenceById="licence_info/";
   final String renewArbitratorLicence="renew_arbitrator_licence/";
   final String renewCoachLicence="renew_coach_licence/";
   final String renewLicence="renew_licence/";

@@ -682,7 +682,14 @@ SearchInput(LicenceProvider licenceController,numControl,context){
           licenceController.notify();
         },
         onFieldSubmitted: (newValue) {
-          licenceController.findLicence(numControl.text, context);
+          // licenceController.findLicence(numControl.text, context);
+          if(numControl.text.length==13){
+          licenceController.searchFullLicence(context,numControl.tex.toString());
+        }
+        else if(numControl.text.length<13){
+          licenceController.searchLicences(context,numControl.text.toString());
+        }
+
         },
         controller: numControl,
           decoration: const InputDecoration.collapsed(

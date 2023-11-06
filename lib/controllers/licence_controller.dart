@@ -230,9 +230,26 @@ class LicenceProvider extends ChangeNotifier {
     }
   }
 
-  searchFullLicence(context,id) async {
-    Response res=await licenceNetwork.getLicenceById(id);
-    if(res.statusCode==200){
+  searchLicences(context,id) async {
+    filteredFullLicences.clear();
+    Response res=await licenceNetwork.searchLicences(id);
+    if((res.statusCode==200)){
+      for(int i=0;i<res.data.length;i++){
+        Profile profile=Profile.fromJson(res.data[i]['profile']);
+      Athlete athlete=Athlete.fromJson(res.data[i]['data']);
+      Licence licence=Licence.fromJson(res.data[i]['licence']);
+
+      FullLicence fullLicence=FullLicence(
+        athlete: athlete,
+        profile: profile,
+        licence: licence,
+      );
+      filteredFullLicences.add(fullLicence);
+      
+      }
+      // FullLicence licence=FullLicence
+      
+      GoRouter.of(context).push(Routes.FilteredLicencesScreen);
     final snackBar = MySnackBar(
           title: 'اجازة موجودة',
           msg: 'تم ايجاد الاجازة المطلوبة بنجاح',          
@@ -242,6 +259,43 @@ class LicenceProvider extends ChangeNotifier {
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
           notify();
+      }
+      else{
+        final snackBar = MySnackBar(
+          title: 'اجازة غير موجودة',
+          msg: 'الاجازة المطلوبة غير موجودة',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+      }
+  }
+
+  searchFullLicence(context,id) async {
+    Response res=await licenceNetwork.getLicenceById(id);
+    if(res.statusCode==200){
+      // FullLicence licence=FullLicence
+      Profile profile=Profile.fromJson(res.data['profile']);
+      Athlete athlete=Athlete.fromJson(res.data['athlete']);
+      Licence licence=Licence.fromJson(res.data);
+      FullLicence fullLicence=FullLicence(
+        athlete: athlete,
+        profile: profile,
+        licence: licence,
+      );
+      selectedFullLicence=fullLicence;
+      
+    final snackBar = MySnackBar(
+          title: 'اجازة موجودة',
+          msg: 'تم ايجاد الاجازة المطلوبة بنجاح',          
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+          notify();
+          GoRouter.of(context).push(Routes.LicenceScreen);
       }
       else{
         final snackBar = MySnackBar(
@@ -1111,6 +1165,17 @@ createArbitreLicence(context) async {
       GoRouter.of(context).push(Routes.FilteredLicencesScreen);
     }
     numLicence = '';
+  }
+
+
+  SearchLicence(String keyword,context) async {
+    if(keyword.length==11){
+      Response res=await licenceNetwork.getLicenceById(keyword);
+      if(res.statusCode==200){
+        GoRouter.of(context).push(Routes.LicenceScreen);
+      }
+      // return res;
+    }
   }
 
 

@@ -200,4 +200,17 @@ class LicenceNetwork {
     return res;
   }
 
+  searchLicences(id) async {
+    Response res = await apis.dio.post(apis.baseUrl+apis.searchLicences+id+"/",
+    options: Options(
+      headers: {
+        "Authorization":Apis.tempToken,
+
+      },    
+    ),
+    data: {"userid":274}
+    );
+    return res;
+  }
+
 }
