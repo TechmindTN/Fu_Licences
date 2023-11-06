@@ -36,7 +36,7 @@ late DataTableSource dataSource;
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
         licenceController.getParameters();
-
+licenceController.currentPage=0;
     licenceController.initSelected();
     licenceController.initCreate();
     
@@ -134,6 +134,44 @@ late DataTableSource dataSource;
                       )]
                     ),
                     child: PaginatedDataTable(
+                      header: SizedBox(
+                        width: 80.w,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("المجموع: ${licenceController.stats.athletesLicences!.total}")
+                            
+                          ],
+                        ),
+                      ),
+                      actions: [
+                        Row(
+                          children: [
+                             IconButton(onPressed: (){
+                              if(licenceController.currentPage>1){
+                              licenceController.currentPage--;
+                              setState(() {
+                                
+                              });
+                              }
+                            }, icon:const Icon(Icons.keyboard_arrow_right_outlined)),
+                            Text(licenceController.currentPage.toString()),
+                            IconButton(onPressed: (){
+                              
+                              licenceController.currentPage++;
+                              setState(() {
+                                
+                              });
+                            }, icon:const Icon(Icons.keyboard_arrow_left_outlined)),
+                           
+                            
+                            // IconButton(onPressed: (){
+                            //   licenceController.currentPage--;
+                            //   print(licenceController.currentPage);
+                            // }, icon:const Icon(Icons.arrow_forward_ios)),
+                          ],
+                        )
+                      ],
                       sortColumnIndex: licenceController.currentSortColumn,
                       sortAscending: licenceController.isAscending,
                       columnSpacing: 0,

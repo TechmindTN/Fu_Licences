@@ -42,7 +42,7 @@ import '../widgets/licence/licence_widget.dart';
 class LicenceProvider extends ChangeNotifier {
   int currentPage=1;
   Version currentVersion=Version(
-    version: "0.7"
+    version: "0.9"
   );
   bool logged=false;
   bool isAscending =true;
@@ -229,6 +229,33 @@ class LicenceProvider extends ChangeNotifier {
           ..showSnackBar(snackBar);
     }
   }
+
+  searchFullLicence(context,id) async {
+    Response res=await licenceNetwork.getLicenceById(id);
+    if(res.statusCode==200){
+    final snackBar = MySnackBar(
+          title: 'اجازة موجودة',
+          msg: 'تم ايجاد الاجازة المطلوبة بنجاح',          
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+          notify();
+      }
+      else{
+        final snackBar = MySnackBar(
+          title: 'اجازة غير موجودة',
+          msg: 'الاجازة المطلوبة غير موجودة',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+      }
+    }
+    
+  
 
   checkVersion(context) async {
     Response res = await licenceNetwork.getLatestVersion();

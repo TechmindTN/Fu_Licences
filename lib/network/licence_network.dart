@@ -188,4 +188,16 @@ class LicenceNetwork {
         //print('version data: '+res.data.toString());
     return res;
   }
+
+  getLicenceById(id) async {
+    Response res = await apis.dio.get(apis.baseUrl+apis.licenceById+id+"/",
+    options: Options(
+      headers: {
+        "Authorization":Apis.tempToken
+      }
+    )
+    );
+    return res;
+  }
+
 }

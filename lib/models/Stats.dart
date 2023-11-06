@@ -7,6 +7,7 @@ class Stats {
   int? activeLicences;
   int? pendingLicences;
   int? expiredLicences;
+  int? totalLicences;
   AthletesLicences? athletesLicences;
   AthletesLicences? coachesLicences;
   AthletesLicences? arbitratorsLicences;
@@ -26,12 +27,14 @@ class Stats {
       this.coachesLicences,
       this.arbitratorsLicences,
       this.supportersLicences,
+      this.totalLicences,
       this.users});
 
   Stats.fromJson(Map<String, dynamic> json) {
     athletes = json['athletes'];
     coaches = json['coaches'];
     arbitrators = json['arbitrators'];
+    totalLicences = json['total_licences'];
     supporters = json['supporters'];
     clubs = json['clubs'];
     activeLicences = json['active_licences'];

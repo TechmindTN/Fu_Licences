@@ -38,7 +38,7 @@ late DataTableSource dataSource;
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
         licenceController.getParameters();
-
+licenceController.currentPage=0;
     licenceController.initSelected();
     licenceController.initCreate();
     
@@ -141,7 +141,7 @@ late DataTableSource dataSource;
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text("المجموع: ${licenceController.stats.athletesLicences!.total}")
+                            Text("المجموع: ${licenceController.stats.totalLicences!}")
                             
                           ],
                         ),
