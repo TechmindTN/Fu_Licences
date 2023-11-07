@@ -268,7 +268,7 @@ Widget ClubItem(
 }
 
 
-Widget ClubListHeader(LicenceProvider licenceController,ClubProvider clubController,numControl,context){
+Widget ClubListHeader(LicenceProvider licenceController,ClubProvider clubController,numControl,context,role){
   return Directionality(
             textDirection: TextDirection.rtl,
 
@@ -280,7 +280,7 @@ Widget ClubListHeader(LicenceProvider licenceController,ClubProvider clubControl
          children: [
           // SizedBox(height: 5.h,),
           
-          SearchFilter(licenceController,numControl,context),
+          SearchFilter(licenceController,numControl,context,role),
           SizedBox(height: 3.h,),
           
            FirstRow(licenceController),
@@ -315,18 +315,18 @@ Widget FirstRow(LicenceProvider licenceController){
   );
 }
 
-Widget SearchFilter(LicenceProvider licenceController,numControl,context){
+Widget SearchFilter(LicenceProvider licenceController,numControl,context,role){
   return Directionality(
             textDirection: TextDirection.rtl,
 
     child: Row(
       children: [
-        SearchField(licenceController,numControl,context),
+        SearchField(licenceController,numControl,context,role),
         SizedBox(width: 2.w,),
         
         FilterField(licenceController,context),
         SizedBox(width: 2.w,),
-        SearchButton(licenceController,numControl,context),
+        SearchButton(licenceController,numControl,context,role),
         SizedBox(width: 2.w,),
        
       //   Text("Total: "+licenceController.fullLicences.length.toString(),
@@ -339,7 +339,7 @@ Widget SearchFilter(LicenceProvider licenceController,numControl,context){
   );
 }
 
-Widget SearchField(LicenceProvider licenceController,numControl,context){
+Widget SearchField(LicenceProvider licenceController,numControl,context,role){
   return Directionality(
             textDirection: TextDirection.rtl,
 
@@ -358,7 +358,7 @@ Widget SearchField(LicenceProvider licenceController,numControl,context){
         ],
         color: Colors.white
       ),
-      child: SearchInput(licenceController,numControl,context)
+      child: SearchInput(licenceController,numControl,context,role)
     ),
   );
 }

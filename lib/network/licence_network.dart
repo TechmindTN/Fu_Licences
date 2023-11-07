@@ -200,7 +200,7 @@ class LicenceNetwork {
     return res;
   }
 
-  searchLicences(id) async {
+  searchLicences(id,role) async {
     Response res = await apis.dio.post(apis.baseUrl+apis.searchLicences+id+"/",
     options: Options(
       headers: {
@@ -208,9 +208,26 @@ class LicenceNetwork {
 
       },    
     ),
-    data: {"userid":274}
+    data: {"userid":274,
+    "role":role
+    }
     );
     return res;
   }
+
+  filterLicences(data,pageSize,pageNumber) async {
+    Response res = await apis.dio.post(apis.baseUrl+apis.paginatedLicenceListInfo,
+    options: Options(
+      headers: {
+        "Authorization":Apis.tempToken,
+
+      },    
+    ),
+    data: data
+    );
+    return res;
+  }
+
+
 
 }

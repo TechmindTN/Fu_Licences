@@ -100,7 +100,7 @@ licenceController.currentPage=0;
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 2.h),
-                  LicenceListHeader(licenceController,numControl,context),
+                  LicenceListHeader(licenceController,numControl,context,""),
                 ]
                   
                 )),

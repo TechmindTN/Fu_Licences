@@ -1,8 +1,14 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
+import 'package:fu_licences/models/category.dart';
+import 'package:fu_licences/models/club.dart';
+import 'package:fu_licences/models/degree.dart';
+import 'package:fu_licences/models/discipline.dart';
 import 'package:fu_licences/models/full_licence.dart';
+import 'package:fu_licences/models/grade.dart';
 import 'package:fu_licences/models/role.dart';
+import 'package:fu_licences/models/weight.dart';
 import 'package:fu_licences/widgets/global/buttons.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -910,6 +916,17 @@ SearchDialog(LicenceProvider licenceController, numControl, context) {
 }
 
 FilterDialog(LicenceProvider licenceController, context) {
+  Category? filteredCategory = Category(categorieAge: "العمر", id: -1);
+
+  Role? filteredRole = Role(roles: "نوع الرياضة", id: -1);
+  Grade? filteredGrade = Grade(grade: "Grade", id: -1);
+  Degree? filteredDegree = Degree(degree: "Degree", id: -1);
+  Weight? filteredWeight = Weight(masseEnKillograme: 0, id: -1);
+  Discipline? filteredDiscipline = Discipline(name: "الرياضة", id: -1);
+  Club? filteredClub = Club(name: "النادي", id: -1);
+  String filteredSex = "الجنس";
+  String filteredStatus = "الحالة";
+
   return Directionality(
             textDirection: TextDirection.rtl,
 
@@ -948,7 +965,8 @@ FilterDialog(LicenceProvider licenceController, context) {
             children: [
               InkWell(
                 onTap: () {
-                  licenceController.filterLicences(context);
+                  licenceController.filterLicences(context,);
+                  GoRouter.of(context).push(Routes.FilteredLicencesScreen);
                 },
                 child: const Center(child: Text('تاكيد',
                 style: TextStyle(
@@ -965,7 +983,7 @@ FilterDialog(LicenceProvider licenceController, context) {
 }
 
 
-Widget LicenceListHeader(LicenceProvider licenceController,numControl,context){
+Widget LicenceListHeader(LicenceProvider licenceController,numControl,context,role){
   return Directionality(
             textDirection: TextDirection.rtl,
 
@@ -977,7 +995,7 @@ Widget LicenceListHeader(LicenceProvider licenceController,numControl,context){
          children: [
           // SizedBox(height: 5.h,),
           
-          SearchFilter(licenceController,numControl,context),
+          SearchFilter(licenceController,numControl,context,role),
           // SizedBox(height: 3.h,),
           // ElevatedButton(onPressed: (){
           //   licenceController.exportToExcel();
@@ -1015,18 +1033,18 @@ Widget FirstRow(LicenceProvider licenceController){
   );
 }
 
-Widget SearchFilter(LicenceProvider licenceController,numControl,context){
+Widget SearchFilter(LicenceProvider licenceController,numControl,context,role){
   return Directionality(
             textDirection: TextDirection.rtl,
 
     child: Row(
       children: [
-        SearchField(licenceController,numControl,context),
+        SearchField(licenceController,numControl,context,role),
         SizedBox(width: 2.w,),
         
         FilterField(licenceController,context),
         SizedBox(width: 2.w,),
-        SearchButton(licenceController,numControl,context),
+        SearchButton(licenceController,numControl,context,role),
         SizedBox(width: 2.w,),
        
       //   Text("Total: "+licenceController.fullLicences.length.toString(),
@@ -1039,7 +1057,7 @@ Widget SearchFilter(LicenceProvider licenceController,numControl,context){
   );
 }
 
-Widget SearchField(LicenceProvider licenceController,numControl,context){
+Widget SearchField(LicenceProvider licenceController,numControl,context,role){
   return Directionality(
             textDirection: TextDirection.rtl,
 
@@ -1058,7 +1076,7 @@ Widget SearchField(LicenceProvider licenceController,numControl,context){
         ],
         color: const Color(0xffedeef0)
       ),
-      child: SearchInput(licenceController,numControl,context)
+      child: SearchInput(licenceController,numControl,context,role)
     ),
   );
 }

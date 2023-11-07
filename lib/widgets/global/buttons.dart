@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../controllers/licence_controller.dart';
 
-Widget SearchButton(LicenceProvider licenceController,numControl,context){
+Widget SearchButton(LicenceProvider licenceController,numControl,context,role){
   return Directionality(
             textDirection: TextDirection.rtl,
 
@@ -13,7 +13,7 @@ Widget SearchButton(LicenceProvider licenceController,numControl,context){
           licenceController.searchFullLicence(context,numControl.text.toString());
         }
         else if(numControl.text.length<13){
-          licenceController.searchLicences(context,numControl.text.toString());
+          licenceController.searchLicences(context,numControl.text.toString(),role);
         }
         
       },

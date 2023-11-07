@@ -42,7 +42,7 @@ import '../widgets/licence/licence_widget.dart';
 class LicenceProvider extends ChangeNotifier {
   int currentPage=1;
   Version currentVersion=Version(
-    version: "0.9"
+    version: "0.10"
   );
   bool logged=false;
   bool isAscending =true;
@@ -230,9 +230,9 @@ class LicenceProvider extends ChangeNotifier {
     }
   }
 
-  searchLicences(context,id) async {
+  searchLicences(context,id,role) async {
     filteredFullLicences.clear();
-    Response res=await licenceNetwork.searchLicences(id);
+    Response res=await licenceNetwork.searchLicences(id,role);
     if((res.statusCode==200)){
       for(int i=0;i<res.data.length;i++){
         Profile profile=Profile.fromJson(res.data[i]['profile']);
@@ -247,6 +247,8 @@ class LicenceProvider extends ChangeNotifier {
       filteredFullLicences.add(fullLicence);
       
       }
+
+
       // FullLicence licence=FullLicence
       
       GoRouter.of(context).push(Routes.FilteredLicencesScreen);
@@ -270,6 +272,89 @@ class LicenceProvider extends ChangeNotifier {
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
       }
+  }
+
+
+  filterLicences(context) async {
+    fullLicences.clear();
+    // if(selectedRole)
+    print(filteredDiscipline);
+    dynamic role=(filteredRole!.id!=-1)?filteredRole!.id:"";
+      // dynamic state=(filteredStatus!.id!=-1)?filteredStatus!.id:"";
+      // dynamic season=(filteredRole!.id!=-1)?filteredS!.id:"";
+      dynamic club=(filteredClub!.id!=-1)?filteredClub!.id:"";
+      dynamic categorie=(filteredCategory!.id!=-1)?filteredCategory!.id:"";
+      dynamic degree=(filteredDegree!.id!=-1)?filteredDegree!.id:"";
+      dynamic grade=(filteredGrade!.id!=-1)?filteredGrade!.id:"";
+      dynamic weight=(filteredWeight!.id!=-1)?filteredWeight!.id:"";
+      dynamic discipline=(filteredDiscipline!.id!=-1)?filteredDiscipline!.id:"";
+      print(filteredDiscipline!.id);
+      // print(object)
+      Map<String,dynamic> mapdata={
+        "userid":274,
+        // "state":state,
+        "page_number":currentPage,
+        "page_size":10,
+// "role":role,
+// "season":,
+"club":club,
+"user":"",
+"categorie":categorie,
+"degree":degree,
+"grade":grade,
+"weight":weight,
+"discipline":discipline,
+      };
+      print(mapdata);
+    Response res=await licenceNetwork.filterLicences(mapdata, 10, 10);
+    if(res.statusCode==200){
+      print(res.data);
+      print(res.data.length);
+      filteredFullLicences.clear();
+      for(int i=0;i<res.data.length;i++){
+        
+        Profile profile=Profile.fromJson(res.data[i]['profile']);
+        Licence licence=Licence.fromJson(res.data[i]['licence']);
+        late FullLicence fullLicence;
+        if(profile.role==2){
+          Athlete athlete=Athlete.fromJson(res.data[i]['data']);
+          fullLicence=FullLicence(licence: licence,profile: profile,athlete: athlete);
+        }
+        else if(profile.role==1){
+          Arbitrator arbitrator=Arbitrator.fromJson(res.data[i]['data']);
+          fullLicence=FullLicence(licence: licence,profile: profile,arbitrator: arbitrator);
+        }
+        else if(profile.role==6){
+          Coach coach=Coach.fromJson(res.data[i]['data']);
+          fullLicence=FullLicence(licence: licence,profile: profile,coach: coach);
+        }
+        filteredFullLicences.add(fullLicence);
+        
+      }
+      fullLicences=filteredFullLicences;
+      
+      final snackBar = MySnackBar(
+          title: 'اجازة موجودة',
+          msg: 'تم ايجاد الاجازة المطلوبة بنجاح',          
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+          notify();
+          
+    }
+    else{
+       final snackBar = MySnackBar(
+          title: 'اجازة غير موجودة',
+          msg: 'الاجازة المطلوبة غير موجودة',
+          state: ContentType.failure,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+    }
+
   }
 
   searchFullLicence(context,id) async {
@@ -1128,6 +1213,18 @@ createArbitreLicence(context) async {
     selectedWeight = Weight(masseEnKillograme: 0, id: -1);
     selectedSex = "الجنس";
     selectedStatus = "الحالة";
+
+
+
+    // filteredCategory = Category(categorieAge: "العمر", id: -1);
+    // (currentUser.club!.id!=null)?filteredClub =currentUser.club:filteredClub = Club(name: "النادي", id: -1);
+    // filteredDegree = Degree(degree: "Degree", id: -1);
+    // filteredDiscipline = Discipline(name: "الرياضة", id: -1);
+    // filteredGrade = Grade(grade: "Grade", id: -1);
+    // filteredWeight = Weight(masseEnKillograme: 0, id: -1);
+    // filteredSex = "الجنس";
+    // filteredStatus = "الحالة";
+    // filteredRole=Role(roles: "نوع الرياضة",id:-1);
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -1816,154 +1913,154 @@ editLicenceCoach(
     }
   }
 
-  filterLicences(context) {
-    if ((selectedCategory!.id != -1) ||
-        (selectedClub!.id != -1) ||
-        (selectedDegree!.id != -1) ||
-        (selectedDiscipline!.id != -1) ||
-        (selectedGrade!.id != -1) ||
-        (selectedWeight!.id != -1) ||
-        (selectedSeason!.id != -1) ||
-        (selectedSex != "الجنس") ||
-        (filteredRole!.id != -1) ||
-        (selectedStatus != "الحالة")) {
-      Navigator.pop(context);
-      GoRouter.of(context).push(Routes.FilteredLicencesScreen);
-      filteredFullLicences.clear();
-      for (var element in fullLicences) {
-        filteredFullLicences.add(element);
-      }
-      if (selectedCategory!.id != -1) {
-        int i = 0;
-        while (i < filteredFullLicences.length) {
-          if (filteredFullLicences[i].licence!.categorie !=
-              selectedCategory!.categorieAge) {
-            filteredFullLicences.remove(filteredFullLicences[i]);
-          } else {
-            i++;
-          }
-          notifyListeners();
-        }
-      }
-      if (filteredRole!.id != -1) {
-        int i = 0;
-        while (i < filteredFullLicences.length) {
-          if (filteredFullLicences[i].licence!.role !=
-              filteredRole!.roles) {
-            filteredFullLicences.remove(filteredFullLicences[i]);
-          } else {
-            i++;
-          }
-          notifyListeners();
-        }
-      }
-      if (selectedClub!.id != -1) {
-        int i = 0;
-        while (i < filteredFullLicences.length) {
-          if (filteredFullLicences[i].licence!.club != selectedClub!.name) {
-            filteredFullLicences.remove(filteredFullLicences[i]);
-          } else {
-            i++;
-          }
-          notifyListeners();
-        }
-      }
-      if (selectedDegree!.id != -1) {
-        int i = 0;
-        while (i < filteredFullLicences.length) {
-          if (filteredFullLicences[i].licence!.degree !=
-              selectedDegree!.degree) {
-            filteredFullLicences.remove(filteredFullLicences[i]);
-          } else {
-            i++;
-          }
-          notifyListeners();
-        }
-      }
-      if (selectedDiscipline!.id != -1) {
-        int i = 0;
-        while (i < filteredFullLicences.length) {
-          if (filteredFullLicences[i].licence!.discipline !=
-              selectedDiscipline!.name) {
-            filteredFullLicences.remove(filteredFullLicences[i]);
-          } else {
-            i++;
-          }
-          notifyListeners();
-        }
-      }
-      if (selectedGrade!.id != -1) {
-        int i = 0;
-        while (i < filteredFullLicences.length) {
-          if (filteredFullLicences[i].licence!.grade != selectedGrade!.grade) {
-            filteredFullLicences.remove(filteredFullLicences[i]);
-          } else {
-            i++;
-          }
-          notifyListeners();
-        }
-      }
-      if (selectedWeight!.id != -1) {
-        int i = 0;
-        while (i < filteredFullLicences.length) {
-          if (filteredFullLicences[i].licence!.weight != null) {
-            if (filteredFullLicences[i].licence!.weight!.toString() !=
-                selectedWeight!.masseEnKillograme.toString()) {
-              filteredFullLicences.remove(filteredFullLicences[i]);
-            } else {
-              i++;
-            }
-          } else {
-            i++;
-          }
-          notifyListeners();
-        }
-      }
-      if (selectedSeason!.id != -1) {
-        int i = 0;
-        while (i < filteredFullLicences.length) {
-          if (filteredFullLicences[i].licence!.seasons !=
-              selectedSeason!.seasons) {
-            filteredFullLicences.remove(filteredFullLicences[i]);
-          } else {
-            i++;
-          }
-          notifyListeners();
-        }
-      }
-      if (selectedSex != "الجنس") {
-        int i = 0;
-        while (i < filteredFullLicences.length) {
-          if (filteredFullLicences[i].profile!.sexe != selectedSex) {
-            filteredFullLicences.remove(filteredFullLicences[i]);
-          } else {
-            i++;
-          }
-          notifyListeners();
-        }
-      }
-      if (selectedStatus != "الحالة") {
-        int i = 0;
-        while (i < filteredFullLicences.length) {
-          if (filteredFullLicences[i].licence!.state != selectedStatus) {
-            filteredFullLicences.remove(filteredFullLicences[i]);
-          } else {
-            i++;
-          }
-          notifyListeners();
-        }
-      }
-    } else {
-      Navigator.pop(context);
-      final snackBar = MySnackBar(
-          title: "Pas de filtrage",
-          msg: "Merci d'appliquer un filtre",
-          state: ContentType.warning);
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(snackBar);
-    }
-  }
+  // filterLicences(context) {
+  //   if ((selectedCategory!.id != -1) ||
+  //       (selectedClub!.id != -1) ||
+  //       (selectedDegree!.id != -1) ||
+  //       (selectedDiscipline!.id != -1) ||
+  //       (selectedGrade!.id != -1) ||
+  //       (selectedWeight!.id != -1) ||
+  //       (selectedSeason!.id != -1) ||
+  //       (selectedSex != "الجنس") ||
+  //       (filteredRole!.id != -1) ||
+  //       (selectedStatus != "الحالة")) {
+  //     Navigator.pop(context);
+  //     GoRouter.of(context).push(Routes.FilteredLicencesScreen);
+  //     filteredFullLicences.clear();
+  //     for (var element in fullLicences) {
+  //       filteredFullLicences.add(element);
+  //     }
+  //     if (selectedCategory!.id != -1) {
+  //       int i = 0;
+  //       while (i < filteredFullLicences.length) {
+  //         if (filteredFullLicences[i].licence!.categorie !=
+  //             selectedCategory!.categorieAge) {
+  //           filteredFullLicences.remove(filteredFullLicences[i]);
+  //         } else {
+  //           i++;
+  //         }
+  //         notifyListeners();
+  //       }
+  //     }
+  //     if (filteredRole!.id != -1) {
+  //       int i = 0;
+  //       while (i < filteredFullLicences.length) {
+  //         if (filteredFullLicences[i].licence!.role !=
+  //             filteredRole!.roles) {
+  //           filteredFullLicences.remove(filteredFullLicences[i]);
+  //         } else {
+  //           i++;
+  //         }
+  //         notifyListeners();
+  //       }
+  //     }
+  //     if (selectedClub!.id != -1) {
+  //       int i = 0;
+  //       while (i < filteredFullLicences.length) {
+  //         if (filteredFullLicences[i].licence!.club != selectedClub!.name) {
+  //           filteredFullLicences.remove(filteredFullLicences[i]);
+  //         } else {
+  //           i++;
+  //         }
+  //         notifyListeners();
+  //       }
+  //     }
+  //     if (selectedDegree!.id != -1) {
+  //       int i = 0;
+  //       while (i < filteredFullLicences.length) {
+  //         if (filteredFullLicences[i].licence!.degree !=
+  //             selectedDegree!.degree) {
+  //           filteredFullLicences.remove(filteredFullLicences[i]);
+  //         } else {
+  //           i++;
+  //         }
+  //         notifyListeners();
+  //       }
+  //     }
+  //     if (selectedDiscipline!.id != -1) {
+  //       int i = 0;
+  //       while (i < filteredFullLicences.length) {
+  //         if (filteredFullLicences[i].licence!.discipline !=
+  //             selectedDiscipline!.name) {
+  //           filteredFullLicences.remove(filteredFullLicences[i]);
+  //         } else {
+  //           i++;
+  //         }
+  //         notifyListeners();
+  //       }
+  //     }
+  //     if (selectedGrade!.id != -1) {
+  //       int i = 0;
+  //       while (i < filteredFullLicences.length) {
+  //         if (filteredFullLicences[i].licence!.grade != selectedGrade!.grade) {
+  //           filteredFullLicences.remove(filteredFullLicences[i]);
+  //         } else {
+  //           i++;
+  //         }
+  //         notifyListeners();
+  //       }
+  //     }
+  //     if (selectedWeight!.id != -1) {
+  //       int i = 0;
+  //       while (i < filteredFullLicences.length) {
+  //         if (filteredFullLicences[i].licence!.weight != null) {
+  //           if (filteredFullLicences[i].licence!.weight!.toString() !=
+  //               selectedWeight!.masseEnKillograme.toString()) {
+  //             filteredFullLicences.remove(filteredFullLicences[i]);
+  //           } else {
+  //             i++;
+  //           }
+  //         } else {
+  //           i++;
+  //         }
+  //         notifyListeners();
+  //       }
+  //     }
+  //     if (selectedSeason!.id != -1) {
+  //       int i = 0;
+  //       while (i < filteredFullLicences.length) {
+  //         if (filteredFullLicences[i].licence!.seasons !=
+  //             selectedSeason!.seasons) {
+  //           filteredFullLicences.remove(filteredFullLicences[i]);
+  //         } else {
+  //           i++;
+  //         }
+  //         notifyListeners();
+  //       }
+  //     }
+  //     if (selectedSex != "الجنس") {
+  //       int i = 0;
+  //       while (i < filteredFullLicences.length) {
+  //         if (filteredFullLicences[i].profile!.sexe != selectedSex) {
+  //           filteredFullLicences.remove(filteredFullLicences[i]);
+  //         } else {
+  //           i++;
+  //         }
+  //         notifyListeners();
+  //       }
+  //     }
+  //     if (selectedStatus != "الحالة") {
+  //       int i = 0;
+  //       while (i < filteredFullLicences.length) {
+  //         if (filteredFullLicences[i].licence!.state != selectedStatus) {
+  //           filteredFullLicences.remove(filteredFullLicences[i]);
+  //         } else {
+  //           i++;
+  //         }
+  //         notifyListeners();
+  //       }
+  //     }
+  //   } else {
+  //     Navigator.pop(context);
+  //     final snackBar = MySnackBar(
+  //         title: "Pas de filtrage",
+  //         msg: "Merci d'appliquer un filtre",
+  //         state: ContentType.warning);
+  //     ScaffoldMessenger.of(context)
+  //       ..hideCurrentSnackBar()
+  //       ..showSnackBar(snackBar);
+  //   }
+  // }
 
   getGeneralStats() async {
     Response res =await licenceNetwork.getGeneralStats();
