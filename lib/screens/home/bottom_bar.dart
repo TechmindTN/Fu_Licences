@@ -1,10 +1,9 @@
+// ignore_for_file: no_logic_in_create_state
+
 import 'package:flutter/material.dart';
-import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
-import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:fu_licences/screens/parameters/parameters_screen.dart';
-import 'package:go_router/go_router.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class BottomBarScreen extends StatefulWidget{
@@ -22,12 +21,12 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   _BottomBarScreenState(this.currentIndex);
   
 List<Widget> _buildScreens() => [
-        ParametersScreen(),
+        const ParametersScreen(),
         
-        HomeScreen(
+        const HomeScreen(
          
         ),
-        LicenceListScreen(
+        const LicenceListScreen(
         
         ),
        
@@ -37,10 +36,10 @@ List<Widget> _buildScreens() => [
         
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.settings),
-          title: "Parametres",
+          title: "الاعدادات",
           activeColorPrimary: Colors.teal,
           inactiveColorPrimary: Colors.grey,
-          routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          routeAndNavigatorSettings: const RouteAndNavigatorSettings(
 
             // initialRoute: "/",
             // routes: {
@@ -51,16 +50,16 @@ List<Widget> _buildScreens() => [
         ),
         PersistentBottomNavBarItem(
             icon: const Icon(Icons.home),
-            title: "Acceuil",
+            title: "الشاشة الرئيسية",
             activeColorPrimary: Colors.blue,
             inactiveColorPrimary: Colors.grey,
             inactiveColorSecondary: Colors.purple),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.list_alt),
-          title: "Licences",
+          title: "الاجازات",
           activeColorPrimary: Colors.blueAccent,
           inactiveColorPrimary: Colors.grey,
-          routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          routeAndNavigatorSettings: const RouteAndNavigatorSettings(
          
           ),
         ),
@@ -70,41 +69,44 @@ List<Widget> _buildScreens() => [
 
 @override
   void initState() {
-    _controller = PersistentTabController(initialIndex: currentIndex??1);
-    // TODO: implement initState
+    _controller = PersistentTabController(initialIndex: currentIndex);
+    // 1);
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-        context,
-        controller: _controller,
-        screens: _buildScreens(),
-        items: _navBarsItems(),
-        confineInSafeArea: true,
-        backgroundColor: Colors.white, // Default is Colors.white.
-        handleAndroidBackButtonPress: true, // Default is true.
-        resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-        stateManagement: true, // Default is true.
-        hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-        decoration: NavBarDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          colorBehindNavBar: Colors.white,
-        ),
-        popAllScreensOnTapOfSelectedTab: true,
-        popActionScreens: PopActionScreensType.all,
-        itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
-          duration: Duration(milliseconds: 200),
-          curve: Curves.ease,
-        ),
-        screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
-          animateTabTransition: true,
-          curve: Curves.ease,
-          duration: Duration(milliseconds: 200),
-        ),
-        navBarStyle: NavBarStyle.style1, // Choose the nav bar style with this property.
+    return Directionality(
+            textDirection: TextDirection.rtl,
+
+      child: PersistentTabView(
+          context,
+          controller: _controller,
+          screens: _buildScreens(),
+          items: _navBarsItems(),
+          confineInSafeArea: true,
+          backgroundColor: Colors.white, // Default is Colors.white.
+          handleAndroidBackButtonPress: true, // Default is true.
+          resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+          stateManagement: true, // Default is true.
+          hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+          decoration: NavBarDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            colorBehindNavBar: Colors.white,
+          ),
+          popAllScreensOnTapOfSelectedTab: true,
+          popActionScreens: PopActionScreensType.all,
+          itemAnimationProperties: const ItemAnimationProperties( // Navigation Bar's items animation properties.
+            duration: Duration(milliseconds: 200),
+            curve: Curves.ease,
+          ),
+          screenTransitionAnimation: const ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+            animateTabTransition: true,
+            curve: Curves.ease,
+            duration: Duration(milliseconds: 200),
+          ),
+          navBarStyle: NavBarStyle.style1, // Choose the nav bar style with this property.
+      ),
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

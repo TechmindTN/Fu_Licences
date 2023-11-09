@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/screens/licence/renew%20licence/renew_licence_screen.dart';
-import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +8,8 @@ import 'package:sizer/sizer.dart';
 import '../../../router/routes.dart';
 
 class RenewLicenceImages extends StatefulWidget {
+  const RenewLicenceImages({super.key});
+
   @override
   State<RenewLicenceImages> createState() => _RenewLicenceImagesState();
 }
@@ -21,7 +21,7 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
     licenceController.createdFullLicence =
         licenceController.selectedFullLicence;
-    // TODO: implement initState
+    
     super.initState();
   }
 
@@ -29,63 +29,66 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
-      return Scaffold(
-        appBar: AppBar(title: Text("Renouvellement Licence"+licenceController.selectedFullLicence!.licence!.numLicences!),),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                
-                AthleteImageEditWidget(
-                  'Identite',
-                  licenceController,
-                  context,
-                  'idphoto',
-                  licenceController.createdFullLicence!.athlete!.identityPhoto,
-                ),
-                AthleteImageEditWidget(
-                    'Assurance',
+      return Directionality(
+              textDirection: TextDirection.rtl,
+
+        child: Scaffold(
+          appBar: AppBar(title: Text('تجديد الاجازة${licenceController.selectedFullLicence!.licence!.numLicences!}'),),
+          body: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  
+                  AthleteImageEditWidget(
+                    'صورة الهوية',
                     licenceController,
                     context,
-                    'photo',
-                    licenceController.createdFullLicence!.athlete!.photo),
-                AthleteImageEditWidget(
-                    'Medicale',
-                    licenceController,
-                    context,
-                    'medphoto',
-                    licenceController
-                        .createdFullLicence!.athlete!.medicalPhoto),
-                SizedBox(
-                  height: 5.h,
-                )
-              ],
+                    'idphoto',
+                    licenceController.createdFullLicence!.athlete!.identityPhoto,0
+                  ),
+                  AthleteImageEditWidget(
+                      'صورة التامين',
+                      licenceController,
+                      context,
+                      'photo',
+                      licenceController.createdFullLicence!.athlete!.photo,1),
+                  AthleteImageEditWidget(
+                      'الصورة الطبية',
+                      licenceController,
+                      context,
+                      'medphoto',
+                      licenceController
+                          .createdFullLicence!.athlete!.medicalPhoto,2),
+                  SizedBox(
+                    height: 5.h,
+                  )
+                ],
+              ),
             ),
           ),
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        // licenceController.createProfile();
+                        licenceController.editAthleteProfile(context);
+                        GoRouter.of(context).push(Routes.RenewAthleteLicenceScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>RenewLicenceScreen()));
+                      },
+                      label: const Text("تأكيد"),
+                    )),
+              ],
+            ),
+          )),
         ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      // licenceController.createProfile();
-                      licenceController.editAthleteProfile(context);
-                      GoRouter.of(context).push(Routes.RenewAthleteLicenceScreen);
-                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>RenewLicenceScreen()));
-                    },
-                    label: Text("Confirmer"),
-                  )),
-            ],
-          ),
-        )),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

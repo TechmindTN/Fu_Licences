@@ -2,7 +2,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/router/routes.dart';
-import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +10,8 @@ import 'package:sizer/sizer.dart';
 import '../../../widgets/global/inputs.dart';
 
 class AddArbitreScreen extends StatefulWidget {
+  const AddArbitreScreen({super.key});
+
   @override
   State<AddArbitreScreen> createState() => _AddArbitreScreenState();
 }
@@ -35,7 +36,6 @@ class _AddArbitreScreenState extends State<AddArbitreScreen> {
   @override
   void initState() {
     licenceController = Provider.of<LicenceProvider>(context, listen: false);
-    // TODO: implement initState
     super.initState();
   }
 
@@ -43,102 +43,102 @@ class _AddArbitreScreenState extends State<AddArbitreScreen> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text("Ajouter licence d'entraineur"),
-        ),
-        body: SingleChildScrollView(
-          child: Container(
+      return Directionality(
+              textDirection: TextDirection.rtl,
+
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text("اضافة اجازة حكم"),
+          ),
+          body: SingleChildScrollView(
             child: Column(
               children: [
                 // String? categoryId;
                 // dynamic? gradeId;
                 // dynamic? idDegree;
-
+      
                 // int? discipline;
-
+      
                 // dynamic? weights;
                 // String? club;
-                // TextInput('Prenom',categoryController),
-                // TextInput('Nom',gradeController),
-                // TextInput('Telephone',degreeController),
-
-                // TextInput('CIN',disciplineController),
-                // GategorySelectInput('Categorie',
+                // TextInput('الاسم',categoryController),
+                // TextInput('اللقب',gradeController),
+                // TextInput('رقم الهاتف',degreeController),
+      
+                // TextInput('رقم الهوية',disciplineController),
+                // GategorySelectInput('الوزن',
                 //     licenceController.selectedCategory, licenceController),
                 GradeSelectInput('Grade', licenceController.selectedGrade,
                     licenceController),
                 // DegreeSelectInput('Degree', licenceController.selectedDegree,
                 //     licenceController),
-                // DisciplineSelectInput('Discipline',
+                // DisciplineSelectInput('الرياضة',
                 //     licenceController.selectedDiscipline, licenceController),
-
-                // WeightSelectInput('Poids', licenceController.selectedWeight,
+      
+                // WeightSelectInput('الوزن', licenceController.selectedWeight,
                 //     licenceController),
                 ClubSelectInput(
-                    'Club', licenceController.selectedClub, licenceController),
-                // TextInput('Addresse',prenomController),
-                // Dateinput('Date de naissance',birthController,context,licenceController.selectedBirth,licenceController)
+                    'نادي', licenceController.selectedClub, licenceController),
+                // TextInput('عنوان المنزل',prenomController),
+                // Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController)
               ],
             ),
           ),
-        ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      // print(licenceController.selectedCategory!.id);
-                      // print(licenceController.selectedGrade!.id);
-                      // print(licenceController.selectedDegree!.id);
-                      // print(licenceController.selectedDiscipline!.id);
-                      print(licenceController.selectedGrade!.id);
-                      print(licenceController.selectedClub!.id);
-                      if (
-                        // (licenceController.selectedCategory == null) ||
-                        //   (licenceController.selectedCategory!.id == -1) ||
-                        //   (licenceController.selectedClub == null) ||
-                        //   (licenceController.selectedClub!.id == -1) ||
-                        //   (licenceController.selectedDegree == null) ||
-                        //   (licenceController.selectedDegree!.id == -1) ||
-                        //   (licenceController.selectedDiscipline == null) ||
-                        //   (licenceController.selectedDiscipline!.id == -1) ||
-                          (licenceController.selectedGrade == null) ||
-                          (licenceController.selectedGrade!.id == -1) 
-                          // ||
-                          // (licenceController.selectedWeight == null) ||
-                          // (licenceController.selectedWeight!.id == -1)
-                          ) {
-                        final snackBar = MySnackBar(
-                            title: "Champs Obligatoires",
-                            msg: "Merci de remplir tous les champs svp",
-                            state: ContentType.warning);
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      } else {
-                        licenceController.createArbitre(context);
-                        // GoRouter.of(context).dispose();
-                        GoRouter.of(context).go(Routes.Home);
-                      }
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        // print(licenceController.selectedCategory!.id);
+                        // print(licenceController.selectedGrade!.id);
+                        // print(licenceController.selectedDegree!.id);
+                        // print(licenceController.selectedDiscipline!.id);
 
-// Navigator.of(context, rootNavigator:
-// true).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-// LicenceListScreen()), (route) => false);                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddLicenceScreen()));
-                    },
-                    label: Text("Confirmer"),
-                  )),
-            ],
-          ),
-        )),
+                        if (
+                          // (licenceController.selectedCategory == null) ||
+                          //   (licenceController.selectedCategory!.id == -1) ||
+                          //   (licenceController.selectedClub == null) ||
+                          //   (licenceController.selectedClub!.id == -1) ||
+                          //   (licenceController.selectedDegree == null) ||
+                          //   (licenceController.selectedDegree!.id == -1) ||
+                          //   (licenceController.selectedDiscipline == null) ||
+                          //   (licenceController.selectedDiscipline!.id == -1) ||
+                            (licenceController.selectedGrade == null) ||
+                            (licenceController.selectedGrade!.id == -1) 
+                            // ||
+                            // (licenceController.selectedWeight == null) ||
+                            // (licenceController.selectedWeight!.id == -1)
+                            ) {
+                          final snackBar = MySnackBar(
+                              title: "خانات اجبارية",
+                              msg: "الرجاء ملئ جميع الخانات الاجبارية",
+                              state: ContentType.warning);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        } else {
+                          licenceController.createArbitre(context);
+                          // GoRouter.of(context).dispose();
+                          GoRouter.of(context).go(Routes.Home);
+                        }
+      
+      // Navigator.of(context, rootNavigator:
+      // true).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+      // LicenceListScreen()), (route) => false);                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddLicenceScreen()));
+                      },
+                      label: const Text("تأكيد"),
+                    )),
+              ],
+            ),
+          )),
+        ),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

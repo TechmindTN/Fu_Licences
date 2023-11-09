@@ -5,14 +5,14 @@ class Coach {
   String? degreePhoto;
   String? gradePhoto;
   String? photo;
-  dynamic? profile;
-  dynamic? grade;
-  dynamic? degree;
-  dynamic? club;
-  dynamic? categoryId;
-  dynamic? weights;
-  dynamic? category;
-  dynamic? discipline;
+  dynamic profile;
+  dynamic grade;
+  dynamic degree;
+  dynamic club;
+  dynamic categoryId;
+  dynamic weights;
+  dynamic category;
+  dynamic discipline;
 
   Coach(
       {this.id,
@@ -48,21 +48,21 @@ class Coach {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['created'] = this.created;
-    data['identity_photo'] = this.identityPhoto;
-    data['degree_photo'] = this.degreePhoto;
-    data['grade_photo'] = this.gradePhoto;
-    data['photo'] = this.photo;
-    data['profile'] = this.profile;
-    data['grade'] = this.grade;
-    data['degree'] = this.degree;
-    data['club'] = this.club;
-    data['category_id'] = this.categoryId;
-    data['weights'] = this.weights;
-    data['category'] = this.category;
-    data['discipline'] = this.discipline;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['created'] = created;
+    data['identity_photo'] = identityPhoto;
+    data['degree_photo'] = degreePhoto;
+    data['grade_photo'] = gradePhoto;
+    data['photo'] = photo;
+    data['profile'] = profile;
+    data['grade'] = grade;
+    data['degree'] = degree;
+    data['club'] = club;
+    data['category_id'] = categoryId;
+    data['weights'] = weights;
+    data['category'] = category;
+    data['discipline'] = discipline;
     return data;
   }
 }

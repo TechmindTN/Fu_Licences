@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class EditLicenceImages extends StatefulWidget {
+  const EditLicenceImages({super.key});
+
   @override
   State<EditLicenceImages> createState() => _EditLicenceImagesState();
 }
@@ -18,7 +19,7 @@ class _EditLicenceImagesState extends State<EditLicenceImages> {
     // licenceController.initFields();
     licenceController.createdFullLicence =
         licenceController.selectedFullLicence;
-    // TODO: implement initState
+    
     super.initState();
   }
 
@@ -26,68 +27,71 @@ class _EditLicenceImagesState extends State<EditLicenceImages> {
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
         builder: (context, licenceController, child) {
-      return Scaffold(
-        appBar: AppBar(title: Text("Modifier licence "+licenceController.selectedFullLicence!.licence!.numLicences!),),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                AthleteImageEditWidget(
-                    'photo',
+      return Directionality(
+              textDirection: TextDirection.rtl,
+
+        child: Scaffold(
+          appBar: AppBar(title: Text("تعديل الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences!}"),),
+          body: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  AthleteImageEditWidget(
+                      'صورة الحساب',
+                      licenceController,
+                      context,
+                      'profilePhoto',
+                      licenceController
+                          .createdFullLicence!.profile!.profilePhoto,0),
+                  AthleteImageEditWidget(
+                    'صورة الهوية',
                     licenceController,
                     context,
-                    'profilePhoto',
-                    licenceController
-                        .createdFullLicence!.profile!.profilePhoto),
-                AthleteImageEditWidget(
-                  'Identite',
-                  licenceController,
-                  context,
-                  'idphoto',
-                  licenceController.createdFullLicence!.athlete!.identityPhoto,
-                ),
-                AthleteImageEditWidget(
-                    'Assurance',
-                    licenceController,
-                    context,
-                    'photo',
-                    licenceController.createdFullLicence!.athlete!.photo),
-                AthleteImageEditWidget(
-                    'Medicale',
-                    licenceController,
-                    context,
-                    'medphoto',
-                    licenceController
-                        .createdFullLicence!.athlete!.medicalPhoto),
-                SizedBox(
-                  height: 5.h,
-                )
-              ],
+                    'idphoto',
+                    licenceController.createdFullLicence!.athlete!.identityPhoto,1
+                  ),
+                  AthleteImageEditWidget(
+                      'صورة التأمين',
+                      licenceController,
+                      context,
+                      'photo',
+                      licenceController.createdFullLicence!.athlete!.photo,2),
+                  AthleteImageEditWidget(
+                      'الصورة الطبية',
+                      licenceController,
+                      context,
+                      'medphoto',
+                      licenceController
+                          .createdFullLicence!.athlete!.medicalPhoto,3),
+                  SizedBox(
+                    height: 5.h,
+                  )
+                ],
+              ),
             ),
           ),
+          bottomNavigationBar: BottomAppBar(
+              child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: 30.w,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        // licenceController.createProfile();
+                        licenceController.editAthleteProfile(context);
+                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
+                      },
+                      label: const Text("تأكيد"),
+                    )),
+              ],
+            ),
+          )),
         ),
-        bottomNavigationBar: BottomAppBar(
-            child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 30.w,
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      // licenceController.createProfile();
-                      licenceController.editAthleteProfile(context);
-                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddProfileScreen()));
-                    },
-                    label: Text("Confirmer"),
-                  )),
-            ],
-          ),
-        )),
       );
     });
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

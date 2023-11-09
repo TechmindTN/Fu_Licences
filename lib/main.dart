@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/router/pages.dart';
-import 'package:fu_licences/screens/licence/licence_list_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -21,17 +20,19 @@ class MyApp extends StatelessWidget {
         ],
       child: Sizer(
         builder: (context, orientation, deviceType) {
-          return MaterialApp.router(
-            
-             debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: ThemeData(
-             
+          return SafeArea(
+            child: MaterialApp.router(
               
-              primarySwatch: Colors.blue,
+               debugShowCheckedModeBanner: false,
+              title: 'FTWKF',
+              theme: ThemeData(
+               
+                
+                primarySwatch: Colors.blue,
+              ),
+              routerConfig: pages.router,
+              // home: const MyHomePage(title: 'Flutter Demo Home Page'),
             ),
-            routerConfig: pages.router,
-            // home: const MyHomePage(title: 'Flutter Demo Home Page'),
           );
         }
       ),

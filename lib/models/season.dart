@@ -14,11 +14,11 @@ class Season {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['created'] = this.created;
-    data['Seasons'] = this.seasons;
-    data['activated'] = this.activated;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['created'] = created;
+    data['Seasons'] = seasons;
+    data['activated'] = activated;
     return data;
   }
 }

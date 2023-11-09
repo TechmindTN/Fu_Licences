@@ -31,7 +31,7 @@
 //   void initState() {
 //     licenceController=Provider.of<LicenceProvider>(context,listen: false);
 //     licenceController.initSelected();
-//     // TODO: implement initState
+//     
 //     super.initState();
 //   }
   
@@ -51,15 +51,15 @@
 //                 children: [
  
 
-//                   GategorySelectInput('Categorie',licenceController.selectedCategory,licenceController),
+//                   GategorySelectInput('الوزن',licenceController.selectedCategory,licenceController),
 //                   GradeSelectInput('Grade',licenceController.selectedGrade,licenceController)	,
 //                   DegreeSelectInput('Degree',licenceController.selectedDegree,licenceController),
-//                   DisciplineSelectInput('Discipline',licenceController.selectedDiscipline,licenceController)	,
+//                   DisciplineSelectInput('الرياضة',licenceController.selectedDiscipline,licenceController)	,
                 
-//                   WeightSelectInput('Poids',licenceController.selectedWeight,licenceController),
-//                   ClubSelectInput('Club',licenceController.selectedClub,licenceController),
-//                   // TextInput('Addresse',prenomController),
-//                   // Dateinput('Date de naissance',birthController,context,licenceController.selectedBirth,licenceController)
+//                   WeightSelectInput('الوزن',licenceController.selectedWeight,licenceController),
+//                   ClubSelectInput('النادي',licenceController.selectedClub,licenceController),
+//                   // TextInput('عنوان المنزل',prenomController),
+//                   // Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController)
 
 //                 ],
 //               ),
@@ -76,7 +76,7 @@
 //                   child: FloatingActionButton.extended(onPressed: (){
 //                     // licenceController.createAthleteProfile(address: addresseController.text,cin: cinController.text,firstName: prenomController.text,lastName: nomController.text,phone: phoneController.text,state: stateController.text );
 //                     // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddAthleteScreen()));
-//                   },label: Text("Confirmer"),)),
+//                   },label: Text("تأكيد"),)),
 //               ],
 //             ),
 //           )),

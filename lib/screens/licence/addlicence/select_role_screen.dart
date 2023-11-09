@@ -4,10 +4,11 @@ import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../models/role.dart';
 import '../../../widgets/licence/licence_widget.dart';
 
 class SelectRoleScreen extends StatefulWidget{
+  const SelectRoleScreen({super.key});
+
 
   @override
   State<SelectRoleScreen> createState() => _SelectRoleScreenState();
@@ -22,36 +23,38 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
     licenceController.initSelected();
     licenceController.initCreate();
     // licenceController.initSelected();
-    // TODO: implement initState
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
       builder: (context,licenceController,child) {
-        return Scaffold(
-          // appBar: AppBar(title: Text("Selectioner le role"),),
-          body: CustomScrollView(
-            slivers: [
-              MyAppBar("Select Role", context, false, licenceController, false),
-              SliverToBoxAdapter(
-                child: SizedBox(height: 2.h),
-              ),
-              SliverGrid.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-          
-            ), itemCount: licenceController.parameters!.roles!.length,
-             itemBuilder: (context, index) {
-              return RoleCard(licenceController.parameters!.roles![index], context, licenceController);
-            },)
-              
-            ],
-             
+        return Directionality(
+                textDirection: TextDirection.rtl,
+
+          child: Scaffold(
+            // appBar: AppBar(title: Text("Selectioner le role"),),
+            body: CustomScrollView(
+              slivers: [
+                MyAppBar("اختيار نوع الاجازة", context, false, licenceController, false),
+                SliverToBoxAdapter(
+                  child: SizedBox(height: 2.h),
+                ),
+                SliverGrid.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+            
+              ), itemCount: licenceController.parameters!.roles!.length,
+               itemBuilder: (context, index) {
+                return ((licenceController.parameters!.roles![index].roles!="مسير")&&(licenceController.parameters!.roles![index].roles!="محب"))?RoleCard(licenceController.parameters!.roles![index], context, licenceController):const SizedBox();
+              },)
+                
+              ],
+               
+            ),
           ),
         );
       }
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

@@ -1,9 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 Widget imageWidget(){
-  return Container(
+  return SizedBox(
     width: 90.w,
     height: 15.h,
     // decoration: BoxDecoration(
@@ -21,13 +23,13 @@ borderRadius: BorderRadius.circular(5),
 }
 
 Widget SeasonWidget(){
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
+  return const Padding(
+    padding: EdgeInsets.all(16.0),
     child: Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Saison ",
+          Text("الموسم ",
           style: TextStyle(
             fontSize: 20
           ),
@@ -47,14 +49,14 @@ Widget SeasonWidget(){
 Widget StatItems(){
   return Padding(
     padding: const EdgeInsets.only(bottom:12.0),
-    child: Container(
+    child: SizedBox(
       width: 90.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          StatItem("Clubs","50"),
-          StatItem("Licences","500"),
-          StatItem("Competitions","10")
+          StatItem("النوادي","50"),
+          StatItem("الاجازات","500"),
+          StatItem("المسابقات","10")
         ],
       ),
     ),
@@ -67,7 +69,7 @@ Widget StatItem(txt,val){
       Container(
         width: 22 .w,
         height: 12.h,
-        decoration: BoxDecoration(color: Color(0xff92DDFF,
+        decoration: const BoxDecoration(color: Color(0xff92DDFF,
         
         ),
         borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -79,14 +81,14 @@ Widget StatItem(txt,val){
         ]
         ),
         child: Center(child: Text(val,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 22
         ),
         )),
       ),
-      SizedBox(height: 10,),
+      const SizedBox(height: 10,),
       Text(txt,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 15
       ),
       )
@@ -98,24 +100,24 @@ Widget StatItem(txt,val){
 Widget MyChart(){
   return Padding(
     padding: const EdgeInsets.only(top:12.0),
-    child: Container(
+    child: SizedBox(
       width: 90.w,
       height: 40.h,
       child: Column(
         children: [
-          Text("Etat des licences",
+          const Text("حالة الاجازات",
           style: TextStyle(
             fontSize: 20
           ),
           ),
-          SizedBox(height: 16,),
+          const SizedBox(height: 16,),
           Container
           
           (
             
             width: 90.w,
             height: 30.h,
-            decoration: BoxDecoration(color: Colors.white,
+            decoration: const BoxDecoration(color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(8)),
             boxShadow: [
               BoxShadow(color: Colors.black12,
@@ -124,78 +126,75 @@ Widget MyChart(){
               )
             ]
             ),
-            child: Container(
-  
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  MyLegend(),
-                  Container(
-                    width: 60.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                MyLegend(),
+                SizedBox(
+                  width: 60.w,
             height: 30.h,
-                    child: PieChart(
-                    swapAnimationDuration: Duration(milliseconds: 150), // Optional
-                    swapAnimationCurve: Curves.linear, // Optional
-                    PieChartData(
-                      
-                      startDegreeOffset: 0,
-                            
-                      centerSpaceRadius: 0,
-                      sectionsSpace: 0,
-                      sections: [
-                        PieChartSectionData(
-                          radius: 70,
-                          badgeWidget: Badge(label: Text("20",
-                          style: TextStyle(fontSize: 14),
+                  child: PieChart(
+                  swapAnimationDuration: const Duration(milliseconds: 150), // Optional
+                  swapAnimationCurve: Curves.linear, // Optional
+                  PieChartData(
+                    
+                    startDegreeOffset: 0,
                           
-                          )),
-                           badgePositionPercentageOffset: 1.3,
-                          showTitle: false,
-                        color: Colors.red,
-                        value: 20,
-                        title: "20",
-                       
-                      ),
-                       PieChartSectionData(
-                         badgeWidget: Badge(
-                          backgroundColor: Colors.orange,
-                          label: Text("80",
-                          style: TextStyle(fontSize: 14),
-                          
-                          )),
-                           badgePositionPercentageOffset: 1.3,
-                          showTitle: false,
-                                         radius: 70,
-                            
-                        color: Colors.orange,
-                        value: 80,
-                        title: "80"
-                      ), PieChartSectionData(
-                        color: Colors.green,
-                        value: 400,                radius: 70,
-                            
-                         badgeWidget: Badge(
-                          backgroundColor: Colors.green,
-                          label: Text("400",
-                          style: TextStyle(fontSize: 14),
-                          
-                          )),
-                           badgePositionPercentageOffset: 1.3,
-                          showTitle: false,
-                        title: "400"
-                      ),
-                      //  PieChartSectionData(
-                      //   color: Colors.blue,
-                      //   value: 100,
-                      //   title: "Active"
-                      // ),
-                      ]
+                    centerSpaceRadius: 0,
+                    sectionsSpace: 0,
+                    sections: [
+                      PieChartSectionData(
+                        radius: 70,
+                        badgeWidget: const Badge(label: Text("20",
+                        style: TextStyle(fontSize: 14),
+                        
+                        )),
+                         badgePositionPercentageOffset: 1.3,
+                        showTitle: false,
+                      color: Colors.red,
+                      value: 20,
+                      title: "20",
+                     
                     ),
-                            
-                          ),
+                     PieChartSectionData(
+                       badgeWidget: const Badge(
+                        backgroundColor: Colors.orange,
+                        label: Text("80",
+                        style: TextStyle(fontSize: 14),
+                        
+                        )),
+                         badgePositionPercentageOffset: 1.3,
+                        showTitle: false,
+                                       radius: 70,
+                          
+                      color: Colors.orange,
+                      value: 80,
+                      title: "80"
+                    ), PieChartSectionData(
+                      color: Colors.green,
+                      value: 400,                radius: 70,
+                          
+                       badgeWidget: const Badge(
+                        backgroundColor: Colors.green,
+                        label: Text("400",
+                        style: TextStyle(fontSize: 14),
+                        
+                        )),
+                         badgePositionPercentageOffset: 1.3,
+                        showTitle: false,
+                      title: "400"
+                    ),
+                    //  PieChartSectionData(
+                    //   color: Colors.blue,
+                    //   value: 100,
+                    //   title: "نشطة"
+                    // ),
+                    ]
                   ),
-                ],
-              ),
+                          
+                        ),
+                ),
+              ],
             ),)
         ],
       ),
@@ -205,15 +204,15 @@ Widget MyChart(){
 
 
 Widget MyLegend(){
-  return Container(
+  return SizedBox(
     // color: Colors.red,
     width: 30.w,
     height: 15.h,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [LegendItem("Active",Colors.green),
-      LegendItem("En Attante",Colors.orange),
-      LegendItem("Expire",Colors.red)
+      children: [LegendItem("نشطة",Colors.green),
+      LegendItem("في الانتظار",Colors.orange),
+      LegendItem("منتهية",Colors.red)
       ],
     ),
   );
@@ -229,10 +228,10 @@ LegendItem(txt,color){
           width: 10,
           height: 10,
           decoration: BoxDecoration(color: color,
-          borderRadius: BorderRadius.all(Radius.circular(500))
+          borderRadius: const BorderRadius.all(Radius.circular(500))
           ),
         ),
-    SizedBox(width: 10,),
+    const SizedBox(width: 10,),
         Text(txt)
       ],
     ),
@@ -240,20 +239,20 @@ LegendItem(txt,color){
 }
 
 Widget RecentLicences(){
-  return Container(
+  return SizedBox(
 
     width: 90.w,
     height: 30.h,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Recent Licences",
+        const Text("الاجازات الاخيرة",
         style: TextStyle(
           fontSize: 20
         ),
         ),
-        SizedBox(height: 10,),
-        Container( width: 90.w,
+        const SizedBox(height: 10,),
+        SizedBox( width: 90.w,
     height: 20.h,
           child: ListView(
             
@@ -278,7 +277,7 @@ Widget RecentLicenceItem(){
     child: Container(
       width: 50.w,
       height: 5.h,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5)),
         
         color: Colors.grey

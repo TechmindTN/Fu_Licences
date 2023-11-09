@@ -16,12 +16,12 @@ class Category {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['created'] = this.created;
-    data['categorie_age'] = this.categorieAge;
-    data['min'] = this.min;
-    data['max'] = this.max;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['created'] = created;
+    data['categorie_age'] = categorieAge;
+    data['min'] = min;
+    data['max'] = max;
     return data;
   }
 }

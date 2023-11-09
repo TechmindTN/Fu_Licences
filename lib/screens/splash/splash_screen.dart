@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../../controllers/licence_controller.dart';
 
 class MySplashScreen extends StatefulWidget{
+  const MySplashScreen({super.key});
+
   @override
   State<MySplashScreen> createState() => _MySplashScreenState();
 }
@@ -17,15 +19,18 @@ class _MySplashScreenState extends State<MySplashScreen> {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
     licenceController.checkLogin(context);
     // licenceController.checkLogin(context);
-    // TODO: implement initState
+    
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Image.asset("assets/images/logo-ftwkf.png")),
+    return Directionality(
+            textDirection: TextDirection.rtl,
+
+      child: Scaffold(
+        body: Center(child: Image.asset("assets/images/logo-ftwkf.png")),
+      ),
     );
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

@@ -16,12 +16,12 @@ class Weight {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['created'] = this.created;
-    data['masse_en_killograme'] = this.masseEnKillograme;
-    data['min'] = this.min;
-    data['max'] = this.max;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['created'] = created;
+    data['masse_en_killograme'] = masseEnKillograme;
+    data['min'] = min;
+    data['max'] = max;
     return data;
   }
 }

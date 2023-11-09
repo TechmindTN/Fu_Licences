@@ -1,16 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/models/full_licence.dart';
 import 'package:fu_licences/models/role.dart';
-import 'package:fu_licences/screens/licence/addlicence/add_licence_screen.dart';
-import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
-import 'package:fu_licences/screens/licence/filtered_licences_list.dart';
-import 'package:fu_licences/screens/licence/licence_screen.dart';
 import 'package:fu_licences/widgets/global/modals.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -30,9 +25,9 @@ Widget LicenceItem(
         //height: double.infinity,
         width: 90.w,
         decoration: BoxDecoration(
-          color: Color(0xffffffff),
+          color: const Color(0xffffffff),
           borderRadius: BorderRadius.circular(5),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Color(0x3f000000),
               offset: Offset(0, 2),
@@ -55,7 +50,7 @@ Widget LicenceItem(
               children: [
                 Container(
                   // autogroupitbe2SC (F37UKZcanBTmfvyEYdiTBE)
-                  margin: EdgeInsets.fromLTRB(2, 0, 0, 6),
+                  margin: const EdgeInsets.fromLTRB(6, 0, 0, 2),
                   //width: double.infinity,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,15 +58,15 @@ Widget LicenceItem(
                     children: [
                       Container(
                         // licencenum16358749xKr (1:62)
-                        margin: EdgeInsets.fromLTRB(0, 0, 27, 0),
+                        margin: const EdgeInsets.fromLTRB(27, 0, 0, 0),
                         child: Text(
-                          'num : ' + fullLicence.licence!.numLicences!,
+                          'اجازة رقم :${fullLicence.licence!.numLicences!}',
                           style: SafeGoogleFont(
                             'Inter',
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
                             height: 1.2125,
-                            color: Color(0xff000000),
+                            color: const Color(0xff000000),
                           ),
                         ),
                       ),
@@ -84,12 +79,12 @@ Widget LicenceItem(
                           fontWeight: FontWeight.w400,
                           height: 1.2125,
                           color: (fullLicence.licence!.state.toString() ==
-                                  "Activee")
-                              ? Color(0xff02ce16)
+                                  "نشطة")
+                              ? const Color(0xff02ce16)
                               : (fullLicence.licence!.state.toString() ==
-                                      "En Attente")
-                                  ? Color(0xfff5700a)
-                                  : Color(0xfffc0303),
+                                      "في الانتظار")
+                                  ? const Color(0xfff5700a)
+                                  : const Color(0xfffc0303),
                         ),
                       ),
                     ],
@@ -97,7 +92,7 @@ Widget LicenceItem(
                 ),
                 Container(
                   // autogroupubylbtc (F37UQoxqf6Dn3wXHhuubYL)
-                  margin: EdgeInsets.fromLTRB(0, 0, 110, 3),
+                  margin: const EdgeInsets.fromLTRB(110, 0, 0, 3),
                   //width: double.infinity,
                   height: 18.h,
                   child: Row(
@@ -105,7 +100,7 @@ Widget LicenceItem(
                     children: [
                       Container(
                         // man2L5W (2:231)
-                        margin: EdgeInsets.fromLTRB(0, 2, 2, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 2, 2, 0),
                         width: 65,
                         height: 65,
                         child: (fullLicence.profile!.profilePhoto != null &&
@@ -116,73 +111,69 @@ Widget LicenceItem(
                                 fit: BoxFit.cover,
                               ),
                       ),
-                      Container(
-                        // autogroupf8ygfNg (F37UWyTEf3kHxVUS2BF8YG)
-                        //height: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              // athletecYp (1:65)
-                              margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                              child: Text(
-                                fullLicence.licence!.role!,
-                                style: SafeGoogleFont(
-                                  'Inter',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.2125,
-                                  color: Color(0xff717171),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              // mohsenclub8XA (1:63)
-                              margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                              child: Text(
-                                fullLicence.licence!.club.toString(),
-                                style: SafeGoogleFont(
-                                  'Inter',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.2125,
-                                  color: Color(0xff717171),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              // akaberTZS (2:232)
-                              fullLicence.licence!.categorie.toString(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            // athletecYp (1:65)
+                            margin: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                            child: Text(
+                              fullLicence.licence!.role!,
                               style: SafeGoogleFont(
                                 'Inter',
                                 fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 height: 1.2125,
-                                color: Color(0xff717171),
+                                color: const Color(0xff717171),
                               ),
                             ),
-                            Text(
-                              fullLicence.profile!.state.toString(),
+                          ),
+                          Container(
+                            // mohsenclub8XA (1:63)
+                            margin: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                            child: Text(
+                              fullLicence.licence!.club.toString(),
                               style: SafeGoogleFont(
                                 'Inter',
                                 fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 height: 1.2125,
-                                color: Color(0xff717171),
+                                color: const Color(0xff717171),
                               ),
                             ),
-                            Text(
-                              fullLicence.licence!.seasons.toString()!,
-                              style: SafeGoogleFont(
-                                'Inter',
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                height: 1.2125,
-                                color: Color(0xff717171),
-                              ),
+                          ),
+                          Text(
+                            // akaberTZS (2:232)
+                            fullLicence.licence!.categorie.toString(),
+                            style: SafeGoogleFont(
+                              'Inter',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              height: 1.2125,
+                              color: const Color(0xff717171),
                             ),
-                          ],
-                        ),
+                          ),
+                          Text(
+                            fullLicence.profile!.state.toString(),
+                            style: SafeGoogleFont(
+                              'Inter',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              height: 1.2125,
+                              color: const Color(0xff717171),
+                            ),
+                          ),
+                          Text(
+                            fullLicence.licence!.seasons.toString(),
+                            style: SafeGoogleFont(
+                              'Inter',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              height: 1.2125,
+                              color: const Color(0xff717171),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -191,7 +182,7 @@ Widget LicenceItem(
                 //   // benarouscBS (2:233)
                 //   margin: EdgeInsets.fromLTRB(0, 0, 68, 5),
                 //   child: Text(
-                //     'Ben Arous',
+                //     'بن عروس',
                 //     style: SafeGoogleFont (
                 //       'Inter',
                 //       fontSize: 18,
@@ -227,24 +218,20 @@ Widget LicenceItem(
 Widget LicenceRow(String key, dynamic value) {
   return Container(
     // autogroup88fjWYp (F37ZNvBnENG3MzFKy188fJ)
-    margin: EdgeInsets.fromLTRB(51, 0, 36, 24),
+    margin: const EdgeInsets.fromLTRB(51, 0, 36, 24),
     width: double.infinity,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          // ageqb6 (1:95)
-          // margin: EdgeInsets.fromLTRB(0, 0, 120, 0),
-          child: Text(
-            key,
-            style: SafeGoogleFont(
-              'Inter',
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-              height: 1.2125,
-              color: Color(0xff717171),
-            ),
+        Text(
+          key,
+          style: SafeGoogleFont(
+            'Inter',
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+            height: 1.2125,
+            color: const Color(0xff717171),
           ),
         ),
         Text(
@@ -255,7 +242,7 @@ Widget LicenceRow(String key, dynamic value) {
             fontSize: 18,
             fontWeight: FontWeight.w400,
             height: 1.2125,
-            color: Color(0xff717171),
+            color: const Color(0xff717171),
           ),
         ),
       ],
@@ -264,128 +251,123 @@ Widget LicenceRow(String key, dynamic value) {
 }
 
 Widget RolePhotos(FullLicence fullLicence,context,LicenceProvider licenceController) {
-  if (fullLicence.licence!.role == "Athlete") {
+  if (fullLicence.licence!.role == "رياضي") {
     return AthletePhotosWidget(fullLicence,licenceController,context);
-  } else if (fullLicence.licence!.role == "Arbitre") {
+  } else if (fullLicence.licence!.role == "حكم") {
     return ArbitratorPhotosWidget(fullLicence,licenceController,context);
-  } else if (fullLicence.licence!.role == "Entraineur") {
+  } else if (fullLicence.licence!.role == "مدرب") {
     return CoachPhotosWidget(fullLicence,licenceController,context);
   } else {
-    return SizedBox();
+    return const SizedBox();
   }
 }
 
 Widget ArbitratorPhotosWidget(FullLicence fullLicence,LicenceProvider licenceController,context) {
-  return Container(
-    child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      (fullLicence.arbitrator!.identityPhoto != null &&
-              fullLicence.arbitrator!.identityPhoto != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.arbitrator!.identityPhoto);
-                      },
-            child: Image.network(
-                fullLicence.arbitrator!.identityPhoto!,
-                width: 40.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+  return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    (fullLicence.arbitrator!.identityPhoto != null &&
+            fullLicence.arbitrator!.identityPhoto != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.arbitrator!.identityPhoto);
+                    },
+          child: Image.network(
+              fullLicence.arbitrator!.identityPhoto!,
               width: 40.w,
-              fit: BoxFit.cover,
             ),
-      (fullLicence.arbitrator!.photo != null &&
-              fullLicence.arbitrator!.photo != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.arbitrator!.photo);
-                      },
-            child: Image.network(
-                fullLicence.arbitrator!.photo!,
-                width: 40.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 40.w,
+            fit: BoxFit.cover,
+          ),
+    (fullLicence.arbitrator!.photo != null &&
+            fullLicence.arbitrator!.photo != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.arbitrator!.photo);
+                    },
+          child: Image.network(
+              fullLicence.arbitrator!.photo!,
               width: 40.w,
-              fit: BoxFit.cover,
             ),
-    ]),
-  );
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 40.w,
+            fit: BoxFit.cover,
+          ),
+  ]);
 }
 
 Widget CoachPhotosWidget(FullLicence fullLicence,LicenceProvider licenceController,context) {
-  return Container(
-    child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      (fullLicence.coach!.identityPhoto != null &&
-              fullLicence.coach!.identityPhoto != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.coach!.identityPhoto);
-                      },
-            child: Image.network(
-                fullLicence.coach!.identityPhoto!,
-                width: 20.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+  return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    (fullLicence.coach!.identityPhoto != null &&
+            fullLicence.coach!.identityPhoto != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.coach!.identityPhoto);
+                    },
+          child: Image.network(
+              fullLicence.coach!.identityPhoto!,
               width: 20.w,
-              fit: BoxFit.cover,
             ),
-      (fullLicence.coach!.photo != null && fullLicence.coach!.photo != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.coach!.photo);
-                      },
-            child: Image.network(
-                fullLicence.coach!.photo!,
-                width: 20.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 20.w,
+            fit: BoxFit.cover,
+          ),
+    (fullLicence.coach!.photo != null && fullLicence.coach!.photo != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.coach!.photo);
+                    },
+          child: Image.network(
+              fullLicence.coach!.photo!,
               width: 20.w,
-              fit: BoxFit.cover,
             ),
-      (fullLicence.coach!.degreePhoto != null &&
-              fullLicence.coach!.degreePhoto != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.coach!.degreePhoto);
-                      },
-            child: Image.network(
-                fullLicence.coach!.degreePhoto!,
-                width: 20.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 20.w,
+            fit: BoxFit.cover,
+          ),
+    (fullLicence.coach!.degreePhoto != null &&
+            fullLicence.coach!.degreePhoto != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.coach!.degreePhoto);
+                    },
+          child: Image.network(
+              fullLicence.coach!.degreePhoto!,
               width: 20.w,
-              fit: BoxFit.cover,
             ),
-      (fullLicence.coach!.gradePhoto != null &&
-              fullLicence.coach!.gradePhoto != "")
-          ? InkWell(
-            onTap: () {
-                        licenceController.showImage(context,fullLicence.coach!.gradePhoto);
-                      },
-            child: Image.network(
-                fullLicence.coach!.gradePhoto!,
-                width: 20.w,
-              ),
-          )
-          : Image.asset(
-              'assets/icons/man.png',
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 20.w,
+            fit: BoxFit.cover,
+          ),
+    (fullLicence.coach!.gradePhoto != null &&
+            fullLicence.coach!.gradePhoto != "")
+        ? InkWell(
+          onTap: () {
+                      licenceController.showImage(context,fullLicence.coach!.gradePhoto);
+                    },
+          child: Image.network(
+              fullLicence.coach!.gradePhoto!,
               width: 20.w,
-              fit: BoxFit.cover,
             ),
-    ]),
-  );
+        )
+        : Image.asset(
+            'assets/icons/man.png',
+            width: 20.w,
+            fit: BoxFit.cover,
+          ),
+  ]);
 }
 
 Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceController,context) {
-  print('object');
   return Container(
     constraints: BoxConstraints(maxWidth: 100.w),
     width: 100.w,
@@ -393,7 +375,7 @@ Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceContro
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
+          SizedBox(
             height: 18.h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -415,11 +397,11 @@ Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceContro
                         fit: BoxFit.cover,
                         width: 30.w,
                       ),
-                Center(child: Text('Identite'))
+                const Center(child: Text('الهوية'))
               ],
             ),
           ),
-          Container(
+          SizedBox(
             height: 18.h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -441,11 +423,11 @@ Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceContro
                         fit: BoxFit.cover,
                         width: 30.w,
                       ),
-                Center(child: Text('Assurance'))
+                const Center(child: Text('التامين'))
               ],
             ),
           ),
-          Container(
+          SizedBox(
             height: 18.h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -467,7 +449,7 @@ Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceContro
                         fit: BoxFit.cover,
                         width: 30.w,
                       ),
-                Center(child: Text('Fiche medical'))
+                const Center(child: Text('الصورة الطبية'))
               ],
             ),
           ),
@@ -476,6 +458,7 @@ Widget AthletePhotosWidget(FullLicence fullLicence,LicenceProvider licenceContro
 }
 
 Widget RoleCard(Role role, context,LicenceProvider licenceController) {
+  
   if(licenceController.currentUser.club!.id==null){
 
   
@@ -486,23 +469,23 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
         child: InkWell(
           onTap: (() {
             licenceController.selectedRole=role;
-            if (role.roles == "Athlete") {
+            if (role.roles == "رياضي") {
               GoRouter.of(context).push(Routes.UploadAthleteImagesScreen);
               // Navigator.push(context,
               //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
             }
-            else if (role.roles == "Entraineur") {
+            else if (role.roles == "مدرب") {
               GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
               // Navigator.push(context,
               //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
-            }else if (role.roles == "Arbitre") {
+            }else if (role.roles == "حكم") {
               GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
               // Navigator.push(context,
               //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
             }
           }),
           child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   color: Colors.grey  ),
               width: 35.w,
@@ -513,15 +496,15 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
         ),
       ),
       Text(role.roles!,
-         style: TextStyle(
+         style: const TextStyle(
                 fontSize: 18
               ),)
     ],
   );}
 
    else{
-    if(role.roles=="club"||role.roles=="manager"){
-      return SizedBox();
+    if(role.roles=="نادي"||role.roles=="manager"){
+      return const SizedBox();
     }
     else{
        return Padding(
@@ -529,23 +512,23 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
     child: InkWell(
       onTap: (() {
         licenceController.selectedRole=role;
-        if (role.roles == "Athlete") {
+        if (role.roles == "رياضي") {
           GoRouter.of(context).push(Routes.UploadAthleteImagesScreen);
           // Navigator.push(context,
           //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
         }
-        else if (role.roles == "Entraineur") {
+        else if (role.roles == "مدرب") {
           GoRouter.of(context).push(Routes.UploadCoachImagesScreen);
           // Navigator.push(context,
           //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
-        }else if (role.roles == "Arbitre") {
+        }else if (role.roles == "حكم") {
           GoRouter.of(context).push(Routes.UploadArbitreImagesScreen);
           // Navigator.push(context,
           //     MaterialPageRoute(builder: ((context) => UploadLicenceImages())));
         }
       }),
       child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.red),
           width: 60.w,
@@ -559,25 +542,50 @@ Widget RoleCard(Role role, context,LicenceProvider licenceController) {
 }
 
 Widget AthleteImageUploadWidget(txt, licenceController, context,
-    String? toFillImage, String? placeHolderImage) {
+    String? toFillImage, String? placeHolderImage,int index) {
+    //  bool ishovered=true;
   return Consumer<LicenceProvider>(
 
     builder: (context,licenceController,child) {
       return Column(
+
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: (() {}),
+              onHover: (value) {
+                
+                if(value){
+                  licenceController.isHovered[index]=true;
+                  licenceController.notify();
+                  
+                }
+                else{
+                  licenceController.isHovered[index]=false;
+                  licenceController.notify();
+                }
+              },
+              
+              onTap: (() {
+                showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return AthleteMediaModal(licenceController, context, toFillImage);
+              });
+                // licenceController.pickAthleteImage(true,context,toFillImage);
+              }),
               child: Container(
+               
                   decoration: BoxDecoration(
                     image: (placeHolderImage != null)
                       ? DecorationImage(image: NetworkImage(placeHolderImage,
                       
+                      
                       ),
+                      opacity: (licenceController.isHovered[index])?0.3:1,
                       fit: BoxFit.cover
                       ):null,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(color: Colors.black26),
                       BoxShadow(
                         color: Color(0xffD9D9D9),
@@ -586,35 +594,32 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
 
                       )
                     ],
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
-                      // color: Color(0xffD9D9D9)
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
                       ),
-                  width: 60.w,
-                  height: 45.h,
-                  // child: (placeHolderImage != null)
-                  //     ? Image.network(placeHolderImage,
-                  //     fit: BoxFit.fill,
-
-                  //     )
-                  //     : Center()
+                  width: 30.w,
+                  height: 22.h,
+               
+                   child: (licenceController.isHovered[index])?
+                   Center(
+                    child: Icon(Icons.camera_alt,
+                    size: 5.w,
+                    ),
+                   )
+                   :const SizedBox(),
                       ),
             ),
           ),
-          // Text(placeHolderImage.toString()),
-          Text(txt),
+          SizedBox(
+            height: 0.5.h,
+          ),
+          Text(txt,
+          style: const TextStyle(
+            fontSize: 20
+          ),
+          ),
           SizedBox(
             height: 1.h,
           ),
-          FloatingActionButton.extended(
-            onPressed: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return AthleteMediaModal(licenceController, context, toFillImage);
-                  });
-            },
-            label: Text("Select"),
-          )
         ],
       );
     }
@@ -623,122 +628,261 @@ Widget AthleteImageUploadWidget(txt, licenceController, context,
 
 
 Widget CoachImageUploadWidget(txt, licenceController, context,
-    String? toFillImage, String? placeHolderImage) {
+    String? toFillImage, String? placeHolderImage,int index) {
   return Column(
     children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: (() {}),
-          child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.red),
-              width: 60.w,
-              height: 40.h,
-              child: (placeHolderImage != null)
-                  ? Image.network(placeHolderImage)
-                  : Center()),
-        ),
-      ),
-      // Text(placeHolderImage.toString()),
-      Text(txt),
-      SizedBox(
-        height: 1.h,
-      ),
-      FloatingActionButton.extended(
-        onPressed: () {
-          showModalBottomSheet(
+           onHover: (value) {
+                
+                if(value){
+                  licenceController.isHovered[index]=true;
+                  licenceController.notify();
+                  
+                }
+                else{
+                  licenceController.isHovered[index]=false;
+                  licenceController.notify();
+                }
+              },
+              
+              onTap: (() {
+                showModalBottomSheet(
               context: context,
               builder: (context) {
                 return CoachMediaModal(licenceController, context, toFillImage);
               });
-        },
-        label: Text("Select"),
-      )
+                // licenceController.pickCoachImage(true,context,toFillImage);
+              }),
+          child: Container(
+               decoration: BoxDecoration(
+                    image: (placeHolderImage != null)
+                      ? DecorationImage(image: NetworkImage(placeHolderImage,
+                      
+                      
+                      ),
+                      opacity: (licenceController.isHovered[index])?0.3:1,
+                      fit: BoxFit.cover
+                      ):null,
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black26),
+                      BoxShadow(
+                        color: Color(0xffD9D9D9),
+                        spreadRadius: -12,
+                        blurRadius: 20,
+
+                      )
+                    ],
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
+                      ),
+                  width: 30.w,
+                  height: 22.h,
+               
+                   child: (licenceController.isHovered[index])?
+                   Center(
+                    child: Icon(Icons.camera_alt,
+                    size: 5.w,
+                    ),
+                   )
+                   :const SizedBox(),),
+        ),
+      ),
+      // Text(placeHolderImage.toString()),
+        SizedBox(
+            height: 0.5.h,
+          ),
+          Text(txt,
+          style: const TextStyle(
+            fontSize: 20
+          ),
+          ),
+      SizedBox(
+        height: 1.h,
+      ),
+      // FloatingActionButton.extended(
+      //   onPressed: () {
+      //     showModalBottomSheet(
+      //         context: context,
+      //         builder: (context) {
+      //           return CoachMediaModal(licenceController, context, toFillImage);
+      //         });
+      //   },
+      //   label: Text("Select"),
+      // )
     ],
   );
 }
 
-Widget ArbitreImageUploadWidget(txt, licenceController, context,
-    String? toFillImage, String? placeHolderImage) {
+Widget ArbitreImageUploadWidget(txt,LicenceProvider licenceController, context,
+    String? toFillImage, String? placeHolderImage,int index) {
   return Column(
     children: [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: InkWell(
-          onTap: (() {}),
-          child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.red),
-              width: 60.w,
-              height: 40.h,
-              child: (placeHolderImage != null)
-                  ? Image.network(placeHolderImage)
-                  : Center()),
-        ),
-      ),
-      // Text(placeHolderImage.toString()),
-      Text(txt),
-      SizedBox(
-        height: 1.h,
-      ),
-      FloatingActionButton.extended(
-        onPressed: () {
+      InkWell(
+        onTap: () async {
           showModalBottomSheet(
               context: context,
               builder: (context) {
                 return ArbitreMediaModal(licenceController, context, toFillImage);
               });
+        //  await licenceController.pickArbitreImage(true, context, toFillImage);
         },
-        label: Text("Select"),
-      )
+        onHover: (value) {
+                
+                if(value){
+                  licenceController.isHovered[index]=true;
+                  licenceController.notify();
+                  
+                }
+                else{
+                  licenceController.isHovered[index]=false;
+                  licenceController.notify();
+                }
+              },
+        child: Container(
+            decoration: BoxDecoration(
+                    image: (placeHolderImage != null)
+                      ? DecorationImage(image: NetworkImage(placeHolderImage,
+                      
+                      
+                      ),
+                      opacity: (licenceController.isHovered[index])?0.3:1,
+                      fit: BoxFit.cover
+                      ):null,
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black26),
+                      BoxShadow(
+                        color: Color(0xffD9D9D9),
+                        spreadRadius: -12,
+                        blurRadius: 20,
+
+                      )
+                    ],
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
+                      // color: Color(0xffD9D9D9)
+                      ),
+                  width: 30.w,
+                  height: 22.h,
+             child: (licenceController.isHovered[index])?
+                   Center(
+                    child: Icon(Icons.camera_alt,
+                    size: 5.w,
+                    ),
+                   )
+                   :const SizedBox(),),
+      ),
+      // Text(placeHolderImage.toString()),
+     SizedBox(
+            height: 0.5.h,
+          ),
+          Text(txt,
+          style: const TextStyle(
+            fontSize: 20
+          ),
+          ),
+          SizedBox(
+            height: 1.h,
+          ),
+      // FloatingActionButton.extended(
+      //   onPressed: () {
+      //     showModalBottomSheet(
+      //         context: context,
+      //         builder: (context) {
+                // return ArbitreMediaModal(licenceController, context, toFillImage);
+      //         });
+      //   },
+      //   label: Text("Select"),
+      // )
     ],
   );
 }
 
 Widget AthleteImageEditWidget(
-    txt, LicenceProvider licenceController, context, imageName, img) {
+    txt, LicenceProvider licenceController, context, imageName, img,index) {
   return Column(
     children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: (() {}),
+           onTap: () async {
+         await licenceController.pickAthleteImage(true, context, imageName);
+        },
+        onHover: (value) {
+                
+                if(value){
+                  licenceController.isHovered[index]=true;
+                  licenceController.notify();
+                  
+                }
+                else{
+                  licenceController.isHovered[index]=false;
+                  licenceController.notify();
+                }
+              },
           child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.red),
-              width: 60.w,
-              height: 40.h,
-              child: (img != null) ? Image.network(img) : Center()),
+               decoration: BoxDecoration(
+                    image: (img != null)
+                      ? DecorationImage(image: NetworkImage(img,
+                      
+                      
+                      ),
+                      opacity: (licenceController.isHovered[index])?0.3:1,
+                      fit: BoxFit.cover
+                      ):null,
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black26),
+                      BoxShadow(
+                        color: Color(0xffD9D9D9),
+                        spreadRadius: -12,
+                        blurRadius: 20,
+
+                      )
+                    ],
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
+                      // color: Color(0xffD9D9D9)
+                      ),
+                  width: 30.w,
+                  height: 22.h,
+              child: (licenceController.isHovered[index])?
+                   Center(
+                    child: Icon(Icons.camera_alt,
+                    size: 5.w,
+                    ),
+                   )
+                   :const SizedBox(),),
         ),
       ),
       // Text(placeHolderImage.toString()),
-      Text(txt),
       SizedBox(
-        height: 1.h,
-      ),
-      FloatingActionButton.extended(
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return EditMediaModal(
-                    licenceController, context, imageName, img);
-              });
-        },
-        label: Text("Select"),
-      )
+            height: 0.5.h,
+          ),
+          Text(txt,
+          style: const TextStyle(
+            fontSize: 20
+          ),
+          ),
+          SizedBox(
+            height: 1.h,
+          ),
+      // FloatingActionButton.extended(
+      //   onPressed: () {
+      //     showModalBottomSheet(
+      //         context: context,
+      //         builder: (context) {
+      //           return EditMediaModal(
+      //               licenceController, context, imageName, img);
+      //         });
+      //   },
+      //   label: Text("Select"),
+      // )
     ],
   );
 }
 
 SearchDialog(LicenceProvider licenceController, numControl, context) {
   return AlertDialog(
-    title: Text('Recherche avec numero de licence'),
-    content: Container(
+    title: const Text('البحث برقم الاجازة'),
+    content: SizedBox(
         width: 70.w,
         height: 10.h,
         child: Center(
@@ -754,9 +898,7 @@ SearchDialog(LicenceProvider licenceController, numControl, context) {
             onTap: () {
               licenceController.findLicence(numControl.text, context);
             },
-            child: Container(
-              child: Center(child: Text('Confirmer')),
-            ),
+            child: const Center(child: Text('تأكيد')),
           )
         ],
       )
@@ -767,29 +909,29 @@ SearchDialog(LicenceProvider licenceController, numControl, context) {
 FilterDialog(LicenceProvider licenceController, context) {
   return AlertDialog(
     
-    contentPadding: EdgeInsets.only(left: 4,right: 4,top: 24,bottom: 20),
-    insetPadding: EdgeInsets.symmetric(horizontal: 36,vertical: 24),
+    contentPadding: const EdgeInsets.only(left: 4,right: 4,top: 24,bottom: 20),
+    insetPadding: const EdgeInsets.symmetric(horizontal: 36,vertical: 24),
     scrollable: true,
-    title: Center(child: Text('Filtrer')),
-    content: Container(
+    title: const Center(child: Text('التصفية')),
+    content: SizedBox(
         width: 100.w,
         // height: 90.h,
         child: Center(
           child: Column(
             
             children: [
-              SeasonSelectInput('Season',licenceController.selectedSeason,licenceController),
+              SeasonSelectInput('الموسم',licenceController.selectedSeason,licenceController),
               
-              GategorySelectInput('Categorie',licenceController.filteredCategory,licenceController),
+              GategorySelectInput('الوزن',licenceController.filteredCategory,licenceController),
                   GradeSelectInput('Grade',licenceController.filteredGrade,licenceController)	,
                   DegreeSelectInput('Degree',licenceController.filteredDegree,licenceController),
-                  DisciplineSelectInput('Discipline',licenceController.filteredDiscipline,licenceController)	,
+                  DisciplineSelectInput('الرياضة',licenceController.filteredDiscipline,licenceController)	,
                 
-                  WeightSelectInput('Poids',licenceController.filteredWeight,licenceController),
+                  WeightSelectInput('الوزن',licenceController.filteredWeight,licenceController),
                   if(licenceController.currentUser.club?.id==null)
-                  ClubSelectInput('Club',licenceController.filteredClub,licenceController),
-                   SelectInput('Sexe',licenceController.filteredSex,licenceController,['Male','Femelle']),
-                   SelectInput('Etat',licenceController.filteredStatus,licenceController,['Activee','En Attente','Expiree']),
+                  ClubSelectInput('النادي',licenceController.filteredClub,licenceController),
+                   SelectInput('الجنس',licenceController.filteredSex,licenceController,['ذكر','انثى']),
+                   SelectInput('الحالة',licenceController.filteredStatus,licenceController,["نشطة","في الانتظار","منتهية"]),
             ],
           ),
 
@@ -797,10 +939,10 @@ FilterDialog(LicenceProvider licenceController, context) {
           //   controller: numControl,
           // ),
         )),
-        actionsPadding: EdgeInsets.all(0),
+        actionsPadding: const EdgeInsets.all(0),
     actions: [
       Container(
-        color: Color(0xff4C9AFF),
+        color: const Color(0xff4C9AFF),
         width: 100.w,
         height: 8.h,
         child: Row(
@@ -812,14 +954,11 @@ FilterDialog(LicenceProvider licenceController, context) {
                 
                 // licenceController.findLicence(numControl.text, context);
               },
-              child: Container(
-                
-                child: Center(child: Text('Confirmer',
-                style: TextStyle(
-                  color: Colors.white
-                ),
-                )),
+              child: const Center(child: Text('تأكيد',
+              style: TextStyle(
+                color: Colors.white
               ),
+              )),
             )
           ],
         ),
@@ -831,7 +970,7 @@ FilterDialog(LicenceProvider licenceController, context) {
 
 Widget LicenceListHeader(LicenceProvider licenceController,numControl,context){
   return Center(
-    child: Container(
+    child: SizedBox(
       width: 90.w,
       child: Column(
        children: [
@@ -850,12 +989,12 @@ Widget FirstRow(LicenceProvider licenceController){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-    Text("Total: "+licenceController.fullLicences.length.toString(),
-     style: TextStyle(
+    Text("المجموع: ${licenceController.fullLicences.length}",
+     style: const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 20
     ),),
-    Text("Details de filtre >>",
+    const Text("تفاصيل التصفية >>",
     style: TextStyle(
       color: Color(0xff2DA9E0),
       fontSize: 20,
@@ -881,7 +1020,7 @@ Widget SearchField(LicenceProvider licenceController,numControl,context){
     height: 8.h,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(6),
-      boxShadow: [
+      boxShadow: const [
         BoxShadow(
           
           color: Colors.black26,
@@ -907,7 +1046,7 @@ Widget FilterField(LicenceProvider licenceController,context){
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(6),
-          boxShadow: [
+          boxShadow: const [
             
             BoxShadow(
               color: Colors.black26,

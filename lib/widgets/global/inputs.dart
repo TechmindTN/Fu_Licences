@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, prefer_interpolation_to_compose_strings
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
@@ -8,7 +10,6 @@ import 'package:fu_licences/models/discipline.dart';
 import 'package:fu_licences/models/grade.dart';
 import 'package:fu_licences/models/season.dart';
 import 'package:fu_licences/models/weight.dart';
-import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 Widget TextInput(String txt,TextEditingController control){
@@ -18,11 +19,33 @@ Widget TextInput(String txt,TextEditingController control){
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(txt),
-        Container(
+        SizedBox(
           width: 50.w,
           height: 5.h,
           child: TextFormField(
-            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)))),
+            decoration: const InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)))),
+            controller: control,
+          ),
+        )
+      ],
+    ),
+  );
+}
+
+
+Widget PhoneInput(String txt,TextEditingController control){
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal:24.0,vertical: 8),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(txt),
+        SizedBox(
+          width: 50.w,
+          height: 5.h,
+          child: TextFormField(
+            keyboardType: TextInputType.phone,
+            decoration: const InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)))),
             controller: control,
           ),
         )
@@ -44,7 +67,7 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
 
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 50.w,
@@ -69,7 +92,7 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
         dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: "الرجاء اختيار "+txt,
               
         ),
     ),
@@ -79,17 +102,16 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
     // },
     onChanged: (value){
       selected=value;
-      if(txt=="Sexe"){
+      if(txt=="الجنس"){
         licenceController.selectedSex=value!;
       }
-      else if(txt=="Governorat"){
+      else if(txt=="الولاية"){
           licenceController.selectedState=value!;
         }
-        else if(txt=="Etat"){
+        else if(txt=="الحالة"){
           licenceController.selectedStatus=value!;
         }
       
-      print(selected);
       
     },
     selectedItem: selected,
@@ -121,7 +143,7 @@ SeasonSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 50.w,
@@ -144,7 +166,7 @@ SeasonSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: "الرجاء اختيار "+txt,
               
         ),
     ),
@@ -155,7 +177,6 @@ SeasonSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedSeason=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -177,7 +198,7 @@ GategorySelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 50.w,
@@ -200,7 +221,7 @@ GategorySelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: "الرجاء اختيار "+txt,
               
         ),
     ),
@@ -211,7 +232,6 @@ GategorySelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedCategory=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -232,7 +252,7 @@ DegreeSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 50.w,
@@ -255,7 +275,7 @@ DegreeSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: "الرجاء اختيار "+txt,
               
         ),
     ),
@@ -266,7 +286,6 @@ DegreeSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedDegree=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -288,7 +307,7 @@ WeightSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 50.w,
@@ -311,7 +330,7 @@ WeightSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: "الرجاء اختيار "+txt,
               
         ),
     ),
@@ -322,7 +341,6 @@ WeightSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedWeight=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -344,7 +362,7 @@ ClubSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 50.w,
@@ -367,7 +385,7 @@ ClubSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: "الرجاء اختيار "+txt,
               
         ),
     ),
@@ -378,7 +396,6 @@ ClubSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedClub=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -400,7 +417,7 @@ DisciplineSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 50.w,
@@ -423,7 +440,7 @@ DisciplineSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: "الرجاء اختيار "+txt,
               
         ),
     ),
@@ -434,7 +451,6 @@ DisciplineSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedDiscipline=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -457,7 +473,7 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
         Text(txt),
        Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             border: Border.all(color: Colors.black38)
           ),
           width: 50.w,
@@ -480,7 +496,7 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
        dropdownSearchDecoration: InputDecoration(
           filled: false,
               // labelText: selected,
-              hintText: "Choisir votre "+txt,
+              hintText: "الرجاء اختيار "+txt,
               
         ),
     ),
@@ -491,7 +507,6 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedGrade=value;
-      print(selected.id);
       
     },
     selectedItem: selected,
@@ -514,16 +529,15 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
           onTap: () async {
              DateTime? date=await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1800), lastDate: DateTime.now()); 
              selected=date;
-             control.text=date!.year.toString()+"-"+date.month.toString()+"-"+date.day.toString();
+             control.text="${date!.year}-${date.month}-${date.day}";
              licenceController.notify();
-            print(date);
           },
-          child: Container(
+          child: SizedBox(
             width: 50.w,
             height: 5.h,
             child: TextFormField(
               enabled: false,
-              decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)),)),
+              decoration: const InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)),)),
               controller: control,
             ),
           ),
@@ -543,8 +557,8 @@ SearchInput(LicenceProvider licenceController,numControl,context){
           licenceController.findLicence(numControl.text, context);
         },
         controller: numControl,
-          decoration: InputDecoration.collapsed(
-        hintText: 'Rechercher',
+          decoration: const InputDecoration.collapsed(
+        hintText: 'البحث',
       ),
       // trol,
       ),
@@ -560,7 +574,7 @@ Widget AuthInput(txt,control,hide){
       
       height: 9.h,
       width: 70.w,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
