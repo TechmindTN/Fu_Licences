@@ -41,7 +41,7 @@ class _RenewLicenceScreenState extends State<RenewLicenceScreen> {
       
           // ),
           body: CustomScrollView(slivers: [
-            MyAppBar('تجديد الاجازة ${licenceController.createdFullLicence!.licence!.numLicences}', context, false, licenceController, false, ),
+            MySliverAppBar('تجديد الاجازة ${licenceController.createdFullLicence!.licence!.numLicences}', context, false, licenceController, false, ),
             SliverToBoxAdapter(
               child: Column(
                 children: [

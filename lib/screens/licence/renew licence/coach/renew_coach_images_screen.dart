@@ -35,7 +35,7 @@ class _RenewCoachLicenceImagesState extends State<RenewCoachLicenceImages> {
         child: Scaffold(
           body: CustomScrollView(
             slivers:[
-              MyAppBar('تجديد الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences!}', context, false, licenceController, false, ), 
+              MySliverAppBar('تجديد الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences!}', context, false, licenceController, false, ), 
               SliverToBoxAdapter(child: SizedBox(height: 6.h,)),
               SliverGrid(
                   delegate: SliverChildListDelegate([

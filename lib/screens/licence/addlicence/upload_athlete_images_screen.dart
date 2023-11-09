@@ -79,7 +79,7 @@ class _UploadAthleteLicenceImagesState
           // appBar: AppBar(),
           body: CustomScrollView(
             slivers: [
-              MyAppBar(
+              MySliverAppBar(
                   "صور الرياضي", context, false, licenceController, false),
               SliverToBoxAdapter(
                 child: Center(

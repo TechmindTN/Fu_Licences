@@ -35,7 +35,7 @@ class _EditAthleteLicenceImagesState extends State<EditAthleteLicenceImages> {
           // appBar: AppBar(title: Text("تعديل الاجازة "+licenceController.selectedFullLicence!.licence!.numLicences!),),
           body: CustomScrollView(
             slivers:[
-              MyAppBar("تعديل الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences!}", context, false, licenceController, false, ),
+              MySliverAppBar("تعديل الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences!}", context, false, licenceController, false, ),
               
               
               SliverToBoxAdapter(child: SizedBox(height: 6.h,)),

@@ -10,13 +10,13 @@ class LicenceNetwork {
     return res;
   }
 
-  getLicenceListInfo(clubid) async {
+  getLicenceListInfo(clubid,pageNumber) async {
     Response res = await apis.dio.post(apis.baseUrl + apis.paginatedLicenceListInfo,
         options: Options(headers: {"Authorization": Apis.tempToken}),
         data: {'userid': 274,
         // 'club':clubid,
         'page_size':10,
-        'page_number':0
+        'page_number':pageNumber
         });
     return res;
   }
@@ -148,6 +148,45 @@ class LicenceNetwork {
     Response res = await apis.dio.put("${apis.baseUrl + apis.validateLicence+licenceId}/",
         options: Options(headers: {"Authorization": Apis.tempToken}),
         );
+    return res;
+  }
+
+  getLicenceById(id) async {
+    Response res = await apis.dio.get(apis.baseUrl+apis.licenceById+id+"/",
+    options: Options(
+      headers: {
+        "Authorization":Apis.tempToken
+      }
+    )
+    );
+    return res;
+  }
+
+  searchLicences(id,role) async {
+    Response res = await apis.dio.post(apis.baseUrl+apis.searchLicences+id+"/",
+    options: Options(
+      headers: {
+        "Authorization":Apis.tempToken,
+
+      },    
+    ),
+    data: {"userid":274,
+    "role":role
+    }
+    );
+    return res;
+  }
+
+  filterLicences(data,pageSize,pageNumber) async {
+    Response res = await apis.dio.post(apis.baseUrl+apis.paginatedLicenceListInfo,
+    options: Options(
+      headers: {
+        "Authorization":Apis.tempToken,
+
+      },    
+    ),
+    data: data
+    );
     return res;
   }
 }

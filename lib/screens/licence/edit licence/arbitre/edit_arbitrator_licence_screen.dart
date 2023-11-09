@@ -53,7 +53,7 @@ late  TextEditingController addresseController;
             // ),
             body: CustomScrollView(
               slivers:[ 
-                MyAppBar("تعديل الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences}", context, false, licenceController, false),
+                MySliverAppBar("تعديل الاجازة ${licenceController.selectedFullLicence!.licence!.numLicences}", context, false, licenceController, false),
                 SliverToBoxAdapter(
                   child: Column(
         

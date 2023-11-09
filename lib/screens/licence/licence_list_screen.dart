@@ -69,40 +69,47 @@ class _LicenceListScreenState extends State<LicenceListScreen> {
             
             
             backgroundColor: const Color(0xfffafafa),
-            body: CustomScrollView(
-              physics: const NeverScrollableScrollPhysics(),
+            // appBar: MyAppBar("الاجازات", context, true,licenceController,false),
+            body: Column(
+              // physics: const NeverScrollableScrollPhysics(),
               // controller: ScrollController(),
               // primary: false,
-              slivers: [
-                MyAppBar("الاجازات", context, true,licenceController,false),
-                SliverToBoxAdapter(
-                  child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                  SizedBox(height: 2.h),
-                  LicenceListHeader(licenceController,numControl,context),
-                  
-                  
-                  
-                  ],
-                            ),
-                ),
-        SliverToBoxAdapter(
-          child: (licenceController.isLoading)?const Center(child: CircularProgressIndicator(),):NotificationListener<ScrollNotification>(
-                    onNotification: (ScrollNotification scrollInfo){
-                      print(scrollInfo.metrics.pixels);
-                      if (scrollInfo.metrics.pixels ==
+              children: [
+                LicenceListHeader(licenceController,numControl,context,""),
+                // MyAppBar("الاجازات", context, true,licenceController,false),
+                // Column(
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                // children: [
+                // // SizedBox(height: 2.h),
+                // LicenceListHeader(licenceController,numControl,context),
+                
+                
+                
+                // ],
+                //           ),
+        (licenceController.isLoading)?const Center(child: CircularProgressIndicator(),):NotificationListener<ScrollNotification>(
+                  onNotification: (ScrollNotification scrollInfo){
+                    // print(scrollInfo.metrics.pixels);
+                    if (scrollInfo.metrics.pixels ==
         scrollInfo.metrics.maxScrollExtent) {
-          print('end of scroll');
+          if(licenceController.lockScroll==false){
+            licenceController.getNextLicences();
+            licenceController.lockScroll=true;
+          }
+          
+          
+          print(licenceController.currentPage);
+        print('end of scroll');
     }
     return true;
-                    },
+                  },
+                  child: Expanded(
                     child: ListView(
                       // primary: true,
                       shrinkWrap: true,
-                      controller: ScrollController(
+                      // controller: ScrollController(
                         
-                      ),
+                      // ),
                       // primary: ,
                       children: [
                         for(FullLicence fullLicence in licenceController.fullLicences)
@@ -110,11 +117,8 @@ class _LicenceListScreenState extends State<LicenceListScreen> {
                       ],
                     ),
                   ),
-          
-        ),
-              SliverToBoxAdapter(
-                child: SizedBox(height: 3.h),
-              )
+                ),
+              SizedBox(height: 3.h)
                 ]
               
             ),

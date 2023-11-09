@@ -37,7 +37,7 @@ class _RenewLicenceImagesState extends State<RenewLicenceImages> {
           // appBar: AppBar(title: Text('تجديد الاجازة'+licenceController.selectedFullLicence!.licence!.numLicences!),),
           body: CustomScrollView(
             slivers:[
-              MyAppBar('تجديد الاجازة${licenceController.selectedFullLicence!.licence!.numLicences!}', context, false, licenceController, false, ),
+              MySliverAppBar('تجديد الاجازة${licenceController.selectedFullLicence!.licence!.numLicences!}', context, false, licenceController, false, ),
                
                
               SliverToBoxAdapter(child: SizedBox(height: 6.h,)),

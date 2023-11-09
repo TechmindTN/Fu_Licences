@@ -18,7 +18,9 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
   TextEditingController numControl=TextEditingController();
   @override
   void initState() {
+    
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
+    licenceController.currentPage=0;
     // licenceController.getLicences();
     // licenceController.getParameters();
     // licenceController.initSelected();
@@ -33,6 +35,7 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
                 textDirection: TextDirection.rtl,
 
           child: Scaffold(
+            // appBar: MyAppBar(title, context, isDrawer, licenceController, isActions),
             // appBar: AppBar(
             //   title: Text('Licences Filtree'),
             //   actions: [
@@ -47,31 +50,58 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
             //   ],
             // ),
             backgroundColor: const Color(0xfffafafa),
-            body: CustomScrollView(
-              slivers: [
-                MyAppBar("الاجازات المصفاة", context, false, licenceController, false),
-                SliverToBoxAdapter(
-                  child:  (licenceController.filteredFullLicences.isNotEmpty)?Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 2.h),
-                  for(FullLicence fullLicence in licenceController.filteredFullLicences)
-                  Center(child: LicenceItem(fullLicence,licenceController,context)),
-                ],
-              ):SizedBox(
-                height: 80.h,
-                child: const Column(mainAxisAlignment: MainAxisAlignment.center,
+            body: (licenceController.fullLicences.isNotEmpty)?Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+            // SizedBox(height: 2.h),
+            // Text('aaaaaa'),
+            //       Text('aaaaaa'),
+            //       Text('aaaaaa'),
+            //       Text('aaaaaa'),
+            NotificationListener<ScrollNotification>(
+
+              onNotification: (ScrollNotification scrollInfo){
+                    // print(scrollInfo.metrics.pixels);
+                    // scrollInfo.metrics.
+                    if (scrollInfo.metrics.pixels ==
+        scrollInfo.metrics.maxScrollExtent) {
+          if(scrollInfo.metrics.axisDirection==AxisDirection.down){
+          if(licenceController.lockScroll==false){
+            licenceController.currentPage++;
+            licenceController.filterNextLicences(context);
+            licenceController.lockScroll=true;
+          }
+          }
+          
+          print(licenceController.currentPage);
+        print('end of scroll');
+    }
+    return true;
+                  },
+              child: Expanded(
+                child: ListView(
+                  shrinkWrap: true,
                   children: [
-                    Center(child: Text('قائمة السجلات فارغة الرجاء تعديل معايير التصفية'),),
-                  ],
+                  //  Text('aaaa'),
+                  //  Text('aaaa'),
+                  //  Text('aaaa'),
+                  //  Text('aaaa'),
+                  //  Text('aaaa'), 
+                for(FullLicence fullLicence in licenceController.fullLicences)
+                Center(child: LicenceItem(fullLicence,licenceController,context)),
+                ]
                 ),
               ),
-                )
-                
-              ],
-              
-              
             ),
+            ],
+              ):SizedBox(
+            height: 80.h,
+            child: const Column(mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(child: Text('قائمة السجلات فارغة الرجاء تعديل معايير التصفية'),),
+            ],
+            ),
+              ),
             //  floatingActionButton: FloatingActionButton(onPressed: () {
             //   Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
             // },

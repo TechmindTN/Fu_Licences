@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../router/routes.dart';
 
-Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions){
+Widget MySliverAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions){
   return SliverAppBar(
     
     actions: (isActions)?[
@@ -109,6 +109,190 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
   );
 }
 
+
+Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions){
+  return PreferredSize(preferredSize: Size(100.w,10.h), child: Container(
+    child: Row(
+      children: [
+        SizedBox(),
+        Text(title,
+    style: const TextStyle(color: Colors.black),
+    ),
+    (isActions)?
+            PopupMenuButton(
+              
+              // surfaceTintColor: Colors.white,
+              color: Colors.white,
+              icon: const Icon(Icons.more_vert,color: Colors.black,),
+              itemBuilder: (context){
+                    //  if(licenceController.currentUser.club!.id!=null)
+                     return [
+                            const PopupMenuItem<int>(
+                              
+                                value: 0,
+                                child: Text("تعديل الاجازة"),
+                            ),
+
+                            const PopupMenuItem<int>(
+                                value: 1,
+                                child: Text("تعديل صور الاجازة"),
+                            ),
+
+                            const PopupMenuItem<int>(
+                                value: 2,
+                                child: Text("تجديد الاجازة"),
+                            ),
+                            
+                        ];
+                       
+                   },
+                   onSelected:(value){
+                    
+                     if(licenceController.selectedFullLicence!.licence!.role=="رياضي"){
+                      if(value == 0){
+                        GoRouter.of(context).push(Routes.EditAthleteLicenceScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceScreen())));
+                      }else if(value == 1){
+                        GoRouter.of(context).push(Routes.EditAthleteImagesScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                      }else if(value == 2){
+                        GoRouter.of(context).push(Routes.RenewAthleteImages);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => RenewLicenceImages())));
+                      }
+                   }
+                    else if(licenceController.selectedFullLicence!.licence!.role=="حكم"){
+                      if(value==0){
+                        GoRouter.of(context).push(Routes.EditArbitratorLicenceScreen);
+                      }
+                      else if(value == 1){
+                        GoRouter.of(context).push(Routes.EditArbitratorImagesScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                      }
+                      else if(value == 2){
+                        GoRouter.of(context).push(Routes.RenewArbitratorImagesScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                      }
+                    }
+                    else if(licenceController.selectedFullLicence!.licence!.role=="مدرب"){
+                      if(value==0){
+                        GoRouter.of(context).push(Routes.EditCoachLicenceScreen);
+                      }
+                      else if(value == 1){
+                        GoRouter.of(context).push(Routes.EditCoachImagesScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                      }
+                      else if(value == 2){
+                        GoRouter.of(context).push(Routes.RenewCoachImagesScreen);
+                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                      }
+                    }
+                   }
+                   )
+          :SizedBox(),
+      ],
+    ),
+  ),
+
+  );
+
+    
+  //   actions: (isActions)?[
+  //           PopupMenuButton(
+              
+  //             // surfaceTintColor: Colors.white,
+  //             color: Colors.white,
+  //             icon: const Icon(Icons.more_vert,color: Colors.black,),
+  //             itemBuilder: (context){
+  //                   //  if(licenceController.currentUser.club!.id!=null)
+  //                    return [
+  //                           const PopupMenuItem<int>(
+                              
+  //                               value: 0,
+  //                               child: Text("تعديل الاجازة"),
+  //                           ),
+
+  //                           const PopupMenuItem<int>(
+  //                               value: 1,
+  //                               child: Text("تعديل صور الاجازة"),
+  //                           ),
+
+  //                           const PopupMenuItem<int>(
+  //                               value: 2,
+  //                               child: Text("تجديد الاجازة"),
+  //                           ),
+                            
+  //                       ];
+                       
+  //                  },
+  //                  onSelected:(value){
+                    
+  //                    if(licenceController.selectedFullLicence!.licence!.role=="رياضي"){
+  //                     if(value == 0){
+  //                       GoRouter.of(context).push(Routes.EditAthleteLicenceScreen);
+  //                       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceScreen())));
+  //                     }else if(value == 1){
+  //                       GoRouter.of(context).push(Routes.EditAthleteImagesScreen);
+  //                       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+  //                     }else if(value == 2){
+  //                       GoRouter.of(context).push(Routes.RenewAthleteImages);
+  //                       // Navigator.push(context, MaterialPageRoute(builder: ((context) => RenewLicenceImages())));
+  //                     }
+  //                  }
+  //                   else if(licenceController.selectedFullLicence!.licence!.role=="حكم"){
+  //                     if(value==0){
+  //                       GoRouter.of(context).push(Routes.EditArbitratorLicenceScreen);
+  //                     }
+  //                     else if(value == 1){
+  //                       GoRouter.of(context).push(Routes.EditArbitratorImagesScreen);
+  //                       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+  //                     }
+  //                     else if(value == 2){
+  //                       GoRouter.of(context).push(Routes.RenewArbitratorImagesScreen);
+  //                       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+  //                     }
+  //                   }
+  //                   else if(licenceController.selectedFullLicence!.licence!.role=="مدرب"){
+  //                     if(value==0){
+  //                       GoRouter.of(context).push(Routes.EditCoachLicenceScreen);
+  //                     }
+  //                     else if(value == 1){
+  //                       GoRouter.of(context).push(Routes.EditCoachImagesScreen);
+  //                       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+  //                     }
+  //                     else if(value == 2){
+  //                       GoRouter.of(context).push(Routes.RenewCoachImagesScreen);
+  //                       // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+  //                     }
+  //                   }
+  //                  }
+  //                  )
+  //         ]:[],
+  //   surfaceTintColor: Colors.white,
+  //    floating: true,
+  //           snap: true,
+  //           pinned: false,
+  //           foregroundColor: Colors.white,
+  //   // collapsedHeight: 10.h,
+  //   leading: Visibility(
+  //     visible: isDrawer,
+  //     child: Builder(
+  //       builder: (context) {
+  //         return IconButton(icon:const Icon(Icons.short_text_rounded),
+  //         onPressed: ( ){
+  //           Scaffold.of(context).openDrawer();
+  //         },
+  //         color: Colors.black,
+  //         );
+  //       }
+  //     ),
+  //   ),
+  //   centerTitle: true,
+  //   backgroundColor: Colors.white,
+  //   title: Text(title,
+  //   style: const TextStyle(color: Colors.black),
+  //   ),
+  // );
+}
 
 
 Widget MyDrawer(LicenceProvider licenceController,context){

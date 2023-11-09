@@ -36,7 +36,7 @@ class _SelectRoleScreenState extends State<SelectRoleScreen> {
             // appBar: AppBar(title: Text("Selectioner le role"),),
             body: CustomScrollView(
               slivers: [
-                MyAppBar("اختيار نوع الاجازة", context, false, licenceController, false),
+                MySliverAppBar("اختيار نوع الاجازة", context, false, licenceController, false),
                 SliverToBoxAdapter(
                   child: SizedBox(height: 2.h),
                 ),

@@ -8,6 +8,8 @@ class Apis {
   final String login="login/";
   final String validateLicence="validateLicence/";
   final String licenceListInfo="licencelist_info/";
+  final String licenceById="licence_info/";
+  final String searchLicences="search_licences/";
   final String paginatedLicenceListInfo="paginated_licence/";
   final String getParameters="parameters/";
   final String uploadImage="upload_photo/";

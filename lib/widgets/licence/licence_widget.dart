@@ -951,7 +951,7 @@ FilterDialog(LicenceProvider licenceController, context) {
             InkWell(
               onTap: () {
                 licenceController.filterLicences(context);
-                
+                GoRouter.of(context).push(Routes.FilteredLicencesScreen);
                 // licenceController.findLicence(numControl.text, context);
               },
               child: const Center(child: Text('تأكيد',
@@ -968,7 +968,7 @@ FilterDialog(LicenceProvider licenceController, context) {
 }
 
 
-Widget LicenceListHeader(LicenceProvider licenceController,numControl,context){
+Widget LicenceListHeader(LicenceProvider licenceController,numControl,context,role){
   return Center(
     child: SizedBox(
       width: 90.w,
@@ -977,7 +977,7 @@ Widget LicenceListHeader(LicenceProvider licenceController,numControl,context){
         // SizedBox(height: 5.h,),
          FirstRow(licenceController),
          SizedBox(height: 3.h,),
-        SearchFilter(licenceController,numControl,context),
+        SearchFilter(licenceController,numControl,context,role),
         SizedBox(height: 3.h,)
        ],
       ),
@@ -1004,17 +1004,17 @@ Widget FirstRow(LicenceProvider licenceController){
   ],);
 }
 
-Widget SearchFilter(LicenceProvider licenceController,numControl,context){
+Widget SearchFilter(LicenceProvider licenceController,numControl,context,role){
   return Row(
     children: [
-      SearchField(licenceController,numControl,context),
+      SearchField(licenceController,numControl,context,role),
       SizedBox(width: 5.w,),
       FilterField(licenceController,context)
     ],
   );
 }
 
-Widget SearchField(LicenceProvider licenceController,numControl,context){
+Widget SearchField(LicenceProvider licenceController,numControl,context,role){
   return Container(
     width: 68.w,
     height: 8.h,
@@ -1030,7 +1030,7 @@ Widget SearchField(LicenceProvider licenceController,numControl,context){
       ],
       color: Colors.white
     ),
-    child: SearchInput(licenceController,numControl,context)
+    child: SearchInput(licenceController,numControl,context,role)
   );
 }
 Widget FilterField(LicenceProvider licenceController,context){

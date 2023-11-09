@@ -177,7 +177,7 @@ SeasonSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedSeason=value;
-      
+      // licenceController.filteredSe=value;
     },
     selectedItem: selected,
 ),
@@ -232,7 +232,7 @@ GategorySelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedCategory=value;
-      
+      licenceController.filteredCategory=value;
     },
     selectedItem: selected,
 ),
@@ -286,7 +286,7 @@ DegreeSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedDegree=value;
-      
+      licenceController.filteredDegree=value;
     },
     selectedItem: selected,
 ),
@@ -341,7 +341,7 @@ WeightSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedWeight=value;
-      
+      licenceController.filteredWeight=value;
     },
     selectedItem: selected,
 ),
@@ -396,7 +396,7 @@ ClubSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedClub=value;
-      
+      licenceController.filteredClub=value;
     },
     selectedItem: selected,
 ),
@@ -451,7 +451,7 @@ DisciplineSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedDiscipline=value;
-      
+      licenceController.filteredDiscipline=value;
     },
     selectedItem: selected,
 ),
@@ -507,6 +507,7 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedGrade=value;
+      licenceController.filteredGrade=value;
       
     },
     selectedItem: selected,
@@ -548,13 +549,19 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
   // DatePickerDialog(initialDate: DateTime.now(), firstDate: DateTime(1800), lastDate: DateTime.now());
 }
 
-SearchInput(LicenceProvider licenceController,numControl,context){
+SearchInput(LicenceProvider licenceController,numControl,context,role){
   return Center(
     child: Padding(
       padding: const EdgeInsets.only(left:12.0),
       child: TextFormField(
         onFieldSubmitted: (newValue) {
-          licenceController.findLicence(numControl.text, context);
+          // licenceController.findLicence(numControl.text, context);
+          if(numControl.text.length==13){
+          licenceController.searchFullLicences(context,numControl.text.toString());
+        }
+        else if(numControl.text.length<13){
+          licenceController.searchLicences(context,numControl.text.toString(),role);
+        }
         },
         controller: numControl,
           decoration: const InputDecoration.collapsed(
