@@ -5,6 +5,7 @@ import 'package:fu_licences/models/coach.dart';
 import 'package:fu_licences/models/full_licence.dart';
 import 'package:fu_licences/models/licence.dart';
 import 'package:fu_licences/models/parameters.dart';
+import 'package:fu_licences/models/stats.dart';
 import 'package:fu_licences/models/user.dart';
 import 'package:fu_licences/network/apis.dart';
 import 'package:fu_licences/network/licence_network.dart';
@@ -12,7 +13,6 @@ import 'package:fu_licences/screens/auth/login_Screen.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/arbitrator.dart';
 import '../models/athlete.dart';
 import '../models/category.dart';
@@ -26,7 +26,6 @@ import '../models/role.dart';
 import '../models/season.dart';
 import '../models/weight.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../router/routes.dart';
 import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
@@ -34,6 +33,7 @@ import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
    final ImagePicker _picker = ImagePicker();
+   Stats stats=Stats();
    int currentPage=0;
    bool lockScroll=false;
   bool isAscending =true;
@@ -57,8 +57,7 @@ class LicenceProvider extends ChangeNotifier {
   Weight? selectedWeight = Weight(masseEnKillograme: 0, id: -1);
   Discipline? selectedDiscipline = Discipline(name: "الرياضة", id: -1);
   Club? selectedClub = Club(name: "نادي", id: -1);
-    Category? filteredCategory = Category(categorieAge: "العمر", id: -1);
-
+  Category? filteredCategory = Category(categorieAge: "العمر", id: -1);
   Role? filteredRole = Role(roles: "نوع الاجازة", id: -1);
   Grade? filteredGrade = Grade(grade: "Grade", id: -1);
   Degree? filteredDegree = Degree(degree: "Degree", id: -1);
@@ -143,7 +142,7 @@ class LicenceProvider extends ChangeNotifier {
   }
   checkLogin(context) async {
     prefs=await SharedPreferences.getInstance();
-    prefs.clear();
+    // prefs.clear();
     if (prefs.containsKey('user') && prefs.getString('user')!=null && prefs.getString('user')!=""){
       next=const HomeScreen();
       login(context, prefs.getString('user'), prefs.getString('psd'));
@@ -1892,7 +1891,6 @@ editLicenceCoach(
   searchFullLicences(context,id) async {
     Response res=await licenceNetwork.getLicenceById(id);
     if(res.statusCode==200){
-      print(res.data);
       // FullLicence licence=FullLicence
       Profile profile=Profile.fromJson(res.data['profile']);
       Athlete athlete=Athlete.fromJson(res.data['athlete']);
@@ -1929,6 +1927,7 @@ editLicenceCoach(
 
   searchLicences(context,id,role) async {
     filteredFullLicences.clear();
+    fullLicences.clear();
     Response res=await licenceNetwork.searchLicences(id,role);
     if((res.statusCode==200)){
       for(int i=0;i<res.data.length;i++){
@@ -1945,7 +1944,7 @@ editLicenceCoach(
       
       }
 
-
+      fullLicences=filteredFullLicences;
       // FullLicence licence=FullLicence
       
       GoRouter.of(context).push(Routes.FilteredLicencesScreen);
@@ -1969,12 +1968,13 @@ editLicenceCoach(
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
       }
+      notify();
   }
 
 
   filterLicences(context) async {
     fullLicences.clear();
-    dynamic role=(filteredRole!.id!=-1)?filteredRole!.id:"";
+    // dynamic role=(filteredRole!.id!=-1)?filteredRole!.id:"";
       // dynamic state=(filteredStatus!.id!=-1)?filteredStatus!.id:"";
       // dynamic season=(filteredRole!.id!=-1)?filteredS!.id:"";
       dynamic club=(filteredClub!.id!=-1)?filteredClub!.id:"";
@@ -2002,8 +2002,6 @@ editLicenceCoach(
       };
     Response res=await licenceNetwork.filterLicences(mapdata, 10, 10);
     if(res.statusCode==200){
-      print(res.data);
-      print(res.data.length);
       filteredFullLicences.clear();
       for(int i=0;i<res.data.length;i++){
         Profile profile=Profile.fromJson(res.data[i]['profile']);
@@ -2050,7 +2048,7 @@ editLicenceCoach(
 
   filterNextLicences(context) async {
     // fullLicences.clear();
-    dynamic role=(filteredRole!.id!=-1)?filteredRole!.id:"";
+    // dynamic role=(filteredRole!.id!=-1)?filteredRole!.id:"";
       // dynamic state=(filteredStatus!.id!=-1)?filteredStatus!.id:"";
       // dynamic season=(filteredRole!.id!=-1)?filteredS!.id:"";
       dynamic club=(filteredClub!.id!=-1)?filteredClub!.id:"";
@@ -2078,8 +2076,7 @@ editLicenceCoach(
       };
     Response res=await licenceNetwork.filterLicences(mapdata, 10, 10);
     if(res.statusCode==200){
-      print(res.data);
-      print(res.data.length);
+
       // filteredFullLicences.clear();
       for(int i=0;i<res.data.length;i++){
         Profile profile=Profile.fromJson(res.data[i]['profile']);
@@ -2121,6 +2118,29 @@ editLicenceCoach(
           ..showSnackBar(snackBar);
     }
     lockScroll=false;
+  }
+
+  getStats() async {
+    Response res = await licenceNetwork.getStats();
+    if(res.statusCode==200){
+      stats=Stats.fromJson(res.data);
+     
+    }
+    else{
+    }
+
+     notify();
+  }
+
+
+  getClubStats(id) async {
+    Response res = await licenceNetwork.getClubStats(id);
+    if(res.statusCode==200){
+      stats=Stats.fromJson(res.data);
+    }
+    else{
+    }
+    notify();
   }
 
 }

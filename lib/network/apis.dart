@@ -36,5 +36,8 @@ final String grade="grade/";
 final String weight="weights/";
 final String discipline="discipline/";
 final String season="seasons/";
+final String getStats="stats/";
+final String getClubStats="club_stats/";
+
 }
 

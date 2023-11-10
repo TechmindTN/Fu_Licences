@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/models/full_licence.dart';
-import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class FilteredLicencesScreen extends StatefulWidget{
-  const FilteredLicencesScreen({super.key});
+class SearchedLicencesScreen extends StatefulWidget{
+  const SearchedLicencesScreen({super.key});
 
   @override
-  State<FilteredLicencesScreen> createState() => _FilteredLicencesScreenState();
+  State<SearchedLicencesScreen> createState() => _SearchedLicencesScreenState();
 }
 
-class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
+class _SearchedLicencesScreenState extends State<SearchedLicencesScreen> {
   late LicenceProvider licenceController;
   TextEditingController numControl=TextEditingController();
-  final GlobalKey<ScaffoldState> sKey=GlobalKey();
   @override
   void initState() {
     
@@ -36,8 +34,7 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
                 textDirection: TextDirection.rtl,
 
           child: Scaffold(
-            key: sKey,
-            appBar: MyAppBar("الاجازات المصفاة", context, false, licenceController, false,sKey,4),
+            // appBar: MyAppBar(title, context, isDrawer, licenceController, isActions),
             // appBar: AppBar(
             //   title: Text('Licences Filtree'),
             //   actions: [
@@ -56,10 +53,6 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
             // SizedBox(height: 2.h),
-            // Text('aaaaaa'),
-            //       Text('aaaaaa'),
-            //       Text('aaaaaa'),
-            //       Text('aaaaaa'),
             NotificationListener<ScrollNotification>(
 
               onNotification: (ScrollNotification scrollInfo){
@@ -69,12 +62,11 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
         scrollInfo.metrics.maxScrollExtent) {
           if(scrollInfo.metrics.axisDirection==AxisDirection.down){
           if(licenceController.lockScroll==false){
-            licenceController.currentPage++;
-            licenceController.filterNextLicences(context);
-            licenceController.lockScroll=true;
+            // licenceController.currentPage++;
+            // licenceController.filterNextLicences(context);
+            // licenceController.lockScroll=true;
           }
           }
-
     }
     return true;
                   },
@@ -82,11 +74,6 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-                  //  Text('aaaa'),
-                  //  Text('aaaa'),
-                  //  Text('aaaa'),
-                  //  Text('aaaa'),
-                  //  Text('aaaa'), 
                 for(FullLicence fullLicence in licenceController.fullLicences)
                 Center(child: LicenceItem(fullLicence,licenceController,context)),
                 ]

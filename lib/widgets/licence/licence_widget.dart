@@ -989,7 +989,7 @@ Widget FirstRow(LicenceProvider licenceController){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-    Text("المجموع: ${licenceController.fullLicences.length}",
+    Text("المجموع: ${licenceController.stats.totalLicences}",
      style: const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 20

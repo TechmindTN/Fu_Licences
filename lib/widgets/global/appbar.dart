@@ -110,86 +110,105 @@ Widget MySliverAppBar(title,context,isDrawer,LicenceProvider licenceController,i
 }
 
 
-Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions){
-  return PreferredSize(preferredSize: Size(100.w,10.h), child: Container(
-    child: Row(
-      children: [
-        SizedBox(),
-        Text(title,
-    style: const TextStyle(color: Colors.black),
-    ),
-    (isActions)?
-            PopupMenuButton(
+ MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions,GlobalKey<ScaffoldState> key,double padding){
+  return PreferredSize(preferredSize: Size(100.w,7.h), child: SizedBox(
+    height: 7.h,
+    child: Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+
+            padding: const EdgeInsets.only(right:8.0,bottom: 8),
+            child: (isDrawer)?InkWell(
+              onTap: () {
+                key.currentState?.openDrawer();
+              },
+              child: const Icon(Icons.short_text,
+              size: 25,
               
-              // surfaceTintColor: Colors.white,
-              color: Colors.white,
-              icon: const Icon(Icons.more_vert,color: Colors.black,),
-              itemBuilder: (context){
-                    //  if(licenceController.currentUser.club!.id!=null)
-                     return [
-                            const PopupMenuItem<int>(
+              ),
+            ):const SizedBox()
+          ),
+          Text(title,
+      style: const TextStyle(color: Colors.black,
+      fontWeight: FontWeight.w700,
+      fontSize: 20
+      ),
+      ),
+      (isActions)?
+              PopupMenuButton(
+                
+                // surfaceTintColor: Colors.white,
+                color: Colors.white,
+                icon: const Icon(Icons.more_vert,color: Colors.black,),
+                itemBuilder: (context){
+                      //  if(licenceController.currentUser.club!.id!=null)
+                       return [
+                              const PopupMenuItem<int>(
+                                
+                                  value: 0,
+                                  child: Text("تعديل الاجازة"),
+                              ),
+        
+                              const PopupMenuItem<int>(
+                                  value: 1,
+                                  child: Text("تعديل صور الاجازة"),
+                              ),
+        
+                              const PopupMenuItem<int>(
+                                  value: 2,
+                                  child: Text("تجديد الاجازة"),
+                              ),
                               
-                                value: 0,
-                                child: Text("تعديل الاجازة"),
-                            ),
-
-                            const PopupMenuItem<int>(
-                                value: 1,
-                                child: Text("تعديل صور الاجازة"),
-                            ),
-
-                            const PopupMenuItem<int>(
-                                value: 2,
-                                child: Text("تجديد الاجازة"),
-                            ),
-                            
-                        ];
-                       
-                   },
-                   onSelected:(value){
-                    
-                     if(licenceController.selectedFullLicence!.licence!.role=="رياضي"){
-                      if(value == 0){
-                        GoRouter.of(context).push(Routes.EditAthleteLicenceScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceScreen())));
-                      }else if(value == 1){
-                        GoRouter.of(context).push(Routes.EditAthleteImagesScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
-                      }else if(value == 2){
-                        GoRouter.of(context).push(Routes.RenewAthleteImages);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => RenewLicenceImages())));
+                          ];
+                         
+                     },
+                     onSelected:(value){
+                      
+                       if(licenceController.selectedFullLicence!.licence!.role=="رياضي"){
+                        if(value == 0){
+                          GoRouter.of(context).push(Routes.EditAthleteLicenceScreen);
+                          // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceScreen())));
+                        }else if(value == 1){
+                          GoRouter.of(context).push(Routes.EditAthleteImagesScreen);
+                          // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                        }else if(value == 2){
+                          GoRouter.of(context).push(Routes.RenewAthleteImages);
+                          // Navigator.push(context, MaterialPageRoute(builder: ((context) => RenewLicenceImages())));
+                        }
+                     }
+                      else if(licenceController.selectedFullLicence!.licence!.role=="حكم"){
+                        if(value==0){
+                          GoRouter.of(context).push(Routes.EditArbitratorLicenceScreen);
+                        }
+                        else if(value == 1){
+                          GoRouter.of(context).push(Routes.EditArbitratorImagesScreen);
+                          // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                        }
+                        else if(value == 2){
+                          GoRouter.of(context).push(Routes.RenewArbitratorImagesScreen);
+                          // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                        }
                       }
-                   }
-                    else if(licenceController.selectedFullLicence!.licence!.role=="حكم"){
-                      if(value==0){
-                        GoRouter.of(context).push(Routes.EditArbitratorLicenceScreen);
+                      else if(licenceController.selectedFullLicence!.licence!.role=="مدرب"){
+                        if(value==0){
+                          GoRouter.of(context).push(Routes.EditCoachLicenceScreen);
+                        }
+                        else if(value == 1){
+                          GoRouter.of(context).push(Routes.EditCoachImagesScreen);
+                          // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                        }
+                        else if(value == 2){
+                          GoRouter.of(context).push(Routes.RenewCoachImagesScreen);
+                          // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                        }
                       }
-                      else if(value == 1){
-                        GoRouter.of(context).push(Routes.EditArbitratorImagesScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
-                      }
-                      else if(value == 2){
-                        GoRouter.of(context).push(Routes.RenewArbitratorImagesScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
-                      }
-                    }
-                    else if(licenceController.selectedFullLicence!.licence!.role=="مدرب"){
-                      if(value==0){
-                        GoRouter.of(context).push(Routes.EditCoachLicenceScreen);
-                      }
-                      else if(value == 1){
-                        GoRouter.of(context).push(Routes.EditCoachImagesScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
-                      }
-                      else if(value == 2){
-                        GoRouter.of(context).push(Routes.RenewCoachImagesScreen);
-                        // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
-                      }
-                    }
-                   }
-                   )
-          :SizedBox(),
-      ],
+                     }
+                     )
+            :SizedBox(width: padding.w,),
+        ],
+      ),
     ),
   ),
 

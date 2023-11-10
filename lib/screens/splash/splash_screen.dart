@@ -18,9 +18,21 @@ class _MySplashScreenState extends State<MySplashScreen> {
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
     licenceController.checkLogin(context);
+    
     // licenceController.checkLogin(context);
     
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if(licenceController.currentUser.club!.id==null){
+      licenceController.getStats();
+    }
+    // else{
+    //   licenceController.getClubStats();
+    // }
+    super.didChangeDependencies();
   }
   @override
   Widget build(BuildContext context) {

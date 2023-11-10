@@ -152,7 +152,7 @@ class LicenceNetwork {
   }
 
   getLicenceById(id) async {
-    Response res = await apis.dio.get(apis.baseUrl+apis.licenceById+id+"/",
+    Response res = await apis.dio.get("${apis.baseUrl+apis.licenceById+id}/",
     options: Options(
       headers: {
         "Authorization":Apis.tempToken
@@ -163,7 +163,7 @@ class LicenceNetwork {
   }
 
   searchLicences(id,role) async {
-    Response res = await apis.dio.post(apis.baseUrl+apis.searchLicences+id+"/",
+    Response res = await apis.dio.post("${apis.baseUrl+apis.searchLicences+id}/",
     options: Options(
       headers: {
         "Authorization":Apis.tempToken,
@@ -186,6 +186,30 @@ class LicenceNetwork {
       },    
     ),
     data: data
+    );
+    return res;
+  }
+
+  getStats() async {
+    Response res = await apis.dio.get(apis.baseUrl+apis.getStats,
+    options: Options(
+      headers: {
+        "Authorization":Apis.tempToken,
+
+      },    
+    ),
+    );
+    return res;
+  }
+
+  getClubStats(id) async {
+    Response res = await apis.dio.get("${apis.baseUrl+apis.getClubStats+id}/",
+    options: Options(
+      headers: {
+        "Authorization":Apis.tempToken,
+
+      },    
+    ),
     );
     return res;
   }

@@ -20,7 +20,7 @@ class LicenceListScreen extends StatefulWidget{
 class _LicenceListScreenState extends State<LicenceListScreen> {
   late LicenceProvider licenceController;
   TextEditingController numControl=TextEditingController();
-
+  final GlobalKey<ScaffoldState> sKey=GlobalKey();
   @override
   void didChangeDependencies() {
    
@@ -65,11 +65,12 @@ class _LicenceListScreenState extends State<LicenceListScreen> {
                 textDirection: TextDirection.rtl,
 
           child: Scaffold(
+            key: sKey,
             drawer: MyDrawer(licenceController, context),
             
             
             backgroundColor: const Color(0xfffafafa),
-            // appBar: MyAppBar("الاجازات", context, true,licenceController,false),
+            appBar: MyAppBar("الاجازات", context, true,licenceController,false,sKey,14),
             body: Column(
               // physics: const NeverScrollableScrollPhysics(),
               // controller: ScrollController(),
@@ -97,9 +98,7 @@ class _LicenceListScreenState extends State<LicenceListScreen> {
             licenceController.lockScroll=true;
           }
           
-          
-          print(licenceController.currentPage);
-        print('end of scroll');
+
     }
     return true;
                   },
