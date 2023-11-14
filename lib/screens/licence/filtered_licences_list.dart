@@ -72,7 +72,7 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
                     child: PaginatedDataTable(
                       header: SizedBox(
                         width: 80.w,
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             // Text("المجموع: ${licenceController.stats.totalLicences!}")
@@ -87,9 +87,7 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
                               licenceController.currentPage--;
                               licenceController.filterLicences(context);
                               licenceController.notify();
-
                               // setState(() {
-                                
                               // });
                               }
                             }, icon:const Icon(Icons.keyboard_arrow_right_outlined)),

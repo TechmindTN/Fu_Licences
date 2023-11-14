@@ -42,7 +42,7 @@ import '../widgets/licence/licence_widget.dart';
 class LicenceProvider extends ChangeNotifier {
   int currentPage=1;
   Version currentVersion=Version(
-    version: "0.10"
+    version: "0.11"
   );
   bool logged=false;
   bool isAscending =true;

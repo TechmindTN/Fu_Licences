@@ -694,9 +694,9 @@ SearchInput(LicenceProvider licenceController,numControl,context,role){
         onFieldSubmitted: (newValue) {
           // licenceController.findLicence(numControl.text, context);
           if(numControl.text.length==13){
-          licenceController.searchFullLicence(context,numControl.tex.toString());
+          licenceController.searchFullLicence(context,numControl.text.toString());
         }
-        else if(numControl.text.length<13){
+        else if(numControl.text.toString().length<13){
           licenceController.searchLicences(context,numControl.text.toString(),role);
         }
 
