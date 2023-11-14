@@ -102,7 +102,7 @@ Widget MySliverAppBar(title,context,isDrawer,LicenceProvider licenceController,i
       ),
     ),
     centerTitle: true,
-    backgroundColor: Color.fromARGB(255, 66, 144, 208),
+    backgroundColor: const Color.fromARGB(255, 66, 144, 208),
     title: Text(title,
     style: const TextStyle(color: Colors.white),
     ),
@@ -114,7 +114,7 @@ Widget MySliverAppBar(title,context,isDrawer,LicenceProvider licenceController,i
   return PreferredSize(preferredSize: Size(100.w,8.h),
   
    child: Container(
-    color: Color.fromARGB(255, 66, 144, 208),
+    color: const Color.fromARGB(255, 66, 144, 208),
     height: 8.h,
     child: Center(
       child: Row(

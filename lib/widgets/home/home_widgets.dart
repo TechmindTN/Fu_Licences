@@ -4,8 +4,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/models/stats.dart';
-import 'package:fu_licences/router/routes.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 Widget imageWidget(){

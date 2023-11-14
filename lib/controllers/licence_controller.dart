@@ -2125,7 +2125,6 @@ editLicenceCoach(
     if(res.statusCode==200){
 
       stats=Stats.fromJson(res.data);
-      print("Arbitrator Licences: "+stats.arbitratorsLicences!.total.toString());
      
     }
     else{
