@@ -16,7 +16,7 @@ Widget MySliverAppBar(title,context,isDrawer,LicenceProvider licenceController,i
               
               // surfaceTintColor: Colors.white,
               color: Colors.white,
-              icon: const Icon(Icons.more_vert,color: Colors.black,),
+              icon: const Icon(Icons.more_vert,color: Colors.white,),
               itemBuilder: (context){
                     //  if(licenceController.currentUser.club!.id!=null)
                      return [
@@ -92,7 +92,7 @@ Widget MySliverAppBar(title,context,isDrawer,LicenceProvider licenceController,i
       visible: isDrawer,
       child: Builder(
         builder: (context) {
-          return IconButton(icon:const Icon(Icons.short_text_rounded),
+          return IconButton(icon:const Icon(Icons.short_text_rounded,color: Colors.white,),
           onPressed: ( ){
             Scaffold.of(context).openDrawer();
           },
@@ -102,17 +102,20 @@ Widget MySliverAppBar(title,context,isDrawer,LicenceProvider licenceController,i
       ),
     ),
     centerTitle: true,
-    backgroundColor: Colors.white,
+    backgroundColor: Color.fromARGB(255, 66, 144, 208),
     title: Text(title,
-    style: const TextStyle(color: Colors.black),
+    style: const TextStyle(color: Colors.white),
     ),
   );
 }
 
 
  MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActions,GlobalKey<ScaffoldState> key,double padding){
-  return PreferredSize(preferredSize: Size(100.w,7.h), child: SizedBox(
-    height: 7.h,
+  return PreferredSize(preferredSize: Size(100.w,8.h),
+  
+   child: Container(
+    color: Color.fromARGB(255, 66, 144, 208),
+    height: 8.h,
     child: Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -125,13 +128,14 @@ Widget MySliverAppBar(title,context,isDrawer,LicenceProvider licenceController,i
                 key.currentState?.openDrawer();
               },
               child: const Icon(Icons.short_text,
+              color: Colors.white,
               size: 25,
               
               ),
             ):const SizedBox()
           ),
           Text(title,
-      style: const TextStyle(color: Colors.black,
+      style: const TextStyle(color: Colors.white,
       fontWeight: FontWeight.w700,
       fontSize: 20
       ),

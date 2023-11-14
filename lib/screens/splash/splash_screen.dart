@@ -26,9 +26,9 @@ class _MySplashScreenState extends State<MySplashScreen> {
 
   @override
   void didChangeDependencies() {
-    if(licenceController.currentUser.club!.id==null){
+    // if(licenceController.currentUser.club!.id==null){
       licenceController.getStats();
-    }
+    // }
     // else{
     //   licenceController.getClubStats();
     // }

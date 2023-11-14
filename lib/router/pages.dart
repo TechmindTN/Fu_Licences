@@ -17,6 +17,7 @@ import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_images
 import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_licence_screen.dart';
 import 'package:fu_licences/screens/parameters/parameters_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
+import 'package:fu_licences/screens/root/root_screen.dart';
 import 'package:fu_licences/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/arbitre/add_arbitre_screen.dart';
@@ -55,6 +56,9 @@ class Pages{
       // ),
       GoRoute(path: Routes.AddAthleteLicenceScreen,
       builder: (context, state) => const AddAthleteScreen(),
+      ),
+      GoRoute(path: Routes.Root,
+      builder: (context, state) =>  const RootScreen(),
       ),
       GoRoute(path: Routes.AddProfileScreen,
       builder: (context, state) => const AddProfileScreen(),

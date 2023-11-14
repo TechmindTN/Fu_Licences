@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fu_licences/screens/home/bottom_bar.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/home/home_widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../controllers/licence_controller.dart';
 
@@ -26,31 +26,36 @@ class _HomeScreenState extends State<HomeScreen> {
     return Directionality(
             textDirection: TextDirection.rtl,
 
-      child: Scaffold(
-        backgroundColor: const Color(0xfffafafa),
-        drawer: MyDrawer(licenceController,context),
-        body: CustomScrollView(
-          slivers: [
-            MySliverAppBar((licenceController.currentUser.club!.id==null)?"ADMIN":licenceController.currentUser.club!.name,context,true,licenceController,false),
-            // HomeCorps
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  imageWidget(),
-                  SeasonWidget(),
-                  StatItems(),
-                  MyChart(),
-                  RecentLicences()
-                ],
-              ),
-            )
+      child: Consumer<LicenceProvider>(
+        builder: (context,licenceController,child) {
+          return Scaffold(
+            backgroundColor: const Color(0xfffafafa),
+            drawer: MyDrawer(licenceController,context),
+            body: CustomScrollView(
+              slivers: [
+                MySliverAppBar((licenceController.currentUser.club!.id==null)?"ADMIN":licenceController.currentUser.club!.name,context,true,licenceController,false),
+                // HomeCorps
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 3.h,),
+                      imageWidget(),
+                      SeasonWidget(),
+                      StatItems(licenceController.stats,context,licenceController),
+                      MyChart(licenceController.stats,),
+                      // RecentLicences()
+                    ],
+                  ),
+                )
     
-          ],
-          // child: Container(child: Center(
-          //   child: Text("Home Screen"),
-          // )),
-        ),
-        bottomNavigationBar: const BottomBarScreen(currentIndex: 2),
+              ],
+              // child: Container(child: Center(
+              //   child: Text("Home Screen"),
+              // )),
+            ),
+            // bottomNavigationBar: const BottomBarScreen(currentIndex: 2),
+          );
+        }
       ),
     );
 

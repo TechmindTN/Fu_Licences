@@ -39,14 +39,14 @@ List<Widget> _buildScreens() => [
           title: "الاعدادات",
           activeColorPrimary: Colors.teal,
           inactiveColorPrimary: Colors.grey,
-          routeAndNavigatorSettings: const RouteAndNavigatorSettings(
+          // routeAndNavigatorSettings: const RouteAndNavigatorSettings(
 
-            // initialRoute: "/",
-            // routes: {
-            //   "/first": (final context) =>  LicenceListScreen(),
-            //   "/second": (final context) =>  SelectRoleScreen(),
-            // },
-          ),
+          //   // initialRoute: "/",
+          //   // routes: {
+          //   //   "/first": (final context) =>  LicenceListScreen(),
+          //   //   "/second": (final context) =>  SelectRoleScreen(),
+          //   // },
+          // ),
         ),
         PersistentBottomNavBarItem(
             icon: const Icon(Icons.home),
@@ -59,9 +59,9 @@ List<Widget> _buildScreens() => [
           title: "الاجازات",
           activeColorPrimary: Colors.blueAccent,
           inactiveColorPrimary: Colors.grey,
-          routeAndNavigatorSettings: const RouteAndNavigatorSettings(
+          // routeAndNavigatorSettings: const RouteAndNavigatorSettings(
          
-          ),
+          // ),
         ),
       
       ];

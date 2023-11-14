@@ -10,7 +10,7 @@ import 'package:fu_licences/models/user.dart';
 import 'package:fu_licences/network/apis.dart';
 import 'package:fu_licences/network/licence_network.dart';
 import 'package:fu_licences/screens/auth/login_Screen.dart';
-import 'package:fu_licences/screens/home/home_screen.dart';
+import 'package:fu_licences/screens/root/root_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/arbitrator.dart';
@@ -109,7 +109,7 @@ class LicenceProvider extends ChangeNotifier {
          prefs= await SharedPreferences.getInstance();
          prefs.setString('user', login);
          prefs.setString('psd', password);
-        GoRouter.of(context).go(Routes.Home);
+        GoRouter.of(context).go(Routes.Root);
       }
     }
     else{
@@ -144,7 +144,7 @@ class LicenceProvider extends ChangeNotifier {
     prefs=await SharedPreferences.getInstance();
     // prefs.clear();
     if (prefs.containsKey('user') && prefs.getString('user')!=null && prefs.getString('user')!=""){
-      next=const HomeScreen();
+      next= const RootScreen();
       login(context, prefs.getString('user'), prefs.getString('psd'));
     }
     else{
@@ -2123,7 +2123,9 @@ editLicenceCoach(
   getStats() async {
     Response res = await licenceNetwork.getStats();
     if(res.statusCode==200){
+
       stats=Stats.fromJson(res.data);
+      print("Arbitrator Licences: "+stats.arbitratorsLicences!.total.toString());
      
     }
     else{
