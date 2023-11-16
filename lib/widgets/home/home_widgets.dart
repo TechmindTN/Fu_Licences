@@ -4,7 +4,9 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
+import 'package:fu_licences/controllers/parameters_controller.dart';
 import 'package:fu_licences/models/Stats.dart';
+import 'package:fu_licences/models/season.dart';
 import 'package:fu_licences/router/routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -27,23 +29,24 @@ Widget imageWidget(){
   );
 }
 
-Widget SeasonWidget(){
-  return const Directionality(
+Widget SeasonWidget(LicenceProvider licenceController){
+  Season activeSeason=licenceController.parameters!.seasons!.firstWhere((element) => element.activated==true);
+  return  Directionality(
             textDirection: TextDirection.rtl,
 
     child: Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("الموسم ",
+            const Text("الموسم ",
             style: TextStyle(
               fontSize: 20
             ),
             ),
-            Text("2022-2023",
-            style: TextStyle(
+            Text(activeSeason.seasons??"2023-2024",
+            style: const TextStyle(
               fontSize: 20,
               color: Color(0xff2DA9E0)
             ),

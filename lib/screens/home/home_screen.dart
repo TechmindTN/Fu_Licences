@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
         licenceController.checkVersion(context);
-
+    licenceController.getParameters();
     ////print(Apis.tempToken);
     // licenceController.login(context,login,);
     super.initState();
@@ -191,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                     // imageWidget(),
-                                    SeasonWidget(),
+                                    SeasonWidget(licenceController),
                                     StatItems(licenceController.stats,context,licenceController),
                                     MyChart(licenceController.stats),
                                     
