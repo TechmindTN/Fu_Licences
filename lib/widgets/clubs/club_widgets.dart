@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:fu_licences/widgets/global/buttons.dart';
 import 'package:fu_licences/widgets/global/inputs.dart';
@@ -96,136 +98,132 @@ Widget ClubItem(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       
-                      Container(
-                        // autogroupf8ygfNg (F37UWyTEf3kHxVUS2BF8YG)
-                        //height: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 28.w,
-                              // athletecYp (1:65)
-                              margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'الولاية',
-                                    style: SafeGoogleFont(
-                                      'Inter',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400,
-                                      // height: 1.2125,
-                                      color: const Color(0xff000000),
-                                    ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 28.w,
+                            // athletecYp (1:65)
+                            margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'الولاية',
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: const Color(0xff000000),
                                   ),
-                                  Text(
-                                    club.ligue.toString(),
-                                    //fullLicence.licence!.role!,
-                                    style: SafeGoogleFont(
-                                      'Inter',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400,
-                                      // height: 1.2125,
-                                      color: const Color(0xff717171),
-                                    ),
+                                ),
+                                Text(
+                                  club.ligue.toString(),
+                                  //fullLicence.licence!.role!,
+                                  style: SafeGoogleFont(
+                                    'Inter',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    // height: 1.2125,
+                                    color: const Color(0xff717171),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          
-                            // Container(
-                            //   margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                            //   width: 38.w,
-                            //   child: Row(
-                            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //     children: [
-                            //       Text(
-                            //         "Age",
-                            //         style: SafeGoogleFont(
-                            //           'Inter',
-                            //           fontSize: 18,
-                            //           fontWeight: FontWeight.w400,
-                            //           // height: 1.2125,
-                            //           color: Color(0xff000000),
-                            //         ),
-                            //       ),
-                            //       Text(
-                            //         // akaberTZS (2:232)
-                            //         fullLicence.licence!.categorie.toString(),
-                            //         style: SafeGoogleFont(
-                            //           'Inter',
-                            //           fontSize: 18,
-                            //           fontWeight: FontWeight.w400,
-                            //           // height: 1.2125,
-                            //           color: Color(0xff717171),
-                            //         ),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-                            // Container(
-                            //   margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                            //   width: 38.w,
-                            //   child: Row(
-                            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //     children: [
-                            //       Text(
-                            //         'الولاية',
-                            //         style: SafeGoogleFont(
-                            //           'Inter',
-                            //           fontSize: 18,
-                            //           fontWeight: FontWeight.w400,
-                            //           // height: 1.2125,
-                            //           color: Color(0xff000000),
-                            //         ),
-                            //       ),
-                            //       Text(
-                            //         fullLicence.profile!.state.toString(),
-                            //         style: SafeGoogleFont(
-                            //           'Inter',
-                            //           fontSize: 18,
-                            //           fontWeight: FontWeight.w400,
-                            //           // height: 1.2125,
-                            //           color: Color(0xff717171),
-                            //         ),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-                            // Container(
-                            //   margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                            //   width: 38.w,
-                            //   child: Row(
-                            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          ),
+                        
+                          // Container(
+                          //   margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                          //   width: 38.w,
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          //       Text(
+                          //         "Age",
+                          //         style: SafeGoogleFont(
+                          //           'Inter',
+                          //           fontSize: 18,
+                          //           fontWeight: FontWeight.w400,
+                          //           // height: 1.2125,
+                          //           color: Color(0xff000000),
+                          //         ),
+                          //       ),
+                          //       Text(
+                          //         // akaberTZS (2:232)
+                          //         fullLicence.licence!.categorie.toString(),
+                          //         style: SafeGoogleFont(
+                          //           'Inter',
+                          //           fontSize: 18,
+                          //           fontWeight: FontWeight.w400,
+                          //           // height: 1.2125,
+                          //           color: Color(0xff717171),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // Container(
+                          //   margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                          //   width: 38.w,
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          //       Text(
+                          //         'الولاية',
+                          //         style: SafeGoogleFont(
+                          //           'Inter',
+                          //           fontSize: 18,
+                          //           fontWeight: FontWeight.w400,
+                          //           // height: 1.2125,
+                          //           color: Color(0xff000000),
+                          //         ),
+                          //       ),
+                          //       Text(
+                          //         fullLicence.profile!.state.toString(),
+                          //         style: SafeGoogleFont(
+                          //           'Inter',
+                          //           fontSize: 18,
+                          //           fontWeight: FontWeight.w400,
+                          //           // height: 1.2125,
+                          //           color: Color(0xff717171),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // Container(
+                          //   margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                          //   width: 38.w,
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              
+                          //     children: [
+                          //      Text(
+                          //         'الموسم',
+                          //         style: SafeGoogleFont(
+                          //           'Inter',
+                          //           fontSize: 18,
+                          //           fontWeight: FontWeight.w400,
+                          //           // height: 1.2125,
+                          //           color: Color(0xff000000),
+                          //         ),
+                          //       ),
                                 
-                            //     children: [
-                            //      Text(
-                            //         'الموسم',
-                            //         style: SafeGoogleFont(
-                            //           'Inter',
-                            //           fontSize: 18,
-                            //           fontWeight: FontWeight.w400,
-                            //           // height: 1.2125,
-                            //           color: Color(0xff000000),
-                            //         ),
-                            //       ),
-                                  
-                            //       Text(
-                            //         fullLicence.licence!.seasons.toString()!,
-                            //         style: SafeGoogleFont(
-                            //           'Inter',
-                            //           fontSize: 18,
-                            //           fontWeight: FontWeight.w400,
-                            //           // height: 1.2125,
-                            //           color: Color(0xff717171),
-                            //         ),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-                          ],
-                        ),
+                          //       Text(
+                          //         fullLicence.licence!.seasons.toString()!,
+                          //         style: SafeGoogleFont(
+                          //           'Inter',
+                          //           fontSize: 18,
+                          //           fontWeight: FontWeight.w400,
+                          //           // height: 1.2125,
+                          //           color: Color(0xff717171),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                        ],
                       ),
                     ],
                   ),

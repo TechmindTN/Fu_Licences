@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, prefer_interpolation_to_compose_strings
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
@@ -109,7 +111,8 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
     // },
     onChanged: (value){
       selected=value;
-      if(txt=="الجنس"){
+      
+      if(txt=="الجنس *"){
         licenceController.selectedSex=value!;
       }
       else if(txt=="الولاية"){
@@ -572,8 +575,6 @@ DisciplineSelectInput(txt,selected,LicenceProvider licenceController){
     //   licenceController.notify();
     // },
     onChanged: (value){
-      print(value);
-      print(value!.id);
       selected=value;
       licenceController.selectedDiscipline=value;
       licenceController.filteredDiscipline=value;
@@ -656,6 +657,7 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
           onTap: () async {
              DateTime? date=await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1800), lastDate: DateTime.now()); 
              selected=date;
+             licenceController.selectedBirth=date;
              control.text="${date!.year}-${date.month}-${date.day}";
              licenceController.notify();
           },
@@ -663,6 +665,9 @@ GradeSelectInput(txt,selected,LicenceProvider licenceController){
             width: 50.w,
             height: 5.h,
             child: TextFormField(
+              onChanged: ((value) {
+                // print(licenceController.sele)
+              }),
               enabled: false,
               decoration: const InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)),)),
               controller: control,

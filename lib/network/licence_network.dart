@@ -190,7 +190,7 @@ class LicenceNetwork {
   }
 
   getLicenceById(id) async {
-    Response res = await apis.dio.get(apis.baseUrl+apis.licenceById+id+"/",
+    Response res = await apis.dio.get("${apis.baseUrl+apis.licenceById+id}/",
     options: Options(
       headers: {
         "Authorization":Apis.tempToken
@@ -201,7 +201,7 @@ class LicenceNetwork {
   }
 
   searchLicences(id,role) async {
-    Response res = await apis.dio.post(apis.baseUrl+apis.searchLicences+id+"/",
+    Response res = await apis.dio.post("${apis.baseUrl+apis.searchLicences+id}/",
     options: Options(
       headers: {
         "Authorization":Apis.tempToken,

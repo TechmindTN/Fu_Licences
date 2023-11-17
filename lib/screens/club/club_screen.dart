@@ -22,7 +22,6 @@ class _ClubScreenState extends State<ClubScreen> {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
     clubController=Provider.of<ClubProvider>(context,listen: false);
     ////print(clubController.selectedClub.name);
-    // TODO: implement initState
     super.initState();
   }
   @override

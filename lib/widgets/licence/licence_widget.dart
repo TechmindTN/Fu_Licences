@@ -19,7 +19,6 @@ import '../global/inputs.dart';
 
 Widget LicenceItem(
     FullLicence fullLicence, LicenceProvider licenceController, context) {
-      print('item');
       // print(fullLicence);
   return Directionality(
             textDirection: TextDirection.rtl,

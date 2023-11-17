@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings
+// ignore_for_file: prefer_interpolation_to_compose_strings, non_constant_identifier_names
 import 'dart:developer';
 import 'dart:io';
 import 'package:fu_licences/models/version.dart';
@@ -42,7 +42,7 @@ import '../widgets/licence/licence_widget.dart';
 class LicenceProvider extends ChangeNotifier {
   int currentPage=1;
   Version currentVersion=Version(
-    version: "0.11"
+    version: "0.12"
   );
   bool logged=false;
   bool isAscending =true;
@@ -278,7 +278,6 @@ class LicenceProvider extends ChangeNotifier {
   filterLicences(context) async {
     fullLicences.clear();
     // if(selectedRole)
-    print(filteredDiscipline);
     dynamic role=(filteredRole!.id!=-1)?filteredRole!.id:"";
       // dynamic state=(filteredStatus!.id!=-1)?filteredStatus!.id:"";
       // dynamic season=(filteredRole!.id!=-1)?filteredS!.id:"";
@@ -288,7 +287,6 @@ class LicenceProvider extends ChangeNotifier {
       dynamic grade=(filteredGrade!.id!=-1)?filteredGrade!.id:"";
       dynamic weight=(filteredWeight!.id!=-1)?filteredWeight!.id:"";
       dynamic discipline=(filteredDiscipline!.id!=-1)?filteredDiscipline!.id:"";
-      print(filteredDiscipline!.id);
       // print(object)
       Map<String,dynamic> mapdata={
         "userid":274,
@@ -305,11 +303,8 @@ class LicenceProvider extends ChangeNotifier {
 "weight":weight,
 "discipline":discipline,
       };
-      print(mapdata);
     Response res=await licenceNetwork.filterLicences(mapdata, 10, 10);
     if(res.statusCode==200){
-      print(res.data);
-      print(res.data.length);
       filteredFullLicences.clear();
       for(int i=0;i<res.data.length;i++){
         
@@ -507,7 +502,6 @@ getPaginatedLicences({int? role}) async {
           FullLicence fullLicence = FullLicence();
           
           Profile profile = Profile.fromJson(r['profile']);
-          print('photo: '+profile.profilePhoto.toString());
           fullLicence.profile = profile;
           Licence licence = Licence.fromJson(r['licence']);
           fullLicence.licence = licence;
@@ -550,7 +544,6 @@ getPaginatedLicences({int? role}) async {
           FullLicence fullLicence = FullLicence();
           
           Profile profile = Profile.fromJson(r['profile']);
-          print('photo: '+profile.profilePhoto.toString());
           fullLicence.profile = profile;
           Licence licence = Licence.fromJson(r['licence']);
           fullLicence.licence = licence;
@@ -882,14 +875,17 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       String? phone,
       String? state}) {
     createdFullLicence!.profile!.address = address;
-    createdFullLicence!.profile!.birthday = selectedBirth.toString();
+    createdFullLicence!.profile!.birthday = selectedBirth!.year.toString()+"-"+selectedBirth!.month.toString()+"-"+selectedBirth!.day.toString();
+    // selectedBirth.toString();
     createdFullLicence!.profile!.cin = cin;
+    createdFullLicence!.profile!.country = 'تونس';
     createdFullLicence!.profile!.firstName = firstName;
     createdFullLicence!.profile!.lastName = lastName;
     createdFullLicence!.profile!.phone = int.parse(phone!);
     createdFullLicence!.profile!.role = 2;
     createdFullLicence!.profile!.sexe = selectedSex;
-    createdFullLicence!.profile!.state = selectedState;
+    
+    // createdFullLicence!.profile!.state = selectedState;
     User user = User(
         isSuperuser: false,
         username: createdFullLicence!.profile!.phone.toString(),
@@ -1139,8 +1135,8 @@ createArbitreLicence(context) async {
     mapdata['user'] = createdFullLicence!.user!.toJson();
     mapdata['athlete'] = createdFullLicence!.athlete!.toJson();
     mapdata['profile'] = createdFullLicence!.profile!.toJson();
+    // mapdata['profile']['licences']=[];
     try {
-      print("map data is: "+mapdata.toString());
       Response res = await licenceNetwork.addFullLicence(mapdata);
       if (res.statusCode == 200) {
         createdFullLicence!.licence!.role="رياضي";

@@ -21,7 +21,6 @@ class _EditArbitratorLicenceImagesState extends State<EditArbitratorLicenceImage
     // licenceController.initFields();
     licenceController.createdFullLicence =
         licenceController.selectedFullLicence;
-    // TODO: implement initState
     super.initState();
   }
 
