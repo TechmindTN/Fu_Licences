@@ -42,7 +42,7 @@ import '../widgets/licence/licence_widget.dart';
 class LicenceProvider extends ChangeNotifier {
   int currentPage=1;
   Version currentVersion=Version(
-    version: "0.12"
+    version: "0.14"
   );
   bool logged=false;
   bool isAscending =true;
@@ -59,6 +59,8 @@ class LicenceProvider extends ChangeNotifier {
   late Role selectedRole;
   bool added = false;
   Season? selectedSeason = Season(seasons: "الموسم", id: -1);
+  Season? filteredSeason = Season(seasons: "الموسم", id: -1);
+
   Category? selectedCategory = Category(categorieAge: "العمر", id: -1);
   Grade? selectedGrade = Grade(grade: "Grade", id: -1);
   Ligue? selectedLigue = Ligue(name: "الولاية", id: -1);
@@ -193,7 +195,7 @@ class LicenceProvider extends ChangeNotifier {
     GoRouter.of(context).go(Routes.Login);
   }
 
-  deleteLicence(id,context) async {
+  deleteLicence(id,context,{role}) async {
     try{
     Response res =await licenceNetwork.deleteLicence(id);
     if(res.statusCode==204){
@@ -217,6 +219,8 @@ class LicenceProvider extends ChangeNotifier {
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
       }
+      notify();
+      getPaginatedLicences(role: role);
     }
     catch(e){
       final snackBar = MySnackBar(
@@ -279,8 +283,11 @@ class LicenceProvider extends ChangeNotifier {
     fullLicences.clear();
     // if(selectedRole)
     dynamic role=(filteredRole!.id!=-1)?filteredRole!.id:"";
+    dynamic state =(filteredStatus!="الحالة")?filteredStatus:"";
       // dynamic state=(filteredStatus!.id!=-1)?filteredStatus!.id:"";
-      // dynamic season=(filteredRole!.id!=-1)?filteredS!.id:"";
+      dynamic season=(filteredSeason!.id!=-1)?filteredSeason!.id:"";
+            // dynamic season=(filteredRole!.id!=-1)?selectedSeason!.id:"";
+
       dynamic club=(filteredClub!.id!=-1)?filteredClub!.id:"";
       dynamic categorie=(filteredCategory!.id!=-1)?filteredCategory!.id:"";
       dynamic degree=(filteredDegree!.id!=-1)?filteredDegree!.id:"";
@@ -290,11 +297,11 @@ class LicenceProvider extends ChangeNotifier {
       // print(object)
       Map<String,dynamic> mapdata={
         "userid":274,
-        // "state":state,
+        "state":state,
         "page_number":currentPage,
         "page_size":10,
 // "role":role,
-// "season":,
+"season":season,
 "club":club,
 "user":"",
 "categorie":categorie,
@@ -800,6 +807,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       "season": season,
       "user": 274
     });
+    
     Response res = await licenceNetwork.uploadImage(formData);
     if (res.statusCode == 200) {
       if (res.data != null) {
@@ -818,7 +826,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       ),
       "path": path,
       "season": season,
-      "user": 6
+      "user": 274
     });
     Response res = await licenceNetwork.uploadImage(formData);
     if (res.statusCode == 200) {
@@ -835,15 +843,19 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       "url": await MultipartFile.fromFile(image.path, filename: fileName),
       "path": path,
       "season": season,
-      "user": 6
+      "user": 274
     });
+    print(formData.fields);
+    print(formData.files);
     Response res = await licenceNetwork.uploadImage(formData);
+    print("upload coach status: "+res.statusCode.toString());
     if (res.statusCode == 200) {
       if (res.data != null) {
         setCoachImagePath(toFillImage, res.data['url']);
         notify();
       }
     } else {
+      print(res.data);
     }
   }
 
@@ -856,7 +868,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       ),
       "path": path,
       "season": season,
-      "user": 6
+      "user": 274
     });
     Response res = await licenceNetwork.uploadImage(formData);
     if (res.statusCode == 200) {
@@ -1075,6 +1087,7 @@ createArbitreLicence(context) async {
     try {
       Response res = await licenceNetwork.addFullLicence(mapdata);
       if (res.statusCode == 200) {
+        notify();
         ////print('ok');
         // Navigator.pop(context);
         // Navigator.pop(context);
@@ -1178,6 +1191,7 @@ createArbitreLicence(context) async {
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
       }
+      notify();
     } catch (e) {
       final snackBar = MySnackBar(
         title: 'Probleme',

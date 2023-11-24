@@ -49,7 +49,7 @@ class AthleteLicenceDataSource extends DataTableSource{
           },child: const Icon(Icons.remove_red_eye),),
           SizedBox(width:1.w),
           FloatingActionButton.small(onPressed: (){
-            licenceController.deleteLicence(licenceController.fullAthleteLicences[index].licence!.numLicences, context);
+            licenceController.deleteLicence(licenceController.fullAthleteLicences[index].licence!.numLicences, context,role:2);
           },
           backgroundColor: Colors.red,child: const Icon(Icons.delete),
           ),

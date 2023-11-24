@@ -53,6 +53,8 @@ class LicenceNetwork {
   }
 
   uploadImage(data) async {
+    // print(data.toString());
+    // try{
     Response res = await apis.dio.post(apis.baseUrl + apis.uploadImage,
         options: Options(
             contentType:
@@ -60,6 +62,10 @@ class LicenceNetwork {
             headers: {"Authorization": Apis.tempToken}),
         data: data);
     return res;
+    // }
+    // catch(e){
+    //   print(e);
+    // }
   }
 
   editProfile(data,id) async {

@@ -16,6 +16,9 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
   late LicenceProvider licenceController;
   TextEditingController numControl=TextEditingController();
   late LicenceDataSource licenceDataSource;
+
+  
+
   @override
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
@@ -25,6 +28,8 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
     // licenceController.initSelected();
     super.initState();
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Consumer<LicenceProvider>(
@@ -203,5 +208,11 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
       }
     );
 
+  }
+ @override
+  void dispose() {
+    licenceController.currentPage=0;
+    // TODO: implement dispose
+    super.dispose();
   }
 }

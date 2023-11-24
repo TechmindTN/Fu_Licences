@@ -38,7 +38,6 @@ class _MySplashScreenState extends State<MySplashScreen> {
   Widget build(BuildContext context) {
     return Directionality(
               textDirection: TextDirection.rtl,
-
       child: Scaffold(
         body: Center(child: Image.asset("assets/images/logo-ftwkf.png")),
       ),

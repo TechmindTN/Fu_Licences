@@ -114,12 +114,20 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
       
       if(txt=="الجنس *"){
         licenceController.selectedSex=value!;
+        licenceController.filteredSex=value!;
+      }
+      else if(txt=="الجنس"){
+        licenceController.selectedSex=value!;
+        licenceController.filteredSex=value!;
+
       }
       else if(txt=="الولاية"){
           licenceController.selectedState=value!;
         }
         else if(txt=="الحالة"){
           licenceController.selectedStatus=value!;
+          licenceController.filteredStatus=value!;
+
         }
       
       
@@ -187,7 +195,7 @@ SeasonSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.selectedSeason=value;
-      // licenceController.filteredSeason=value;
+      licenceController.filteredSeason=value;
       
     },
     selectedItem: selected,
