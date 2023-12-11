@@ -38,7 +38,7 @@ late DataTableSource dataSource;
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
         licenceController.getParameters();
-licenceController.currentPage=0;
+    licenceController.currentPage=0;
     licenceController.initSelected();
     licenceController.initCreate();
     
@@ -117,7 +117,7 @@ licenceController.currentPage=0;
                   //   ],
                   // ),),
                  FutureBuilder(
-                  future: licenceController.getPaginatedLicences(),
+                  future: licenceController.getPaginatedLicences(112),
                    builder: (context,snaphot) {
                     if(snaphot.connectionState==ConnectionState.done){
                           
@@ -144,7 +144,10 @@ licenceController.currentPage=0;
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text("المجموع: ${licenceController.stats.totalLicences!}")
+                                    Text("المجموع:"
+                                    //  ${licenceController.stats.totalLicences!}
+                                    // "
+                                    )
                                     
                                   ],
                                 ),

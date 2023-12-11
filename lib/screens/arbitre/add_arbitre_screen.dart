@@ -67,8 +67,8 @@ class _AddArbitreScreenState extends State<AddArbitreScreen> {
       
                 // WeightSelectInput('الوزن', licenceController.selectedWeight,
                 //     licenceController),
-                ClubSelectInput(
-                    'النادي', licenceController.selectedClub, licenceController),
+                // ClubSelectInput(
+                //     'النادي', licenceController.selectedClub, licenceController),
                 // TextInput('عنوان السكن',prenomController),
                 // Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController)
               ],

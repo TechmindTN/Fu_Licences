@@ -47,6 +47,7 @@ class LicenceProvider extends ChangeNotifier {
   bool logged=false;
   bool isAscending =true;
   int currentSortColumn = 0;
+  late Category autoCategory;
   List<bool> licenceChecks=[];
   List<bool> clubChecks=[];
   int rowsPerPages=10;
@@ -99,7 +100,7 @@ class LicenceProvider extends ChangeNotifier {
   List<FullLicence> fullArbitratorLicences = [];
   List<FullLicence> fullCoachLicences = [];
   List<FullLicence> filteredFullLicences = [];
-
+  late Season activeSeason;
   LicenceNetwork licenceNetwork = LicenceNetwork();
   FullLicence? selectedFullLicence;
 
@@ -195,7 +196,7 @@ class LicenceProvider extends ChangeNotifier {
     GoRouter.of(context).go(Routes.Login);
   }
 
-  deleteLicence(id,context,{role}) async {
+  deleteLicence(id,context,season,{role}) async {
     try{
     Response res =await licenceNetwork.deleteLicence(id);
     if(res.statusCode==204){
@@ -220,7 +221,7 @@ class LicenceProvider extends ChangeNotifier {
           ..showSnackBar(snackBar);
       }
       notify();
-      getPaginatedLicences(role: role);
+      getPaginatedLicences(season,role: role);
     }
     catch(e){
       final snackBar = MySnackBar(
@@ -282,7 +283,7 @@ class LicenceProvider extends ChangeNotifier {
   filterLicences(context) async {
     fullLicences.clear();
     // if(selectedRole)
-    dynamic role=(filteredRole!.id!=-1)?filteredRole!.id:"";
+    // dynamic role=(filteredRole!.id!=-1)?filteredRole!.id:"";
     dynamic state =(filteredStatus!="الحالة")?filteredStatus:"";
       // dynamic state=(filteredStatus!.id!=-1)?filteredStatus!.id:"";
       dynamic season=(filteredSeason!.id!=-1)?filteredSeason!.id:"";
@@ -493,15 +494,16 @@ class LicenceProvider extends ChangeNotifier {
      }
   }
 
-getPaginatedLicences({int? role}) async {
+getPaginatedLicences(season,{int? role}) async {
 
-    if (fullLicences.isNotEmpty) {
+    // if (fullLicences.isNotEmpty) {
       fullLicences.clear();
-    }
+    // }
+    // lice
     fullArbitratorLicences.clear();
     fullAthleteLicences.clear();
     fullCoachLicences.clear();
-    Response res = await licenceNetwork.getPaginatedLicenceListInfo(currentUser.club!.id??"",10,currentPage,role:role);
+    Response res = await licenceNetwork.getPaginatedLicenceListInfo(currentUser.club!.id??"",10,currentPage,season,role:role);
     if (res.statusCode == 200) {
       if (res.data != null) {
         for (var r in res.data) {
@@ -532,7 +534,7 @@ getPaginatedLicences({int? role}) async {
       }
     }
     isLoading=false;
-    // notify();
+    notify();
   }
 
   getLicences({int? role}) async {
@@ -669,6 +671,9 @@ notify();
         for (var l in res.data['Seasons']) {
           Season season = Season.fromJson(l);
           seasons.add(season);
+          // if(seasons[l].activated==true){
+          //   activeSeason=seasons[l];
+          // }
         }
         parameters!.seasons = seasons;
         notify();
@@ -845,17 +850,17 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       "season": season,
       "user": 274
     });
-    print(formData.fields);
-    print(formData.files);
+    // print(formData.fields);
+    // print(formData.files);
     Response res = await licenceNetwork.uploadImage(formData);
-    print("upload coach status: "+res.statusCode.toString());
+    // print("upload coach status: "+res.statusCode.toString());
     if (res.statusCode == 200) {
       if (res.data != null) {
         setCoachImagePath(toFillImage, res.data['url']);
         notify();
       }
     } else {
-      print(res.data);
+      // print(res.data);
     }
   }
 
@@ -896,7 +901,37 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
     createdFullLicence!.profile!.phone = int.parse(phone!);
     createdFullLicence!.profile!.role = 2;
     createdFullLicence!.profile!.sexe = selectedSex;
-    
+    DateTime today=DateTime.now();
+
+    // DateTime birthday=DateTime();
+  
+    Duration age=today.difference(selectedBirth!);
+    // print(age.inDays/365);
+    double years=age.inDays/365;
+    if(7>=years&&years>=6){
+      autoCategory=parameters!.categories!.firstWhere((element) => element.id==11);
+    }
+    else if(9>=years&&years>=8){
+      autoCategory=parameters!.categories!.firstWhere((element) => element.id==10);
+    }
+    else if(11>=years&&years>=10){
+      autoCategory=parameters!.categories!.firstWhere((element) => element.id==6);
+    }
+    else if(13>=years&&years>=12){
+      autoCategory=parameters!.categories!.firstWhere((element) => element.id==5);
+    }
+    else if(15>=years&&years>=14){
+      autoCategory=parameters!.categories!.firstWhere((element) => element.id==4);
+    }
+    else if(17>=years&&years>=16){
+      autoCategory=parameters!.categories!.firstWhere((element) => element.id==3);
+    }
+    else if(40>=years&&years>=18){
+      autoCategory=parameters!.categories!.firstWhere((element) => element.id==2);
+    }
+    else{
+      autoCategory=parameters!.categories!.firstWhere((element) => element.id==1);
+    }
     // createdFullLicence!.profile!.state = selectedState;
     User user = User(
         isSuperuser: false,
@@ -952,24 +987,24 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
 
 createArbitre(context) {
     createdFullLicence!.arbitrator!.grade = selectedGrade!.id;
-    if(currentUser.club!.id==null){
-      createdFullLicence!.arbitrator!.club = selectedClub!.id;
-    }
-    else{
-      createdFullLicence!.arbitrator!.club = currentUser.club!.id;
-    }
+    // if(currentUser.club!.id==null){
+    //   createdFullLicence!.arbitrator!.club = selectedClub!.id;
+    // }
+    // else{
+    //   createdFullLicence!.arbitrator!.club = currentUser.club!.id;
+    // }
     createArbitreLicence(context);
   }
 
 createArbitreLicence(context) async {
     added = true;
     createdFullLicence!.licence!.grade = selectedGrade!.id;
-    if(currentUser.club!.id==null){
-      createdFullLicence!.arbitrator!.club = selectedClub!.id;
-    }
-    else{
-      createdFullLicence!.arbitrator!.club = currentUser.club!.id;
-    }
+    // if(currentUser.club!.id==null){
+    //   createdFullLicence!.arbitrator!.club = selectedClub!.id;
+    // }
+    // else{
+    //   createdFullLicence!.arbitrator!.club = currentUser.club!.id;
+    // }
     createdFullLicence!.licence!.activated = false;
     createdFullLicence!.licence!.state = selectedState;
     createdFullLicence!.licence!.verified = false;
@@ -1028,8 +1063,9 @@ createArbitreLicence(context) async {
   }
 
   createAthlete(context) {
-    createdFullLicence!.athlete!.categoryId = selectedCategory!.id;
-    createdFullLicence!.athlete!.gradeId = selectedGrade!.id;
+    createdFullLicence!.athlete!.categoryId = autoCategory.id;
+    // if(createdFullLicence.profile.birthday)
+    // createdFullLicence!.athlete!.gradeId = selectedGrade!.id;
     if(currentUser.club!.id==null){
       createdFullLicence!.athlete!.club = selectedClub!.id;
     }
@@ -1038,13 +1074,16 @@ createArbitreLicence(context) async {
     }
     createdFullLicence!.athlete!.discipline = selectedDiscipline!.id;
     createdFullLicence!.athlete!.weights = selectedWeight!.id;
-    createdFullLicence!.athlete!.idDegree = selectedDegree!.id;
+    // createdFullLicence!.athlete!.idDegree = selectedDegree!.id;
+
+    
+    // print('aaaaaaaaaa');
     createAthleteLicence(context);
   }
 
   createCoach(context) {
-    createdFullLicence!.coach!.categoryId = selectedCategory!.id;
-    createdFullLicence!.coach!.grade = selectedGrade!.id;
+    // createdFullLicence!.coach!.categoryId = selectedCategory!.id;
+    // createdFullLicence!.coach!.grade = selectedGrade!.id;
     if(currentUser.club!.id==null){
       createdFullLicence!.coach!.club = selectedClub!.id;
     }
@@ -1052,14 +1091,14 @@ createArbitreLicence(context) async {
       createdFullLicence!.coach!.club = currentUser.club!.id;
     }
     createdFullLicence!.coach!.discipline = selectedDiscipline!.id;
-    createdFullLicence!.coach!.weights = selectedWeight!.id;
-    createdFullLicence!.coach!.degree = selectedDegree!.id;
+    // createdFullLicence!.coach!.weights = selectedWeight!.id;
+    // createdFullLicence!.coach!.degree = selectedDegree!.id;
     createCoachLicence(context);
   }
 
   createCoachLicence(context) async {
     added = true;
-    createdFullLicence!.licence!.categorie = selectedCategory!.id;
+    // createdFullLicence!.licence!.categorie = selectedCategory!.id;
     createdFullLicence!.licence!.grade = selectedGrade!.id;
     if(currentUser.club!.id==null){
       createdFullLicence!.licence!.club = selectedClub!.id;
@@ -1068,7 +1107,7 @@ createArbitreLicence(context) async {
       createdFullLicence!.licence!.club = currentUser.club!.id;
     }
     createdFullLicence!.licence!.discipline = selectedDiscipline!.id;
-    createdFullLicence!.licence!.weight = selectedWeight!.id;
+    // createdFullLicence!.licence!.weight = selectedWeight!.id;
     createdFullLicence!.licence!.degree = selectedDegree!.id;
     createdFullLicence!.licence!.activated = false;
     createdFullLicence!.licence!.state = selectedState;
@@ -1128,8 +1167,8 @@ createArbitreLicence(context) async {
 
   createAthleteLicence(context) async {
     added = true;
-    createdFullLicence!.licence!.categorie = selectedCategory!.id;
-    createdFullLicence!.licence!.grade = selectedGrade!.id;
+    createdFullLicence!.licence!.categorie = autoCategory.id;
+    // createdFullLicence!.licence!.grade = selectedGrade!.id;
     if(currentUser.club!.id==null){
       createdFullLicence!.licence!.club = selectedClub!.id;
     }
@@ -1138,7 +1177,7 @@ createArbitreLicence(context) async {
     }
     createdFullLicence!.licence!.discipline = selectedDiscipline!.id;
     createdFullLicence!.licence!.weight = selectedWeight!.id;
-    createdFullLicence!.licence!.degree = selectedDegree!.id;
+    // createdFullLicence!.licence!.degree = selectedDegree!.id;
     createdFullLicence!.licence!.activated = false;
     createdFullLicence!.licence!.state = selectedState;
     createdFullLicence!.licence!.verified = false;
@@ -1235,6 +1274,7 @@ createArbitreLicence(context) async {
     // filteredSex = "الجنس";
     // filteredStatus = "الحالة";
     // filteredRole=Role(roles: "نوع الرياضة",id:-1);
+
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -1286,7 +1326,16 @@ createArbitreLicence(context) async {
   }
 
 
+// bool findit(){
+//   bool ok =false;
 
+//   if(ok)
+//   return ok;
+//   else 
+//   return false;
+
+
+// }
 
 initArbitreFields() {
     for (Grade grade in parameters!.grades!) {

@@ -14,6 +14,7 @@ import '../widgets/global/snackbars.dart';
 class ParameterProvider extends ChangeNotifier{
   bool isLoading=false;
   ParameterNetwork paramNetwork = ParameterNetwork();
+  late Season activeSeason;
   List<bool> ligueChecks=[];
   List<bool> categoryChecks=[];
   List<bool> gradeChecks=[];

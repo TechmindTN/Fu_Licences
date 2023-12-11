@@ -141,7 +141,6 @@ class _LicenceScreenState extends State<LicenceScreen> {
                     LicenceRow('اللقب',licenceController.selectedFullLicence!.profile!.lastName),
                     LicenceRow('الاسم',licenceController.selectedFullLicence!.profile!.firstName),
                     LicenceRow('الجنس',licenceController.selectedFullLicence!.profile!.sexe),
-                          
                     LicenceRow('رقم الهاتف',licenceController.selectedFullLicence!.profile!.phone),
                     LicenceRow('عنوان السكن',licenceController.selectedFullLicence!.profile!.address),
                     LicenceRow('نوع الاجازة',licenceController.selectedFullLicence!.licence!.role),
@@ -152,10 +151,11 @@ class _LicenceScreenState extends State<LicenceScreen> {
                     // LicenceRow('الولاية',licenceController.selectedFullLicence!.licence!.),
                     LicenceRow('الرياضة',licenceController.selectedFullLicence!.licence!.discipline),
                     // LicenceRow('Nationalite',licenceController.selectedFullLicence!.profile!.),
+                    if(licenceController.selectedFullLicence!.licence!.role!="رياضي")
                     LicenceRow('Degree',licenceController.selectedFullLicence!.licence!.degree),
+                    if(licenceController.selectedFullLicence!.licence!.role!="رياضي")
                     LicenceRow('Grade',licenceController.selectedFullLicence!.licence!.grade),
                     LicenceRow('الموسم',licenceController.selectedFullLicence!.licence!.seasons),
-                    
                     LicenceRow('الحالة',licenceController.selectedFullLicence!.licence!.state),
                     RolePhotos(licenceController.selectedFullLicence!,context,licenceController)
                   ],

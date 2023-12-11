@@ -66,8 +66,8 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
                 // TextInput('رقم الهاتف',degreeController),
       
                 // TextInput('رقم الهوية',disciplineController),
-                GategorySelectInput('العمر',
-                    licenceController.selectedCategory, licenceController),
+                // GategorySelectInput('العمر',
+                //     licenceController.selectedCategory, licenceController),
                 GradeSelectInput('Grade', licenceController.selectedGrade,
                     licenceController),
                 DegreeSelectInput('Degree', licenceController.selectedDegree,
@@ -75,8 +75,8 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
                 DisciplineSelectInput('الرياضة',
                     licenceController.selectedDiscipline, licenceController),
       
-                WeightSelectInput('الوزن', licenceController.selectedWeight,
-                    licenceController),
+                // WeightSelectInput('الوزن', licenceController.selectedWeight,
+                //     licenceController),
                 ClubSelectInput(
                     'النادي', licenceController.selectedClub, licenceController),
                 // TextInput('عنوان السكن',prenomController),
@@ -100,8 +100,9 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
                         ////print(licenceController.selectedDiscipline!.id);
                         ////print(licenceController.selectedGrade!.id);
                         ////print(licenceController.selectedWeight!.id);
-                        if ((licenceController.selectedCategory == null) ||
-                            (licenceController.selectedCategory!.id == -1) ||
+                        if (
+                          // (licenceController.selectedCategory == null) ||
+                          //   (licenceController.selectedCategory!.id == -1) ||
                             (licenceController.selectedClub == null) ||
                             (licenceController.selectedClub!.id == -1) ||
                             (licenceController.selectedDegree == null) ||
@@ -109,9 +110,11 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
                             (licenceController.selectedDiscipline == null) ||
                             (licenceController.selectedDiscipline!.id == -1) ||
                             (licenceController.selectedGrade == null) ||
-                            (licenceController.selectedGrade!.id == -1) ||
-                            (licenceController.selectedWeight == null) ||
-                            (licenceController.selectedWeight!.id == -1)) {
+                            (licenceController.selectedGrade!.id == -1)
+                            //  ||
+                            // (licenceController.selectedWeight == null) ||
+                            // (licenceController.selectedWeight!.id == -1)
+                            ) {
                           final snackBar = MySnackBar(
                               title: 'خانات اجبارية',
                               msg: 'الرجاء ملئ جميع الخانات الاجبارية',

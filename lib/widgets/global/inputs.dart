@@ -114,11 +114,11 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
       
       if(txt=="الجنس *"){
         licenceController.selectedSex=value!;
-        licenceController.filteredSex=value!;
+        licenceController.filteredSex=value;
       }
       else if(txt=="الجنس"){
         licenceController.selectedSex=value!;
-        licenceController.filteredSex=value!;
+        licenceController.filteredSex=value;
 
       }
       else if(txt=="الولاية"){
@@ -126,7 +126,7 @@ SelectInput(txt,selected,LicenceProvider licenceController,List<String>selectLis
         }
         else if(txt=="الحالة"){
           licenceController.selectedStatus=value!;
-          licenceController.filteredStatus=value!;
+          licenceController.filteredStatus=value;
 
         }
       

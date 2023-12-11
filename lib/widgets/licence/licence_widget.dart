@@ -1,14 +1,14 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
-import 'package:fu_licences/models/category.dart';
-import 'package:fu_licences/models/club.dart';
-import 'package:fu_licences/models/degree.dart';
-import 'package:fu_licences/models/discipline.dart';
+// import 'package:fu_licences/models/category.dart';
+// import 'package:fu_licences/models/club.dart';
+// import 'package:fu_licences/models/degree.dart';
+// import 'package:fu_licences/models/discipline.dart';
 import 'package:fu_licences/models/full_licence.dart';
-import 'package:fu_licences/models/grade.dart';
+// import 'package:fu_licences/models/grade.dart';
 import 'package:fu_licences/models/role.dart';
-import 'package:fu_licences/models/weight.dart';
+// import 'package:fu_licences/models/weight.dart';
 import 'package:fu_licences/widgets/global/buttons.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -915,16 +915,16 @@ SearchDialog(LicenceProvider licenceController, numControl, context) {
 }
 
 FilterDialog(LicenceProvider licenceController, context) {
-  Category? filteredCategory = Category(categorieAge: "العمر", id: -1);
+  // Category? filteredCategory = Category(categorieAge: "العمر", id: -1);
 
-  Role? filteredRole = Role(roles: "نوع الرياضة", id: -1);
-  Grade? filteredGrade = Grade(grade: "Grade", id: -1);
-  Degree? filteredDegree = Degree(degree: "Degree", id: -1);
-  Weight? filteredWeight = Weight(masseEnKillograme: 0, id: -1);
-  Discipline? filteredDiscipline = Discipline(name: "الرياضة", id: -1);
-  Club? filteredClub = Club(name: "النادي", id: -1);
-  String filteredSex = "الجنس";
-  String filteredStatus = "الحالة";
+  // Role? filteredRole = Role(roles: "نوع الرياضة", id: -1);
+  // Grade? filteredGrade = Grade(grade: "Grade", id: -1);
+  // Degree? filteredDegree = Degree(degree: "Degree", id: -1);
+  // Weight? filteredWeight = Weight(masseEnKillograme: 0, id: -1);
+  // Discipline? filteredDiscipline = Discipline(name: "الرياضة", id: -1);
+  // Club? filteredClub = Club(name: "النادي", id: -1);
+  // String filteredSex = "الجنس";
+  // String filteredStatus = "الحالة";
 
   return Directionality(
             textDirection: TextDirection.rtl,

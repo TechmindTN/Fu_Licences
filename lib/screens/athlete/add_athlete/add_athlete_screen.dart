@@ -49,12 +49,12 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
                 width: 40.w,
                 child: Column(
                   children: [
-                    GategorySelectInput('العمر',
-                        licenceController.selectedCategory, licenceController),
-                    GradeSelectInput('Grade', licenceController.selectedGrade,
-                        licenceController),
-                    DegreeSelectInput('Degree', licenceController.selectedDegree,
-                        licenceController),
+                    // GategorySelectInput('العمر',
+                    //     licenceController.selectedCategory, licenceController),
+                    // GradeSelectInput('Grade', licenceController.selectedGrade,
+                    //     licenceController),
+                    // DegreeSelectInput('Degree', licenceController.selectedDegree,
+                    //     licenceController),
                     DisciplineSelectInput('الرياضة',
                         licenceController.selectedDiscipline, licenceController),
                     WeightSelectInput('الوزن', licenceController.selectedWeight,
@@ -79,18 +79,22 @@ class _AddAthleteScreenState extends State<AddAthleteScreen> {
                     width: 30.w,
                     child: FloatingActionButton.extended(
                       onPressed: () {
-                        if ((licenceController.selectedCategory == null) ||
-                            (licenceController.selectedCategory!.id == -1) ||
+                        if (
+                          // (licenceController.selectedCategory == null) ||
+                          //   (licenceController.selectedCategory!.id == -1) ||
                             (licenceController.currentUser.club!.id == null)&&((licenceController.selectedClub == null) ||
                             (licenceController.selectedClub!.id == -1)) ||
-                            (licenceController.selectedDegree == null) ||
-                            (licenceController.selectedDegree!.id == -1) ||
+                            // (licenceController.selectedDegree == null) ||
+                            // (licenceController.selectedDegree!.id == -1) ||
                             (licenceController.selectedDiscipline == null) ||
-                            (licenceController.selectedDiscipline!.id == -1) ||
-                            (licenceController.selectedGrade == null) ||
-                            (licenceController.selectedGrade!.id == -1) ||
-                            (licenceController.selectedWeight == null) ||
-                            (licenceController.selectedWeight!.id == -1)) {
+                            (licenceController.selectedDiscipline!.id == -1) 
+                            // ||
+                            // (licenceController.selectedGrade == null) ||
+                            // (licenceController.selectedGrade!.id == -1) 
+                            // ||
+                            // (licenceController.selectedWeight == null) ||
+                            // (licenceController.selectedWeight!.id == -1)
+                            ) {
                           final snackBar = MySnackBar(
                               title: 'خانات اجبارية',
                               msg: 'الرجاء ملئ جميع الخانات الاجبارية',

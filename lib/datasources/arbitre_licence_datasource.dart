@@ -49,7 +49,7 @@ class ArbitreLicenceDataSource extends DataTableSource{
           },child: const Icon(Icons.remove_red_eye),),
           SizedBox(width:1.w),
           FloatingActionButton.small(onPressed: (){
-            licenceController.deleteLicence(licenceController.fullArbitratorLicences[index].licence!.numLicences, context,role:1);
+            licenceController.deleteLicence(licenceController.fullArbitratorLicences[index].licence!.numLicences, context,112,role:1);
           },
           backgroundColor: Colors.red,child: const Icon(Icons.delete),
           ),

@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         
                         children: [
-                          Container(width: 30.w,
+                          Container(width: 27.77.w,
                           height: 95.w,
                           color: const Color.fromARGB(255, 66, 144, 208),
                             child: Column(

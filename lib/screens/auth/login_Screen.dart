@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: SingleChildScrollView(
               child: Container(
                 width: 80.w,
-                height: 80.h,
+                height: 50.h,
                 decoration: const BoxDecoration(
                   boxShadow: [BoxShadow(color: Colors.black26,
                   offset: Offset(0, 2),
