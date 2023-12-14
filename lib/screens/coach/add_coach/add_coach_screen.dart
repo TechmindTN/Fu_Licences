@@ -77,6 +77,7 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
       
                 // WeightSelectInput('الوزن', licenceController.selectedWeight,
                 //     licenceController),
+                if((licenceController.currentUser.club!.id==null))
                 ClubSelectInput(
                     'النادي', licenceController.selectedClub, licenceController),
                 // TextInput('عنوان السكن',prenomController),
@@ -100,7 +101,8 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
                         ////print(licenceController.selectedDiscipline!.id);
                         ////print(licenceController.selectedGrade!.id);
                         ////print(licenceController.selectedWeight!.id);
-                        if (
+                        if((licenceController.currentUser.club!.id==null)){
+                          if (
                           // (licenceController.selectedCategory == null) ||
                           //   (licenceController.selectedCategory!.id == -1) ||
                             (licenceController.selectedClub == null) ||
@@ -127,6 +129,36 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
                           // GoRouter.of(context).dispose();
                           GoRouter.of(context).go(Routes.Home);
                         }
+                        }
+                        else{
+                          if (
+                          // (licenceController.selectedCategory == null) ||
+                          //   (licenceController.selectedCategory!.id == -1) ||
+                            
+                            (licenceController.selectedDegree == null) ||
+                            (licenceController.selectedDegree!.id == -1) ||
+                            (licenceController.selectedDiscipline == null) ||
+                            (licenceController.selectedDiscipline!.id == -1) ||
+                            (licenceController.selectedGrade == null) ||
+                            (licenceController.selectedGrade!.id == -1)
+                            //  ||
+                            // (licenceController.selectedWeight == null) ||
+                            // (licenceController.selectedWeight!.id == -1)
+                            ) {
+                          final snackBar = MySnackBar(
+                              title: 'خانات اجبارية',
+                              msg: 'الرجاء ملئ جميع الخانات الاجبارية',
+                              state: ContentType.warning);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(snackBar);
+                        } else {
+                          licenceController.createCoach(context);
+                          // GoRouter.of(context).dispose();
+                          GoRouter.of(context).go(Routes.Home);
+                        }
+                        }
+                        
       
       // Navigator.of(context, rootNavigator:
       // true).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>

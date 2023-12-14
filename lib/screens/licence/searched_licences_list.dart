@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/datasources/licence_datasource.dart';
+import 'package:fu_licences/datasources/searched_licence_datasource.dart';
 import 'package:fu_licences/models/category.dart';
 import 'package:fu_licences/models/club.dart';
 import 'package:fu_licences/models/degree.dart';
@@ -13,24 +14,24 @@ import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class FilteredLicencesScreen extends StatefulWidget{
-  const FilteredLicencesScreen({super.key});
+class SearchedLicencesScreen extends StatefulWidget{
+  const SearchedLicencesScreen({super.key});
 
   @override
-  State<FilteredLicencesScreen> createState() => _FilteredLicencesScreenState();
+  State<SearchedLicencesScreen> createState() => _SearchedLicencesScreenState();
 }
 
-class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
+class _SearchedLicencesScreenState extends State<SearchedLicencesScreen> {
   late LicenceProvider licenceController;
   TextEditingController numControl=TextEditingController();
-  late LicenceDataSource licenceDataSource;
+  late SearchedLicenceDataSource searchedLicenceDataSource;
 
   
 
   @override
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
-    licenceDataSource=LicenceDataSource(licenceController, context);
+    searchedLicenceDataSource=SearchedLicenceDataSource(licenceController, context);
     // licenceController.getLicences();
     // licenceController.getParameters();
     // licenceController.initSelected();
@@ -156,7 +157,7 @@ class _FilteredLicencesScreenState extends State<FilteredLicencesScreen> {
                 
                       showCheckboxColumn: true,
                       // showFirstLastButtons: true,
-                       source: licenceDataSource)
+                       source: searchedLicenceDataSource)
                     ),
                 ),
               )

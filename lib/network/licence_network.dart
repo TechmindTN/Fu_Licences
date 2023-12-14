@@ -209,7 +209,7 @@ class LicenceNetwork {
     return res;
   }
 
-  searchLicences(id,role) async {
+  searchLicences(id,role,club) async {
     Response res = await apis.dio.post("${apis.baseUrl+apis.searchLicences+id}/",
     options: Options(
       headers: {
@@ -218,7 +218,8 @@ class LicenceNetwork {
       },    
     ),
     data: {"userid":274,
-    "role":role
+    "role":role,
+    "club":club
     }
     );
     return res;

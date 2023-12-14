@@ -133,7 +133,8 @@ late  TextEditingController addresseController;
         
                     TextInput('عنوان السكن',addresseController),
                                   SizedBox(height: 3.h,),
-        
+                            Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController),
+SizedBox(height: 3.h,),
         FloatingActionButton.extended(onPressed: (){
           licenceController.editProfile(context,address: addresseController.text,phone: phoneController.text,firstName: nomController.text,lastName: prenomController.text,cin: cinController.text);
         }, label: const Text('تاكيد')),
@@ -147,13 +148,12 @@ late  TextEditingController addresseController;
         const Text('معلومات الاجازة'),
         Text(licenceController.selectedFullLicence!.licence!.numLicences.toString()),
                 SizedBox(height: 3.h,),
-                    Dateinput('تاريخ الولادة',birthController,context,licenceController.selectedBirth,licenceController),
-                    GategorySelectInput('العمر',licenceController.selectedCategory,licenceController),
+                    // GategorySelectInput('العمر',licenceController.selectedCategory,licenceController),
                     GradeSelectInput('Grade',licenceController.selectedGrade,licenceController)	,
                     DegreeSelectInput('Degree',licenceController.selectedDegree,licenceController),
                     DisciplineSelectInput('الرياضة',licenceController.selectedDiscipline,licenceController)	,
                   
-                    WeightSelectInput('الوزن',licenceController.selectedWeight,licenceController),
+                    // WeightSelectInput('الوزن',licenceController.selectedWeight,licenceController),
                    
                     if(licenceController.currentUser.club!.id==null)
                     ClubSelectInput('النادي',licenceController.selectedClub,licenceController),

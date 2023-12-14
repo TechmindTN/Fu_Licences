@@ -144,14 +144,16 @@ class _LicenceScreenState extends State<LicenceScreen> {
                     LicenceRow('رقم الهاتف',licenceController.selectedFullLicence!.profile!.phone),
                     LicenceRow('عنوان السكن',licenceController.selectedFullLicence!.profile!.address),
                     LicenceRow('نوع الاجازة',licenceController.selectedFullLicence!.licence!.role),
+                    if(licenceController.selectedFullLicence!.licence!.role=="رياضي")
                     LicenceRow('العمر',licenceController.selectedFullLicence!.licence!.categorie),
+                    // if(DateTime.now().difference(DateTime.parse(licenceController.selectedFullLicence!.profile!.birthday!))>=Duration(days: 365*18))
                     LicenceRow('رقم الهوية',licenceController.selectedFullLicence!.profile!.cin),
-                    LicenceRow('تاريخ الولادة',licenceController.selectedFullLicence!.profile!.birthday.toString()),
+                    LicenceRow('تاريخ الولادة',licenceController.selectedFullLicence!.profile!.birthday),
                     LicenceRow('النادي',licenceController.selectedFullLicence!.licence!.club),
                     // LicenceRow('الولاية',licenceController.selectedFullLicence!.licence!.),
                     LicenceRow('الرياضة',licenceController.selectedFullLicence!.licence!.discipline),
                     // LicenceRow('Nationalite',licenceController.selectedFullLicence!.profile!.),
-                    if(licenceController.selectedFullLicence!.licence!.role!="رياضي")
+                    if(licenceController.selectedFullLicence!.licence!.role=="مدرب")
                     LicenceRow('Degree',licenceController.selectedFullLicence!.licence!.degree),
                     if(licenceController.selectedFullLicence!.licence!.role!="رياضي")
                     LicenceRow('Grade',licenceController.selectedFullLicence!.licence!.grade),

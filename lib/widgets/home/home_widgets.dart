@@ -218,7 +218,8 @@ Widget MyChart(Stats stats){
                             title: stats.pendingLicences.toString()
                           ), PieChartSectionData(
                             color: Colors.green,
-                            value: (stats.activeLicences!/100)*100,                radius: 120,
+                            value: (stats.activeLicences!/100)*100,                
+                            radius: 120,
                              badgeWidget: Badge(
                               backgroundColor: Colors.green,
                               label: Text(stats.activeLicences.toString(),
