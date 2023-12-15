@@ -1,7 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
+import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
@@ -51,7 +53,21 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
                           GoRouter.of(context).push(Routes.EditAthleteImagesScreen);
                           // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
                         }else if(value == 2){
+                          if(licenceController.activeSeason.seasons!.compareTo(licenceController.selectedFullLicence!.licence!.seasons) > 0){
                           GoRouter.of(context).push(Routes.RenewAthleteImages);
+                          }
+                          else{
+                          
+        final snackBar = MySnackBar(
+          title: 'نفس الموسم',
+          msg: 'لا يمكن تجديد اجازة من نفس الموسم الحالي',
+
+          state: ContentType.warning,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+                          }
                           // Navigator.push(context, MaterialPageRoute(builder: ((context) => RenewLicenceImages())));
                         }
                      }
@@ -64,7 +80,21 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
                           // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
                         }
                         else if(value == 2){
+                          if(licenceController.activeSeason.seasons!.compareTo(licenceController.selectedFullLicence!.licence!.seasons) > 0){
                           GoRouter.of(context).push(Routes.RenewArbitratorImagesScreen);
+                          }
+                           else{
+                          
+        final snackBar = MySnackBar(
+          title: 'نفس الموسم',
+          msg: 'لا يمكن تجديد اجازة من نفس الموسم الحالي',
+
+          state: ContentType.warning,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+                          }
                           // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
                         }
                       }
@@ -77,7 +107,21 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
                           // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
                         }
                         else if(value == 2){
+                          if(licenceController.activeSeason.seasons!.compareTo(licenceController.selectedFullLicence!.licence!.seasons) > 0){
                           GoRouter.of(context).push(Routes.RenewCoachImagesScreen);
+                          }
+                           else{
+                          
+        final snackBar = MySnackBar(
+          title: 'نفس الموسم',
+          msg: 'لا يمكن تجديد اجازة من نفس الموسم الحالي',
+
+          state: ContentType.warning,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+                          }
                           // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
                         }
                       }

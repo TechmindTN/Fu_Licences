@@ -127,7 +127,7 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
                         } else {
                           licenceController.createCoach(context);
                           // GoRouter.of(context).dispose();
-                          GoRouter.of(context).go(Routes.Home);
+                                                    GoRouter.of(context).go(Routes.LicenceListScreen);
                         }
                         }
                         else{
@@ -155,7 +155,8 @@ class _AddCoachScreenState extends State<AddCoachScreen> {
                         } else {
                           licenceController.createCoach(context);
                           // GoRouter.of(context).dispose();
-                          GoRouter.of(context).go(Routes.Home);
+                                                    GoRouter.of(context).go(Routes.LicenceListScreen);
+
                         }
                         }
                         

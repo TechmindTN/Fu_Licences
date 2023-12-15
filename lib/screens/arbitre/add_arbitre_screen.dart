@@ -97,7 +97,7 @@ class _AddArbitreScreenState extends State<AddArbitreScreen> {
                             ..showSnackBar(snackBar);
                         } else {
                           licenceController.createArbitre(context);
-                          GoRouter.of(context).go(Routes.Home);
+                          GoRouter.of(context).go(Routes.LicenceListScreen);
                         }
                       },
                       label: const Text('تاكيد'),

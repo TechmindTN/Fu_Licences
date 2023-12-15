@@ -116,9 +116,10 @@ class ParameterNetwork{
     return res;
   }
   activateSeason(id) async {
+    print('${apis.baseUrl}${apis.activateSeason}$id/');
     Response res = await apis.dio.put('${apis.baseUrl}${apis.activateSeason}$id/',
-         options: Options(
-           headers: {"Authorization": Apis.tempToken}),
+    //      options: Options(
+    //       //  headers: {"Authorization": Apis.tempToken}),
     );
     return res;
   }

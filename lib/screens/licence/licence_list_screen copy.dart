@@ -33,7 +33,7 @@ late DataTableSource dataSource;
     // await licenceController.getParameters();
     super.didChangeDependencies();
   }
-
+  late Future future;
   @override
   void initState() {
     licenceController=Provider.of<LicenceProvider>(context,listen: false);
@@ -41,7 +41,7 @@ late DataTableSource dataSource;
     licenceController.currentPage=0;
     licenceController.initSelected();
     licenceController.initCreate();
-    
+    future=licenceController.getPaginatedLicences(licenceController.activeSeason.id);
     WidgetsBinding.instance.addPostFrameCallback((_) 
       //  Future.delayed(Duration(seconds: 3), () => 
        {
@@ -77,7 +77,6 @@ late DataTableSource dataSource;
 
   @override
   Widget build(BuildContext context) {
-    dataSource=LicenceDataSource(licenceController,context);
     //  if(licenceController.added){
     //   final snackBar=MySnackBar(title: 'تمت الاضافة بنجاح',msg: 'تمت اضافة الاجازة بنجاح',state: ContentType.success);
     //   ScaffoldMessenger.of(context)..hideCurrentSnackBar()..showSnackBar(snackBar);
@@ -116,29 +115,30 @@ late DataTableSource dataSource;
                   //     ),
                   //   ],
                   // ),),
-                 FutureBuilder(
-                  future: licenceController.getPaginatedLicences(112),
-                   builder: (context,snaphot) {
-                    if(snaphot.connectionState==ConnectionState.done){
-                          
-                      licenceController.licenceChecks=List.generate(licenceController.fullLicences.length,(index)=>false);
-                      // //print('club length is '+licenceController.parameters!.clubs!.length.toString());
-                       return SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal:30.0,vertical: 8),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          // border: Border.all(color: Colors.black)
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 10,
+                 Consumer<LicenceProvider>(
+                   builder: (context,licenceController,child) {
+                     return FutureBuilder(
+                      future: future,
+                       builder: (context,snaphot) {
+                        if(snaphot.connectionState==ConnectionState.done){
+                                  dataSource=LicenceDataSource(licenceController,context);
+
+                          licenceController.licenceChecks=List.generate(licenceController.fullLicences.length,(index)=>false);
+                          // //print('club length is '+licenceController.parameters!.clubs!.length.toString());
+                           return SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal:30.0,vertical: 8),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              // border: Border.all(color: Colors.black)
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 10,
             
-                          )]
-                        ),
-                        child:  Consumer<LicenceProvider>(
-      builder: (context,licenceCpntroller,child) {
-                            return PaginatedDataTable(
+                              )]
+                            ),
+                            child:  PaginatedDataTable(
                               header: SizedBox(
                                 width: 80.w,
                                 child: Row(
@@ -210,41 +210,41 @@ late DataTableSource dataSource;
                               
                               // arrowHeadColor: Colors.blue,
                               availableRowsPerPage: const [10,20,50,100],
-                    
+                        
                               showCheckboxColumn: true,
                               // showFirstLastButtons: true,
-                               source: dataSource);
-                          }
-                        )
+                               source: dataSource)
+                            ),
                         ),
-                    ),
-                  );
-                    //  return SliverGrid.builder(
-                        
-                    //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5,
-                    //   crossAxisSpacing: 0.w
-                    //   ),
+                      );
+                        //  return SliverGrid.builder(
+                            
+                        //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5,
+                        //   crossAxisSpacing: 0.w
+                        //   ),
             
-                    //   itemCount: licenceController.parameters!.clubs!.length,
-                    //    itemBuilder: (context,index){
-                        // return ClubItem(licenceController.parameters!.clubs![index], licenceController,clubController, context);
-                    //   });
+                        //   itemCount: licenceController.parameters!.clubs!.length,
+                        //    itemBuilder: (context,index){
+                            // return ClubItem(licenceController.parameters!.clubs![index], licenceController,clubController, context);
+                        //   });
+                       }
+                       else{
+                     return SliverToBoxAdapter(child: SizedBox(
+                        height: 40.h,
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(child: CircularProgressIndicator()),
+                          ],
+                        ),
+                      ));
+                      
+                      }
+                       }
+                       
+                       );
                    }
-                   else{
-                 return SliverToBoxAdapter(child: SizedBox(
-                    height: 40.h,
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(child: CircularProgressIndicator()),
-                      ],
-                    ),
-                  ));
-                  
-                  }
-                   }
-                   
-                   )
+                 )
                     ]
                   
                 ),

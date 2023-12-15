@@ -7,7 +7,7 @@ class Apis {
   //  String tempToken="TOKEN 306bf71e724147547708bd7c7c2b0b22c68c94e1e9dc35b14890279113762c4a";
   final String login="login/";
   final String getLatestVersion="latest_version/";
-  final String activateSeason="activate_season";
+  final String activateSeason="activate_season/";
   final String validateLicence="validateLicence/";
   final String licenceListInfo="licencelist_info/";
   final String searchLicences="search_licences/";

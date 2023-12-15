@@ -29,7 +29,7 @@ Widget imageWidget(){
 }
 
 Widget SeasonWidget(LicenceProvider licenceController){
-  Season activeSeason=licenceController.parameters!.seasons!.firstWhere((element) => element.activated==true);
+  licenceController.activeSeason=licenceController.parameters!.seasons!.firstWhere((element) => element.activated==true);
   return  Directionality(
             textDirection: TextDirection.rtl,
 
@@ -44,7 +44,7 @@ Widget SeasonWidget(LicenceProvider licenceController){
               fontSize: 20
             ),
             ),
-            Text(activeSeason.seasons??"2023-2024",
+            Text(licenceController.activeSeason.seasons!,
             style: const TextStyle(
               fontSize: 20,
               color: Color(0xff2DA9E0)

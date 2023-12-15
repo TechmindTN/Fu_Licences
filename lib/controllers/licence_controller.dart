@@ -43,7 +43,7 @@ import '../widgets/licence/licence_widget.dart';
 class LicenceProvider extends ChangeNotifier {
   int currentPage=1;
   Version currentVersion=Version(
-    version: "0.17"
+    version: "0.18"
   );
   bool logged=false;
   bool isAscending =true;
@@ -201,6 +201,7 @@ class LicenceProvider extends ChangeNotifier {
     try{
     Response res =await licenceNetwork.deleteLicence(id);
     if(res.statusCode==204){
+      fullLicences.removeWhere((element) => element.licence!.numLicences==id);
     final snackBar = MySnackBar(
           title: 'نجاح الحذف',
           msg: 'تم حذف اجازة الرياضي بنجاح',          
@@ -209,7 +210,7 @@ class LicenceProvider extends ChangeNotifier {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
-          notify();
+          // notify();
       }
       else{
         final snackBar = MySnackBar(
@@ -222,7 +223,7 @@ class LicenceProvider extends ChangeNotifier {
           ..showSnackBar(snackBar);
       }
       notify();
-      getPaginatedLicences(season,role: role);
+      // getPaginatedLicences(season,role: role);
     }
     catch(e){
       final snackBar = MySnackBar(
@@ -556,7 +557,7 @@ getPaginatedLicences(season,{int? role}) async {
       }
     }
     isLoading=false;
-    notify();
+    // notify();
   }
 
   getLicences({int? role}) async {
@@ -917,6 +918,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
     createdFullLicence!.profile!.birthday = selectedBirth!.year.toString()+"-"+selectedBirth!.month.toString()+"-"+selectedBirth!.day.toString();
     // selectedBirth.toString();
     createdFullLicence!.profile!.cin = cin;
+    // createdFullLicence.profile.profilePhoto=sele
     createdFullLicence!.profile!.country = 'تونس';
     createdFullLicence!.profile!.firstName = firstName;
     createdFullLicence!.profile!.lastName = lastName;
@@ -1049,6 +1051,8 @@ createArbitreLicence(context) async {
           createdFullLicence!.profile!.id=res.data['licence']['id'];
           createdFullLicence!.user!.id=res.data['licence']['id'];
           createdFullLicence!.arbitrator!.id=res.data['licence']['id'];
+          createdFullLicence!.licence!.seasons=activeSeason;
+          // fullLicences.add(createdFullLicence!);
           fullLicences.insert(0,createdFullLicence!);
           notifyListeners();
         ////print('ok');
@@ -1156,6 +1160,34 @@ createArbitreLicence(context) async {
     try {
       Response res = await licenceNetwork.addFullLicence(mapdata);
       if (res.statusCode == 200) {
+        createdFullLicence!.licence!.role="رياضي";
+        // createdFullLicence!.licence!.categorie = selectedCategory!.categorieAge;
+    createdFullLicence!.licence!.grade = selectedGrade!.grade;
+    if(currentUser.club!.id==null){
+      createdFullLicence!.licence!.club = selectedClub!.name;
+    }
+    else{
+      createdFullLicence!.licence!.club = currentUser.club!.name;
+    }
+        createdFullLicence!.licence!.state = res.data['licence']['state'];
+    createdFullLicence!.licence!.discipline = selectedDiscipline!.name;
+    // createdFullLicence!.licence!.weight = selectedWeight!.masseEnKillograme;
+    createdFullLicence!.licence!.degree = selectedDegree!.degree;
+    // createdFullLicence!.athlete!.categoryId = selectedCategory!.categorieAge;
+    // createdFullLicence!.athlete!.gradeId = selectedGrade!.grade;
+    if(currentUser.club!.id==null){
+      createdFullLicence!.coach!.club = selectedClub!.name;
+    }
+    else{
+      createdFullLicence!.coach!.club = currentUser.club!.name;
+    }
+    createdFullLicence!.coach!.discipline = selectedDiscipline!.name;
+    // createdFullLicence!.athlete!.weights = selectedWeight!.masseEnKillograme;
+    // createdFullLicence!.coach!.idDegree = selectedDegree!.degree;
+    createdFullLicence!.licence!.seasons = activeSeason.seasons;
+    createdFullLicence!.licence!.numLicences=res.data['licence']['num_licences'];
+        fullLicences.insert(0,createdFullLicence!);
+        fullCoachLicences.insert(0,createdFullLicence!);
         notify();
         ////print('ok');
         // Navigator.pop(context);
@@ -1251,7 +1283,7 @@ createArbitreLicence(context) async {
     createdFullLicence!.athlete!.weights = selectedWeight!.masseEnKillograme;
     createdFullLicence!.athlete!.idDegree = selectedDegree!.degree;
     createdFullLicence!.licence!.numLicences=res.data['licence']['num_licences'];
-    fullLicences.add(createdFullLicence!);
+    fullLicences.insert(0,createdFullLicence!);
     notify();
       } else {
         final snackBar = MySnackBar(

@@ -1,7 +1,9 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/models/ligue.dart';
+import 'package:provider/provider.dart';
 import '../models/category.dart';
 import '../models/degree.dart';
 import '../models/discipline.dart';
@@ -54,20 +56,34 @@ class ParameterProvider extends ChangeNotifier{
 
   activateSeason(int id,context) async {
     Response res=await paramNetwork.activateSeason(id.toString());
-   if(res.statusCode==204){
+   if(res.statusCode==200){
+    LicenceProvider licenceController=Provider.of<LicenceProvider>(context,listen: false);
+    
+    licenceController.parameters!.seasons!.forEach((element) { 
+      if(element.id!=id){
+        element.activated=true;
+        licenceController.activeSeason=element;
+        
+      }
+      else{
+        element.activated=false;
+      }
+    });
        final snackBar = MySnackBar(
           title: 'Succees',
-          msg: 'La ligue a ete supprimee avec succees',
+          msg: 'La saison a ete activee avec succees',
           state: ContentType.success,
         );
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
+          notifyListeners();
+          licenceController.notifyListeners();
     }
     else{
       final snackBar = MySnackBar(
           title: 'Echec',
-          msg: 'La ligue n\'est pas supprimee ',
+          msg: 'La saison n\'est pas activee ',
           state: ContentType.failure,
         );
         ScaffoldMessenger.of(context)
