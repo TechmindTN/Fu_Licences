@@ -25,9 +25,20 @@ class ParameterProvider extends ChangeNotifier{
   List<bool> weightChecks=[];
   List<bool> seasonChecks=[];
 
-  addLigue(String name){
+  addLigue(String name,context,LicenceProvider licenceController) async {
     Ligue ligue=Ligue(name: name);
-    paramNetwork.addLigue(ligue.toJson());
+    Response res=await paramNetwork.addLigue(ligue.toJson());
+    if(res.statusCode==201){
+      ligue.id=res.data['id'];
+      // LicenceProvider licenceProvider=Provider.of<LicenceProvider>(context,listen: false);
+
+          licenceController.parameters!.ligues!.insert(0,ligue);
+          licenceController.notifyListeners();
+          notifyListeners();
+    }
+    else{
+      print('failed');
+    }
   }
   addCategory(String name,int min,int max){
     Category category=Category(categorieAge: name,min: min,max:max );

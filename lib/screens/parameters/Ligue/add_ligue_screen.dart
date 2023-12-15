@@ -82,8 +82,12 @@ class _AddLigueScreenState extends State<AddLigueScreen> {
                             ..hideCurrentSnackBar()
                             ..showSnackBar(snackBar);
                         } else {
-                          paramController.addLigue(ligueController.text);
+                          paramController.addLigue(ligueController.text,context,licenceController);
+                          paramController.notify();
+                          licenceController.notify();
                           GoRouter.of(context).pop();
+                          paramController.notify();
+                          licenceController.notify();
                           // licenceController.createAthlete(context);
                           // GoRouter.of(context).go(Routes.LigueListScreen);
                         }
@@ -97,5 +101,12 @@ class _AddLigueScreenState extends State<AddLigueScreen> {
       );
     });
 
+  }
+  @override
+  void dispose() {
+    paramController.notify();
+                          licenceController.notify();
+    // TODO: implement dispose
+    super.dispose();
   }
 }

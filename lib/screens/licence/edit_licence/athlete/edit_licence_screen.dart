@@ -151,8 +151,8 @@ late  TextEditingController addresseController;
         Text(licenceController.selectedFullLicence!.licence!.numLicences.toString()),
                 SizedBox(height: 3.h,),
                     GategorySelectInput('العمر',licenceController.selectedCategory,licenceController),
-                    GradeSelectInput('Grade',licenceController.selectedGrade,licenceController)	,
-                    DegreeSelectInput('Degree',licenceController.selectedDegree,licenceController),
+                    // GradeSelectInput('Grade',licenceController.selectedGrade,licenceController)	,
+                    // DegreeSelectInput('Degree',licenceController.selectedDegree,licenceController),
                     DisciplineSelectInput('الرياضة',licenceController.selectedDiscipline,licenceController)	,
                   
                     WeightSelectInput('الوزن',licenceController.selectedWeight,licenceController),

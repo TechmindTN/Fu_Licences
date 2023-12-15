@@ -43,7 +43,7 @@ import '../widgets/licence/licence_widget.dart';
 class LicenceProvider extends ChangeNotifier {
   int currentPage=1;
   Version currentVersion=Version(
-    version: "0.18"
+    version: "0.19"
   );
   bool logged=false;
   bool isAscending =true;
@@ -334,6 +334,7 @@ class LicenceProvider extends ChangeNotifier {
       filteredFullLicences.clear();
       for(int i=0;i<res.data.length;i++){
         // print(res.data[i]['profile']['role']);
+        print(res.data);
         Profile profile=Profile.fromJson(res.data[i]['profile']);
         Licence licence=Licence.fromJson(res.data[i]['licence']);
         late FullLicence fullLicence;
@@ -972,7 +973,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       String? phone,
       String? state}) {
     createdFullLicence!.profile!.address = address;
-    createdFullLicence!.profile!.birthday = selectedBirth.toString();
+    createdFullLicence!.profile!.birthday = selectedBirth!.year.toString()+"-"+selectedBirth!.month.toString()+"-"+selectedBirth!.day.toString();
     createdFullLicence!.profile!.cin = cin;
     createdFullLicence!.profile!.firstName = firstName;
     createdFullLicence!.profile!.lastName = lastName;
@@ -994,7 +995,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
       String? phone,
       String? state}) {
     createdFullLicence!.profile!.address = address;
-    createdFullLicence!.profile!.birthday = selectedBirth.toString();
+    createdFullLicence!.profile!.birthday = selectedBirth!.year.toString()+"-"+selectedBirth!.month.toString()+"-"+selectedBirth!.day.toString();
     createdFullLicence!.profile!.cin = cin;
     createdFullLicence!.profile!.firstName = firstName;
     createdFullLicence!.profile!.lastName = lastName;
@@ -1012,7 +1013,7 @@ pickArbitreImage(bool fromGallery, context, String? toFillImage) async {
 createArbitre(context) {
     createdFullLicence!.arbitrator!.grade = selectedGrade!.id;
     if(currentUser.club!.id==null){
-      createdFullLicence!.arbitrator!.club = selectedClub!.id;
+      createdFullLicence!.arbitrator!.club = null;
     }
     else{
       createdFullLicence!.arbitrator!.club = currentUser.club!.id;
@@ -1024,13 +1025,13 @@ createArbitreLicence(context) async {
     added = true;
     createdFullLicence!.licence!.grade = selectedGrade!.id;
     if(currentUser.club!.id==null){
-      createdFullLicence!.licence!.club = selectedClub!.id;
+      createdFullLicence!.licence!.club = null;
     }
     else{
       createdFullLicence!.licence!.club = currentUser.club!.id;
     }
     createdFullLicence!.licence!.activated = false;
-    createdFullLicence!.licence!.state = selectedState;
+    createdFullLicence!.licence!.state = "في الانتظار";
     createdFullLicence!.licence!.verified = false;
     createdFullLicence!.licence!.role = 1;
     Map<String, dynamic> mapdata = {};
@@ -1047,12 +1048,21 @@ createArbitreLicence(context) async {
     try {
       Response res = await licenceNetwork.addFullLicence(mapdata);
       if (res.statusCode == 200) {
+        print('aaa');
+        createdFullLicence!.licence!.role = 'حكم';
+        print('bbb');
          createdFullLicence!.licence!.numLicences=res.data['licence']['num_licences'];
-          createdFullLicence!.profile!.id=res.data['licence']['id'];
-          createdFullLicence!.user!.id=res.data['licence']['id'];
-          createdFullLicence!.arbitrator!.id=res.data['licence']['id'];
-          createdFullLicence!.licence!.seasons=activeSeason;
+        print('ccc');
+          createdFullLicence!.profile!.id=res.data['profile']['id'];
+        print('ddd');
+          createdFullLicence!.user!.id=res.data['user']['id'];
+        print('eee');
+        print(res.data);
+          createdFullLicence!.arbitrator!.id=res.data['arbitre']['id'];
+        print('fff');
+          createdFullLicence!.licence!.seasons=activeSeason.seasons;
           // fullLicences.add(createdFullLicence!);
+        print('eee');
           fullLicences.insert(0,createdFullLicence!);
           notifyListeners();
         ////print('ok');
@@ -1160,7 +1170,7 @@ createArbitreLicence(context) async {
     try {
       Response res = await licenceNetwork.addFullLicence(mapdata);
       if (res.statusCode == 200) {
-        createdFullLicence!.licence!.role="رياضي";
+        createdFullLicence!.licence!.role="مدرب";
         // createdFullLicence!.licence!.categorie = selectedCategory!.categorieAge;
     createdFullLicence!.licence!.grade = selectedGrade!.grade;
     if(currentUser.club!.id==null){
@@ -1186,6 +1196,8 @@ createArbitreLicence(context) async {
     // createdFullLicence!.coach!.idDegree = selectedDegree!.degree;
     createdFullLicence!.licence!.seasons = activeSeason.seasons;
     createdFullLicence!.licence!.numLicences=res.data['licence']['num_licences'];
+    createdFullLicence!.profile!.id=res.data['profile']['id'];
+    createdFullLicence!.coach!.id=res.data['coach']['id'];
         fullLicences.insert(0,createdFullLicence!);
         fullCoachLicences.insert(0,createdFullLicence!);
         notify();
@@ -1259,7 +1271,7 @@ createArbitreLicence(context) async {
       Response res = await licenceNetwork.addFullLicence(mapdata);
       if (res.statusCode == 200) {
         createdFullLicence!.licence!.role="رياضي";
-        createdFullLicence!.licence!.categorie = selectedCategory!.categorieAge;
+        createdFullLicence!.licence!.categorie = autoCategory!.categorieAge;
     createdFullLicence!.licence!.grade = selectedGrade!.grade;
     if(currentUser.club!.id==null){
       createdFullLicence!.licence!.club = selectedClub!.name;
@@ -1283,6 +1295,10 @@ createArbitreLicence(context) async {
     createdFullLicence!.athlete!.weights = selectedWeight!.masseEnKillograme;
     createdFullLicence!.athlete!.idDegree = selectedDegree!.degree;
     createdFullLicence!.licence!.numLicences=res.data['licence']['num_licences'];
+    createdFullLicence!.licence!.seasons=activeSeason.seasons;
+    createdFullLicence!.profile!.id=res.data['profile']['id'];
+        createdFullLicence!.athlete!.id=res.data['athlete']['id'];
+
     fullLicences.insert(0,createdFullLicence!);
     notify();
       } else {
