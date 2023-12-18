@@ -25,14 +25,14 @@ class DegreeDataSource extends DataTableSource{
       DataCell(SelectableText(licenceController.parameters!.degrees![index].degree.toString())),
       DataCell(Row(
         children: [
-          FloatingActionButton.small(onPressed: (){
-             paramController.removeDegree(licenceController.parameters!.degrees![index].id!,context);
-            licenceController.parameters!.degrees!.remove(licenceController.parameters!.degrees![index]);
-            licenceController.notify();
-          },
-          backgroundColor: Colors.orange,child: const Icon(Icons.edit),
-          ),
-          SizedBox(width: 1.w),
+          // FloatingActionButton.small(onPressed: (){
+          //    paramController.removeDegree(licenceController.parameters!.degrees![index].id!,context);
+          //   licenceController.parameters!.degrees!.remove(licenceController.parameters!.degrees![index]);
+          //   licenceController.notify();
+          // },
+          // backgroundColor: Colors.orange,child: const Icon(Icons.edit),
+          // ),
+          // SizedBox(width: 1.w),
           FloatingActionButton.small(onPressed: (){
              paramController.removeDegree(licenceController.parameters!.degrees![index].id!,context);
             licenceController.parameters!.degrees!.remove(licenceController.parameters!.degrees![index]);

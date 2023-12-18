@@ -948,7 +948,7 @@ FilterDialog(LicenceProvider licenceController, context) {
                     WeightSelectInput('الوزن',licenceController.filteredWeight,licenceController),
                     if(licenceController.currentUser.club?.id==null)
                     ClubSelectInput('النادي',licenceController.filteredClub,licenceController),
-                     SelectInput('الجنس',licenceController.filteredSex,licenceController,['ذكر','انثى']),
+                    //  SelectInput('الجنس',licenceController.filteredSex,licenceController,['ذكر','انثى']),
                      SelectInput('الحالة',licenceController.filteredStatus,licenceController,["نشطة","في الانتظار","منتهية"]),
               ],
             ),

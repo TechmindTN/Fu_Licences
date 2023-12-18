@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/router/routes.dart';
+import 'package:fu_licences/screens/parameters/Ligue/add_ligue_screen.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     paramController.ligueChecks=List.generate(licenceController.parameters!.ligues!.length,(index)=>false);
     dataSource=LigueDataSource(licenceController,context,paramController);
   //  Ligue ligue=Ligue();
@@ -49,7 +51,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
     return Consumer<ParameterProvider>(
       builder: (context,parameterController,child) {
         return Consumer<LicenceProvider>(
-          builder: (context,clubController,child) {
+          builder: (context,licenceController,child) {
             return Directionality(
                       textDirection: TextDirection.rtl,
 
@@ -220,8 +222,10 @@ class _LigueListScreenState extends State<LigueListScreen> {
                   
                 ),
                  floatingActionButton: FloatingActionButton(onPressed: () {
-                  GoRouter.of(context).push(Routes.AddLigueScreen);
-                  // Navigator.push(context, MaterialPageRoute(builder: ((context) => SelectRoleScreen())));
+                  // GoRouter.of(context).push(Routes.AddLigueScreen).then((value) => );
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => AddLigueScreen()))).then((value) => setState(() {
+      
+    }));
                 },
                 child: const Icon(Icons.add),
                 ),

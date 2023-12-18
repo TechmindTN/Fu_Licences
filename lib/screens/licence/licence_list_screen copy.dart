@@ -30,6 +30,9 @@ late DataTableSource dataSource;
 
   @override
   Future<void> didChangeDependencies() async {
+    licenceController.fullLicences.clear();
+    // licenceController.notify();
+    future=licenceController.getPaginatedLicences(licenceController.activeSeason.id);
     // await licenceController.getParameters();
     super.didChangeDependencies();
   }
@@ -41,7 +44,7 @@ late DataTableSource dataSource;
     licenceController.currentPage=0;
     licenceController.initSelected();
     licenceController.initCreate();
-    future=licenceController.getPaginatedLicences(licenceController.activeSeason.id);
+    
     WidgetsBinding.instance.addPostFrameCallback((_) 
       //  Future.delayed(Duration(seconds: 3), () => 
        {

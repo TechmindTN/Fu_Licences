@@ -179,7 +179,9 @@ class _LicenceScreenState extends State<LicenceScreen> {
             backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
           ), child: const Text("قبول"),
                   ),
-                   ElevatedButton(onPressed: (){},
+                   ElevatedButton(onPressed: (){
+                    
+                   },
                    style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
           ), child: const Text("رفض"),

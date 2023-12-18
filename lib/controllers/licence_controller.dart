@@ -43,7 +43,7 @@ import '../widgets/licence/licence_widget.dart';
 class LicenceProvider extends ChangeNotifier {
   int currentPage=1;
   Version currentVersion=Version(
-    version: "0.19"
+    version: "0.21"
   );
   bool logged=false;
   bool isAscending =true;
@@ -201,7 +201,26 @@ class LicenceProvider extends ChangeNotifier {
     try{
     Response res =await licenceNetwork.deleteLicence(id);
     if(res.statusCode==204){
-      fullLicences.removeWhere((element) => element.licence!.numLicences==id);
+      if(fullLicences.isNotEmpty){
+        fullLicences.removeWhere((element) => element.licence!.numLicences==id);
+      }
+      
+      // if(role==2){
+      //   if(fullAthleteLicences.isNotEmpty){
+      //     fullAthleteLicences.removeWhere((element) => element.licence!.numLicences==id);
+      //   }
+      // }
+      // else if(role==4){
+      //   if(fullCoachLicences.isNotEmpty){
+      //     fullCoachLicences.removeWhere((element) => element.licence!.numLicences==id);
+      //   }
+      // }
+      // else if(role==1){
+      //   if(fullArbitratorLicences.isNotEmpty){
+      //     fullArbitratorLicences.removeWhere((element) => element.licence!.numLicences==id);
+      //   }
+      // }
+      print(role);
     final snackBar = MySnackBar(
           title: 'نجاح الحذف',
           msg: 'تم حذف اجازة الرياضي بنجاح',          
@@ -646,7 +665,7 @@ getPaginatedLicences(season,{int? role}) async {
             notify();
           }
           parameters!.clubs = clubs;
-notify();
+        notify();
         List<Ligue> ligues = [];
         for (var l in res.data['Ligues']) {
           Ligue ligue = Ligue.fromJson(l);
@@ -1105,6 +1124,10 @@ createArbitreLicence(context) async {
         ..showSnackBar(snackBar);
     }
   }
+
+  // RefuseLicence(){
+    
+  // }
 
   createAthlete(context) {
     createdFullLicence!.athlete!.categoryId = autoCategory.id;
@@ -1631,6 +1654,7 @@ initArbitreFields() {
     Response res = await licenceNetwork.editArbitratorProfile(
         mapData, selectedFullLicence!.arbitrator!.id);
     if (res.statusCode == 200) {
+      
       final snackBar = MySnackBar(
           title: "Modification Succees",
           msg: "La licence de ce arbitre a ete modifie avec succees",
