@@ -32,7 +32,7 @@ class LicenceDataSource extends DataTableSource{
       DataCell(SelectableText(licenceController.fullLicences[index].profile!.sexe.toString())),
       DataCell(SelectableText(licenceController.fullLicences[index].profile!.phone.toString())),
       DataCell(SelectableText(
-        (licenceController.fullLicences[index].profile!.role==4)?"مدرب":(licenceController.fullLicences[index].profile!.role==1)?"حكم":(licenceController.fullLicences[index].profile!.role==2)?"رياضي":"")),
+        ((licenceController.fullLicences[index].profile!.role==4)||(licenceController.fullLicences[index].profile!.role==7))?"مدرب":(licenceController.fullLicences[index].profile!.role==1)?"حكم":(licenceController.fullLicences[index].profile!.role==2)?"رياضي":"")),
       DataCell(SelectableText(licenceController.fullLicences[index].licence!.discipline.toString())),
       DataCell(SelectableText(licenceController.fullLicences[index].licence!.club.toString())),
       DataCell(SelectableText(licenceController.fullLicences[index].profile!.state.toString())),

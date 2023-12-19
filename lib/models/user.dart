@@ -28,7 +28,7 @@ class User {
     isStaff = json['is_staff'];
     isActive = json['is_active'];
     dateJoined = json['date_joined'];
-    club = Club.fromJson(json['club']);
+    club = (json['club'].length<0)?Club.fromJson(json['club'][0]):Club();
   }
 
   Map<String, dynamic> toJson() {

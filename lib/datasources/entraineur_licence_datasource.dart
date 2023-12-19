@@ -31,7 +31,7 @@ class EntraineurLicenceDataSource extends DataTableSource{
       DataCell(SelectableText(licenceController.fullCoachLicences[index].profile!.sexe.toString())),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].profile!.phone.toString())),
       DataCell(SelectableText(
-        (licenceController.fullCoachLicences[index].profile!.role==4)?"مدرب":(licenceController.fullCoachLicences[index].profile!.role==1)?"حكم":(licenceController.fullCoachLicences[index].profile!.role==2)?"رياضي":"")),
+        ((licenceController.fullLicences[index].profile!.role==4)||(licenceController.fullLicences[index].profile!.role==7))?"مدرب":(licenceController.fullCoachLicences[index].profile!.role==1)?"حكم":(licenceController.fullCoachLicences[index].profile!.role==2)?"رياضي":"")),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].licence!.discipline.toString())),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].licence!.club.toString())),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].profile!.state.toString())),

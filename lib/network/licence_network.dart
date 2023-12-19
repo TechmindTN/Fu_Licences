@@ -10,6 +10,13 @@ class LicenceNetwork {
     return res;
   }
 
+  createDefaultCoach(data) async {
+    Response res = await apis.dio.post(apis.baseUrl + apis.addFullLicence,
+        options: Options(headers: {"Authorization": Apis.tempToken}),
+        data: data);
+    return res;
+  }
+
   getLicenceListInfo(data) async {
     Response res = await apis.dio.post(apis.baseUrl + apis.licenceListInfo,
         options: Options(headers: {"Authorization": Apis.tempToken}),

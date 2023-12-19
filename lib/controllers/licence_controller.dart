@@ -2430,4 +2430,8 @@ class LicenceProvider extends ChangeNotifier {
     //     ..writeAsBytesSync(onValue);
     // });
   }
+  createDefaultCoach(){
+    Map<String,dynamic> mapData;
+    // licenceNetwork.createDefaultCoach(mapData);
+  }
 }
