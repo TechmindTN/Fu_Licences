@@ -4,6 +4,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_licences/controllers/licence_controller.dart';
 import 'package:fu_licences/router/routes.dart';
+import 'package:fu_licences/screens/licence/dialogs/export_data_dialog.dart';
 import 'package:fu_licences/widgets/global/appbar.dart';
 import 'package:fu_licences/widgets/global/snackbars.dart';
 import 'package:fu_licences/widgets/licence/licence_widget.dart';
@@ -156,6 +157,13 @@ late DataTableSource dataSource;
                                 ),
                               ),
                               actions: [
+                                (licenceController.currentUser.club!.id==null)?ElevatedButton(onPressed: (){
+                                  showDialog(context: context, builder: (context){
+                                    return ExportDataDialog();
+                                  });
+                                  // licenceController.exportAthletesToExcel( "ExportFTWKF", 0);
+                                }, child: 
+                                Text("Export")):SizedBox(),
                                 Row(
                                   children: [
                                      IconButton(onPressed: (){

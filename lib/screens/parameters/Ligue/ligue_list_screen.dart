@@ -49,7 +49,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
   //print("ligue length "+licenceController.parameters!.ligues!.length.toString());
    //ligue.
     return Consumer<ParameterProvider>(
-      builder: (context,parameterController,child) {
+      builder: (context,paramController,child) {
         return Consumer<LicenceProvider>(
           builder: (context,licenceController,child) {
             return Directionality(
@@ -121,7 +121,7 @@ class _LigueListScreenState extends State<LigueListScreen> {
                           columns: const [ 
                             DataColumn(label: Text(''),),
                             // DataColumn(label: Text('logo'),),                     
-                            DataColumn(label: Text('اللقب')),                     
+                            DataColumn(label: Text('الولاية')),                     
                             // DataColumn(label: Text('الولاية')),                     
                             DataColumn(label: Text('الاجراءات')),
                             ],

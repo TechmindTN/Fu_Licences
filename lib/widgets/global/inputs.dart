@@ -251,6 +251,7 @@ RoleSelectInput(txt,selected,LicenceProvider licenceController){
     onChanged: (value){
       selected=value;
       licenceController.filteredRole=value!;
+      licenceController.selectedRole=value;
       
     },
     selectedItem: selected,
@@ -530,7 +531,7 @@ ClubSelectInput(txt,selected,LicenceProvider licenceController){
       selected=value;
       licenceController.selectedClub=value;
       licenceController.filteredClub=value;
-
+      licenceController.notify();
     },
     selectedItem: selected,
 ),

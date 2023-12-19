@@ -13,7 +13,6 @@ import 'package:sizer/sizer.dart';
 Widget imageWidget(){
   return Directionality(
             textDirection: TextDirection.rtl,
-
     child: SizedBox(
       width: 120.w,
       height: 17.h,

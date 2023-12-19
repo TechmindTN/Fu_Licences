@@ -10,13 +10,15 @@ class LicenceNetwork {
     return res;
   }
 
-  getLicenceListInfo(clubid) async {
+  getLicenceListInfo(data) async {
     Response res = await apis.dio.post(apis.baseUrl + apis.licenceListInfo,
         options: Options(headers: {"Authorization": Apis.tempToken}),
-        data: {'userid': 274,
-        'club':clubid,
+        data:data
+        // data: {'userid': 274,
+        // 'club':clubid,
         
-        });
+        // }
+        );
     return res;
   }
 
