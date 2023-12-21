@@ -41,6 +41,12 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
                                   child: Text("تجديد الاجازة"),
                               ),
                               
+                              if((licenceController.selectedFullLicence!.licence!.role=="مدرب")&&(licenceController.currentUser.club!.id==null))
+                              const PopupMenuItem<int>(
+                                  value: 3,
+                                  child: Text("اضافة نادي"),
+                              ),
+                              
                           ];
                          
                      },
@@ -122,6 +128,10 @@ Widget MyAppBar(title,context,isDrawer,LicenceProvider licenceController,isActio
           ..hideCurrentSnackBar()
           ..showSnackBar(snackBar);
                           }
+                          // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
+                        }
+                        else if(value == 3){
+                          GoRouter.of(context).push(Routes.AddClubCoachLicence);
                           // Navigator.push(context, MaterialPageRoute(builder: ((context) => EditLicenceImages())));
                         }
                       }

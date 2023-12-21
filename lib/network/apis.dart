@@ -11,6 +11,8 @@ class Apis {
   final String validateLicence="validateLicence/";
   final String licenceListInfo="licencelist_info/";
   final String searchLicences="search_licences/";
+  final String createDefaultCoach="add_default_coach/";
+  final String assignClubToCoach="assign_club_to_coach/";
 
   final String paginatedLicenceListInfo="paginated_licence/";
 

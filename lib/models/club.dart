@@ -5,8 +5,9 @@ class Club {
   String? logo;
   int? profile;
   int? ligue;
+  bool? hasCoach;
 
-  Club({this.id, this.created, this.name, this.logo, this.profile, this.ligue});
+  Club({this.id, this.created, this.name, this.logo, this.profile, this.ligue, this.hasCoach});
 
   Club.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -15,6 +16,7 @@ class Club {
     logo = json['logo'];
     profile = json['profile'];
     ligue = json['ligue'];
+    hasCoach = json['default'];
   }
 
   Map<String, dynamic> toJson() {
@@ -25,6 +27,7 @@ class Club {
     data['logo'] = logo;
     data['profile'] = profile;
     data['ligue'] = ligue;
+    data['default'] = hasCoach;
     return data;
   }
 }

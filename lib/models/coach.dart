@@ -13,6 +13,7 @@ class Coach {
   dynamic weights;
   dynamic category;
   dynamic discipline;
+  dynamic clubs;
 
   Coach(
       {this.id,
@@ -28,7 +29,10 @@ class Coach {
       this.categoryId,
       this.weights,
       this.category,
-      this.discipline});
+      this.discipline,
+      this.clubs
+      }
+      );
 
   Coach.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -45,6 +49,7 @@ class Coach {
     weights = json['weights'];
     category = json['category'];
     discipline = json['discipline'];
+    clubs = json['all_clubs'];
   }
 
   Map<String, dynamic> toJson() {

@@ -6,6 +6,7 @@ import 'package:fu_licences/screens/club/club_screen.dart';
 import 'package:fu_licences/screens/club/edit_club_password_screen.dart';
 import 'package:fu_licences/screens/club/edit_club_screen.dart';
 import 'package:fu_licences/screens/club/edit_password_screen.dart';
+import 'package:fu_licences/screens/coach/add_club_coach_licence.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
@@ -135,6 +136,9 @@ class Pages{
       ),
       GoRoute(path: Routes.AddCoachLicenceScreen,
       builder: (context, state) => const AddCoachScreen(),
+      ),
+      GoRoute(path: Routes.AddClubCoachLicence,
+      builder: (context, state) => AddClubCoachLicenceScreen(),
       ),
       GoRoute(path: Routes.AddArbitreLicenceScreen,
       builder: (context, state) => const AddArbitreScreen(),

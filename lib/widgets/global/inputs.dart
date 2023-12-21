@@ -542,6 +542,61 @@ ClubSelectInput(txt,selected,LicenceProvider licenceController){
   );
 }
 
+NonDefaultClubSelectInput(txt,selected,LicenceProvider licenceController){
+ return Padding(
+    padding: const EdgeInsets.symmetric(horizontal:24.0,vertical: 8),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(txt),
+       Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
+            border: Border.all(color: Colors.black38)
+          ),
+          width: 25.w,
+          height: 4.h,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DropdownSearch<Club>(    
+              compareFn: (item1, item2) => item1.id==item2.id,       
+    popupProps: PopupProps.modalBottomSheet(
+      showSearchBox: true,
+      constraints: BoxConstraints(maxHeight: 30.h,
+      minHeight: 10.h
+      ),
+        showSelectedItems: true,
+        // disabledItemFn: (String s) => s.startsWith('I'),
+    ),
+    itemAsString: (item) => item.name!,
+    items: licenceController.NonDefaultClubs,
+    dropdownDecoratorProps: DropDownDecoratorProps(
+       dropdownSearchDecoration: InputDecoration(
+          filled: false,
+              // labelText: selected,
+              hintText: 'الرجاء اختيار '+txt,
+              
+        ),
+    ),
+    // onChanged: (value){
+    //   selected=value;
+    //   licenceController.notify();
+    // },
+    onChanged: (value){
+      selected=value;
+      licenceController.selectedClub=value;
+      licenceController.filteredClub=value;
+      licenceController.notify();
+    },
+    selectedItem: selected,
+),
+          )
+        )
+      ],
+    ),
+  );
+}
+
 
 DisciplineSelectInput(txt,selected,LicenceProvider licenceController){
  return Padding(

@@ -42,6 +42,7 @@ import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
+   List<Club> NonDefaultClubs=[];
   int currentPage = 1;
   Version currentVersion = Version(version: "0.21");
   bool logged = false;
@@ -653,6 +654,8 @@ class LicenceProvider extends ChangeNotifier {
         for (var l in res.data['Clubs']) {
           Club club = Club.fromJson(l);
           clubs.add(club);
+          if(club.hasCoach==false)
+          NonDefaultClubs.add(club);
           notify();
         }
         parameters!.clubs = clubs;
@@ -2433,5 +2436,47 @@ class LicenceProvider extends ChangeNotifier {
   createDefaultCoach(){
     Map<String,dynamic> mapData;
     // licenceNetwork.createDefaultCoach(mapData);
+  }
+
+  getCoachClubs(){
+    List<Club> clubsList=[];
+    print(selectedFullLicence!.coach!.clubs);
+    List<String> clubs=selectedFullLicence!.coach!.clubs.split(",");
+    for(int i=0;i<clubs.length;i++){
+      clubsList.add(parameters!.clubs!.firstWhere((element) => element.id.toString()==clubs[i]));
+    }
+    return clubsList;
+  }
+
+  assignClubToCoach(context) async {
+    Map<String,dynamic> mapData={
+      "coach":{"id":selectedFullLicence!.coach!.id},
+      "licence":selectedFullLicence!.licence!.numLicences,
+      "club":selectedClub!.id.toString()
+    };
+    Response res=await licenceNetwork.assignClubToCoach(mapData);
+    if(res.statusCode==200){
+      // fullLicences.add()
+      final snackBar = MySnackBar(
+      title: 'نجاح الاستخراج',
+      msg: 'تم استخراج البيانات بنجاح',
+      state: ContentType.success,
+    );
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
+      
+    }
+    else{
+      final snackBar = MySnackBar(
+      title: 'Problem',
+      msg: 'Couldn\'t add club',
+      state: ContentType.failure,
+    );
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
+    }
+
   }
 }

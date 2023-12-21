@@ -11,7 +11,13 @@ class LicenceNetwork {
   }
 
   createDefaultCoach(data) async {
-    Response res = await apis.dio.post(apis.baseUrl + apis.addFullLicence,
+    Response res = await apis.dio.post(apis.baseUrl + apis.createDefaultCoach,
+        options: Options(headers: {"Authorization": Apis.tempToken}),
+        data: data);
+    return res;
+  }
+  assignClubToCoach(data) async {
+    Response res = await apis.dio.post(apis.baseUrl + apis.assignClubToCoach,
         options: Options(headers: {"Authorization": Apis.tempToken}),
         data: data);
     return res;
