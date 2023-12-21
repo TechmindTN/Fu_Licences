@@ -149,18 +149,22 @@ late DataTableSource dataSource;
                           actions: [
                             Row(
                               children: [
-                                 IconButton(onPressed: (){
+                                 IconButton(onPressed: () async {
                                   if(licenceController.currentPage>1){
                                   licenceController.currentPage--;
+                                  await licenceController.getPaginatedLicences(licenceController.activeSeason.id,role:4);
+                                  licenceController.notify();
                                   setState(() {
                                     
                                   });
                                   }
                                 }, icon:const Icon(Icons.keyboard_arrow_right_outlined)),
                                 Text(licenceController.currentPage.toString()),
-                                IconButton(onPressed: (){
+                                IconButton(onPressed: () async {
                                   
                                   licenceController.currentPage++;
+                                  await licenceController.getPaginatedLicences(licenceController.activeSeason.id,role: 4);
+                                  licenceController.notify();
                                   setState(() {
                                     
                                   });
@@ -180,7 +184,7 @@ late DataTableSource dataSource;
                           rowsPerPage: 10,
                           // header:  LicenceListHeader(licenceController,numControl,context),
                           columns: const [ 
-                            DataColumn(label: Text(''),),
+                            // DataColumn(label: Text(''),),
                             DataColumn(label: Text('صورة الحساب'),),
                             DataColumn(label: Text('الاجازة'),
                             // onSort: licenceController.sortColumn(0)

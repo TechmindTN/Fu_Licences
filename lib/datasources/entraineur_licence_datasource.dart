@@ -14,14 +14,14 @@ class EntraineurLicenceDataSource extends DataTableSource{
   @override
   DataRow? getRow(int index) {
      return DataRow(cells: [
-      DataCell(Consumer<LicenceProvider>(
-        builder: (context,licenceController,child) {
-          return Checkbox(onChanged: (bool? value) { 
-            licenceController.licenceChecks[index]=!licenceController.licenceChecks[index];
-            licenceController.notify();
-           }, value: licenceController.licenceChecks[index],);
-        }
-      )),
+      // DataCell(Consumer<LicenceProvider>(
+      //   builder: (context,licenceController,child) {
+      //     return Checkbox(onChanged: (bool? value) { 
+      //       licenceController.licenceChecks[index]=!licenceController.licenceChecks[index];
+      //       licenceController.notify();
+      //      }, value: licenceController.licenceChecks[index],);
+      //   }
+      // )),
       DataCell(Image.network(licenceController.fullCoachLicences[index].profile!.profilePhoto!, width: 100),
       ),
       DataCell(SelectableText(licenceController.fullCoachLicences[index].licence!.numLicences.toString())),

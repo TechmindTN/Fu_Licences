@@ -8,9 +8,11 @@ import 'package:fu_licences/screens/club/edit_club_password_screen.dart';
 import 'package:fu_licences/screens/club/edit_club_screen.dart';
 import 'package:fu_licences/screens/club/edit_password_screen.dart';
 import 'package:fu_licences/screens/coach/add_club_coach_licence.dart';
+import 'package:fu_licences/screens/coach/add_coach/add_default_coach_screen.dart';
 import 'package:fu_licences/screens/home/home_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/select_role_screen.dart';
 import 'package:fu_licences/screens/licence/addlicence/upload_athlete_images_screen.dart';
+import 'package:fu_licences/screens/licence/addlicence/upload_default_coach_images_screen.dart';
 import 'package:fu_licences/screens/licence/arbitrator_licence_screen.dart';
 import 'package:fu_licences/screens/licence/athlete_licence_screen.dart';
 import 'package:fu_licences/screens/licence/coach_licence_screen.dart';
@@ -23,6 +25,7 @@ import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_images
 import 'package:fu_licences/screens/licence/renew%20licence/athlete/renew_licence_screen.dart';
 import 'package:fu_licences/screens/parameters/ligue/add_ligue_screen.dart';
 import 'package:fu_licences/screens/parameters/parameters_screen.dart';
+import 'package:fu_licences/screens/profile/add_profile/add_default_profile_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -141,6 +144,16 @@ class Pages{
       GoRoute(path: Routes.AddClubCoachLicence,
       builder: (context, state) => AddClubCoachLicenceScreen(),
       ),
+      GoRoute(path: Routes.AddDefaultCoachLicence,
+      builder: (context, state) => AddDefaultCoachScreen(),
+      ),
+      GoRoute(path: Routes.AddDefaultCoachImages,
+      builder: (context, state) => UploadDefaultCoachLicenceImages(),
+      ),
+      GoRoute(path: Routes.AddDefaultCoachProfile,
+      builder: (context, state) => AddDefaultProfileScreen(),
+      ),
+      
       GoRoute(path: Routes.AddArbitreLicenceScreen,
       builder: (context, state) => const AddArbitreScreen(),
       ),

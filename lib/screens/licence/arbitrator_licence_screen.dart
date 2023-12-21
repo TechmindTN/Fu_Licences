@@ -147,18 +147,20 @@ late DataTableSource dataSource;
                           actions: [
                             Row(
                               children: [
-                                 IconButton(onPressed: (){
+                                 IconButton(onPressed: () async {
                                   if(licenceController.currentPage>1){
                                   licenceController.currentPage--;
+                                  await licenceController.getPaginatedLicences(licenceController.activeSeason.id,role:4);
                                   setState(() {
                                     
                                   });
                                   }
                                 }, icon:const Icon(Icons.keyboard_arrow_right_outlined)),
                                 Text(licenceController.currentPage.toString()),
-                                IconButton(onPressed: (){
+                                IconButton(onPressed: () async {
                                   
                                   licenceController.currentPage++;
+                                  await licenceController.getPaginatedLicences(licenceController.activeSeason.id,role:4);
                                   setState(() {
                                     
                                   });

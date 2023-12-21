@@ -78,7 +78,7 @@ class Profile {
     data['birthday'] = birthday;
     data['cin'] = cin;
     data['role'] = role;
-    data['user'] = user;
+    data['user_id'] = user;
     // data['licences'] = this.licences;
     return data;
   }

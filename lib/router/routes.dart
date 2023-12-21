@@ -10,6 +10,9 @@
     static const String ArbitratorLicenceListScreen="/arbitrator_licence_list";
     static const String CoachLicenceListScreen="/coach_licence_list";
   static const String AddClubCoachLicence="/add_coach_club_licence";
+  static const String AddDefaultCoachLicence="/add_default_coach_club_licence";
+  static const String AddDefaultCoachProfile="/add_default_coach_club_profile";
+  static const String AddDefaultCoachImages="/add_default_coach_club_images";
   static const String LicenceScreen="/licence";
   static const String ClubScreen="/club";
   static const String AddProfileScreen="/add_licence_profile";

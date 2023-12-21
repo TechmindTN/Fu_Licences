@@ -157,11 +157,9 @@ late DataTableSource dataSource;
                                 ),
                               ),
                               actions: [
-                                (licenceController.currentUser.club!.id!=null)?ElevatedButton(onPressed: (){
-                                  showDialog(context: context, builder: (context){
-                                    return ExportDataDialog();
-                                  });
-                                  // licenceController.exportAthletesToExcel( "ExportFTWKF", 0);
+                                ((licenceController.currentUser.club!.id!=null)&&(licenceController.currentUser.club!.hasCoach==false))?ElevatedButton(onPressed: (){
+                                                                    GoRouter.of(context).go(Routes.AddDefaultCoachImages);
+
                                 }, child: 
                                 Text("اضافة المدرب المالك")):SizedBox(),
                                 (licenceController.currentUser.club!.id==null)?ElevatedButton(onPressed: (){
@@ -173,18 +171,20 @@ late DataTableSource dataSource;
                                 Text("Export")):SizedBox(),
                                 Row(
                                   children: [
-                                     IconButton(onPressed: (){
+                                     IconButton(onPressed: () async {
                                       if(licenceController.currentPage>1){
                                       licenceController.currentPage--;
+                                      await licenceController.getPaginatedLicences(licenceController.activeSeason.id);
                                       setState(() {
                                         
                                       });
                                       }
                                     }, icon:const Icon(Icons.keyboard_arrow_right_outlined)),
                                     Text(licenceController.currentPage.toString()),
-                                    IconButton(onPressed: (){
+                                    IconButton(onPressed: () async {
                                       
                                       licenceController.currentPage++;
+                                      await licenceController.getPaginatedLicences(licenceController.activeSeason.id);
                                       setState(() {
                                         
                                       });

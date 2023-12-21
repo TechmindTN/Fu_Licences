@@ -36,13 +36,20 @@ class LicenceNetwork {
   }
 
   getPaginatedLicenceListInfo(clubid,pageSize,pageNumber,season,{int? role}) async {
+    print("network paginated: "+{'userid': 274,
+        'club':clubid,
+        'page_size':pageSize,
+        'page_number':pageNumber,
+        'season':season
+        }.toString());
     Response res = await apis.dio.post(apis.baseUrl + apis.paginatedLicenceListInfo,
         options: Options(headers: {"Authorization": Apis.tempToken}),
         data: {'userid': 274,
         'club':clubid,
         'page_size':pageSize,
         'page_number':pageNumber,
-        'season':season
+        'season':season,
+        "role":role
         });
         
     return res;

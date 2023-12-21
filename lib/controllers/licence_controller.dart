@@ -570,14 +570,16 @@ class LicenceProvider extends ChangeNotifier {
               fullCoachLicences.add(fullLicence);
             }
             fullLicences.add(fullLicence);
-            // notify();
+            notify();
+            notifyListeners();
           }
         }
         // notify();
       }
     }
     isLoading = false;
-    // notify();
+    notify();
+    notifyListeners();
   }
 
   getLicences(data) async {
@@ -1019,6 +1021,33 @@ class LicenceProvider extends ChangeNotifier {
         password: "12345");
     createdFullLicence!.user = user;
   }
+  createDefaultCoachProfile(
+      {String? address,
+      String? cin,
+      String? firstName,
+      String? lastName,
+      String? phone,
+      String? state}) {
+    createdFullLicence!.profile!.address = address;
+    createdFullLicence!.profile!.birthday = selectedBirth!.year.toString() +
+        "-" +
+        selectedBirth!.month.toString() +
+        "-" +
+        selectedBirth!.day.toString();
+        createdFullLicence!.profile!.user=currentUser.id;
+    createdFullLicence!.profile!.cin = cin;
+    createdFullLicence!.profile!.firstName = firstName;
+    createdFullLicence!.profile!.lastName = lastName;
+    // createdFullLicence!.profile!.phone = int.parse(phone!);
+    createdFullLicence!.profile!.role = 4;
+    createdFullLicence!.profile!.sexe = selectedSex;
+    createdFullLicence!.profile!.state = selectedState;
+    // User user = User(
+    //     isSuperuser: false,
+    //     username: createdFullLicence!.profile!.phone.toString(),
+    //     password: "12345");
+    // createdFullLicence!.user = user;
+  }
 
   createArbitreProfile(
       {String? address,
@@ -1173,6 +1202,120 @@ class LicenceProvider extends ChangeNotifier {
     // createdFullLicence!.coach!.weights = selectedWeight!.id;
     // createdFullLicence!.coach!.degree = selectedDegree!.id;
     createCoachLicence(context);
+  }
+  createDefaultCoach(context) {
+    // createdFullLicence!.coach!.categoryId = selectedCategory!.id;
+    createdFullLicence!.coach!.grade = selectedGrade!.id;
+    // if (currentUser.club!.id == null) {
+    //   createdFullLicence!.coach!.club = selectedClub!.id;
+    // } else {
+      createdFullLicence!.coach!.club = currentUser.club!.id;
+    // }
+    createdFullLicence!.coach!.discipline = selectedDiscipline!.id;
+    // createdFullLicence.coach.profile=
+    // createdFullLicence!.coach!.weights = selectedWeight!.id;
+    createdFullLicence!.coach!.degree = selectedDegree!.id;
+    createDefaultCoachLicence(context);
+  }
+
+  createDefaultCoachLicence(context) async {
+    added = true;
+    // createdFullLicence!.licence!.categorie = selectedCategory!.id;
+    createdFullLicence!.licence!.grade = selectedGrade!.id;
+    
+      createdFullLicence!.licence!.club = currentUser.club!.id;
+      createdFullLicence!.licence!.user=currentUser.id;
+    createdFullLicence!.licence!.discipline = selectedDiscipline!.id;
+    // createdFullLicence!.licence!.weight = selectedWeight!.id;
+    createdFullLicence!.licence!.degree = selectedDegree!.id;
+    createdFullLicence!.licence!.activated = false;
+    createdFullLicence!.licence!.state = selectedState;
+    createdFullLicence!.licence!.verified = false;
+    createdFullLicence!.licence!.role = 4;
+    createdFullLicence!.licence!.seasons = activeSeason.id;
+    Map<String, dynamic> mapdata = {};
+    mapdata['licence'] = createdFullLicence!.licence!.toJson();
+    mapdata['user'] = currentUser.id!;
+    mapdata['coach'] = createdFullLicence!.coach!.toJson();
+    mapdata['profile'] = createdFullLicence!.profile!.toJson();
+    mapdata['coach'].remove('id');
+    mapdata['profile'].remove('id');
+    // log(
+    //   mapdata.toString(),
+    //   name: mapdata.toString(),
+    //   error: mapdata,
+    // );
+    try {
+      print(mapdata);
+      Response res = await licenceNetwork.createDefaultCoach(mapdata);
+      if (res.statusCode == 200) {
+        createdFullLicence!.licence!.role = "مدرب";
+        createdFullLicence!.profile!.profilePhoto=res.data['profile']['profile_photo'];
+        // createdFullLicence!.licence!.categorie = selectedCategory!.categorieAge;
+        createdFullLicence!.licence!.grade = selectedGrade!.grade;
+        if (currentUser.club!.id == null) {
+          createdFullLicence!.licence!.club = selectedClub!.name;
+        } else {
+          createdFullLicence!.licence!.club = currentUser.club!.name;
+        }
+        createdFullLicence!.licence!.state = res.data['licence']['state'];
+        createdFullLicence!.licence!.discipline = selectedDiscipline!.name;
+        // createdFullLicence!.licence!.weight = selectedWeight!.masseEnKillograme;
+        createdFullLicence!.licence!.degree = selectedDegree!.degree;
+        // createdFullLicence!.athlete!.categoryId = selectedCategory!.categorieAge;
+        // createdFullLicence!.athlete!.gradeId = selectedGrade!.grade;
+        if (currentUser.club!.id == null) {
+          createdFullLicence!.coach!.club = selectedClub!.name;
+        } else {
+          createdFullLicence!.coach!.club = currentUser.club!.name;
+        }
+        createdFullLicence!.coach!.discipline = selectedDiscipline!.name;
+        // createdFullLicence!.athlete!.weights = selectedWeight!.masseEnKillograme;
+        // createdFullLicence!.coach!.idDegree = selectedDegree!.degree;
+        createdFullLicence!.licence!.seasons = activeSeason.seasons;
+        createdFullLicence!.licence!.numLicences =
+            res.data['licence']['num_licences'];
+        createdFullLicence!.profile!.id = res.data['coach']['profile'];
+        createdFullLicence!.coach!.id = res.data['coach']['id'];
+        fullLicences.insert(0, createdFullLicence!);
+        fullCoachLicences.insert(0, createdFullLicence!);
+        currentUser.club!.hasCoach=true;
+        notify();
+        //print('ok');
+        // Navigator.pop(context);
+        // Navigator.pop(context);
+        // Navigator.pop(context);
+        final snackBar = MySnackBar(
+          title: 'Succees',
+          msg: 'La licence de ce athlete a ete ajoute avec succees',
+
+          /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+          state: ContentType.success,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+      } else {
+        final snackBar = MySnackBar(
+          title: 'فشل الاضافة',
+          msg: 'تم فشل اضافة اجازة المدرب',
+          state: ContentType.warning,
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+      }
+    } catch (e) {
+      final snackBar = MySnackBar(
+        title: 'Probleme',
+        msg:
+            'Il y a une probleme dans cet instant merci d\'essayer ulterieurement',
+        state: ContentType.failure,
+      );
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    }
   }
 
   createCoachLicence(context) async {
@@ -2444,10 +2587,10 @@ class LicenceProvider extends ChangeNotifier {
     //     ..writeAsBytesSync(onValue);
     // });
   }
-  createDefaultCoach(){
-    Map<String,dynamic> mapData;
-    // licenceNetwork.createDefaultCoach(mapData);
-  }
+  // createDefaultCoach(){
+  //   Map<String,dynamic> mapData;
+  //   // licenceNetwork.createDefaultCoach(mapData);
+  // }
 
   getCoachClubs(){
     List<Club> clubsList=[];
