@@ -4,6 +4,7 @@
   static const String Home="/";
     static const String Splash="/splash";
   static const String Login="/login";
+  static const String SelectClubScreen="/select_club_screen";
   static const String LicenceListScreen="/licence_list";
     static const String AthleteLicenceListScreen="/athlete_licence_list";
     static const String ArbitratorLicenceListScreen="/arbitrator_licence_list";

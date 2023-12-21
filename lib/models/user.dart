@@ -9,6 +9,7 @@ class User {
   DateTime? dateJoined;
   String? password;
   Club? club;
+  List<Club>? clubs;
 
   User(
       {this.id,

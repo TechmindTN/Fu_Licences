@@ -157,6 +157,13 @@ late DataTableSource dataSource;
                                 ),
                               ),
                               actions: [
+                                (licenceController.currentUser.club!.id!=null)?ElevatedButton(onPressed: (){
+                                  showDialog(context: context, builder: (context){
+                                    return ExportDataDialog();
+                                  });
+                                  // licenceController.exportAthletesToExcel( "ExportFTWKF", 0);
+                                }, child: 
+                                Text("اضافة المدرب المالك")):SizedBox(),
                                 (licenceController.currentUser.club!.id==null)?ElevatedButton(onPressed: (){
                                   showDialog(context: context, builder: (context){
                                     return ExportDataDialog();

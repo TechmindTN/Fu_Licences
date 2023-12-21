@@ -122,13 +122,24 @@ class LicenceProvider extends ChangeNotifier {
           Apis.tempToken = 'TOKEN ' + res.data['token'];
 
           currentUser = User.fromJson(res.data);
-
+          currentUser.clubs=[];
+          
           currentUser.id = res.data['user_data']['id'];
           currentUser.isSuperuser = res.data['user_data']['is_superuser'];
           prefs = await SharedPreferences.getInstance();
           prefs.setString('user', login);
           prefs.setString('psd', password);
-          GoRouter.of(context).go(Routes.Home);
+          if(res.data['club'].length>0){
+            for(int i =0;i<res.data['club'].length;i++){
+              Club club=Club.fromJson(res.data['club'][i]);
+              currentUser.clubs!.add(club);
+            }
+            GoRouter.of(context).go(Routes.SelectClubScreen);
+          }
+          else{
+            GoRouter.of(context).go(Routes.Home);
+          }
+          
         }
         return true;
       } else {

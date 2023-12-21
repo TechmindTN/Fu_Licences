@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fu_licences/router/routes.dart';
 import 'package:fu_licences/screens/athlete/add_athlete/add_athlete_screen.dart';
 import 'package:fu_licences/screens/auth/login_Screen.dart';
+import 'package:fu_licences/screens/club/choose_club_screen.dart';
 import 'package:fu_licences/screens/club/club_screen.dart';
 import 'package:fu_licences/screens/club/edit_club_password_screen.dart';
 import 'package:fu_licences/screens/club/edit_club_screen.dart';
@@ -145,6 +146,9 @@ class Pages{
       ),
       GoRoute(path: Routes.Login,
       builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(path: Routes.SelectClubScreen,
+      builder: (context, state) => const SelectClubScreen(),
       ),
       GoRoute(path: Routes.SelectParameterScreen,
       builder: (context, state) => const ParametersScreen(),
