@@ -2441,9 +2441,11 @@ class LicenceProvider extends ChangeNotifier {
   getCoachClubs(){
     List<Club> clubsList=[];
     print(selectedFullLicence!.coach!.clubs);
+    if(selectedFullLicence!.coach!.clubs!=null){
     List<String> clubs=selectedFullLicence!.coach!.clubs.split(",");
     for(int i=0;i<clubs.length;i++){
       clubsList.add(parameters!.clubs!.firstWhere((element) => element.id.toString()==clubs[i]));
+    }
     }
     return clubsList;
   }
