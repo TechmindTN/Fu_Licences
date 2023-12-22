@@ -62,6 +62,14 @@ class LicenceNetwork {
     );
     return res;
   }
+  getDetailedStats(data) async {
+    Response res = await apis.dio.post(
+      apis.baseUrl + apis.dateiledStats,
+      options: Options(headers: {"Authorization": Apis.tempToken}),
+      data: data
+    );
+    return res;
+  }
 
   deleteLicence(id) async {
     Response res=await apis.dio.delete("${apis.baseUrl}${apis.deleteLicence}$id/",

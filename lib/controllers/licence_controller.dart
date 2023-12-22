@@ -42,6 +42,8 @@ import '../widgets/global/snackbars.dart';
 import '../widgets/licence/licence_widget.dart';
 
 class LicenceProvider extends ChangeNotifier {
+  Widget statsWidget=SizedBox();
+  List<dynamic> detailedStats=[];
    List<Club> NonDefaultClubs=[];
   int currentPage = 1;
   Version currentVersion = Version(version: "0.21");
@@ -581,7 +583,36 @@ class LicenceProvider extends ChangeNotifier {
     notify();
     notifyListeners();
   }
+  getDetailedStats() async {
+    
+    Map<String,dynamic> mapData={
+      "club":(selectedClub!.id!=-1)?selectedClub!.id:"",
+      "discipline":(selectedDiscipline!.id!=-1)?selectedDiscipline!.id:"",
+      "season":(selectedSeason!.id!=-1)?selectedSeason!.id:"",
+    };
+    isLoading=true;
+    notify();
+    print(mapData);
+    Response res =await licenceNetwork.getDetailedStats(mapData);
+    if(res.statusCode==200){
+      print(res.data);
+      if(selectedClub!.id==-1)
+      detailedStats=res.data['licences'];
+      else
+      detailedStats=res.data['licences'] ;
+      
 
+      // stat
+      // for (int i=0;i<detailedStats.length;i++){
+      //   detailedStats.add(value)
+      // }
+      // statsWidget=Text(res.data.toString());
+
+    }
+    isLoading=false;
+    notifyListeners();
+    return res;
+  }
   getLicences(data) async {
     isLoading=true;
     notify();

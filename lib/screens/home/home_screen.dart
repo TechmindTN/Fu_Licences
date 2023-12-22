@@ -173,7 +173,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                 //  SizedBox(height: 0.5.h,),
                                      const Divider(color: Colors.white,),
-                                ],),
+                                     InkWell(
+                                      onTap: (){
+                                        GoRouter.of(context).go(Routes.Stats);
+                                      },
+                                      child: Container(
+                                      width: 30.w,
+                                      height: 4.h,
+                                      decoration: const BoxDecoration(
+                                        color: Color.fromARGB(255, 66, 144, 208)
+                                      ),
+                                      child: const Center(child: Text('الاحصائيات',style: TextStyle(color: Colors.white,fontSize: 20),))),
+                                    ),
+                                    // SizedBox(height: 0.5.h,),
+                                   
+                                      ],
+                                    ),
+                                //  SizedBox(height: 0.5.h,),
+                                     const Divider(color: Colors.white,),
+                               
                               ],
                             ),
                           ),

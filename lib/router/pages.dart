@@ -28,6 +28,7 @@ import 'package:fu_licences/screens/parameters/parameters_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_default_profile_screen.dart';
 import 'package:fu_licences/screens/profile/add_profile/add_profile_screen.dart';
 import 'package:fu_licences/screens/splash/splash_screen.dart';
+import 'package:fu_licences/screens/statistics/statistics_screen.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/arbitre/add_arbitre_screen.dart';
 import '../screens/club/add_club_screen.dart';
@@ -156,6 +157,9 @@ class Pages{
       
       GoRoute(path: Routes.AddArbitreLicenceScreen,
       builder: (context, state) => const AddArbitreScreen(),
+      ),
+      GoRoute(path: Routes.Stats,
+      builder: (context, state) => const StatsScreen(),
       ),
       GoRoute(path: Routes.Login,
       builder: (context, state) => const LoginScreen(),

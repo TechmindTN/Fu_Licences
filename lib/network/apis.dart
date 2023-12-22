@@ -13,7 +13,7 @@ class Apis {
   final String searchLicences="search_licences/";
   final String createDefaultCoach="add_default_coach/";
   final String assignClubToCoach="assign_club_to_coach/";
-
+  final String dateiledStats="detailed_stats/";
   final String paginatedLicenceListInfo="paginated_licence/";
 
   final String getParameters="parameters/";
